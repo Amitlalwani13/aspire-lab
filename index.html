@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ASPIRE Lab | Structural Biology & Drug Discovery</title>
+<title>ASPIRE Lab | Advanced Structural Parasitology & Protein Engineering</title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
@@ -17,104 +17,208 @@
 body {
   margin:0;
   font-family:'Inter';
-  background: radial-gradient(circle at top, #0f172a, #020617);
+  background: radial-gradient(circle at top, #0a0f1e, #020617);
   color:white;
   overflow-x:hidden;
 }
 
 /* NAVBAR */
 .navbar {
-  background: rgba(0,0,0,0.7)!important;
-  backdrop-filter: blur(12px);
+  background: rgba(0,0,0,0.85)!important;
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 .navbar-brand {
   font-family:'Playfair Display';
-  font-size:1.8rem;
+  font-size:1.9rem;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* HERO */
 .hero {
   height:100vh;
-  background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.9)),
-  url("https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1920");
+  background: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.95)),
+  url("https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=1920&auto=format&fit=crop");
   background-size:cover;
+  background-position:center;
   display:flex;
   align-items:center;
   justify-content:center;
   text-align:center;
+  position: relative;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 70%, rgba(79, 70, 229, 0.3) 0%, transparent 50%),
+              radial-gradient(circle at 70% 20%, rgba(124, 58, 237, 0.3) 0%, transparent 50%);
 }
 
 .hero h1 {
-  font-size:4rem;
+  font-size:4.5rem;
   font-weight:700;
+  font-family:'Playfair Display';
+  text-shadow: 0 0 30px rgba(255,255,255,0.3);
+  position: relative;
+  z-index: 2;
 }
 
 .hero p {
-  font-size:1.3rem;
-  opacity:0.85;
+  font-size:1.4rem;
+  opacity:0.9;
+  position: relative;
+  z-index: 2;
 }
 
 /* SECTION */
-.section {padding:100px 0;}
+.section {padding:120px 0;}
 .section-title {
   text-align:center;
-  font-size:2.8rem;
-  margin-bottom:60px;
+  font-size:3rem;
+  margin-bottom:70px;
   font-family:'Playfair Display';
+  background: linear-gradient(135deg, #ffffff, #e2e8f0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #4f46e5, #7c3aed);
+  border-radius: 2px;
 }
 
 /* GLASS CARDS */
 .glass {
-  background: rgba(255,255,255,0.06);
-  backdrop-filter: blur(20px);
-  border-radius:20px;
-  padding:25px;
-  border:1px solid rgba(255,255,255,0.08);
-  transition:0.3s;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(25px);
+  border-radius:25px;
+  padding:30px;
+  border:1px solid rgba(255,255,255,0.12);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
 }
+
+.glass::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+}
+
 .glass:hover {
-  transform:translateY(-8px);
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+  border-color: rgba(79, 70, 229, 0.5);
 }
 
 /* TEAM */
 .team-img {
-  width:130px;
-  height:130px;
+  width:140px;
+  height:140px;
   border-radius:50%;
   object-fit:cover;
-  border:3px solid rgba(255,255,255,0.2);
+  border:4px solid rgba(255,255,255,0.25);
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.team-img:hover {
+  border-color: #4f46e5;
+  transform: scale(1.05);
 }
 
 /* RESEARCH GRID */
 .research-card {
-  height:260px;
+  height:280px;
   background-size:cover;
-  border-radius:20px;
+  background-position:center;
+  border-radius:25px;
   position:relative;
   overflow:hidden;
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: all 0.4s ease;
 }
+
+.research-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
 .research-overlay {
   position:absolute;
   bottom:0;
   width:100%;
-  background:linear-gradient(transparent, rgba(0,0,0,0.9));
-  padding:20px;
+  background:linear-gradient(transparent, rgba(0,0,0,0.95));
+  padding:30px 25px;
+  backdrop-filter: blur(10px);
+}
+
+.research-overlay h5 {
+  font-family: 'Playfair Display';
+  font-size: 1.4rem;
 }
 
 /* PUBLICATIONS */
 .pub-card {
-  background: rgba(255,255,255,0.05);
-  padding:20px;
-  border-radius:12px;
-  margin-bottom:15px;
-  border-left:4px solid #6366f1;
+  background: rgba(255,255,255,0.06);
+  padding:25px;
+  border-radius:16px;
+  margin-bottom:20px;
+  border-left:5px solid #4f46e5;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.pub-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, #4f46e5, #7c3aed);
+}
+
+.pub-card:hover {
+  transform: translateX(10px);
+  box-shadow: 0 10px 30px rgba(79, 70, 229, 0.2);
 }
 
 /* FOOTER */
 footer {
-  background:black;
-  padding:20px;
+  background: rgba(0,0,0,0.95);
+  backdrop-filter: blur(20px);
+  padding:30px;
   text-align:center;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .hero h1 { font-size: 3rem; }
+  .section-title { font-size: 2.2rem; }
 }
 
 </style>
@@ -143,7 +247,7 @@ footer {
 <section class="hero">
 <div>
 <h1>ASPIRE Lab</h1>
-<p>Structural Parasitology • Protein Engineering • Drug Discovery</p>
+<p>Advanced Structural Parasitology • Protein Engineering • Drug Discovery</p>
 </div>
 </section>
 
@@ -151,9 +255,8 @@ footer {
 <section id="about" class="section text-center">
 <div class="container">
 <h2 class="section-title">About Us</h2>
-<p style="max-width:800px;margin:auto;">
-We investigate molecular mechanisms of parasitic survival using structural biology,
-and develop next-generation therapeutics targeting iron metabolism and protein systems.
+<p style="max-width:800px;margin:auto;font-size:1.1rem;line-height:1.8;">
+We investigate molecular mechanisms of parasitic survival using cutting-edge structural biology techniques, cryo-EM, and X-ray crystallography. Our protein engineering platform develops next-generation therapeutics targeting iron metabolism pathways and novel protein nanocages for drug delivery.
 </p>
 </div>
 </section>
@@ -166,28 +269,28 @@ and develop next-generation therapeutics targeting iron metabolism and protein s
 <div class="row g-4">
 
 <div class="col-md-4">
-<div class="research-card" style="background-image:url('https://images.unsplash.com/photo-1628592102751-ba83b0314276')">
+<div class="research-card" style="background-image:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.8)),url('https://images.unsplash.com/photo-1585377354572-b73e3c3b11be?q=80&w=1920&auto=format&fit=crop')">
 <div class="research-overlay">
 <h5>Iron Metabolism</h5>
-<p>Targeting parasite survival pathways</p>
+<p>Structural analysis of parasite iron acquisition pathways and therapeutic targeting</p>
 </div>
 </div>
 </div>
 
 <div class="col-md-4">
-<div class="research-card" style="background-image:url('https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe')">
+<div class="research-card" style="background-image:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.8)),url('https://images.unsplash.com/photo-1559757148-5c350d0d3c56?q=80&w=1920&auto=format&fit=crop')">
 <div class="research-overlay">
 <h5>Protein Engineering</h5>
-<p>Nanocages & structural design</p>
+<p>Cryo-EM guided design of protein nanocages and engineered therapeutics</p>
 </div>
 </div>
 </div>
 
 <div class="col-md-4">
-<div class="research-card" style="background-image:url('https://images.unsplash.com/photo-1576086213369-97a306d36557')">
+<div class="research-card" style="background-image:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.8)),url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=1920&auto=format&fit=crop')">
 <div class="research-overlay">
 <h5>Drug Discovery</h5>
-<p>Structure-guided therapeutics</p>
+<p>Structure-guided development of antiparasitic therapeutics</p>
 </div>
 </div>
 </div>
@@ -215,7 +318,7 @@ and develop next-generation therapeutics targeting iron metabolism and protein s
 <!-- PUBLICATIONS -->
 <section id="publications" class="section">
 <div class="container">
-<h2 class="section-title">Publications</h2>
+<h2 class="section-title">Key Publications</h2>
 <div id="pub-container"></div>
 </div>
 </section>
@@ -224,12 +327,15 @@ and develop next-generation therapeutics targeting iron metabolism and protein s
 <section id="contact" class="section text-center">
 <div class="container">
 <h2 class="section-title">Contact</h2>
-<p>Email: aspirelab@bits-pilani.ac.in</p>
-<p>BITS Pilani Hyderabad Campus</p>
+<div class="glass mx-auto" style="max-width:500px;">
+<p><i class="fas fa-envelope me-2"></i>aspirelab@bits-pilani.ac.in</p>
+<p><i class="fas fa-map-marker-alt me-2"></i>BITS Pilani Hyderabad Campus</p>
+<p><i class="fas fa-phone me-2"></i>+91-XXXX-XXXXXX</p>
+</div>
 </div>
 </section>
 
-<footer>© 2026 ASPIRE Lab</footer>
+<footer>© 2026 ASPIRE Lab | Advanced Structural Parasitology & Protein Engineering</footer>
 
 <!-- JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -249,16 +355,16 @@ data.forEach(m => {
 
 const name = m.name || m.Name;
 const role = m.role || m.Role;
-const image = m.image || m.Image || "https://via.placeholder.com/150";
+const image = m.image || m.Image || "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80";
 const linkedin = m.linkedin || m.Linkedin || "";
 
 const card = `
 <div class="col-md-3 mb-4">
 <div class="glass">
-<img src="${image}" class="team-img mb-3">
-<h5>${name}</h5>
-<p>${role}</p>
-${linkedin ? `<a href="${linkedin}" target="_blank"><i class="fab fa-linkedin"></i></a>` : ""}
+<img src="${image}" class="team-img mb-3 mx-auto d-block">
+<h5 class="mb-2">${name}</h5>
+<p class="text-muted mb-0">${role}</p>
+${linkedin ? `<a href="${linkedin}" target="_blank" class="mt-2 d-block text-decoration-none"><i class="fab fa-linkedin text-primary fs-5"></i></a>` : ""}
 </div>
 </div>`;
 
@@ -296,10 +402,17 @@ const link = p.link || p.Link;
 
 html += `
 <div class="pub-card">
-<h5>${title}</h5>
-<p>${authors}</p>
-<small>${journal} (${year})</small><br>
-<a href="${link}" target="_blank">View Paper</a>
+<div class="row align-items-center">
+<div class="col-auto">
+<i class="fas fa-file-alt text-primary fs-2 opacity-75"></i>
+</div>
+<div class="col">
+<h6 class="mb-1">${title}</h6>
+<p class="mb-1 text-muted small">${authors}</p>
+<small class="text-white-50">${journal}, ${year}</small>
+${link ? `<br><a href="${link}" target="_blank" class="btn btn-outline-light btn-sm mt-2">View Paper</a>` : ''}
+</div>
+</div>
 </div>`;
 });
 
