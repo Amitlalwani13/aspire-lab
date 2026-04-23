@@ -1,1 +1,3 @@
-
+[ ] content/
+    [ ] team/
+        test.txt ← This creates FOLDER!
