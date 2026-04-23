@@ -6,92 +6,21 @@
 
 <title>ASPIRE Lab | BITS Pilani Hyderabad</title>
 
-<!-- Bootstrap -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-
-<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-<!-- Swiper -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 
 <style>
-:root {
-  --primary: #667eea;
-  --bg: #0a0a23;
-  --glass: rgba(255,255,255,0.08);
-}
-
-body {
-  font-family: 'Inter', sans-serif;
-  background: var(--bg);
-  color: white;
-}
-
-/* NAVBAR */
-.navbar {
-  background: rgba(0,0,0,0.85)!important;
-}
-.navbar-brand {
-  font-family: 'Playfair Display';
-  font-size: 1.8rem;
-}
-
-/* HERO */
-.hero-slider .swiper-slide {
-  height: 100vh;
-  background-size: cover;
-  background-position: center;
-}
-.slide1 { background-image: url('https://images.unsplash.com/photo-1581093588401-12c6a6e1c77f?w=1920'); }
-.slide2 { background-image: url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1920'); }
-.slide3 { background-image: url('https://images.unsplash.com/photo-1576086213369-97a306d36557?w=1920'); }
-
-.overlay {
-  position:absolute;
-  top:50%;left:50%;
-  transform:translate(-50%,-50%);
-  background: rgba(0,0,0,0.6);
-  padding:3rem;
-  border-radius:20px;
-  text-align:center;
-}
-
-/* SECTIONS */
-.section { padding:100px 0; }
-
-.section-title {
-  text-align:center;
-  font-size:2.5rem;
-  margin-bottom:3rem;
-}
-
-/* CARDS */
-.glass-card {
-  background: var(--glass);
-  padding:2rem;
-  border-radius:15px;
-  backdrop-filter: blur(10px);
-  transition:.3s;
-}
-.glass-card:hover { transform:translateY(-6px); }
-
-/* TEAM */
-.team-img {
-  width:120px;height:120px;
-  border-radius:50%;
-  object-fit:cover;
-}
-
-/* FOOTER */
-.footer {
-  background:#000;
-  padding:2rem;
-  text-align:center;
-}
+body {background:#0a0a23;color:white;font-family:'Inter';}
+.navbar {background:rgba(0,0,0,0.9)!important;}
+.section {padding:100px 0;}
+.section-title {text-align:center;margin-bottom:40px;}
+.glass-card {background:rgba(255,255,255,0.08);padding:20px;border-radius:15px;}
+.team-img {width:120px;height:120px;border-radius:50%;}
+.pub-card {background:rgba(255,255,255,0.08);padding:15px;border-radius:10px;margin-bottom:15px;}
+.hero-slider .swiper-slide {height:100vh;background-size:cover;}
+.overlay {position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.6);padding:30px;border-radius:20px;}
 </style>
 </head>
 
@@ -100,12 +29,8 @@ body {
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
 <div class="container">
-<a class="navbar-brand" href="#">ASPIRE Lab</a>
-
-<button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
-<span class="navbar-toggler-icon"></span>
-</button>
-
+<a class="navbar-brand">ASPIRE Lab</a>
+<button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav"></button>
 <div class="collapse navbar-collapse" id="nav">
 <ul class="navbar-nav ms-auto">
 <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
@@ -122,96 +47,34 @@ body {
 <section class="hero-slider">
 <div class="swiper">
 <div class="swiper-wrapper">
-
-<div class="swiper-slide slide1">
-<div class="overlay">
-<h1>ASPIRE Lab</h1>
-<p>Structural Parasitology & Protein Engineering</p>
+<div class="swiper-slide" style="background-image:url('https://images.unsplash.com/photo-1581093588401-12c6a6e1c77f')">
+<div class="overlay"><h1>ASPIRE Lab</h1><p>Structural Parasitology</p></div>
 </div>
-</div>
-
-<div class="swiper-slide slide2">
-<div class="overlay">
-<h1>Drug Discovery</h1>
-<p>Iron metabolism & therapeutics</p>
-</div>
-</div>
-
-<div class="swiper-slide slide3">
-<div class="overlay">
-<h1>Protein Engineering</h1>
-<p>Nanocage delivery systems</p>
-</div>
-</div>
-
 </div>
 </div>
 </section>
 
 <!-- ABOUT -->
-<section id="about" class="section">
-<div class="container text-center">
-<h2 class="section-title">About Us</h2>
-<p style="max-width:800px;margin:auto;">
-ASPIRE Lab focuses on structural parasitology, protein engineering,
-and drug discovery with emphasis on iron metabolism and therapeutic design.
-</p>
+<section id="about" class="section text-center">
+<div class="container">
+<h2 class="section-title">About</h2>
+<p>Structural parasitology, protein engineering, and drug discovery research.</p>
 </div>
 </section>
 
 <!-- PI -->
-<section class="section">
-<div class="container text-center">
-<h2 class="section-title">Principal Investigator</h2>
-
-<div class="glass-card mx-auto" style="max-width:400px;">
-<img src="https://via.placeholder.com/150" class="team-img mb-3">
-<h5>Dr. [Your PI Name]</h5>
-<p>Assistant Professor, BITS Pilani Hyderabad</p>
-</div>
-
-</div>
-</section>
-
-<!-- RESEARCH -->
-<section id="research" class="section">
+<section class="section text-center">
 <div class="container">
-<h2 class="section-title">Research Areas</h2>
-
-<div class="row g-4">
-
-<div class="col-md-4">
-<div class="glass-card">
-<h5>Iron Metabolism</h5>
-<p>Understanding parasite survival and drug targets.</p>
-</div>
-</div>
-
-<div class="col-md-4">
-<div class="glass-card">
-<h5>Protein Engineering</h5>
-<p>Designing nanocages and biomolecular tools.</p>
-</div>
-</div>
-
-<div class="col-md-4">
-<div class="glass-card">
-<h5>Drug Discovery</h5>
-<p>Structure-guided therapeutic development.</p>
-</div>
-</div>
-
-</div>
+<h2 class="section-title">Principal Investigator</h2>
+<div id="pi-container"></div>
 </div>
 </section>
 
 <!-- TEAM -->
 <section id="team" class="section">
 <div class="container">
-<h2 class="section-title">Our Team</h2>
-
+<h2 class="section-title">Team</h2>
 <div class="row text-center" id="team-container"></div>
-
 </div>
 </section>
 
@@ -219,36 +82,22 @@ and drug discovery with emphasis on iron metabolism and therapeutic design.
 <section id="publications" class="section">
 <div class="container">
 <h2 class="section-title">Publications</h2>
-
-<div id="pub-container">
-
-<div class="glass-card mb-3">
-<h5>Sample Publication Title</h5>
-<p>Author et al.</p>
-<small>Journal Name (2025)</small>
-</div>
-
-</div>
-
+<div id="pub-container"></div>
 </div>
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="section">
-<div class="container text-center">
+<section id="contact" class="section text-center">
+<div class="container">
 <h2 class="section-title">Contact</h2>
-
 <p>Email: aspirelab@bits-pilani.ac.in</p>
-<p>BITS Pilani Hyderabad Campus</p>
-
+<p>BITS Pilani Hyderabad</p>
 </div>
 </section>
 
-<footer class="footer">
-<p>© 2026 ASPIRE Lab</p>
-</footer>
+<footer class="text-center p-3">© 2026 ASPIRE Lab</footer>
 
-<!-- SCRIPTS -->
+<!-- JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
@@ -256,43 +105,78 @@ and drug discovery with emphasis on iron metabolism and therapeutic design.
 new Swiper('.swiper',{loop:true,autoplay:{delay:4000}});
 </script>
 
-<!-- TEAM LOADER (keep for now) -->
+<!-- ✅ GOOGLE SHEETS TEAM -->
 <script>
 async function loadTeam() {
-  const url = "https://api.github.com/repos/Amitlalwani13/aspire-lab/contents/content/team";
+const url = "https://opensheet.elk.sh/1vhSco35e3yQHCFiFJoAmjbHKZ7WV2RQN65xNbK6TIl8/TEAM";
 
-  try {
-    const res = await fetch(url);
-    const files = await res.json();
+const res = await fetch(url);
+const data = await res.json();
 
-    let html = "";
+let teamHTML = "";
+let piHTML = "";
 
-    for (let file of files) {
-      const fileRes = await fetch(file.download_url);
-      const text = await fileRes.text();
+data.forEach(m => {
 
-      const name = text.match(/name:\s*(.*)/)?.[1] || "Unknown";
-      const role = text.match(/role:\s*(.*)/)?.[1] || "";
-      const image = text.match(/image:\s*(.*)/)?.[1] || "https://via.placeholder.com/150";
+const name = m.name || m.Name;
+const role = m.role || m.Role;
+const image = m.image || m.Image || "https://via.placeholder.com/150";
+const linkedin = m.linkedin || m.Linkedin || "";
 
-      html += `
-        <div class="col-md-3 mb-4">
-          <div class="glass-card">
-            <img src="${image}" class="team-img mb-3">
-            <h5>${name}</h5>
-            <p>${role}</p>
-          </div>
-        </div>
-      `;
-    }
+const card = `
+<div class="col-md-3 mb-4">
+<div class="glass-card">
+<img src="${image}" class="team-img mb-3">
+<h5>${name}</h5>
+<p>${role}</p>
+${linkedin ? `<a href="${linkedin}" target="_blank"><i class="fab fa-linkedin"></i></a>` : ""}
+</div>
+</div>`;
 
-    document.getElementById("team-container").innerHTML = html;
+if(role && role.toLowerCase().includes("principal")){
+piHTML += card;
+}else{
+teamHTML += card;
+}
 
-  } catch (error) {
-    console.error("Error loading team:", error);
-  }
+});
+
+document.getElementById("pi-container").innerHTML = piHTML;
+document.getElementById("team-container").innerHTML = teamHTML;
 }
 loadTeam();
+</script>
+
+<!-- ✅ GOOGLE SHEETS PUBLICATIONS -->
+<script>
+async function loadPublications() {
+const url = "https://opensheet.elk.sh/1vhSco35e3yQHCFiFJoAmjbHKZ7WV2RQN65xNbK6TIl8/PUBLICATIONS";
+
+const res = await fetch(url);
+const data = await res.json();
+
+let html = "";
+
+data.reverse().forEach(p => {
+
+const title = p.title || p["Title "];
+const authors = p.authors || p.Authors;
+const journal = p.journal || p.Journal;
+const year = p.year || p.Year;
+const link = p.link || p.Link;
+
+html += `
+<div class="pub-card">
+<h5>${title}</h5>
+<p>${authors}</p>
+<small>${journal} (${year})</small><br>
+<a href="${link}" target="_blank">View Paper</a>
+</div>`;
+});
+
+document.getElementById("pub-container").innerHTML = html;
+}
+loadPublications();
 </script>
 
 </body>
