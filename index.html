@@ -265,49 +265,20 @@ footer {
 </section>
 
 <!-- ABOUT -->
+<!-- ABOUT (DYNAMIC) -->
 <section id="about" class="section text-center">
 <div class="container">
 <h2 class="section-title">About ASPIRE Lab</h2>
-<div class="glass p-5 mb-0" style="max-width:900px; margin:auto;">
-<p class="fs-5 mb-4">
-We pioneer <strong>structural parasitology</strong> and <strong>protein engineering</strong> to decode molecular mechanisms of parasitic survival and engineer next-generation therapeutics targeting iron metabolism, ferritin nanocages, and protein delivery systems.
-</p>
-</div>
+<div id="about-container"></div>
 </div>
 </section>
 
 <!-- RESEARCH -->
+<!-- RESEARCH (DYNAMIC) -->
 <section id="research" class="section">
 <div class="container">
 <h2 class="section-title">Research Areas</h2>
-<div class="row g-4">
-<div class="col-md-4">
-<div class="research-card" style="background-image:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.95)),url('https://lh3.googleusercontent.com/d/11XFCiuKGyRwXsG0BGpiBn3WGfNvFNDK3')">
-<div class="research-overlay">
-<h5 style="font-family:'Playfair Display'; font-size:1.4rem;">Structural Parasitology</h5>
-<p>Protein crystallography & cryo-EM of parasite iron proteins</p>
-</div>
-</div>
-</div>
-
-<div class="col-md-4">
-<div class="research-card" style="background-image:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.95)),url('https://lh3.googleusercontent.com/d/1CLS9kbOwLhrStP4qFvYvOfvr0qr4iuGm')">
-<div class="research-overlay">
-<h5 style="font-family:'Playfair Display'; font-size:1.4rem;">Ferritin Nanocages</h5>
-<p>Engineered protein cages for targeted drug delivery</p>
-</div>
-</div>
-</div>
-
-<div class="col-md-4">
-<div class="research-card" style="background-image:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.95)),url('https://lh3.googleusercontent.com/d/1pzhRROZTLh_owdh3BIw8lnLmhrSvC78E')">
-<div class="research-overlay">
-<h5 style="font-family:'Playfair Display'; font-size:1.4rem;">Drug Discovery</h5>
-<p>Structure-guided parasite survival inhibitors</p>
-</div>
-</div>
-</div>
-</div>
+<div class="row g-4" id="research-container"></div>
 </div>
 </section>
 
@@ -336,25 +307,13 @@ We pioneer <strong>structural parasitology</strong> and <strong>protein engineer
 </section>
 
 <!-- CONTACT -->
+<!-- CONTACT (DYNAMIC) -->
 <section id="contact" class="section text-center">
 <div class="container">
 <h2 class="section-title">Contact</h2>
-<div class="glass contact-glass py-5 px-4">
-<div class="fs-4 mb-4"><i class="fas fa-paper-plane text-primary me-3"></i>Get In Touch</div>
-<i class="fas fa-envelope fs-5 me-3"></i><strong>aspirelab@bits-pilani.ac.in</strong><br><br>
-<i class="fas fa-map-marker-alt fs-5 me-3"></i><strong>BITS Pilani Hyderabad Campus</strong>
-</div>
+<div id="contact-container"></div>
 </div>
 </section>
-
-<footer>
-<div class="container">
-<p class="mb-0" style="opacity:0.8;">© 2026 ASPIRE Lab | Advanced Structural Parasitology & Protein Engineering</p>
-</div>
-</footer>
-
-<!-- BOOTSTRAP JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- TEAM (UNCHANGED) -->
 <script>
@@ -404,11 +363,9 @@ const data = await res.json();
 
 let html = "";
 data.reverse().slice(0,8).forEach(p => {
-const title = p.title || p["Title "] || "Untitled";
-const authors = p.authors || p.Authors || "";
-const journal = p.journal || p.Journal || "";
-const year = p.year || p.Year || "";
-const link = p.link || p.Link || "";
+const title = r.title || r.Title || "";
+const desc = r.description || r.Description || "";
+const image = r.image || r.Image || "";
 
 html += `
 <div class="pub-card">
@@ -423,6 +380,74 @@ document.getElementById("pub-container").innerHTML = html || '<div class="text-c
 }
 loadPublications();
 </script>
+<script>
+async function loadAbout() {
+const url = "https://opensheet.elk.sh/1vhSco35e3yQHCFiFJoAmjbHKZ7WV2RQN65xNbK6TIl8/ABOUT";
+const res = await fetch(url);
+const data = await res.json();
+
+const text = data[0]?.text || data[0]?.Text || "";
+
+document.getElementById("about-container").innerHTML = `
+<div class="glass p-5" style="max-width:900px; margin:auto;">
+<p class="fs-5">${text}</p>
+</div>`;
+}
+loadAbout();
+</script>  
+<script>
+async function loadResearch() {
+const url = "https://opensheet.elk.sh/1vhSco35e3yQHCFiFJoAmjbHKZ7WV2RQN65xNbK6TIl8/RESEARCH";
+const res = await fetch(url);
+const data = await res.json();
+
+let html = "";
+
+data.forEach(r => {
+const title = r.title || "";
+const desc = r.description || "";
+const image = r.image || "";
+
+html += `
+<div class="col-md-4">
+<div class="research-card" style="background-image:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.95)),url('${image}')">
+<div class="research-overlay">
+<h5 style="font-family:'Playfair Display'; font-size:1.4rem;">${title}</h5>
+<p>${desc}</p>
+</div>
+</div>
+</div>`;
+});
+
+document.getElementById("research-container").innerHTML = html;
+}
+loadResearch();
+</script>
+ <script>
+async function loadContact() {
+const url = "https://opensheet.elk.sh/1vhSco35e3yQHCFiFJoAmjbHKZ7WV2RQN65xNbK6TIl8/CONTACT";
+const res = await fetch(url);
+const data = await res.json();
+
+const email = data[0]?.email || data[0]?.Email || "";
+const address = data[0]?.address || data[0]?.Address || "";
+
+document.getElementById("contact-container").innerHTML = `
+<div class="glass contact-glass py-5 px-4">
+<div class="fs-4 mb-4">
+<i class="fas fa-paper-plane text-primary me-3"></i>Get In Touch
+</div>
+
+<i class="fas fa-envelope fs-5 me-3"></i><strong>${email}</strong><br><br>
+
+<i class="fas fa-map-marker-alt fs-5 me-3"></i><strong>${address}</strong>
+</div>`;
+}
+loadContact();
+</script>
+
+<!-- ADD THIS LINE -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
