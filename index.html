@@ -19,25 +19,60 @@
   --text-primary: #ffffff;
   --text-secondary: rgba(255,255,255,0.8);
 }
-html { scroll-behavior: smooth; }
-section { scroll-margin-top: 110px; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+section {
+  scroll-margin-top: 110px;
+}
+
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
   background: radial-gradient(circle at top, #0a0e1a, #01050f);
   color: var(--text-primary);
+  overflow-x: hidden;
+  line-height: 1.6;
 }
 
-/* NAV */
-.navbar { background: rgba(0,0,0,0.95)!important; backdrop-filter: blur(30px); }
+/* NAVBAR */
+.navbar {
+  background: rgba(0,0,0,0.95)!important;
+  backdrop-filter: blur(30px);
+  border-bottom: 1px solid var(--glass-border);
+  padding: 1rem 0;
+  z-index: 1000;
+}
 .navbar-brand {
   font-family: 'Playfair Display';
   font-size: 2.2rem;
+  font-weight: 700;
   background: var(--primary-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
-.nav-link { color: var(--text-secondary)!important; }
+.nav-link {
+  color: var(--text-secondary)!important;
+  font-weight: 500;
+  margin: 0 0.75rem;
+  transition: all 0.3s ease;
+  position: relative;
+}
+.nav-link:hover { color: #3b82f6 !important; }
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background: var(--primary-gradient);
+  transition: width 0.3s ease;
+}
+.nav-link:hover::after { width: 100%; }
 
 /* HERO */
 .hero {
@@ -46,53 +81,159 @@ body {
     linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.95)),
     url("https://lh3.googleusercontent.com/d/1bixRBwYia7U1ZMcF_qGGCKLb_ASKpdV8");
   background-size: cover;
+  background-position: center;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
+  position: relative;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 20%, rgba(59,130,246,0.2) 0%, transparent 50%);
 }
 .hero h1 {
   font-size: 4.5rem;
+  font-weight: 700;
   font-family: 'Playfair Display';
   background: var(--primary-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+.hero p {
+  font-size: 1.4rem;
+  opacity: 0.95;
+  font-weight: 400;
+  max-width: 700px;
+  position: relative;
+  z-index: 2;
+  margin: 0 auto;
 }
 
 /* SECTION */
-.section { padding: 100px 0; }
+.section { padding: 120px 0; }
 .section-title {
   text-align: center;
-  font-size: 3rem;
-  margin-bottom: 60px;
+  font-size: 3.2rem;
+  margin-bottom: 70px;
   font-family: 'Playfair Display';
+  font-weight: 700;
   background: var(--primary-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+}
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 4px;
+  background: var(--primary-gradient);
+  border-radius: 2px;
 }
 
-/* GLASS */
+/* GLASS CARDS */
 .glass {
   background: var(--glass-bg);
-  backdrop-filter: blur(20px);
-  border-radius: 20px;
-  padding: 2rem;
+  backdrop-filter: blur(30px);
+  border-radius: 24px;
+  padding: 2.5rem;
   border: 1px solid var(--glass-border);
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.glass:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+  border-color: rgba(59,130,246,0.3);
+}
+
+/* RESEARCH CARDS */
+.research-card {
+  height: 280px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 24px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  transition: all 0.5s ease;
+}
+.research-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+}
+.research-overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(transparent, rgba(0,0,0,0.95));
+  padding: 2rem 1.5rem;
+  transition: all 0.4s ease;
+}
+.research-card:hover .research-overlay {
+  background: linear-gradient(transparent, rgba(59,130,246,0.15));
 }
 
 /* TEAM */
 .team-img {
-  width: 130px;
-  height: 130px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
   object-fit: cover;
+  border: 4px solid rgba(255,255,255,0.2);
+  transition: all 0.4s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+.team-img:hover {
+  border-color: #3b82f6;
+  transform: scale(1.08);
+}
+
+/* PUBLICATIONS */
+.pub-card {
+  background: var(--glass-bg);
+  padding: 1.8rem;
+  border-radius: 18px;
+  margin-bottom: 1.5rem;
+  border-left: 5px solid transparent;
+  transition: all 0.4s ease;
+}
+.pub-card:hover {
+  transform: translateX(10px);
+  box-shadow: 0 15px 35px rgba(59,130,246,0.2);
+  border-left-color: #6366f1;
+}
+
+/* CONTACT */
+.contact-glass {
+  max-width: 550px;
+  margin: 0 auto;
 }
 
 /* FOOTER */
 footer {
-  background: #000;
-  padding: 2rem;
+  background: rgba(0,0,0,0.98);
+  backdrop-filter: blur(30px);
+  padding: 3rem 0;
   text-align: center;
+  border-top: 1px solid var(--glass-border);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .hero h1 { font-size: 3.2rem; }
+  .section-title { font-size: 2.4rem; }
+  .section { padding: 80px 0; }
 }
 </style>
 </head>
@@ -100,172 +241,313 @@ footer {
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-<div class="container">
-<a class="navbar-brand" href="#">ASPIRE Lab</a>
-<button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
-<span class="navbar-toggler-icon"></span>
-</button>
-<div class="collapse navbar-collapse" id="nav">
-<ul class="navbar-nav ms-auto">
-<li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-<li class="nav-item"><a class="nav-link" href="#research">Research</a></li>
-<li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
-<li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
-<li class="nav-item"><a class="nav-link" href="#posters">Posters</a></li>
-<li class="nav-item"><a class="nav-link" href="#publications">Publications</a></li>
-<li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-</ul>
-</div>
-</div>
+  <div class="container">
+    <a class="navbar-brand" href="#">ASPIRE Lab</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#research">Research</a></li>
+        <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
+        <li class="nav-item"><a class="nav-link" href="#publications">Publications</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
 </nav>
 
 <section class="hero">
-<div class="container">
-<h1>ASPIRE Lab</h1>
-<p>Advanced Structural Parasitology • Protein Engineering • Drug Discovery</p>
-</div>
+  <div class="container">
+    <h1>ASPIRE Lab</h1>
+    <p>Advanced Structural Parasitology • Protein Engineering • Drug Discovery</p>
+  </div>
 </section>
 
 <section id="about" class="section text-center">
-<div class="container">
-<h2 class="section-title">About</h2>
-<div class="glass"><p id="about-text">Loading...</p></div>
-</div>
+  <div class="container">
+    <h2 class="section-title">About ASPIRE Lab</h2>
+    <div class="glass p-5 mb-0" style="max-width:900px; margin:auto;">
+      <p id="about-text" class="fs-5 mb-4">Loading...</p>
+    </div>
+  </div>
 </section>
 
 <section id="research" class="section">
-<div class="container">
-<h2 class="section-title">Research</h2>
-<div class="row" id="research-container"></div>
-</div>
+  <div class="container">
+    <h2 class="section-title">Research Areas</h2>
+    <div class="row g-4" id="research-container"></div>
+  </div>
 </section>
 
 <section class="section text-center">
-<div class="container">
-<h2 class="section-title">Principal Investigator</h2>
-<div class="row" id="pi-container"></div>
-</div>
+  <div class="container">
+    <h2 class="section-title">Principal Investigator</h2>
+    <div class="row justify-content-center" id="pi-container"></div>
+  </div>
 </section>
 
 <section id="team" class="section">
-<div class="container">
-<h2 class="section-title">Team</h2>
-<div id="team-container"></div>
-</div>
-</section>
-
-<section id="gallery" class="section">
-<div class="container">
-<h2 class="section-title">Gallery</h2>
-<div class="row" id="gallery-container"></div>
-</div>
-</section>
-
-<section id="posters" class="section">
-<div class="container">
-<h2 class="section-title">Posters</h2>
-<div class="row" id="poster-container"></div>
-</div>
+  <div class="container">
+    <h2 class="section-title">Our Team</h2>
+    <div class="row" id="team-container"></div>
+  </div>
 </section>
 
 <section id="publications" class="section">
-<div class="container">
-<h2 class="section-title">Publications</h2>
-<div id="pub-container"></div>
-</div>
+  <div class="container">
+    <h2 class="section-title">Publications</h2>
+    <div id="pub-container"></div>
+  </div>
 </section>
 
 <section id="contact" class="section text-center">
-<div class="container">
-<h2 class="section-title">Contact</h2>
-<div class="glass"><div id="contact-content">Loading...</div></div>
-</div>
+  <div class="container">
+    <h2 class="section-title">Contact</h2>
+
+    <div class="glass contact-glass py-5 px-4">
+      <div class="fs-4 mb-4">
+        <i class="fas fa-paper-plane text-primary me-3"></i>Get In Touch
+      </div>
+      <div id="contact-content">Loading...</div>
+    </div>
+  </div>
 </section>
 
 <footer>
-<p>© 2026 ASPIRE Lab</p>
+  <div class="container">
+    <p class="mb-0" style="opacity:0.8;">© 2026 ASPIRE Lab | Advanced Structural Parasitology & Protein Engineering</p>
+  </div>
 </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
 const SHEET_ID = "1vhSco35e3yQHCFiFJoAmjbHKZ7WV2RQN65xNbK6TIl8";
+const FALLBACK_IMAGE = "https://via.placeholder.com/800x500?text=ASPIRE+Lab";
 
-function normalizeImageUrl(url){
-  const id = (url||"").match(/[-\w]{25,}/);
-  return id ? `https://lh3.googleusercontent.com/d/${id[0]}` : url;
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
 }
 
-async function fetchSheet(name){
-  const res = await fetch(`https://opensheet.elk.sh/${SHEET_ID}/${name}`);
-  return res.json();
+function normalizeImageUrl(url) {
+  const raw = String(url ?? "").trim();
+  if (!raw) return FALLBACK_IMAGE;
+
+  const driveMatch = raw.match(/\/d\/([a-zA-Z0-9_-]+)/) || raw.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+  if (driveMatch && driveMatch[1]) {
+    return `https://lh3.googleusercontent.com/d/${driveMatch[1]}`;
+  }
+
+  return raw;
 }
 
-async function loadAbout(){
-  const d = await fetchSheet("ABOUT");
-  document.getElementById("about-text").innerText = d[0]?.text || "";
+async function fetchSheet(sheetName) {
+  try {
+    const res = await fetch(`https://opensheet.elk.sh/${SHEET_ID}/${sheetName}`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    return Array.isArray(data) ? data : [];
+  } catch (err) {
+    console.error(`Failed to load ${sheetName}:`, err);
+    return [];
+  }
 }
 
-async function loadTeam(){
-  const d = await fetchSheet("TEAM");
-  let pi="", phd="", other="";
+function firstNonEmptyValue(obj) {
+  if (!obj || typeof obj !== "object") return "";
+  const vals = Object.values(obj).map(v => (v == null ? "" : String(v).trim()));
+  return vals.find(v => v.length > 0) || "";
+}
 
-  d.forEach(m=>{
-    const card=`
-    <div class="col-md-3 mb-4">
-      <div class="glass text-center">
-        <img src="${normalizeImageUrl(m.image)}" class="team-img mb-2">
-        <h5>${m.name}</h5>
-        <p>${m.role}</p>
-        <p class="small">${m.bio||""}</p>
+async function loadAbout() {
+  const el = document.getElementById("about-text");
+  if (!el) return;
+
+  el.textContent = "Loading...";
+
+  const data = await fetchSheet("ABOUT");
+  const text =
+    data[0]?.text ||
+    data[0]?.Text ||
+    data[0]?.about ||
+    data[0]?.About ||
+    firstNonEmptyValue(data[0]) ||
+    "About content coming soon...";
+
+  el.textContent = text;
+}
+
+async function loadResearch() {
+  const container = document.getElementById("research-container");
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  const data = await fetchSheet("RESEARCH");
+
+  if (!data.length) {
+    container.innerHTML = '<div class="col-12"><div class="glass text-center"><p class="mb-0 text-secondary">Research content coming soon...</p></div></div>';
+    return;
+  }
+
+  data.forEach(r => {
+    if (!r || Object.keys(r).length === 0) return;
+
+    const title = r.title || r.Title || "Untitled";
+    const desc = r.description || r.Description || "";
+    const img = normalizeImageUrl(r.image || r.Image || "");
+
+    const col = document.createElement("div");
+    col.className = "col-md-4";
+
+    const card = document.createElement("div");
+    card.className = "research-card";
+    card.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.95)), url("${img.replaceAll('"', "%22")}")`;
+
+    const overlay = document.createElement("div");
+    overlay.className = "research-overlay";
+    overlay.innerHTML = `
+      <h5 style="font-family:'Playfair Display'; font-size:1.4rem;">${escapeHtml(title)}</h5>
+      <p class="mb-0">${escapeHtml(desc)}</p>
+    `;
+
+    card.appendChild(overlay);
+    col.appendChild(card);
+    container.appendChild(col);
+  });
+}
+
+async function loadTeam() {
+  const teamContainer = document.getElementById("team-container");
+  const piContainer = document.getElementById("pi-container");
+  if (!teamContainer || !piContainer) return;
+
+  teamContainer.innerHTML = "";
+  piContainer.innerHTML = "";
+
+  const data = await fetchSheet("TEAM");
+
+  if (!data.length) {
+    piContainer.innerHTML = '<div class="col-12"><div class="glass p-4"><p class="text-secondary mb-0">Coming soon...</p></div></div>';
+    return;
+  }
+
+  let teamHTML = "";
+  let piHTML = "";
+
+  data.forEach(m => {
+    if (!m || Object.keys(m).length === 0) return;
+
+    const name = m.name || m.Name || "Unnamed";
+    const role = m.role || m.Role || "";
+    const image = normalizeImageUrl(m.image || m.Image || FALLBACK_IMAGE);
+    const linkedin = m.linkedin || m.LinkedIn || "";
+
+    const card = `
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+        <div class="glass h-100 d-flex flex-column align-items-center p-4">
+          <img src="${image.replaceAll('"', "%22")}" class="team-img mb-3" alt="${escapeHtml(name)}" loading="lazy" onerror="this.onerror=null;this.src='${FALLBACK_IMAGE}'">
+          <h5 class="mb-2">${escapeHtml(name)}</h5>
+          <p class="text-secondary mb-3">${escapeHtml(role)}</p>
+          ${linkedin ? `<a href="${escapeHtml(linkedin)}" target="_blank" rel="noopener noreferrer" class="text-decoration-none"><i class="fab fa-linkedin text-primary fs-4"></i></a>` : ""}
+        </div>
       </div>
-    </div>`;
+    `;
 
-    if(/pi|principal/i.test(m.role)) pi+=card;
-    else if(/phd/i.test(m.role)) phd+=card;
-    else other+=card;
+    const isPI = /principal|pi\b|investigator/i.test(role);
+    if (isPI) {
+      piHTML += card;
+    } else {
+      teamHTML += card;
+    }
   });
 
-  document.getElementById("pi-container").innerHTML=pi;
-  document.getElementById("team-container").innerHTML=
-    `<h3>PhD Scholars</h3><div class="row">${phd}</div>
-     <h3 class="mt-5">Team Members</h3><div class="row">${other}</div>`;
+  piContainer.innerHTML = piHTML || '<div class="col-12"><div class="glass p-4"><p class="text-secondary mb-0">Coming soon...</p></div></div>';
+  teamContainer.innerHTML = teamHTML || '<div class="col-12"><div class="glass p-4"><p class="text-secondary mb-0">Coming soon...</p></div></div>';
 }
 
-async function loadGallery(){
-  const d = await fetchSheet("GALLERY");
-  let html="";
-  d.forEach(g=>{
-    html+=`
-    <div class="col-md-4 mb-4">
-      <div class="glass">
-        <img src="${normalizeImageUrl(g.image)}" class="img-fluid">
-        <p class="small">${g.caption||""}</p>
+async function loadPublications() {
+  const container = document.getElementById("pub-container");
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  const data = await fetchSheet("PUBLICATIONS");
+
+  if (!data.length) {
+    container.innerHTML = '<div class="text-center py-5"><p class="text-secondary mb-0">Publications coming soon...</p></div>';
+    return;
+  }
+
+  const items = [...data].reverse().slice(0, 8);
+  let html = "";
+
+  items.forEach(p => {
+    if (!p || Object.keys(p).length === 0) return;
+
+    const title = p.title || p.Title || p["Title "] || "Untitled";
+    const authors = p.authors || p.Authors || "";
+    const journal = p.journal || p.Journal || "";
+    const year = p.year || p.Year || "";
+    const link = p.link || p.Link || "";
+
+    html += `
+      <div class="pub-card">
+        <h6 class="mb-2 fw-bold">${escapeHtml(title)}</h6>
+        <p class="mb-2 opacity-75">${escapeHtml(authors)}</p>
+        <small class="text-secondary">${escapeHtml(journal)}${journal && year ? ", " : ""}${escapeHtml(year)}</small>
+        ${link ? `<br><a href="${escapeHtml(link)}" target="_blank" rel="noopener noreferrer" class="text-decoration-none mt-2 d-inline-block"><i class="fas fa-external-link-alt me-1 text-primary"></i>View Paper</a>` : ""}
       </div>
-    </div>`;
+    `;
   });
-  document.getElementById("gallery-container").innerHTML=html;
+
+  container.innerHTML = html || '<div class="text-center py-5"><p class="text-secondary mb-0">Publications coming soon...</p></div>';
 }
 
-async function loadPosters(){
-  const d = await fetchSheet("POSTERS");
-  let html="";
-  d.forEach(p=>{
-    html+=`
-    <div class="col-md-4 mb-4">
-      <div class="glass">
-        <img src="${normalizeImageUrl(p.image)}" class="img-fluid mb-2">
-        <h6>${p.title}</h6>
-        <p class="small">${p.event}</p>
-      </div>
-    </div>`;
+async function loadContact() {
+  const el = document.getElementById("contact-content");
+  if (!el) return;
+
+  el.textContent = "Loading...";
+
+  const data = await fetchSheet("CONTACT");
+
+  let email = "";
+  let address = "";
+
+  data.forEach(c => {
+    if (!c || Object.keys(c).length === 0) return;
+    const key = String(c.type || c.Type || "").toLowerCase();
+    const value = String(c.value || c.Value || "").trim();
+
+    if (key.includes("email")) email = value;
+    if (key.includes("address")) address = value;
   });
-  document.getElementById("poster-container").innerHTML=html;
+
+  const emailBlock = email
+    ? `<i class="fas fa-envelope fs-5 me-3"></i><a href="mailto:${escapeHtml(email)}" class="text-white text-decoration-none"><strong>${escapeHtml(email)}</strong></a>`
+    : `<i class="fas fa-envelope fs-5 me-3"></i><strong>Email not set</strong>`;
+
+  const addressBlock = address
+    ? `<br><br><i class="fas fa-map-marker-alt fs-5 me-3"></i><strong>${escapeHtml(address)}</strong>`
+    : `<br><br><i class="fas fa-map-marker-alt fs-5 me-3"></i><strong>Address not set</strong>`;
+
+  el.innerHTML = emailBlock + addressBlock;
 }
 
-document.addEventListener("DOMContentLoaded", ()=>{
+document.addEventListener("DOMContentLoaded", () => {
   loadAbout();
+  loadResearch();
   loadTeam();
-  loadGallery();
-  loadPosters();
+  loadPublications();
+  loadContact();
 });
 </script>
 
