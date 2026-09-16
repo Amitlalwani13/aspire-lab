@@ -3,19 +3,31 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 <meta name="description" content="ASPIRE Lab | Advanced Structural Parasitology & Protein Engineering" />
 
 <title>ASPIRE Lab | Advanced Structural Parasitology & Protein Engineering</title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+
 <style>
+
 :root {
-  --primary-gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
+  --primary-gradient: linear-gradient(
+    135deg,
+    #3b82f6 0%,
+    #8b5cf6 50%,
+    #ec4899 100%
+  );
+
   --glass-bg: rgba(255,255,255,0.06);
   --glass-border: rgba(255,255,255,0.12);
+
   --text-primary: #ffffff;
   --text-secondary: rgba(255,255,255,0.8);
 }
@@ -31,525 +43,3303 @@ section {
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
-  background: radial-gradient(circle at top, #0a0e1a, #01050f);
+
+  background:
+    radial-gradient(
+      circle at top,
+      #0a0e1a,
+      #01050f
+    );
+
   color: var(--text-primary);
+
   overflow-x: hidden;
+
   line-height: 1.6;
 }
 
-/* NAVBAR */
+
+/* =========================
+   NAVBAR
+========================= */
+
 .navbar {
+
   background: rgba(0,0,0,0.95)!important;
+
   backdrop-filter: blur(30px);
+
   border-bottom: 1px solid var(--glass-border);
+
   padding: 1rem 0;
+
   z-index: 1000;
 }
+
 .navbar-brand {
+
   font-family: 'Playfair Display';
+
   font-size: 2.2rem;
+
   font-weight: 700;
+
   background: var(--primary-gradient);
+
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
   background-clip: text;
 }
+
 .nav-link {
+
   color: var(--text-secondary)!important;
+
   font-weight: 500;
-  margin: 0 0.75rem;
+
+  margin: 0 0.55rem;
+
   transition: all 0.3s ease;
+
   position: relative;
 }
-.nav-link:hover { color: #3b82f6 !important; }
+
+.nav-link:hover {
+
+  color: #3b82f6 !important;
+}
+
 .nav-link::after {
+
   content: '';
+
   position: absolute;
+
   width: 0;
+
   height: 2px;
+
   bottom: -5px;
+
   left: 0;
+
   background: var(--primary-gradient);
+
   transition: width 0.3s ease;
 }
-.nav-link:hover::after { width: 100%; }
 
-/* HERO */
+.nav-link:hover::after {
+
+  width: 100%;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
 .hero {
+
   min-height: 100vh;
+
   background:
-    linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.95)),
+
+    linear-gradient(
+      rgba(0,0,0,0.75),
+      rgba(0,0,0,0.95)
+    ),
+
     url("https://lh3.googleusercontent.com/d/1bixRBwYia7U1ZMcF_qGGCKLb_ASKpdV8");
+
   background-size: cover;
+
   background-position: center;
+
   display: flex;
+
   align-items: center;
+
   justify-content: center;
+
   text-align: center;
+
   position: relative;
 }
+
 .hero::before {
+
   content: '';
+
   position: absolute;
+
   inset: 0;
-  background: radial-gradient(circle at 30% 20%, rgba(59,130,246,0.2) 0%, transparent 50%);
+
+  background:
+
+    radial-gradient(
+      circle at 30% 20%,
+      rgba(59,130,246,0.2) 0%,
+      transparent 50%
+    );
 }
+
 .hero h1 {
+
   font-size: 4.5rem;
+
   font-weight: 700;
+
   font-family: 'Playfair Display';
+
   background: var(--primary-gradient);
+
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
   background-clip: text;
+
   margin-bottom: 1.5rem;
+
   position: relative;
+
   z-index: 2;
 }
+
 .hero p {
+
   font-size: 1.4rem;
+
   opacity: 0.95;
+
   font-weight: 400;
-  max-width: 700px;
+
+  max-width: 800px;
+
   position: relative;
+
   z-index: 2;
+
   margin: 0 auto;
 }
 
-/* SECTION */
-.section { padding: 120px 0; }
+
+/* =========================
+   SECTIONS
+========================= */
+
+.section {
+
+  padding: 120px 0;
+}
+
 .section-title {
+
   text-align: center;
+
   font-size: 3.2rem;
+
   margin-bottom: 70px;
+
   font-family: 'Playfair Display';
+
   font-weight: 700;
+
   background: var(--primary-gradient);
+
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
   background-clip: text;
+
   position: relative;
 }
+
 .section-title::after {
+
   content: '';
+
   position: absolute;
+
   bottom: -25px;
+
   left: 50%;
+
   transform: translateX(-50%);
+
   width: 120px;
+
   height: 4px;
+
   background: var(--primary-gradient);
+
   border-radius: 2px;
 }
 
-/* GLASS CARDS */
+
+/* =========================
+   GLASS CARDS
+========================= */
+
 .glass {
+
   background: var(--glass-bg);
+
   backdrop-filter: blur(30px);
+
   border-radius: 24px;
+
   padding: 2.5rem;
+
   border: 1px solid var(--glass-border);
-  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-.glass:hover {
-  transform: translateY(-12px);
-  box-shadow: 0 25px 50px rgba(0,0,0,0.4);
-  border-color: rgba(59,130,246,0.3);
+
+  transition:
+    all 0.5s
+    cubic-bezier(
+      0.25,
+      0.46,
+      0.45,
+      0.94
+    );
 }
 
-/* RESEARCH CARDS */
+.glass:hover {
+
+  transform: translateY(-8px);
+
+  box-shadow:
+    0 25px 50px rgba(0,0,0,0.4);
+
+  border-color:
+    rgba(59,130,246,0.3);
+}
+
+
+/* =========================
+   RESEARCH
+========================= */
+
 .research-card {
+
   height: 280px;
+
   background-size: cover;
+
   background-position: center;
+
   border-radius: 24px;
+
   position: relative;
+
   overflow: hidden;
+
   border: 1px solid var(--glass-border);
+
   transition: all 0.5s ease;
 }
+
 .research-card:hover {
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 25px 50px rgba(0,0,0,0.4);
-}
-.research-overlay {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  background: linear-gradient(transparent, rgba(0,0,0,0.95));
-  padding: 2rem 1.5rem;
-  transition: all 0.4s ease;
-}
-.research-card:hover .research-overlay {
-  background: linear-gradient(transparent, rgba(59,130,246,0.15));
+
+  transform:
+    translateY(-10px)
+    scale(1.02);
+
+  box-shadow:
+    0 25px 50px rgba(0,0,0,0.4);
 }
 
-/* TEAM */
-.team-img {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 4px solid rgba(255,255,255,0.2);
+.research-overlay {
+
+  position: absolute;
+
+  bottom: 0;
+
+  width: 100%;
+
+  background:
+    linear-gradient(
+      transparent,
+      rgba(0,0,0,0.95)
+    );
+
+  padding: 2rem 1.5rem;
+
   transition: all 0.4s ease;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
 }
+
+.research-card:hover
+.research-overlay {
+
+  background:
+    linear-gradient(
+      transparent,
+      rgba(59,130,246,0.15)
+    );
+}
+
+
+/* =========================
+   TEAM
+========================= */
+
+.team-img {
+
+  width: 140px;
+
+  height: 140px;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+
+  border:
+    4px solid
+    rgba(255,255,255,0.2);
+
+  transition: all 0.4s ease;
+
+  box-shadow:
+    0 10px 30px
+    rgba(0,0,0,0.4);
+}
+
 .team-img:hover {
+
   border-color: #3b82f6;
+
   transform: scale(1.08);
 }
 
-/* PUBLICATIONS */
-.pub-card {
-  background: var(--glass-bg);
-  padding: 1.8rem;
-  border-radius: 18px;
-  margin-bottom: 1.5rem;
-  border-left: 5px solid transparent;
-  transition: all 0.4s ease;
-}
-.pub-card:hover {
-  transform: translateX(10px);
-  box-shadow: 0 15px 35px rgba(59,130,246,0.2);
-  border-left-color: #6366f1;
+
+/* =========================
+   PROFILE BUTTON
+========================= */
+
+.profile-btn {
+
+  border: 1px solid
+    rgba(59,130,246,0.5);
+
+  color: #ffffff;
+
+  background:
+    rgba(59,130,246,0.12);
+
+  border-radius: 30px;
+
+  padding:
+    8px 20px;
+
+  transition: all 0.3s ease;
 }
 
-/* CONTACT */
+.profile-btn:hover {
+
+  background:
+    linear-gradient(
+      135deg,
+      #3b82f6,
+      #8b5cf6
+    );
+
+  color: #ffffff;
+
+  transform: translateY(-2px);
+}
+
+
+/* =========================
+   PROFILE MODAL
+========================= */
+
+.modal-content {
+
+  background:
+    linear-gradient(
+      145deg,
+      #0b1220,
+      #030712
+    );
+
+  color: #ffffff;
+
+  border:
+    1px solid
+    rgba(255,255,255,0.12);
+
+  border-radius: 24px;
+
+  box-shadow:
+    0 30px 80px
+    rgba(0,0,0,0.6);
+}
+
+.modal-header {
+
+  border-bottom:
+    1px solid
+    rgba(255,255,255,0.1);
+}
+
+.modal-footer {
+
+  border-top:
+    1px solid
+    rgba(255,255,255,0.1);
+}
+
+.btn-close {
+
+  filter: invert(1);
+}
+
+.profile-modal-img {
+
+  width: 170px;
+
+  height: 170px;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+
+  border:
+    4px solid
+    rgba(255,255,255,0.2);
+
+  margin-bottom: 20px;
+}
+
+.profile-heading {
+
+  font-family:
+    'Playfair Display';
+
+  color: #ffffff;
+
+  margin-top: 25px;
+
+  margin-bottom: 8px;
+}
+
+.profile-text {
+
+  color:
+    rgba(255,255,255,0.82);
+}
+
+
+/* =========================
+   GALLERY
+========================= */
+
+.gallery-card {
+
+  background:
+    var(--glass-bg);
+
+  border:
+    1px solid
+    var(--glass-border);
+
+  border-radius: 22px;
+
+  overflow: hidden;
+
+  height: 100%;
+
+  transition:
+    all 0.45s ease;
+}
+
+.gallery-card:hover {
+
+  transform:
+    translateY(-10px);
+
+  box-shadow:
+    0 25px 50px
+    rgba(0,0,0,0.45);
+
+  border-color:
+    rgba(59,130,246,0.35);
+}
+
+.gallery-img-wrapper {
+
+  height: 260px;
+
+  overflow: hidden;
+
+  position: relative;
+}
+
+.gallery-img {
+
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+
+  transition:
+    transform 0.6s ease;
+}
+
+.gallery-card:hover
+.gallery-img {
+
+  transform: scale(1.08);
+}
+
+.gallery-content {
+
+  padding: 1.5rem;
+}
+
+.gallery-content h5 {
+
+  font-family:
+    'Playfair Display';
+
+  margin-bottom: 0.6rem;
+}
+
+.gallery-meta {
+
+  color:
+    rgba(255,255,255,0.6);
+
+  font-size: 0.9rem;
+}
+
+
+/* =========================
+   POSTERS
+========================= */
+
+.poster-card {
+
+  background:
+    var(--glass-bg);
+
+  border:
+    1px solid
+    var(--glass-border);
+
+  border-radius: 22px;
+
+  overflow: hidden;
+
+  height: 100%;
+
+  transition:
+    all 0.45s ease;
+}
+
+.poster-card:hover {
+
+  transform:
+    translateY(-10px);
+
+  box-shadow:
+    0 25px 50px
+    rgba(0,0,0,0.45);
+
+  border-color:
+    rgba(139,92,246,0.4);
+}
+
+.poster-img-wrapper {
+
+  height: 400px;
+
+  background:
+    rgba(0,0,0,0.3);
+
+  overflow: hidden;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+.poster-img {
+
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+
+  transition:
+    transform 0.5s ease;
+}
+
+.poster-card:hover
+.poster-img {
+
+  transform: scale(1.03);
+}
+
+.poster-content {
+
+  padding: 1.5rem;
+}
+
+.poster-content h5 {
+
+  font-family:
+    'Playfair Display';
+}
+
+
+/* =========================
+   POSTER VIEWER
+========================= */
+
+.poster-viewer {
+
+  max-height: 85vh;
+
+  max-width: 100%;
+
+  object-fit: contain;
+
+  border-radius: 10px;
+}
+
+
+/* =========================
+   PUBLICATIONS
+========================= */
+
+.pub-card {
+
+  background:
+    var(--glass-bg);
+
+  padding: 1.8rem;
+
+  border-radius: 18px;
+
+  margin-bottom: 1.5rem;
+
+  border-left:
+    5px solid transparent;
+
+  transition:
+    all 0.4s ease;
+}
+
+.pub-card:hover {
+
+  transform:
+    translateX(10px);
+
+  box-shadow:
+    0 15px 35px
+    rgba(59,130,246,0.2);
+
+  border-left-color:
+    #6366f1;
+}
+
+
+/* =========================
+   CONTACT
+========================= */
+
 .contact-glass {
+
   max-width: 550px;
+
   margin: 0 auto;
 }
 
-/* FOOTER */
+
+/* =========================
+   FOOTER
+========================= */
+
 footer {
-  background: rgba(0,0,0,0.98);
-  backdrop-filter: blur(30px);
-  padding: 3rem 0;
+
+  background:
+    rgba(0,0,0,0.98);
+
+  backdrop-filter:
+    blur(30px);
+
+  padding:
+    3rem 0;
+
   text-align: center;
-  border-top: 1px solid var(--glass-border);
+
+  border-top:
+    1px solid
+    var(--glass-border);
 }
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .hero h1 { font-size: 3.2rem; }
-  .section-title { font-size: 2.4rem; }
-  .section { padding: 80px 0; }
+
+/* =========================
+   LOADING
+========================= */
+
+.loading-text {
+
+  color:
+    rgba(255,255,255,0.6);
 }
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+  .hero h1 {
+    font-size: 3.2rem;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+  }
+
+  .section-title {
+    font-size: 2.4rem;
+  }
+
+  .section {
+    padding: 80px 0;
+  }
+
+  .navbar-brand {
+    font-size: 1.8rem;
+  }
+
+  .poster-img-wrapper {
+    height: 330px;
+  }
+
+  .gallery-img-wrapper {
+    height: 220px;
+  }
+}
+
 </style>
 </head>
 
+
 <body>
 
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+
   <div class="container">
-    <a class="navbar-brand" href="#">ASPIRE Lab</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+
+    <a class="navbar-brand" href="#">
+      ASPIRE Lab
+    </a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#nav"
+      aria-controls="nav"
+      aria-expanded="false"
+      aria-label="Toggle navigation">
+
       <span class="navbar-toggler-icon"></span>
+
     </button>
-    <div class="collapse navbar-collapse" id="nav">
+
+
+    <div
+      class="collapse navbar-collapse"
+      id="nav">
+
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-        <li class="nav-item"><a class="nav-link" href="#research">Research</a></li>
-        <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
-        <li class="nav-item"><a class="nav-link" href="#publications">Publications</a></li>
-        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#about">
+            About
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#research">
+            Research
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#team">
+            Team
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#gallery">
+            Gallery
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#posters">
+            Posters
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#publications">
+            Publications
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#contact">
+            Contact
+          </a>
+        </li>
+
       </ul>
+
     </div>
+
   </div>
+
 </nav>
 
+
+
+<!-- =========================
+     HERO
+========================= -->
+
 <section class="hero">
+
   <div class="container">
-    <h1>ASPIRE Lab</h1>
-    <p>Advanced Structural Parasitology • Protein Engineering • Drug Discovery</p>
+
+    <h1>
+      ASPIRE Lab
+    </h1>
+
+    <p>
+      Advanced Structural Parasitology
+      • Protein Engineering
+      • Drug Discovery
+    </p>
+
   </div>
+
 </section>
 
-<section id="about" class="section text-center">
+
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section
+  id="about"
+  class="section text-center">
+
   <div class="container">
-    <h2 class="section-title">About ASPIRE Lab</h2>
-    <div class="glass p-5 mb-0" style="max-width:900px; margin:auto;">
-      <p id="about-text" class="fs-5 mb-4">Loading...</p>
+
+    <h2 class="section-title">
+      About ASPIRE Lab
+    </h2>
+
+    <div
+      class="glass p-5 mb-0"
+      style="max-width:900px; margin:auto;">
+
+      <p
+        id="about-text"
+        class="fs-5 mb-4">
+
+        Loading...
+
+      </p>
+
     </div>
+
   </div>
+
 </section>
 
-<section id="research" class="section">
+
+
+<!-- =========================
+     RESEARCH
+========================= -->
+
+<section
+  id="research"
+  class="section">
+
   <div class="container">
-    <h2 class="section-title">Research Areas</h2>
-    <div class="row g-4" id="research-container"></div>
+
+    <h2 class="section-title">
+      Research Areas
+    </h2>
+
+    <div
+      class="row g-4"
+      id="research-container">
+
+    </div>
+
   </div>
+
 </section>
 
-<section class="section text-center">
+
+
+<!-- =========================
+     PI
+========================= -->
+
+<section
+  class="section text-center">
+
   <div class="container">
-    <h2 class="section-title">Principal Investigator</h2>
-    <div class="row justify-content-center" id="pi-container"></div>
+
+    <h2 class="section-title">
+      Principal Investigator
+    </h2>
+
+    <div
+      class="row justify-content-center"
+      id="pi-container">
+
+    </div>
+
   </div>
+
 </section>
 
-<section id="team" class="section">
+
+
+<!-- =========================
+     TEAM
+========================= -->
+
+<section
+  id="team"
+  class="section">
+
   <div class="container">
-    <h2 class="section-title">Our Team</h2>
-    <div class="row" id="team-container"></div>
+
+    <h2 class="section-title">
+      Our Team
+    </h2>
+
+    <div
+      class="row"
+      id="team-container">
+
+    </div>
+
   </div>
+
 </section>
 
-<section id="publications" class="section">
+
+
+<!-- =========================
+     GALLERY
+========================= -->
+
+<section
+  id="gallery"
+  class="section">
+
   <div class="container">
-    <h2 class="section-title">Publications</h2>
-    <div id="pub-container"></div>
+
+    <h2 class="section-title">
+      Workshops & Conferences
+    </h2>
+
+    <div
+      class="row g-4"
+      id="gallery-container">
+
+    </div>
+
   </div>
+
 </section>
 
-<section id="contact" class="section text-center">
-  <div class="container">
-    <h2 class="section-title">Contact</h2>
 
-    <div class="glass contact-glass py-5 px-4">
+
+<!-- =========================
+     POSTERS
+========================= -->
+
+<section
+  id="posters"
+  class="section">
+
+  <div class="container">
+
+    <h2 class="section-title">
+      Digital Poster Archive
+    </h2>
+
+    <div
+      class="row g-4"
+      id="posters-container">
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================
+     PUBLICATIONS
+========================= -->
+
+<section
+  id="publications"
+  class="section">
+
+  <div class="container">
+
+    <h2 class="section-title">
+      Publications
+    </h2>
+
+    <div
+      id="pub-container">
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================
+     CONTACT
+========================= -->
+
+<section
+  id="contact"
+  class="section text-center">
+
+  <div class="container">
+
+    <h2 class="section-title">
+      Contact
+    </h2>
+
+    <div
+      class="glass contact-glass py-5 px-4">
+
       <div class="fs-4 mb-4">
-        <i class="fas fa-paper-plane text-primary me-3"></i>Get In Touch
+
+        <i
+          class="fas fa-paper-plane text-primary me-3">
+        </i>
+
+        Get In Touch
+
       </div>
-      <div id="contact-content">Loading...</div>
+
+      <div id="contact-content">
+
+        Loading...
+
+      </div>
+
     </div>
+
   </div>
+
 </section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer>
+
   <div class="container">
-    <p class="mb-0" style="opacity:0.8;">© 2026 ASPIRE Lab | Advanced Structural Parasitology & Protein Engineering</p>
+
+    <p
+      class="mb-0"
+      style="opacity:0.8;">
+
+      © 2026 ASPIRE Lab |
+      Advanced Structural Parasitology
+      & Protein Engineering
+
+    </p>
+
   </div>
+
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<!-- =========================
+     PROFILE MODAL
+========================= -->
+
+<div
+  class="modal fade"
+  id="profileModal"
+  tabindex="-1"
+  aria-hidden="true">
+
+  <div
+    class="modal-dialog modal-lg modal-dialog-centered">
+
+    <div class="modal-content">
+
+      <div class="modal-header">
+
+        <h5
+          class="modal-title"
+          id="profileModalTitle">
+
+          Profile
+
+        </h5>
+
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close">
+        </button>
+
+      </div>
+
+
+      <div
+        class="modal-body"
+        id="profileModalBody">
+
+      </div>
+
+
+      <div class="modal-footer">
+
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal">
+
+          Close
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<!-- =========================
+     POSTER MODAL
+========================= -->
+
+<div
+  class="modal fade"
+  id="posterModal"
+  tabindex="-1"
+  aria-hidden="true">
+
+  <div
+    class="modal-dialog modal-xl modal-dialog-centered">
+
+    <div class="modal-content">
+
+      <div class="modal-header">
+
+        <h5
+          class="modal-title"
+          id="posterModalTitle">
+
+          Poster
+
+        </h5>
+
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close">
+        </button>
+
+      </div>
+
+
+      <div
+        class="modal-body text-center">
+
+        <img
+          id="posterModalImage"
+          class="poster-viewer"
+          src=""
+          alt="Research poster">
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<!-- =========================
+     BOOTSTRAP
+========================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
 
 <script>
-const SHEET_ID = "1vhSco35e3yQHCFiFJoAmjbHKZ7WV2RQN65xNbK6TIl8";
-const FALLBACK_IMAGE = "https://via.placeholder.com/800x500?text=ASPIRE+Lab";
+
+/* ==========================================================
+   GOOGLE SHEET
+========================================================== */
+
+const SHEET_ID =
+  "1vhSco35e3yQHCFiFJoAmjbHKZ7WV2RQN65xNbK6TIl8";
+
+
+const FALLBACK_IMAGE =
+  "https://via.placeholder.com/800x500?text=ASPIRE+Lab";
+
+
+
+/* ==========================================================
+   HTML ESCAPING
+========================================================== */
 
 function escapeHtml(value) {
+
   return String(value ?? "")
+
     .replaceAll("&", "&amp;")
+
     .replaceAll("<", "&lt;")
+
     .replaceAll(">", "&gt;")
+
     .replaceAll('"', "&quot;")
+
     .replaceAll("'", "&#039;");
 }
 
-function normalizeImageUrl(url) {
-  const raw = String(url ?? "").trim();
-  if (!raw) return FALLBACK_IMAGE;
 
-  const driveMatch = raw.match(/\/d\/([a-zA-Z0-9_-]+)/) || raw.match(/[?&]id=([a-zA-Z0-9_-]+)/);
-  if (driveMatch && driveMatch[1]) {
-    return `https://lh3.googleusercontent.com/d/${driveMatch[1]}`;
+
+/* ==========================================================
+   IMAGE URL
+========================================================== */
+
+function normalizeImageUrl(url) {
+
+  const raw =
+    String(url ?? "").trim();
+
+  if (!raw) {
+    return FALLBACK_IMAGE;
   }
+
+
+  const driveMatch =
+    raw.match(/\/d\/([a-zA-Z0-9_-]+)/)
+    ||
+    raw.match(
+      /[?&]id=([a-zA-Z0-9_-]+)/
+    );
+
+
+  if (
+    driveMatch &&
+    driveMatch[1]
+  ) {
+
+    return `https://lh3.googleusercontent.com/d/${driveMatch[1]}`;
+
+  }
+
 
   return raw;
 }
 
+
+
+/* ==========================================================
+   GOOGLE SHEET FETCH
+========================================================== */
+
 async function fetchSheet(sheetName) {
+
   try {
-    const res = await fetch(`https://opensheet.elk.sh/${SHEET_ID}/${sheetName}`);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
-    return Array.isArray(data) ? data : [];
-  } catch (err) {
-    console.error(`Failed to load ${sheetName}:`, err);
-    return [];
+
+    const res =
+      await fetch(
+        `https://opensheet.elk.sh/${SHEET_ID}/${sheetName}`
+      );
+
+
+    if (!res.ok) {
+
+      throw new Error(
+        `HTTP ${res.status}`
+      );
+
+    }
+
+
+    const data =
+      await res.json();
+
+
+    return Array.isArray(data)
+      ? data
+      : [];
+
   }
+
+  catch (err) {
+
+    console.error(
+      `Failed to load ${sheetName}:`,
+      err
+    );
+
+    return [];
+
+  }
+
 }
+
+
+
+/* ==========================================================
+   FIRST NON EMPTY VALUE
+========================================================== */
 
 function firstNonEmptyValue(obj) {
-  if (!obj || typeof obj !== "object") return "";
-  const vals = Object.values(obj).map(v => (v == null ? "" : String(v).trim()));
-  return vals.find(v => v.length > 0) || "";
+
+  if (
+    !obj ||
+    typeof obj !== "object"
+  ) {
+
+    return "";
+
+  }
+
+
+  const vals =
+    Object.values(obj)
+      .map(v =>
+        v == null
+          ? ""
+          : String(v).trim()
+      );
+
+
+  return (
+    vals.find(
+      v => v.length > 0
+    )
+    || ""
+  );
+
 }
+
+
+
+/* ==========================================================
+   ABOUT
+========================================================== */
 
 async function loadAbout() {
-  const el = document.getElementById("about-text");
+
+  const el =
+    document.getElementById(
+      "about-text"
+    );
+
+
   if (!el) return;
 
-  el.textContent = "Loading...";
 
-  const data = await fetchSheet("ABOUT");
+  el.textContent =
+    "Loading...";
+
+
+  const data =
+    await fetchSheet("ABOUT");
+
+
   const text =
-    data[0]?.text ||
-    data[0]?.Text ||
-    data[0]?.about ||
-    data[0]?.About ||
-    firstNonEmptyValue(data[0]) ||
+
+    data[0]?.text
+    ||
+    data[0]?.Text
+    ||
+    data[0]?.about
+    ||
+    data[0]?.About
+    ||
+    firstNonEmptyValue(data[0])
+    ||
     "About content coming soon...";
 
-  el.textContent = text;
+
+  el.textContent =
+    text;
+
 }
+
+
+
+/* ==========================================================
+   RESEARCH
+========================================================== */
 
 async function loadResearch() {
-  const container = document.getElementById("research-container");
+
+  const container =
+    document.getElementById(
+      "research-container"
+    );
+
+
   if (!container) return;
 
-  container.innerHTML = "";
 
-  const data = await fetchSheet("RESEARCH");
+  container.innerHTML =
+    "";
+
+
+  const data =
+    await fetchSheet("RESEARCH");
+
 
   if (!data.length) {
-    container.innerHTML = '<div class="col-12"><div class="glass text-center"><p class="mb-0 text-secondary">Research content coming soon...</p></div></div>';
+
+    container.innerHTML = `
+
+      <div class="col-12">
+
+        <div class="glass text-center">
+
+          <p class="mb-0 text-secondary">
+
+            Research content coming soon...
+
+          </p>
+
+        </div>
+
+      </div>
+
+    `;
+
     return;
   }
+
 
   data.forEach(r => {
-    if (!r || Object.keys(r).length === 0) return;
 
-    const title = r.title || r.Title || "Untitled";
-    const desc = r.description || r.Description || "";
-    const img = normalizeImageUrl(r.image || r.Image || "");
+    if (
+      !r ||
+      Object.keys(r).length === 0
+    ) return;
 
-    const col = document.createElement("div");
-    col.className = "col-md-4";
 
-    const card = document.createElement("div");
-    card.className = "research-card";
-    card.style.backgroundImage = `linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.95)), url("${img.replaceAll('"', "%22")}")`;
+    const title =
+      r.title ||
+      r.Title ||
+      "Untitled";
 
-    const overlay = document.createElement("div");
-    overlay.className = "research-overlay";
+
+    const desc =
+      r.description ||
+      r.Description ||
+      "";
+
+
+    const img =
+      normalizeImageUrl(
+        r.image ||
+        r.Image ||
+        ""
+      );
+
+
+    const col =
+      document.createElement(
+        "div"
+      );
+
+
+    col.className =
+      "col-md-4";
+
+
+    const card =
+      document.createElement(
+        "div"
+      );
+
+
+    card.className =
+      "research-card";
+
+
+    card.style.backgroundImage =
+
+      `linear-gradient(
+        rgba(0,0,0,0.7),
+        rgba(0,0,0,0.95)
+      ),
+      url("${img.replaceAll(
+        '"',
+        "%22"
+      )}")`;
+
+
+    const overlay =
+      document.createElement(
+        "div"
+      );
+
+
+    overlay.className =
+      "research-overlay";
+
+
     overlay.innerHTML = `
-      <h5 style="font-family:'Playfair Display'; font-size:1.4rem;">${escapeHtml(title)}</h5>
-      <p class="mb-0">${escapeHtml(desc)}</p>
+
+      <h5
+        style="
+        font-family:'Playfair Display';
+        font-size:1.4rem;">
+
+        ${escapeHtml(title)}
+
+      </h5>
+
+      <p class="mb-0">
+
+        ${escapeHtml(desc)}
+
+      </p>
+
     `;
 
-    card.appendChild(overlay);
-    col.appendChild(card);
-    container.appendChild(col);
+
+    card.appendChild(
+      overlay
+    );
+
+
+    col.appendChild(
+      card
+    );
+
+
+    container.appendChild(
+      col
+    );
+
   });
+
 }
+
+
+
+/* ==========================================================
+   TEAM
+========================================================== */
 
 async function loadTeam() {
-  const teamContainer = document.getElementById("team-container");
-  const piContainer = document.getElementById("pi-container");
-  if (!teamContainer || !piContainer) return;
 
-  teamContainer.innerHTML = "";
-  piContainer.innerHTML = "";
+  const teamContainer =
+    document.getElementById(
+      "team-container"
+    );
 
-  const data = await fetchSheet("TEAM");
+
+  const piContainer =
+    document.getElementById(
+      "pi-container"
+    );
+
+
+  if (
+    !teamContainer ||
+    !piContainer
+  ) return;
+
+
+  teamContainer.innerHTML =
+    "";
+
+
+  piContainer.innerHTML =
+    "";
+
+
+  const data =
+    await fetchSheet("TEAM");
+
 
   if (!data.length) {
-    piContainer.innerHTML = '<div class="col-12"><div class="glass p-4"><p class="text-secondary mb-0">Coming soon...</p></div></div>';
+
+    piContainer.innerHTML = `
+
+      <div class="col-12">
+
+        <div class="glass p-4">
+
+          <p class="text-secondary mb-0">
+
+            Coming soon...
+
+          </p>
+
+        </div>
+
+      </div>
+
+    `;
+
     return;
   }
+
 
   let teamHTML = "";
+
   let piHTML = "";
 
-  data.forEach(m => {
-    if (!m || Object.keys(m).length === 0) return;
 
-    const name = m.name || m.Name || "Unnamed";
-    const role = m.role || m.Role || "";
-    const image = normalizeImageUrl(m.image || m.Image || FALLBACK_IMAGE);
-    const linkedin = m.linkedin || m.LinkedIn || "";
+  data.forEach(
+    (m, index) => {
 
-    const card = `
-      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-        <div class="glass h-100 d-flex flex-column align-items-center p-4">
-          <img src="${image.replaceAll('"', "%22")}" class="team-img mb-3" alt="${escapeHtml(name)}" loading="lazy" onerror="this.onerror=null;this.src='${FALLBACK_IMAGE}'">
-          <h5 class="mb-2">${escapeHtml(name)}</h5>
-          <p class="text-secondary mb-3">${escapeHtml(role)}</p>
-          ${linkedin ? `<a href="${escapeHtml(linkedin)}" target="_blank" rel="noopener noreferrer" class="text-decoration-none"><i class="fab fa-linkedin text-primary fs-4"></i></a>` : ""}
+      if (
+        !m ||
+        Object.keys(m).length === 0
+      ) return;
+
+
+      const name =
+        m.name ||
+        m.Name ||
+        "Unnamed";
+
+
+      const role =
+        m.role ||
+        m.Role ||
+        "";
+
+
+      const image =
+        normalizeImageUrl(
+          m.image ||
+          m.Image ||
+          FALLBACK_IMAGE
+        );
+
+
+      const linkedin =
+        m.linkedin ||
+        m.LinkedIn ||
+        "";
+
+
+      const bio =
+        m.bio ||
+        m.Bio ||
+        "";
+
+
+      const research =
+        m.research ||
+        m.Research ||
+        "";
+
+
+      const hobbies =
+        m.hobbies ||
+        m.Hobbies ||
+        "";
+
+
+      const interests =
+        m.interests ||
+        m.Interests ||
+        "";
+
+
+      const profileId =
+        `profile-${index}`;
+
+
+      const card = `
+
+        <div
+          class="col-lg-3
+                 col-md-4
+                 col-sm-6
+                 mb-4">
+
+          <div
+            class="
+              glass
+              h-100
+              d-flex
+              flex-column
+              align-items-center
+              p-4
+              text-center
+            ">
+
+
+            <img
+              src="${image.replaceAll(
+                '"',
+                "%22"
+              )}"
+
+              class="team-img mb-3"
+
+              alt="${escapeHtml(
+                name
+              )}"
+
+              loading="lazy"
+
+              onerror="
+                this.onerror=null;
+                this.src='${FALLBACK_IMAGE}'
+              "
+            >
+
+
+            <h5 class="mb-2">
+
+              ${escapeHtml(name)}
+
+            </h5>
+
+
+            <p
+              class="
+                text-secondary
+                mb-3
+              ">
+
+              ${escapeHtml(role)}
+
+            </p>
+
+
+            <div
+              class="
+                mt-auto
+                d-flex
+                gap-2
+                align-items-center
+                justify-content-center
+              ">
+
+
+              <button
+                type="button"
+
+                class="profile-btn"
+
+                onclick="openProfile(
+                  '${profileId}'
+                )">
+
+                <i
+                  class="fas fa-user me-2">
+                </i>
+
+                View Profile
+
+              </button>
+
+
+              ${
+                linkedin
+                ?
+                `
+
+                <a
+                  href="${escapeHtml(
+                    linkedin
+                  )}"
+
+                  target="_blank"
+
+                  rel="
+                    noopener
+                    noreferrer
+                  "
+
+                  class="
+                    text-decoration-none
+                  ">
+
+                  <i
+                    class="
+                      fab
+                      fa-linkedin
+                      text-primary
+                      fs-4
+                    ">
+                  </i>
+
+                </a>
+
+                `
+                :
+                ""
+              }
+
+
+            </div>
+
+
+            <div
+              id="${profileId}"
+
+              class="d-none"
+
+              data-name="${escapeHtml(
+                name
+              )}"
+
+              data-role="${escapeHtml(
+                role
+              )}"
+
+              data-image="${escapeHtml(
+                image
+              )}"
+
+              data-bio="${escapeHtml(
+                bio
+              )}"
+
+              data-research="${escapeHtml(
+                research
+              )}"
+
+              data-hobbies="${escapeHtml(
+                hobbies
+              )}"
+
+              data-interests="${escapeHtml(
+                interests
+              )}"
+
+              data-linkedin="${escapeHtml(
+                linkedin
+              )}">
+
+            </div>
+
+
+          </div>
+
         </div>
+
+      `;
+
+
+      const isPI =
+        /principal|pi\b|investigator/i
+          .test(role);
+
+
+      if (isPI) {
+
+        piHTML += card;
+
+      }
+
+      else {
+
+        teamHTML += card;
+
+      }
+
+    }
+  );
+
+
+  piContainer.innerHTML =
+
+    piHTML
+
+    ||
+
+    `
+
+    <div class="col-12">
+
+      <div class="glass p-4">
+
+        <p class="text-secondary mb-0">
+
+          Coming soon...
+
+        </p>
+
       </div>
+
+    </div>
+
     `;
 
-    const isPI = /principal|pi\b|investigator/i.test(role);
-    if (isPI) {
-      piHTML += card;
-    } else {
-      teamHTML += card;
-    }
-  });
 
-  piContainer.innerHTML = piHTML || '<div class="col-12"><div class="glass p-4"><p class="text-secondary mb-0">Coming soon...</p></div></div>';
-  teamContainer.innerHTML = teamHTML || '<div class="col-12"><div class="glass p-4"><p class="text-secondary mb-0">Coming soon...</p></div></div>';
+  teamContainer.innerHTML =
+
+    teamHTML
+
+    ||
+
+    `
+
+    <div class="col-12">
+
+      <div class="glass p-4">
+
+        <p class="text-secondary mb-0">
+
+          Coming soon...
+
+        </p>
+
+      </div>
+
+    </div>
+
+    `;
+
 }
 
-async function loadPublications() {
-  const container = document.getElementById("pub-container");
-  if (!container) return;
 
-  container.innerHTML = "";
 
-  const data = await fetchSheet("PUBLICATIONS");
+/* ==========================================================
+   OPEN PROFILE
+========================================================== */
 
-  if (!data.length) {
-    container.innerHTML = '<div class="text-center py-5"><p class="text-secondary mb-0">Publications coming soon...</p></div>';
-    return;
-  }
+function openProfile(profileId) {
 
-  const items = [...data].reverse().slice(0, 8);
-  let html = "";
+  const data =
+    document.getElementById(
+      profileId
+    );
 
-  items.forEach(p => {
-    if (!p || Object.keys(p).length === 0) return;
 
-    const title = p.title || p.Title || p["Title "] || "Untitled";
-    const authors = p.authors || p.Authors || "";
-    const journal = p.journal || p.Journal || "";
-    const year = p.year || p.Year || "";
-    const link = p.link || p.Link || "";
+  if (!data) return;
+
+
+  const name =
+    data.dataset.name ||
+    "";
+
+
+  const role =
+    data.dataset.role ||
+    "";
+
+
+  const image =
+    data.dataset.image ||
+    FALLBACK_IMAGE;
+
+
+  const bio =
+    data.dataset.bio ||
+    "";
+
+
+  const research =
+    data.dataset.research ||
+    "";
+
+
+  const hobbies =
+    data.dataset.hobbies ||
+    "";
+
+
+  const interests =
+    data.dataset.interests ||
+    "";
+
+
+  const linkedin =
+    data.dataset.linkedin ||
+    "";
+
+
+  document.getElementById(
+    "profileModalTitle"
+  ).textContent = name;
+
+
+  let html = `
+
+    <div class="text-center">
+
+      <img
+
+        src="${image}"
+
+        class="profile-modal-img"
+
+        alt="${escapeHtml(name)}"
+
+        onerror="
+          this.onerror=null;
+          this.src='${FALLBACK_IMAGE}'
+        "
+      >
+
+
+      <h3
+        style="
+        font-family:'Playfair Display';">
+
+        ${escapeHtml(name)}
+
+      </h3>
+
+
+      <p
+        class="text-secondary">
+
+        ${escapeHtml(role)}
+
+      </p>
+
+    </div>
+
+  `;
+
+
+  if (bio) {
 
     html += `
-      <div class="pub-card">
-        <h6 class="mb-2 fw-bold">${escapeHtml(title)}</h6>
-        <p class="mb-2 opacity-75">${escapeHtml(authors)}</p>
-        <small class="text-secondary">${escapeHtml(journal)}${journal && year ? ", " : ""}${escapeHtml(year)}</small>
-        ${link ? `<br><a href="${escapeHtml(link)}" target="_blank" rel="noopener noreferrer" class="text-decoration-none mt-2 d-inline-block"><i class="fas fa-external-link-alt me-1 text-primary"></i>View Paper</a>` : ""}
-      </div>
+
+      <h5 class="profile-heading">
+
+        About
+
+      </h5>
+
+      <p class="profile-text">
+
+        ${escapeHtml(bio)}
+
+      </p>
+
     `;
+
+  }
+
+
+  if (research) {
+
+    html += `
+
+      <h5 class="profile-heading">
+
+        Current Research
+
+      </h5>
+
+      <p class="profile-text">
+
+        ${escapeHtml(research)}
+
+      </p>
+
+    `;
+
+  }
+
+
+  if (hobbies) {
+
+    html += `
+
+      <h5 class="profile-heading">
+
+        Hobbies & Interests
+
+      </h5>
+
+      <p class="profile-text">
+
+        ${escapeHtml(hobbies)}
+
+      </p>
+
+    `;
+
+  }
+
+
+  if (interests) {
+
+    html += `
+
+      <h5 class="profile-heading">
+
+        More About Me
+
+      </h5>
+
+      <p class="profile-text">
+
+        ${escapeHtml(interests)}
+
+      </p>
+
+    `;
+
+  }
+
+
+  if (linkedin) {
+
+    html += `
+
+      <div class="mt-4">
+
+        <a
+          href="${escapeHtml(
+            linkedin
+          )}"
+
+          target="_blank"
+
+          rel="
+            noopener
+            noreferrer
+          "
+
+          class="
+            btn
+            btn-outline-primary
+          ">
+
+          <i
+            class="
+              fab
+              fa-linkedin
+              me-2
+            ">
+          </i>
+
+          LinkedIn
+
+        </a>
+
+      </div>
+
+    `;
+
+  }
+
+
+  document.getElementById(
+    "profileModalBody"
+  ).innerHTML = html;
+
+
+  const modal =
+    new bootstrap.Modal(
+      document.getElementById(
+        "profileModal"
+      )
+    );
+
+
+  modal.show();
+
+}
+
+
+
+/* ==========================================================
+   GALLERY
+========================================================== */
+
+async function loadGallery() {
+
+  const container =
+    document.getElementById(
+      "gallery-container"
+    );
+
+
+  if (!container) return;
+
+
+  container.innerHTML =
+    "";
+
+
+  const data =
+    await fetchSheet(
+      "GALLERY"
+    );
+
+
+  if (!data.length) {
+
+    container.innerHTML = `
+
+      <div class="col-12">
+
+        <div class="glass text-center">
+
+          <p class="mb-0 text-secondary">
+
+            Workshop and conference photographs
+            coming soon...
+
+          </p>
+
+        </div>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  data.forEach(g => {
+
+    if (
+      !g ||
+      Object.keys(g).length === 0
+    ) return;
+
+
+    const title =
+      g.title ||
+      g.Title ||
+      "Lab Activity";
+
+
+    const event =
+      g.event ||
+      g.Event ||
+      "";
+
+
+    const location =
+      g.location ||
+      g.Location ||
+      "";
+
+
+    const year =
+      g.year ||
+      g.Year ||
+      "";
+
+
+    const image =
+      normalizeImageUrl(
+        g.image ||
+        g.Image ||
+        ""
+      );
+
+
+    const description =
+      g.description ||
+      g.Description ||
+      "";
+
+
+    const meta = [
+
+      event,
+
+      location,
+
+      year
+
+    ]
+      .filter(Boolean)
+      .map(escapeHtml)
+      .join(" · ");
+
+
+    const col =
+      document.createElement(
+        "div"
+      );
+
+
+    col.className =
+      "col-lg-4 col-md-6";
+
+
+    col.innerHTML = `
+
+      <div class="gallery-card">
+
+
+        <div class="gallery-img-wrapper">
+
+          <img
+
+            src="${image}"
+
+            class="gallery-img"
+
+            alt="${escapeHtml(
+              title
+            )}"
+
+            loading="lazy"
+
+            onerror="
+              this.onerror=null;
+              this.src='${FALLBACK_IMAGE}'
+            "
+          >
+
+        </div>
+
+
+        <div class="gallery-content">
+
+
+          <h5>
+
+            ${escapeHtml(
+              title
+            )}
+
+          </h5>
+
+
+          ${
+            meta
+            ?
+            `
+              <div
+                class="gallery-meta mb-2">
+
+                ${meta}
+
+              </div>
+            `
+            :
+            ""
+          }
+
+
+          ${
+            description
+            ?
+            `
+              <p
+                class="
+                  text-secondary
+                  mb-0
+                ">
+
+                ${escapeHtml(
+                  description
+                )}
+
+              </p>
+            `
+            :
+            ""
+          }
+
+
+        </div>
+
+      </div>
+
+    `;
+
+
+    container.appendChild(
+      col
+    );
+
   });
 
-  container.innerHTML = html || '<div class="text-center py-5"><p class="text-secondary mb-0">Publications coming soon...</p></div>';
 }
+
+
+
+/* ==========================================================
+   POSTERS
+========================================================== */
+
+async function loadPosters() {
+
+  const container =
+    document.getElementById(
+      "posters-container"
+    );
+
+
+  if (!container) return;
+
+
+  container.innerHTML =
+    "";
+
+
+  const data =
+    await fetchSheet(
+      "POSTERS"
+    );
+
+
+  if (!data.length) {
+
+    container.innerHTML = `
+
+      <div class="col-12">
+
+        <div class="glass text-center">
+
+          <p class="mb-0 text-secondary">
+
+            Research posters coming soon...
+
+          </p>
+
+        </div>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  data.forEach(
+    (p, index) => {
+
+      if (
+        !p ||
+        Object.keys(p).length === 0
+      ) return;
+
+
+      const title =
+        p.title ||
+        p.Title ||
+        "Research Poster";
+
+
+      const event =
+        p.event ||
+        p.Event ||
+        "";
+
+
+      const year =
+        p.year ||
+        p.Year ||
+        "";
+
+
+      const authors =
+        p.authors ||
+        p.Authors ||
+        "";
+
+
+      const image =
+        normalizeImageUrl(
+          p.image ||
+          p.Image ||
+          ""
+        );
+
+
+      const link =
+        p.link ||
+        p.Link ||
+        "";
+
+
+      const description =
+        p.description ||
+        p.Description ||
+        "";
+
+
+      const posterId =
+        `poster-${index}`;
+
+
+      const col =
+        document.createElement(
+          "div"
+        );
+
+
+      col.className =
+        "col-lg-4 col-md-6";
+
+
+      col.innerHTML = `
+
+        <div class="poster-card">
+
+
+          <div
+            class="
+              poster-img-wrapper
+            ">
+
+            <img
+
+              src="${image}"
+
+              class="poster-img"
+
+              alt="${escapeHtml(
+                title
+              )}"
+
+              loading="lazy"
+
+              onerror="
+                this.onerror=null;
+                this.src='${FALLBACK_IMAGE}'
+              "
+            >
+
+          </div>
+
+
+          <div
+            class="poster-content">
+
+
+            <h5>
+
+              ${escapeHtml(
+                title
+              )}
+
+            </h5>
+
+
+            ${
+              event || year
+              ?
+              `
+                <p
+                  class="
+                    text-secondary
+                    mb-2
+                  ">
+
+                  ${escapeHtml(
+                    event
+                  )}
+
+                  ${
+                    event && year
+                      ? " · "
+                      : ""
+                  }
+
+                  ${escapeHtml(
+                    year
+                  )}
+
+                </p>
+              `
+              :
+              ""
+            }
+
+
+            ${
+              authors
+              ?
+              `
+                <p
+                  class="small opacity-75">
+
+                  <strong>
+                    Authors:
+                  </strong>
+
+                  ${escapeHtml(
+                    authors
+                  )}
+
+                </p>
+              `
+              :
+              ""
+            }
+
+
+            ${
+              description
+              ?
+              `
+                <p
+                  class="text-secondary">
+
+                  ${escapeHtml(
+                    description
+                  )}
+
+                </p>
+              `
+              :
+              ""
+            }
+
+
+            <div
+              class="
+                d-flex
+                gap-2
+                flex-wrap
+              ">
+
+
+              <button
+
+                type="button"
+
+                class="
+                  profile-btn
+                  border-0
+                "
+
+                onclick="openPoster(
+                  '${posterId}',
+                  '${escapeHtml(
+                    title
+                  )}',
+                  '${image}'
+                )">
+
+                <i
+                  class="
+                    fas
+                    fa-expand
+                    me-2
+                  ">
+                </i>
+
+                View Poster
+
+              </button>
+
+
+              ${
+                link
+                ?
+                `
+
+                <a
+
+                  href="${escapeHtml(
+                    link
+                  )}"
+
+                  target="_blank"
+
+                  rel="
+                    noopener
+                    noreferrer
+                  "
+
+                  class="
+                    btn
+                    btn-outline-light
+                    btn-sm
+                    rounded-pill
+                    px-3
+                  ">
+
+                  <i
+                    class="
+                      fas
+                      fa-file-pdf
+                      me-2
+                    ">
+                  </i>
+
+                  Open PDF
+
+                </a>
+
+                `
+                :
+                ""
+              }
+
+
+            </div>
+
+
+          </div>
+
+        </div>
+
+      `;
+
+
+      container.appendChild(
+        col
+      );
+
+    }
+  );
+
+}
+
+
+
+/* ==========================================================
+   OPEN POSTER
+========================================================== */
+
+function openPoster(
+  posterId,
+  title,
+  image
+) {
+
+  document.getElementById(
+    "posterModalTitle"
+  ).textContent =
+    title;
+
+
+  document.getElementById(
+    "posterModalImage"
+  ).src =
+    image;
+
+
+  document.getElementById(
+    "posterModalImage"
+  ).alt =
+    title;
+
+
+  const modal =
+    new bootstrap.Modal(
+      document.getElementById(
+        "posterModal"
+      )
+    );
+
+
+  modal.show();
+
+}
+
+
+
+/* ==========================================================
+   PUBLICATIONS
+========================================================== */
+
+async function loadPublications() {
+
+  const container =
+    document.getElementById(
+      "pub-container"
+    );
+
+
+  if (!container) return;
+
+
+  container.innerHTML =
+    "";
+
+
+  const data =
+    await fetchSheet(
+      "PUBLICATIONS"
+    );
+
+
+  if (!data.length) {
+
+    container.innerHTML = `
+
+      <div
+        class="text-center py-5">
+
+        <p
+          class="text-secondary mb-0">
+
+          Publications coming soon...
+
+        </p>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  const items =
+    [...data]
+      .reverse()
+      .slice(0, 8);
+
+
+  let html = "";
+
+
+  items.forEach(p => {
+
+    if (
+      !p ||
+      Object.keys(p).length === 0
+    ) return;
+
+
+    const title =
+      p.title ||
+      p.Title ||
+      p["Title "] ||
+      "Untitled";
+
+
+    const authors =
+      p.authors ||
+      p.Authors ||
+      "";
+
+
+    const journal =
+      p.journal ||
+      p.Journal ||
+      "";
+
+
+    const year =
+      p.year ||
+      p.Year ||
+      "";
+
+
+    const link =
+      p.link ||
+      p.Link ||
+      "";
+
+
+    html += `
+
+      <div class="pub-card">
+
+
+        <h6
+          class="
+            mb-2
+            fw-bold
+          ">
+
+          ${escapeHtml(
+            title
+          )}
+
+        </h6>
+
+
+        <p
+          class="
+            mb-2
+            opacity-75
+          ">
+
+          ${escapeHtml(
+            authors
+          )}
+
+        </p>
+
+
+        <small
+          class="text-secondary">
+
+          ${escapeHtml(
+            journal
+          )}
+
+          ${
+            journal && year
+              ? ", "
+              : ""
+          }
+
+          ${escapeHtml(
+            year
+          )}
+
+        </small>
+
+
+        ${
+          link
+          ?
+          `
+
+          <br>
+
+          <a
+
+            href="${escapeHtml(
+              link
+            )}"
+
+            target="_blank"
+
+            rel="
+              noopener
+              noreferrer
+            "
+
+            class="
+              text-decoration-none
+              mt-2
+              d-inline-block
+            ">
+
+            <i
+              class="
+                fas
+                fa-external-link-alt
+                me-1
+                text-primary
+              ">
+            </i>
+
+            View Paper
+
+          </a>
+
+          `
+          :
+          ""
+        }
+
+
+      </div>
+
+    `;
+
+  });
+
+
+  container.innerHTML =
+    html
+
+    ||
+
+    `
+
+    <div
+      class="text-center py-5">
+
+      <p
+        class="text-secondary mb-0">
+
+        Publications coming soon...
+
+      </p>
+
+    </div>
+
+    `;
+
+}
+
+
+
+/* ==========================================================
+   CONTACT
+========================================================== */
 
 async function loadContact() {
-  const el = document.getElementById("contact-content");
+
+  const el =
+    document.getElementById(
+      "contact-content"
+    );
+
+
   if (!el) return;
 
-  el.textContent = "Loading...";
 
-  const data = await fetchSheet("CONTACT");
+  el.textContent =
+    "Loading...";
+
+
+  const data =
+    await fetchSheet(
+      "CONTACT"
+    );
+
 
   let email = "";
+
   let address = "";
 
-  data.forEach(c => {
-    if (!c || Object.keys(c).length === 0) return;
-    const key = String(c.type || c.Type || "").toLowerCase();
-    const value = String(c.value || c.Value || "").trim();
 
-    if (key.includes("email")) email = value;
-    if (key.includes("address")) address = value;
+  data.forEach(c => {
+
+    if (
+      !c ||
+      Object.keys(c).length === 0
+    ) return;
+
+
+    const key =
+      String(
+        c.type ||
+        c.Type ||
+        ""
+      ).toLowerCase();
+
+
+    const value =
+      String(
+        c.value ||
+        c.Value ||
+        ""
+      ).trim();
+
+
+    if (
+      key.includes("email")
+    ) {
+
+      email = value;
+
+    }
+
+
+    if (
+      key.includes("address")
+    ) {
+
+      address = value;
+
+    }
+
   });
 
-  const emailBlock = email
-    ? `<i class="fas fa-envelope fs-5 me-3"></i><a href="mailto:${escapeHtml(email)}" class="text-white text-decoration-none"><strong>${escapeHtml(email)}</strong></a>`
-    : `<i class="fas fa-envelope fs-5 me-3"></i><strong>Email not set</strong>`;
 
-  const addressBlock = address
-    ? `<br><br><i class="fas fa-map-marker-alt fs-5 me-3"></i><strong>${escapeHtml(address)}</strong>`
-    : `<br><br><i class="fas fa-map-marker-alt fs-5 me-3"></i><strong>Address not set</strong>`;
+  const emailBlock =
 
-  el.innerHTML = emailBlock + addressBlock;
+    email
+
+    ?
+
+    `
+
+      <i
+        class="
+          fas
+          fa-envelope
+          fs-5
+          me-3
+        ">
+      </i>
+
+      <a
+
+        href="mailto:${escapeHtml(
+          email
+        )}"
+
+        class="
+          text-white
+          text-decoration-none
+        ">
+
+        <strong>
+
+          ${escapeHtml(
+            email
+          )}
+
+        </strong>
+
+      </a>
+
+    `
+
+    :
+
+    `
+
+      <i
+        class="
+          fas
+          fa-envelope
+          fs-5
+          me-3
+        ">
+      </i>
+
+      <strong>
+        Email not set
+      </strong>
+
+    `;
+
+
+  const addressBlock =
+
+    address
+
+    ?
+
+    `
+
+      <br><br>
+
+      <i
+        class="
+          fas
+          fa-map-marker-alt
+          fs-5
+          me-3
+        ">
+      </i>
+
+      <strong>
+
+        ${escapeHtml(
+          address
+        )}
+
+      </strong>
+
+    `
+
+    :
+
+    `
+
+      <br><br>
+
+      <i
+        class="
+          fas
+          fa-map-marker-alt
+          fs-5
+          me-3
+        ">
+      </i>
+
+      <strong>
+        Address not set
+      </strong>
+
+    `;
+
+
+  el.innerHTML =
+    emailBlock +
+    addressBlock;
+
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  loadAbout();
-  loadResearch();
-  loadTeam();
-  loadPublications();
-  loadContact();
-});
+
+
+/* ==========================================================
+   INITIALIZE WEBSITE
+========================================================== */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    loadAbout();
+
+    loadResearch();
+
+    loadTeam();
+
+    loadGallery();
+
+    loadPosters();
+
+    loadPublications();
+
+    loadContact();
+
+  }
+);
+
 </script>
+
 
 </body>
 </html>
