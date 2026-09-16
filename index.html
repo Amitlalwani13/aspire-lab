@@ -1,85 +1,48 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<meta charset="UTF-8">
+<meta name="description" content="ASPIRE Lab | Advanced Structural Parasitology & Protein Engineering" />
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASPIRE Lab | Advanced Structural Parasitology & Protein Engineering</title>
 
-<meta name="description"
-content="ASPIRE Lab | Advanced Structural Parasitology & Protein Engineering">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<title>
-ASPIRE Lab | Advanced Structural Parasitology & Protein Engineering
-</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 
-<!-- Bootstrap -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<link
-href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-rel="stylesheet">
-
-<!-- Fonts -->
-
-<link
-href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap"
-rel="stylesheet">
-
-<!-- Font Awesome -->
-
-<link
-rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 
-/* ==========================================================
-   GLOBAL
-========================================================== */
-
 :root {
+  --primary-gradient: linear-gradient(
+    135deg,
+    #3b82f6 0%,
+    #8b5cf6 50%,
+    #ec4899 100%
+  );
 
-  --primary-gradient:
-    linear-gradient(
-      135deg,
-      #3b82f6 0%,
-      #8b5cf6 50%,
-      #ec4899 100%
-    );
+  --glass-bg: rgba(255,255,255,0.06);
+  --glass-border: rgba(255,255,255,0.12);
 
-  --glass-bg:
-    rgba(255,255,255,0.06);
-
-  --glass-border:
-    rgba(255,255,255,0.12);
-
-  --text-primary:
-    #ffffff;
-
-  --text-secondary:
-    rgba(255,255,255,0.8);
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255,255,255,0.8);
 }
-
 
 html {
   scroll-behavior: smooth;
 }
 
-
 section {
   scroll-margin-top: 110px;
 }
 
-
 body {
-
   margin: 0;
-
-  font-family:
-    'Inter',
-    sans-serif;
+  font-family: 'Inter', sans-serif;
 
   background:
     radial-gradient(
@@ -88,8 +51,7 @@ body {
       #01050f
     );
 
-  color:
-    var(--text-primary);
+  color: var(--text-primary);
 
   overflow-x: hidden;
 
@@ -97,123 +59,89 @@ body {
 }
 
 
-/* ==========================================================
+/* =========================
    NAVBAR
-========================================================== */
+========================= */
 
 .navbar {
 
-  background:
-    rgba(0,0,0,0.95)!important;
+  background: rgba(0,0,0,0.95)!important;
 
-  backdrop-filter:
-    blur(30px);
+  backdrop-filter: blur(30px);
 
-  border-bottom:
-    1px solid
-    var(--glass-border);
+  border-bottom: 1px solid var(--glass-border);
 
-  padding:
-    1rem 0;
+  padding: 1rem 0;
 
   z-index: 1000;
 }
 
-
 .navbar-brand {
 
-  font-family:
-    'Playfair Display';
+  font-family: 'Playfair Display';
 
-  font-size:
-    2.2rem;
+  font-size: 2.2rem;
 
-  font-weight:
-    700;
+  font-weight: 700;
 
-  background:
-    var(--primary-gradient);
+  background: var(--primary-gradient);
 
-  -webkit-background-clip:
-    text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 
-  -webkit-text-fill-color:
-    transparent;
-
-  background-clip:
-    text;
+  background-clip: text;
 }
-
 
 .nav-link {
 
-  color:
-    var(--text-secondary)!important;
+  color: var(--text-secondary)!important;
 
-  font-weight:
-    500;
+  font-weight: 500;
 
-  margin:
-    0 0.55rem;
+  margin: 0 0.55rem;
 
-  transition:
-    all 0.3s ease;
+  transition: all 0.3s ease;
 
-  position:
-    relative;
+  position: relative;
 }
-
 
 .nav-link:hover {
 
-  color:
-    #3b82f6!important;
+  color: #3b82f6 !important;
 }
-
 
 .nav-link::after {
 
-  content:
-    '';
+  content: '';
 
-  position:
-    absolute;
+  position: absolute;
 
-  width:
-    0;
+  width: 0;
 
-  height:
-    2px;
+  height: 2px;
 
-  bottom:
-    -5px;
+  bottom: -5px;
 
-  left:
-    0;
+  left: 0;
 
-  background:
-    var(--primary-gradient);
+  background: var(--primary-gradient);
 
-  transition:
-    width 0.3s ease;
+  transition: width 0.3s ease;
 }
-
 
 .nav-link:hover::after {
 
-  width:
-    100%;
+  width: 100%;
 }
 
 
-/* ==========================================================
+/* =========================
    HERO
-========================================================== */
+========================= */
 
 .hero {
 
-  min-height:
-    100vh;
+  min-height: 100vh;
 
   background:
 
@@ -222,43 +150,30 @@ body {
       rgba(0,0,0,0.95)
     ),
 
-    url(
-      "https://lh3.googleusercontent.com/d/1bixRBwYia7U1ZMcF_qGGCKLb_ASKpdV8"
-    );
+    url("https://lh3.googleusercontent.com/d/1bixRBwYia7U1ZMcF_qGGCKLb_ASKpdV8");
 
-  background-size:
-    cover;
+  background-size: cover;
 
-  background-position:
-    center;
+  background-position: center;
 
-  display:
-    flex;
+  display: flex;
 
-  align-items:
-    center;
+  align-items: center;
 
-  justify-content:
-    center;
+  justify-content: center;
 
-  text-align:
-    center;
+  text-align: center;
 
-  position:
-    relative;
+  position: relative;
 }
-
 
 .hero::before {
 
-  content:
-    '';
+  content: '';
 
-  position:
-    absolute;
+  position: absolute;
 
-  inset:
-    0;
+  inset: 0;
 
   background:
 
@@ -269,163 +184,114 @@ body {
     );
 }
 
-
 .hero h1 {
 
-  font-size:
-    4.5rem;
+  font-size: 4.5rem;
 
-  font-weight:
-    700;
+  font-weight: 700;
 
-  font-family:
-    'Playfair Display';
+  font-family: 'Playfair Display';
 
-  background:
-    var(--primary-gradient);
+  background: var(--primary-gradient);
 
-  -webkit-background-clip:
-    text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 
-  -webkit-text-fill-color:
-    transparent;
+  background-clip: text;
 
-  background-clip:
-    text;
+  margin-bottom: 1.5rem;
 
-  margin-bottom:
-    1.5rem;
+  position: relative;
 
-  position:
-    relative;
-
-  z-index:
-    2;
+  z-index: 2;
 }
-
 
 .hero p {
 
-  font-size:
-    1.4rem;
+  font-size: 1.4rem;
 
-  opacity:
-    0.95;
+  opacity: 0.95;
 
-  font-weight:
-    400;
+  font-weight: 400;
 
-  max-width:
-    800px;
+  max-width: 800px;
 
-  position:
-    relative;
+  position: relative;
 
-  z-index:
-    2;
+  z-index: 2;
 
-  margin:
-    0 auto;
+  margin: 0 auto;
 }
 
 
-/* ==========================================================
+/* =========================
    SECTIONS
-========================================================== */
+========================= */
 
 .section {
 
-  padding:
-    120px 0;
+  padding: 120px 0;
 }
-
 
 .section-title {
 
-  text-align:
-    center;
+  text-align: center;
 
-  font-size:
-    3.2rem;
+  font-size: 3.2rem;
 
-  margin-bottom:
-    70px;
+  margin-bottom: 70px;
 
-  font-family:
-    'Playfair Display';
+  font-family: 'Playfair Display';
 
-  font-weight:
-    700;
+  font-weight: 700;
 
-  background:
-    var(--primary-gradient);
+  background: var(--primary-gradient);
 
-  -webkit-background-clip:
-    text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 
-  -webkit-text-fill-color:
-    transparent;
+  background-clip: text;
 
-  background-clip:
-    text;
-
-  position:
-    relative;
+  position: relative;
 }
-
 
 .section-title::after {
 
-  content:
-    '';
+  content: '';
 
-  position:
-    absolute;
+  position: absolute;
 
-  bottom:
-    -25px;
+  bottom: -25px;
 
-  left:
-    50%;
+  left: 50%;
 
-  transform:
-    translateX(-50%);
+  transform: translateX(-50%);
 
-  width:
-    120px;
+  width: 120px;
 
-  height:
-    4px;
+  height: 4px;
 
-  background:
-    var(--primary-gradient);
+  background: var(--primary-gradient);
 
-  border-radius:
-    2px;
+  border-radius: 2px;
 }
 
 
-/* ==========================================================
+/* =========================
    GLASS CARDS
-========================================================== */
+========================= */
 
 .glass {
 
-  background:
-    var(--glass-bg);
+  background: var(--glass-bg);
 
-  backdrop-filter:
-    blur(30px);
+  backdrop-filter: blur(30px);
 
-  border-radius:
-    24px;
+  border-radius: 24px;
 
-  padding:
-    2.5rem;
+  padding: 2.5rem;
 
-  border:
-    1px solid
-    var(--glass-border);
+  border: 1px solid var(--glass-border);
 
   transition:
     all 0.5s
@@ -437,53 +303,40 @@ body {
     );
 }
 
-
 .glass:hover {
 
-  transform:
-    translateY(-8px);
+  transform: translateY(-8px);
 
   box-shadow:
-    0 25px 50px
-    rgba(0,0,0,0.4);
+    0 25px 50px rgba(0,0,0,0.4);
 
   border-color:
     rgba(59,130,246,0.3);
 }
 
 
-/* ==========================================================
+/* =========================
    RESEARCH
-========================================================== */
+========================= */
 
 .research-card {
 
-  height:
-    280px;
+  height: 280px;
 
-  background-size:
-    cover;
+  background-size: cover;
 
-  background-position:
-    center;
+  background-position: center;
 
-  border-radius:
-    24px;
+  border-radius: 24px;
 
-  position:
-    relative;
+  position: relative;
 
-  overflow:
-    hidden;
+  overflow: hidden;
 
-  border:
-    1px solid
-    var(--glass-border);
+  border: 1px solid var(--glass-border);
 
-  transition:
-    all 0.5s ease;
+  transition: all 0.5s ease;
 }
-
 
 .research-card:hover {
 
@@ -492,21 +345,16 @@ body {
     scale(1.02);
 
   box-shadow:
-    0 25px 50px
-    rgba(0,0,0,0.4);
+    0 25px 50px rgba(0,0,0,0.4);
 }
-
 
 .research-overlay {
 
-  position:
-    absolute;
+  position: absolute;
 
-  bottom:
-    0;
+  bottom: 0;
 
-  width:
-    100%;
+  width: 100%;
 
   background:
     linear-gradient(
@@ -514,13 +362,10 @@ body {
       rgba(0,0,0,0.95)
     );
 
-  padding:
-    2rem 1.5rem;
+  padding: 2rem 1.5rem;
 
-  transition:
-    all 0.4s ease;
+  transition: all 0.4s ease;
 }
-
 
 .research-card:hover
 .research-overlay {
@@ -533,69 +378,60 @@ body {
 }
 
 
-/* ==========================================================
+/* =========================
    TEAM
-========================================================== */
+========================= */
 
 .team-img {
 
-  width:
-    140px;
+  width: 140px;
 
-  height:
-    140px;
+  height: 140px;
 
-  border-radius:
-    50%;
+  border-radius: 50%;
 
-  object-fit:
-    cover;
+  object-fit: cover;
 
   border:
     4px solid
     rgba(255,255,255,0.2);
 
-  transition:
-    all 0.4s ease;
+  transition: all 0.4s ease;
 
   box-shadow:
     0 10px 30px
     rgba(0,0,0,0.4);
 }
 
-
 .team-img:hover {
 
-  border-color:
-    #3b82f6;
+  border-color: #3b82f6;
 
-  transform:
-    scale(1.08);
+  transform: scale(1.08);
 }
 
 
+/* =========================
+   PROFILE BUTTON
+========================= */
+
 .profile-btn {
 
-  border:
-    1px solid
+  border: 1px solid
     rgba(59,130,246,0.5);
 
-  color:
-    #ffffff;
+  color: #ffffff;
 
   background:
     rgba(59,130,246,0.12);
 
-  border-radius:
-    30px;
+  border-radius: 30px;
 
   padding:
     8px 20px;
 
-  transition:
-    all 0.3s ease;
+  transition: all 0.3s ease;
 }
-
 
 .profile-btn:hover {
 
@@ -606,17 +442,15 @@ body {
       #8b5cf6
     );
 
-  color:
-    #ffffff;
+  color: #ffffff;
 
-  transform:
-    translateY(-2px);
+  transform: translateY(-2px);
 }
 
 
-/* ==========================================================
+/* =========================
    PROFILE MODAL
-========================================================== */
+========================= */
 
 .modal-content {
 
@@ -627,21 +461,18 @@ body {
       #030712
     );
 
-  color:
-    #ffffff;
+  color: #ffffff;
 
   border:
     1px solid
     rgba(255,255,255,0.12);
 
-  border-radius:
-    24px;
+  border-radius: 24px;
 
   box-shadow:
     0 30px 80px
     rgba(0,0,0,0.6);
 }
-
 
 .modal-header {
 
@@ -650,7 +481,6 @@ body {
     rgba(255,255,255,0.1);
 }
 
-
 .modal-footer {
 
   border-top:
@@ -658,69 +488,50 @@ body {
     rgba(255,255,255,0.1);
 }
 
-
 .btn-close {
 
-  filter:
-    invert(1);
+  filter: invert(1);
 }
-
 
 .profile-modal-img {
 
-  width:
-    170px;
+  width: 170px;
 
-  height:
-    170px;
+  height: 170px;
 
-  object-fit:
-    cover;
+  object-fit: cover;
 
-  border-radius:
-    50%;
+  border-radius: 50%;
 
   border:
     4px solid
     rgba(255,255,255,0.2);
 
-  margin-bottom:
-    20px;
+  margin-bottom: 20px;
 }
-
 
 .profile-heading {
 
   font-family:
     'Playfair Display';
 
-  color:
-    #ffffff;
+  color: #ffffff;
 
-  margin-top:
-    25px;
+  margin-top: 25px;
 
-  margin-bottom:
-    8px;
+  margin-bottom: 8px;
 }
-
 
 .profile-text {
 
   color:
     rgba(255,255,255,0.82);
-
-  line-height:
-    1.8;
-
-  white-space:
-    pre-line;
 }
 
 
-/* ==========================================================
+/* =========================
    GALLERY
-========================================================== */
+========================= */
 
 .gallery-card {
 
@@ -731,19 +542,15 @@ body {
     1px solid
     var(--glass-border);
 
-  border-radius:
-    22px;
+  border-radius: 22px;
 
-  overflow:
-    hidden;
+  overflow: hidden;
 
-  height:
-    100%;
+  height: 100%;
 
   transition:
     all 0.45s ease;
 }
-
 
 .gallery-card:hover {
 
@@ -758,74 +565,58 @@ body {
     rgba(59,130,246,0.35);
 }
 
-
 .gallery-img-wrapper {
 
-  height:
-    260px;
+  height: 260px;
 
-  overflow:
-    hidden;
+  overflow: hidden;
 
-  position:
-    relative;
+  position: relative;
 }
-
 
 .gallery-img {
 
-  width:
-    100%;
+  width: 100%;
 
-  height:
-    100%;
+  height: 100%;
 
-  object-fit:
-    cover;
+  object-fit: cover;
 
   transition:
     transform 0.6s ease;
 }
 
-
 .gallery-card:hover
 .gallery-img {
 
-  transform:
-    scale(1.08);
+  transform: scale(1.08);
 }
-
 
 .gallery-content {
 
-  padding:
-    1.5rem;
+  padding: 1.5rem;
 }
-
 
 .gallery-content h5 {
 
   font-family:
     'Playfair Display';
 
-  margin-bottom:
-    0.6rem;
+  margin-bottom: 0.6rem;
 }
-
 
 .gallery-meta {
 
   color:
     rgba(255,255,255,0.6);
 
-  font-size:
-    0.9rem;
+  font-size: 0.9rem;
 }
 
 
-/* ==========================================================
+/* =========================
    POSTERS
-========================================================== */
+========================= */
 
 .poster-card {
 
@@ -836,19 +627,15 @@ body {
     1px solid
     var(--glass-border);
 
-  border-radius:
-    22px;
+  border-radius: 22px;
 
-  overflow:
-    hidden;
+  overflow: hidden;
 
-  height:
-    100%;
+  height: 100%;
 
   transition:
     all 0.45s ease;
 }
-
 
 .poster-card:hover {
 
@@ -863,59 +650,44 @@ body {
     rgba(139,92,246,0.4);
 }
 
-
 .poster-img-wrapper {
 
-  height:
-    400px;
+  height: 400px;
 
   background:
     rgba(0,0,0,0.3);
 
-  overflow:
-    hidden;
+  overflow: hidden;
 
-  display:
-    flex;
+  display: flex;
 
-  align-items:
-    center;
+  align-items: center;
 
-  justify-content:
-    center;
+  justify-content: center;
 }
-
 
 .poster-img {
 
-  width:
-    100%;
+  width: 100%;
 
-  height:
-    100%;
+  height: 100%;
 
-  object-fit:
-    cover;
+  object-fit: cover;
 
   transition:
     transform 0.5s ease;
 }
 
-
 .poster-card:hover
 .poster-img {
 
-  transform:
-    scale(1.03);
+  transform: scale(1.03);
 }
-
 
 .poster-content {
 
-  padding:
-    1.5rem;
+  padding: 1.5rem;
 }
-
 
 .poster-content h5 {
 
@@ -924,39 +696,36 @@ body {
 }
 
 
+/* =========================
+   POSTER VIEWER
+========================= */
+
 .poster-viewer {
 
-  max-height:
-    85vh;
+  max-height: 85vh;
 
-  max-width:
-    100%;
+  max-width: 100%;
 
-  object-fit:
-    contain;
+  object-fit: contain;
 
-  border-radius:
-    10px;
+  border-radius: 10px;
 }
 
 
-/* ==========================================================
+/* =========================
    PUBLICATIONS
-========================================================== */
+========================= */
 
 .pub-card {
 
   background:
     var(--glass-bg);
 
-  padding:
-    1.8rem;
+  padding: 1.8rem;
 
-  border-radius:
-    18px;
+  border-radius: 18px;
 
-  margin-bottom:
-    1.5rem;
+  margin-bottom: 1.5rem;
 
   border-left:
     5px solid transparent;
@@ -964,7 +733,6 @@ body {
   transition:
     all 0.4s ease;
 }
-
 
 .pub-card:hover {
 
@@ -980,23 +748,21 @@ body {
 }
 
 
-/* ==========================================================
+/* =========================
    CONTACT
-========================================================== */
+========================= */
 
 .contact-glass {
 
-  max-width:
-    550px;
+  max-width: 550px;
 
-  margin:
-    0 auto;
+  margin: 0 auto;
 }
 
 
-/* ==========================================================
+/* =========================
    FOOTER
-========================================================== */
+========================= */
 
 footer {
 
@@ -1009,8 +775,7 @@ footer {
   padding:
     3rem 0;
 
-  text-align:
-    center;
+  text-align: center;
 
   border-top:
     1px solid
@@ -1018,496 +783,545 @@ footer {
 }
 
 
-/* ==========================================================
-   RESPONSIVE
-========================================================== */
+/* =========================
+   LOADING
+========================= */
 
-@media (max-width:768px) {
+.loading-text {
+
+  color:
+    rgba(255,255,255,0.6);
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
 
   .hero h1 {
-    font-size:3.2rem;
+    font-size: 3.2rem;
   }
 
   .hero p {
-    font-size:1.1rem;
+    font-size: 1.1rem;
   }
 
   .section-title {
-    font-size:2.4rem;
+    font-size: 2.4rem;
   }
 
   .section {
-    padding:80px 0;
+    padding: 80px 0;
   }
 
   .navbar-brand {
-    font-size:1.8rem;
+    font-size: 1.8rem;
   }
 
   .poster-img-wrapper {
-    height:330px;
+    height: 330px;
   }
 
   .gallery-img-wrapper {
-    height:220px;
+    height: 220px;
   }
-
 }
 
 </style>
-
 </head>
+
 
 <body>
 
-<!-- ==========================================================
+
+<!-- =========================
      NAVBAR
-========================================================== -->
+========================= -->
 
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
 
-<div class="container">
+  <div class="container">
 
-<a class="navbar-brand" href="#">
-ASPIRE Lab
-</a>
+    <a class="navbar-brand" href="#">
+      ASPIRE Lab
+    </a>
 
-<button
-class="navbar-toggler"
-type="button"
-data-bs-toggle="collapse"
-data-bs-target="#nav"
-aria-controls="nav"
-aria-expanded="false"
-aria-label="Toggle navigation">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#nav"
+      aria-controls="nav"
+      aria-expanded="false"
+      aria-label="Toggle navigation">
 
-<span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon"></span>
 
-</button>
+    </button>
 
-<div
-class="collapse navbar-collapse"
-id="nav">
 
-<ul class="navbar-nav ms-auto">
+    <div
+      class="collapse navbar-collapse"
+      id="nav">
 
-<li class="nav-item">
-<a class="nav-link" href="#about">
-About
-</a>
-</li>
+      <ul class="navbar-nav ms-auto">
 
-<li class="nav-item">
-<a class="nav-link" href="#research">
-Research
-</a>
-</li>
+        <li class="nav-item">
+          <a class="nav-link" href="#about">
+            About
+          </a>
+        </li>
 
-<li class="nav-item">
-<a class="nav-link" href="#team">
-Team
-</a>
-</li>
+        <li class="nav-item">
+          <a class="nav-link" href="#research">
+            Research
+          </a>
+        </li>
 
-<li class="nav-item">
-<a class="nav-link" href="#gallery">
-Gallery
-</a>
-</li>
+        <li class="nav-item">
+          <a class="nav-link" href="#team">
+            Team
+          </a>
+        </li>
 
-<li class="nav-item">
-<a class="nav-link" href="#posters">
-Posters
-</a>
-</li>
+        <li class="nav-item">
+          <a class="nav-link" href="#gallery">
+            Gallery
+          </a>
+        </li>
 
-<li class="nav-item">
-<a class="nav-link" href="#publications">
-Publications
-</a>
-</li>
+        <li class="nav-item">
+          <a class="nav-link" href="#posters">
+            Posters
+          </a>
+        </li>
 
-<li class="nav-item">
-<a class="nav-link" href="#contact">
-Contact
-</a>
-</li>
+        <li class="nav-item">
+          <a class="nav-link" href="#publications">
+            Publications
+          </a>
+        </li>
 
-</ul>
+        <li class="nav-item">
+          <a class="nav-link" href="#contact">
+            Contact
+          </a>
+        </li>
 
-</div>
+      </ul>
 
-</div>
+    </div>
+
+  </div>
 
 </nav>
 
-<!-- ==========================================================
+
+
+<!-- =========================
      HERO
-========================================================== -->
+========================= -->
 
 <section class="hero">
 
-<div class="container">
+  <div class="container">
 
-<h1>
-ASPIRE Lab
-</h1>
+    <h1>
+      ASPIRE Lab
+    </h1>
 
-<p>
-Advanced Structural Parasitology
-•
-Protein Engineering
-•
-Drug Discovery
-</p>
+    <p>
+      Advanced Structural Parasitology
+      • Protein Engineering
+      • Drug Discovery
+    </p>
 
-</div>
+  </div>
 
 </section>
 
-<!-- ==========================================================
+
+
+<!-- =========================
      ABOUT
-========================================================== -->
+========================= -->
 
 <section
-id="about"
-class="section text-center">
+  id="about"
+  class="section text-center">
 
-<div class="container">
+  <div class="container">
 
-<h2 class="section-title">
-About ASPIRE Lab
-</h2>
+    <h2 class="section-title">
+      About ASPIRE Lab
+    </h2>
 
-<div
-class="glass p-5"
-style="max-width:900px;margin:auto;">
+    <div
+      class="glass p-5 mb-0"
+      style="max-width:900px; margin:auto;">
 
-<p
-id="about-text"
-class="fs-5 mb-0">
+      <p
+        id="about-text"
+        class="fs-5 mb-4">
 
-Loading...
+        Loading...
 
-</p>
+      </p>
 
-</div>
+    </div>
 
-</div>
+  </div>
 
 </section>
 
-<!-- ==========================================================
+
+
+<!-- =========================
      RESEARCH
-========================================================== -->
+========================= -->
 
 <section
-id="research"
-class="section">
+  id="research"
+  class="section">
 
-<div class="container">
+  <div class="container">
 
-<h2 class="section-title">
-Research Areas
-</h2>
+    <h2 class="section-title">
+      Research Areas
+    </h2>
 
-<div
-class="row g-4"
-id="research-container">
-</div>
+    <div
+      class="row g-4"
+      id="research-container">
 
-</div>
+    </div>
+
+  </div>
 
 </section>
 
-<!-- ==========================================================
+
+
+<!-- =========================
      PI
-========================================================== -->
+========================= -->
 
 <section
-class="section text-center">
+  class="section text-center">
 
-<div class="container">
+  <div class="container">
 
-<h2 class="section-title">
-Principal Investigator
-</h2>
+    <h2 class="section-title">
+      Principal Investigator
+    </h2>
 
-<div
-class="row justify-content-center"
-id="pi-container">
-</div>
+    <div
+      class="row justify-content-center"
+      id="pi-container">
 
-</div>
+    </div>
+
+  </div>
 
 </section>
 
-<!-- ==========================================================
+
+
+<!-- =========================
      TEAM
-========================================================== -->
+========================= -->
 
 <section
-id="team"
-class="section">
+  id="team"
+  class="section">
 
-<div class="container">
+  <div class="container">
 
-<h2 class="section-title">
-Our Team
-</h2>
+    <h2 class="section-title">
+      Our Team
+    </h2>
 
-<div
-class="row"
-id="team-container">
-</div>
+    <div
+      class="row"
+      id="team-container">
 
-</div>
+    </div>
+
+  </div>
 
 </section>
 
-<!-- ==========================================================
+
+
+<!-- =========================
      GALLERY
-========================================================== -->
+========================= -->
 
 <section
-id="gallery"
-class="section">
+  id="gallery"
+  class="section">
 
-<div class="container">
+  <div class="container">
 
-<h2 class="section-title">
-Workshops & Conferences
-</h2>
+    <h2 class="section-title">
+      Workshops & Conferences
+    </h2>
 
-<div
-class="row g-4"
-id="gallery-container">
-</div>
+    <div
+      class="row g-4"
+      id="gallery-container">
 
-</div>
+    </div>
+
+  </div>
 
 </section>
 
-<!-- ==========================================================
+
+
+<!-- =========================
      POSTERS
-========================================================== -->
+========================= -->
 
 <section
-id="posters"
-class="section">
+  id="posters"
+  class="section">
 
-<div class="container">
+  <div class="container">
 
-<h2 class="section-title">
-Digital Poster Archive
-</h2>
+    <h2 class="section-title">
+      Digital Poster Archive
+    </h2>
 
-<div
-class="row g-4"
-id="posters-container">
-</div>
+    <div
+      class="row g-4"
+      id="posters-container">
 
-</div>
+    </div>
+
+  </div>
 
 </section>
 
-<!-- ==========================================================
+
+
+<!-- =========================
      PUBLICATIONS
-========================================================== -->
+========================= -->
 
 <section
-id="publications"
-class="section">
+  id="publications"
+  class="section">
 
-<div class="container">
+  <div class="container">
 
-<h2 class="section-title">
-Publications
-</h2>
+    <h2 class="section-title">
+      Publications
+    </h2>
 
-<div
-id="pub-container">
-</div>
+    <div
+      id="pub-container">
 
-</div>
+    </div>
+
+  </div>
 
 </section>
 
-<!-- ==========================================================
+
+
+<!-- =========================
      CONTACT
-========================================================== -->
+========================= -->
 
 <section
-id="contact"
-class="section text-center">
+  id="contact"
+  class="section text-center">
 
-<div class="container">
+  <div class="container">
 
-<h2 class="section-title">
-Contact
-</h2>
+    <h2 class="section-title">
+      Contact
+    </h2>
 
-<div
-class="glass contact-glass py-5 px-4">
+    <div
+      class="glass contact-glass py-5 px-4">
 
-<div class="fs-4 mb-4">
+      <div class="fs-4 mb-4">
 
-<i
-class="fas fa-paper-plane text-primary me-3"> </i>
+        <i
+          class="fas fa-paper-plane text-primary me-3">
+        </i>
 
-Get In Touch
+        Get In Touch
 
-</div>
+      </div>
 
-<div id="contact-content">
+      <div id="contact-content">
 
-Loading...
+        Loading...
 
-</div>
+      </div>
 
-</div>
+    </div>
 
-</div>
+  </div>
 
 </section>
 
-<!-- ==========================================================
+
+
+<!-- =========================
      FOOTER
-========================================================== -->
+========================= -->
 
 <footer>
 
-<div class="container">
+  <div class="container">
 
-<p
-class="mb-0"
-style="opacity:0.8;">
+    <p
+      class="mb-0"
+      style="opacity:0.8;">
 
-© 2026 ASPIRE Lab |
-Advanced Structural Parasitology
-& Protein Engineering
+      © 2026 ASPIRE Lab |
+      Advanced Structural Parasitology
+      & Protein Engineering
 
-</p>
+    </p>
 
-</div>
+  </div>
 
 </footer>
 
-<!-- ==========================================================
+
+
+<!-- =========================
      PROFILE MODAL
-========================================================== -->
+========================= -->
 
 <div
-class="modal fade"
-id="profileModal"
-tabindex="-1"
-aria-hidden="true">
+  class="modal fade"
+  id="profileModal"
+  tabindex="-1"
+  aria-hidden="true">
 
-<div
-class="modal-dialog modal-lg modal-dialog-centered">
+  <div
+    class="modal-dialog modal-lg modal-dialog-centered">
 
-<div class="modal-content">
+    <div class="modal-content">
 
-<div class="modal-header">
+      <div class="modal-header">
 
-<h5
-class="modal-title"
-id="profileModalTitle">
+        <h5
+          class="modal-title"
+          id="profileModalTitle">
 
-Profile
+          Profile
 
-</h5>
+        </h5>
 
-<button
-type="button"
-class="btn-close"
-data-bs-dismiss="modal"
-aria-label="Close"> </button>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close">
+        </button>
+
+      </div>
+
+
+      <div
+        class="modal-body"
+        id="profileModalBody">
+
+      </div>
+
+
+      <div class="modal-footer">
+
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-bs-dismiss="modal">
+
+          Close
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
 
 </div>
 
-<div
-class="modal-body"
-id="profileModalBody">
 
-</div>
 
-<div class="modal-footer">
-
-<button
-type="button"
-class="btn btn-secondary"
-data-bs-dismiss="modal">
-
-Close
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- ==========================================================
+<!-- =========================
      POSTER MODAL
-========================================================== -->
+========================= -->
 
 <div
-class="modal fade"
-id="posterModal"
-tabindex="-1"
-aria-hidden="true">
+  class="modal fade"
+  id="posterModal"
+  tabindex="-1"
+  aria-hidden="true">
 
-<div
-class="modal-dialog modal-xl modal-dialog-centered">
+  <div
+    class="modal-dialog modal-xl modal-dialog-centered">
 
-<div class="modal-content">
+    <div class="modal-content">
 
-<div class="modal-header">
+      <div class="modal-header">
 
-<h5
-class="modal-title"
-id="posterModalTitle">
+        <h5
+          class="modal-title"
+          id="posterModalTitle">
 
-Poster
+          Poster
 
-</h5>
+        </h5>
 
-<button
-type="button"
-class="btn-close"
-data-bs-dismiss="modal"
-aria-label="Close"> </button>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close">
+        </button>
+
+      </div>
+
+
+      <div
+        class="modal-body text-center">
+
+        <img
+          id="posterModalImage"
+          class="poster-viewer"
+          src=""
+          alt="Research poster">
+
+      </div>
+
+    </div>
+
+  </div>
 
 </div>
 
-<div
-class="modal-body text-center">
 
-<img
-id="posterModalImage"
-class="poster-viewer"
-src=""
-alt="Research poster">
 
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- ==========================================================
+<!-- =========================
      BOOTSTRAP
-========================================================== -->
+========================= -->
 
-<script
-src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
 </script>
+
+
 
 <script>
 
@@ -1516,11 +1330,11 @@ src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.j
 ========================================================== */
 
 const SHEET_ID =
-"1vhSco35e3yQHCFiFJoAmjbHKZ7WV2RQN65xNbK6TIl8";
+  "1vhSco35e3yQHCFiFJoAmjbHKZ7WV2RQN65xNbK6TIl8";
 
 
 const FALLBACK_IMAGE =
-"https://via.placeholder.com/800x500?text=ASPIRE+Lab";
+  "https://via.placeholder.com/800x500?text=ASPIRE+Lab";
 
 
 
@@ -1532,15 +1346,15 @@ function escapeHtml(value) {
 
   return String(value ?? "")
 
-    .replaceAll("&","&amp;")
+    .replaceAll("&", "&amp;")
 
-    .replaceAll("<","&lt;")
+    .replaceAll("<", "&lt;")
 
-    .replaceAll(">","&gt;")
+    .replaceAll(">", "&gt;")
 
-    .replaceAll('"',"&quot;")
+    .replaceAll('"', "&quot;")
 
-    .replaceAll("'","&#039;");
+    .replaceAll("'", "&#039;");
 }
 
 
@@ -1560,13 +1374,8 @@ function normalizeImageUrl(url) {
 
 
   const driveMatch =
-
-    raw.match(
-      /\/d\/([a-zA-Z0-9_-]+)/
-    )
-
+    raw.match(/\/d\/([a-zA-Z0-9_-]+)/)
     ||
-
     raw.match(
       /[?&]id=([a-zA-Z0-9_-]+)/
     );
@@ -1577,8 +1386,7 @@ function normalizeImageUrl(url) {
     driveMatch[1]
   ) {
 
-    return
-      `https://lh3.googleusercontent.com/d/${driveMatch[1]}`;
+    return `https://lh3.googleusercontent.com/d/${driveMatch[1]}`;
 
   }
 
@@ -1646,7 +1454,9 @@ function firstNonEmptyValue(obj) {
     !obj ||
     typeof obj !== "object"
   ) {
+
     return "";
+
   }
 
 
@@ -1654,8 +1464,8 @@ function firstNonEmptyValue(obj) {
     Object.values(obj)
       .map(v =>
         v == null
-        ? ""
-        : String(v).trim()
+          ? ""
+          : String(v).trim()
       );
 
 
@@ -1697,22 +1507,14 @@ async function loadAbout() {
 
     data[0]?.text
     ||
-
     data[0]?.Text
     ||
-
     data[0]?.about
     ||
-
     data[0]?.About
     ||
-
-    firstNonEmptyValue(
-      data[0]
-    )
-
+    firstNonEmptyValue(data[0])
     ||
-
     "About content coming soon...";
 
 
@@ -1844,14 +1646,12 @@ async function loadResearch() {
 
       <h5
         style="
-          font-family:'Playfair Display';
-          font-size:1.4rem;
-        ">
+        font-family:'Playfair Display';
+        font-size:1.4rem;">
 
         ${escapeHtml(title)}
 
       </h5>
-
 
       <p class="mb-0">
 
@@ -1942,62 +1742,13 @@ async function loadTeam() {
   }
 
 
-  /* ========================================================
-     GOOGLE SHEET FIELD READER
-
-     Handles:
-     bio
-     Bio
-     BIO
-     " bio "
-  ======================================================== */
-
-  function getField(row, fieldName) {
-
-    if (
-      !row ||
-      typeof row !== "object"
-    ) {
-      return "";
-    }
-
-
-    const target =
-      fieldName
-        .toLowerCase()
-        .trim();
-
-
-    const key =
-      Object.keys(row).find(
-        k =>
-          String(k)
-            .toLowerCase()
-            .trim()
-          ===
-          target
-      );
-
-
-    if (!key) {
-      return "";
-    }
-
-
-    return String(
-      row[key] ?? ""
-    ).trim();
-
-  }
-
-
   let teamHTML = "";
 
   let piHTML = "";
 
 
   data.forEach(
-    (m,index) => {
+    (m, index) => {
 
       if (
         !m ||
@@ -2005,98 +1756,67 @@ async function loadTeam() {
       ) return;
 
 
-      /* ====================================================
-         BASIC INFORMATION
-      ==================================================== */
-
       const name =
-        getField(
-          m,
-          "name"
-        )
-        ||
+        m.name ||
+        m.Name ||
         "Unnamed";
 
 
       const role =
-        getField(
-          m,
-          "role"
-        );
+        m.role ||
+        m.Role ||
+        "";
 
 
       const image =
         normalizeImageUrl(
-
-          getField(
-            m,
-            "image"
-          )
-
-          ||
-
+          m.image ||
+          m.Image ||
           FALLBACK_IMAGE
-
         );
 
 
       const linkedin =
-        getField(
-          m,
-          "linkedin"
-        );
+        m.linkedin ||
+        m.LinkedIn ||
+        "";
 
-
-      /* ====================================================
-         BIOGRAPHY
-      ==================================================== */
 
       const bio =
-        getField(
-          m,
-          "bio"
-        );
+        m.bio ||
+        m.Bio ||
+        "";
 
 
       const research =
-        getField(
-          m,
-          "research"
-        );
+        m.research ||
+        m.Research ||
+        "";
 
 
       const hobbies =
-        getField(
-          m,
-          "hobbies"
-        );
+        m.hobbies ||
+        m.Hobbies ||
+        "";
 
 
       const interests =
-        getField(
-          m,
-          "interests"
-        );
+        m.interests ||
+        m.Interests ||
+        "";
 
 
       const profileId =
         `profile-${index}`;
 
 
-      /* ====================================================
-         TEAM CARD
-      ==================================================== */
-
       const card = `
 
         <div
-          class="
-            col-lg-3
-            col-md-4
-            col-sm-6
-            mb-4
-          ">
-
+          class="col-lg-3
+                 col-md-4
+                 col-sm-6
+                 mb-4">
 
           <div
             class="
@@ -2111,12 +1831,16 @@ async function loadTeam() {
 
 
             <img
-
-              src="${escapeHtml(image)}"
+              src="${image.replaceAll(
+                '"',
+                "%22"
+              )}"
 
               class="team-img mb-3"
 
-              alt="${escapeHtml(name)}"
+              alt="${escapeHtml(
+                name
+              )}"
 
               loading="lazy"
 
@@ -2156,21 +1880,16 @@ async function loadTeam() {
 
 
               <button
-
                 type="button"
 
                 class="profile-btn"
 
-                onclick="
-                  openProfile('${profileId}')
-                ">
+                onclick="openProfile(
+                  '${profileId}'
+                )">
 
                 <i
-                  class="
-                    fas
-                    fa-user
-                    me-2
-                  ">
+                  class="fas fa-user me-2">
                 </i>
 
                 View Profile
@@ -2181,11 +1900,9 @@ async function loadTeam() {
               ${
                 linkedin
                 ?
-
                 `
 
                 <a
-
                   href="${escapeHtml(
                     linkedin
                   )}"
@@ -2199,29 +1916,21 @@ async function loadTeam() {
 
                   class="
                     text-decoration-none
-                  "
-
-                  aria-label="
-                    LinkedIn
                   ">
 
                   <i
-
                     class="
                       fab
                       fa-linkedin
                       text-primary
                       fs-4
                     ">
-
                   </i>
 
                 </a>
 
                 `
-
                 :
-
                 ""
               }
 
@@ -2229,12 +1938,7 @@ async function loadTeam() {
             </div>
 
 
-            <!-- ==========================================
-                 HIDDEN PROFILE DATA
-            =========================================== -->
-
             <div
-
               id="${profileId}"
 
               class="d-none"
@@ -2281,13 +1985,9 @@ async function loadTeam() {
       `;
 
 
-      /* ====================================================
-         PI DETECTION
-      ==================================================== */
-
       const isPI =
         /principal|pi\b|investigator/i
-        .test(role);
+          .test(role);
 
 
       if (isPI) {
@@ -2306,10 +2006,6 @@ async function loadTeam() {
   );
 
 
-  /* ========================================================
-     PI
-  ======================================================== */
-
   piContainer.innerHTML =
 
     piHTML
@@ -2318,26 +2014,22 @@ async function loadTeam() {
 
     `
 
-      <div class="col-12">
+    <div class="col-12">
 
-        <div class="glass p-4">
+      <div class="glass p-4">
 
-          <p class="text-secondary mb-0">
+        <p class="text-secondary mb-0">
 
-            Coming soon...
+          Coming soon...
 
-          </p>
-
-        </div>
+        </p>
 
       </div>
 
+    </div>
+
     `;
 
-
-  /* ========================================================
-     TEAM
-  ======================================================== */
 
   teamContainer.innerHTML =
 
@@ -2347,19 +2039,19 @@ async function loadTeam() {
 
     `
 
-      <div class="col-12">
+    <div class="col-12">
 
-        <div class="glass p-4">
+      <div class="glass p-4">
 
-          <p class="text-secondary mb-0">
+        <p class="text-secondary mb-0">
 
-            Coming soon...
+          Coming soon...
 
-          </p>
-
-        </div>
+        </p>
 
       </div>
+
+    </div>
 
     `;
 
@@ -2422,19 +2114,10 @@ function openProfile(profileId) {
     "";
 
 
-  /* ========================================================
-     MODAL TITLE
-  ======================================================== */
-
   document.getElementById(
     "profileModalTitle"
-  ).textContent =
-    name;
+  ).textContent = name;
 
-
-  /* ========================================================
-     PROFILE HEADER
-  ======================================================== */
 
   let html = `
 
@@ -2442,7 +2125,7 @@ function openProfile(profileId) {
 
       <img
 
-        src="${escapeHtml(image)}"
+        src="${image}"
 
         class="profile-modal-img"
 
@@ -2457,59 +2140,36 @@ function openProfile(profileId) {
 
       <h3
         style="
-          font-family:'Playfair Display';
-        ">
+        font-family:'Playfair Display';">
 
         ${escapeHtml(name)}
 
       </h3>
 
 
-      ${
-        role
+      <p
+        class="text-secondary">
 
-        ?
+        ${escapeHtml(role)}
 
-        `
-
-        <p class="text-secondary">
-
-          ${escapeHtml(role)}
-
-        </p>
-
-        `
-
-        :
-
-        ""
-      }
-
+      </p>
 
     </div>
 
   `;
 
 
-  /* ========================================================
-     BIOGRAPHY
-  ======================================================== */
-
-  if (
-    bio.trim()
-  ) {
+  if (bio) {
 
     html += `
 
       <h5 class="profile-heading">
 
-        About Me
+        About
 
       </h5>
 
-
-      <p
-        class="profile-text">
+      <p class="profile-text">
 
         ${escapeHtml(bio)}
 
@@ -2520,13 +2180,7 @@ function openProfile(profileId) {
   }
 
 
-  /* ========================================================
-     RESEARCH
-  ======================================================== */
-
-  if (
-    research.trim()
-  ) {
+  if (research) {
 
     html += `
 
@@ -2536,9 +2190,7 @@ function openProfile(profileId) {
 
       </h5>
 
-
-      <p
-        class="profile-text">
+      <p class="profile-text">
 
         ${escapeHtml(research)}
 
@@ -2549,13 +2201,7 @@ function openProfile(profileId) {
   }
 
 
-  /* ========================================================
-     HOBBIES
-  ======================================================== */
-
-  if (
-    hobbies.trim()
-  ) {
+  if (hobbies) {
 
     html += `
 
@@ -2565,9 +2211,7 @@ function openProfile(profileId) {
 
       </h5>
 
-
-      <p
-        class="profile-text">
+      <p class="profile-text">
 
         ${escapeHtml(hobbies)}
 
@@ -2578,13 +2222,7 @@ function openProfile(profileId) {
   }
 
 
-  /* ========================================================
-     MORE INFORMATION
-  ======================================================== */
-
-  if (
-    interests.trim()
-  ) {
+  if (interests) {
 
     html += `
 
@@ -2594,9 +2232,7 @@ function openProfile(profileId) {
 
       </h5>
 
-
-      <p
-        class="profile-text">
+      <p class="profile-text">
 
         ${escapeHtml(interests)}
 
@@ -2607,20 +2243,13 @@ function openProfile(profileId) {
   }
 
 
-  /* ========================================================
-     LINKEDIN
-  ======================================================== */
-
-  if (
-    linkedin.trim()
-  ) {
+  if (linkedin) {
 
     html += `
 
       <div class="mt-4">
 
         <a
-
           href="${escapeHtml(
             linkedin
           )}"
@@ -2635,8 +2264,6 @@ function openProfile(profileId) {
           class="
             btn
             btn-outline-primary
-            rounded-pill
-            px-4
           ">
 
           <i
@@ -2658,66 +2285,16 @@ function openProfile(profileId) {
   }
 
 
-  /* ========================================================
-     EMPTY PROFILE
-  ======================================================== */
-
-  if (
-
-    !bio.trim() &&
-
-    !research.trim() &&
-
-    !hobbies.trim() &&
-
-    !interests.trim()
-
-  ) {
-
-    html += `
-
-      <div
-        class="
-          glass
-          mt-4
-          p-3
-          text-center
-        ">
-
-        <p class="text-secondary mb-0">
-
-          Profile information coming soon.
-
-        </p>
-
-      </div>
-
-    `;
-
-  }
-
-
-  /* ========================================================
-     INSERT MODAL CONTENT
-  ======================================================== */
-
   document.getElementById(
     "profileModalBody"
-  ).innerHTML =
-    html;
+  ).innerHTML = html;
 
-
-  /* ========================================================
-     SHOW MODAL
-  ======================================================== */
 
   const modal =
     new bootstrap.Modal(
-
       document.getElementById(
         "profileModal"
       )
-
     );
 
 
@@ -2827,15 +2404,14 @@ async function loadGallery() {
     const meta = [
 
       event,
+
       location,
+
       year
 
     ]
-
       .filter(Boolean)
-
       .map(escapeHtml)
-
       .join(" · ");
 
 
@@ -2891,36 +2467,24 @@ async function loadGallery() {
 
           ${
             meta
-
             ?
-
             `
-
               <div
-                class="
-                  gallery-meta
-                  mb-2
-                ">
+                class="gallery-meta mb-2">
 
                 ${meta}
 
               </div>
-
             `
-
             :
-
             ""
           }
 
 
           ${
             description
-
             ?
-
             `
-
               <p
                 class="
                   text-secondary
@@ -2932,11 +2496,8 @@ async function loadGallery() {
                 )}
 
               </p>
-
             `
-
             :
-
             ""
           }
 
@@ -3009,7 +2570,7 @@ async function loadPosters() {
 
 
   data.forEach(
-    (p,index) => {
+    (p, index) => {
 
       if (
         !p ||
@@ -3107,9 +2668,7 @@ async function loadPosters() {
 
 
           <div
-            class="
-              poster-content
-            ">
+            class="poster-content">
 
 
             <h5>
@@ -3123,89 +2682,71 @@ async function loadPosters() {
 
             ${
               event || year
-
               ?
-
               `
+                <p
+                  class="
+                    text-secondary
+                    mb-2
+                  ">
 
-              <p
-                class="
-                  text-secondary
-                  mb-2
-                ">
+                  ${escapeHtml(
+                    event
+                  )}
 
-                ${escapeHtml(
-                  event
-                )}
+                  ${
+                    event && year
+                      ? " · "
+                      : ""
+                  }
 
-                ${
-                  event && year
-                  ? " · "
-                  : ""
-                }
+                  ${escapeHtml(
+                    year
+                  )}
 
-                ${escapeHtml(
-                  year
-                )}
-
-              </p>
-
+                </p>
               `
-
               :
-
               ""
             }
 
 
             ${
               authors
-
               ?
-
               `
+                <p
+                  class="small opacity-75">
 
-              <p
-                class="small opacity-75">
+                  <strong>
+                    Authors:
+                  </strong>
 
-                <strong>
-                  Authors:
-                </strong>
+                  ${escapeHtml(
+                    authors
+                  )}
 
-                ${escapeHtml(
-                  authors
-                )}
-
-              </p>
-
+                </p>
               `
-
               :
-
               ""
             }
 
 
             ${
               description
-
               ?
-
               `
+                <p
+                  class="text-secondary">
 
-              <p
-                class="text-secondary">
+                  ${escapeHtml(
+                    description
+                  )}
 
-                ${escapeHtml(
-                  description
-                )}
-
-              </p>
-
+                </p>
               `
-
               :
-
               ""
             }
 
@@ -3227,13 +2768,13 @@ async function loadPosters() {
                   border-0
                 "
 
-                onclick="
-                  openPoster(
-                    '${posterId}',
-                    '${escapeHtml(title)}',
-                    '${escapeHtml(image)}'
-                  )
-                ">
+                onclick="openPoster(
+                  '${posterId}',
+                  '${escapeHtml(
+                    title
+                  )}',
+                  '${image}'
+                )">
 
                 <i
                   class="
@@ -3250,9 +2791,7 @@ async function loadPosters() {
 
               ${
                 link
-
                 ?
-
                 `
 
                 <a
@@ -3289,9 +2828,7 @@ async function loadPosters() {
                 </a>
 
                 `
-
                 :
-
                 ""
               }
 
@@ -3347,11 +2884,9 @@ function openPoster(
 
   const modal =
     new bootstrap.Modal(
-
       document.getElementById(
         "posterModal"
       )
-
     );
 
 
@@ -3394,10 +2929,7 @@ async function loadPublications() {
         class="text-center py-5">
 
         <p
-          class="
-            text-secondary
-            mb-0
-          ">
+          class="text-secondary mb-0">
 
           Publications coming soon...
 
@@ -3415,7 +2947,7 @@ async function loadPublications() {
   const items =
     [...data]
       .reverse()
-      .slice(0,8);
+      .slice(0, 8);
 
 
   let html = "";
@@ -3500,8 +3032,8 @@ async function loadPublications() {
 
           ${
             journal && year
-            ? ", "
-            : ""
+              ? ", "
+              : ""
           }
 
           ${escapeHtml(
@@ -3513,9 +3045,7 @@ async function loadPublications() {
 
         ${
           link
-
           ?
-
           `
 
           <br>
@@ -3553,9 +3083,7 @@ async function loadPublications() {
           </a>
 
           `
-
           :
-
           ""
         }
 
@@ -3568,7 +3096,6 @@ async function loadPublications() {
 
 
   container.innerHTML =
-
     html
 
     ||
@@ -3618,12 +3145,9 @@ async function loadContact() {
     );
 
 
-  let email =
-    "";
+  let email = "";
 
-
-  let address =
-    "";
+  let address = "";
 
 
   data.forEach(c => {
@@ -3654,8 +3178,7 @@ async function loadContact() {
       key.includes("email")
     ) {
 
-      email =
-        value;
+      email = value;
 
     }
 
@@ -3664,8 +3187,7 @@ async function loadContact() {
       key.includes("address")
     ) {
 
-      address =
-        value;
+      address = value;
 
     }
 
@@ -3688,7 +3210,6 @@ async function loadContact() {
           me-3
         ">
       </i>
-
 
       <a
 
@@ -3819,6 +3340,6 @@ document.addEventListener(
 
 </script>
 
-</body>
 
+</body>
 </html>
