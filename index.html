@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,31 +31,61 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 <style>
 
 /* ==========================================================
-   ASPIRE LAB — BRIGHT SCIENTIFIC SUNRISE THEME
-   Cheerful • Colorful • Modern • Academic
+   ASPIRE LAB
+   CLEAN SCIENTIFIC BLUE / CYAN / VIOLET THEME
 ========================================================== */
 
 :root {
-  --primary-gradient: linear-gradient(135deg, #2563eb 0%, #7c3aed 48%, #ec4899 100%);
-  --sun-gradient: linear-gradient(135deg, #06b6d4 0%, #3b82f6 45%, #8b5cf6 100%);
-  --warm-gradient: linear-gradient(135deg, #f97316 0%, #ec4899 55%, #8b5cf6 100%);
-  --mint-gradient: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
-  --page-bg: #f7f9fc;
-  --page-bg-soft: #eef8ff;
-  --surface: rgba(255,255,255,0.90);
+
+  --primary-gradient:
+    linear-gradient(
+      135deg,
+      #2563eb 0%,
+      #0891b2 50%,
+      #7c3aed 100%
+    );
+
+  --secondary-gradient:
+    linear-gradient(
+      135deg,
+      #0ea5e9 0%,
+      #2563eb 50%,
+      #7c3aed 100%
+    );
+
+  --soft-gradient:
+    linear-gradient(
+      135deg,
+      #eff6ff 0%,
+      #ecfeff 50%,
+      #f5f3ff 100%
+    );
+
+  --page-bg: #f7faff;
+  --page-bg-soft: #eef6ff;
+
+  --surface: rgba(255,255,255,0.94);
   --surface-strong: #ffffff;
+
   --border: rgba(37,99,235,0.13);
-  --text-primary: #14213d;
+
+  --text-primary: #172033;
   --text-secondary: #52627a;
+
   --heading: #172554;
+
   --accent-blue: #2563eb;
-  --accent-cyan: #06b6d4;
+  --accent-cyan: #0891b2;
   --accent-violet: #7c3aed;
-  --accent-pink: #ec4899;
-  --accent-orange: #f97316;
-  --accent-green: #10b981;
-  --shadow: 0 18px 45px rgba(36, 74, 120, 0.12);
+
+  --shadow:
+    0 18px 45px rgba(30,64,175,0.10);
 }
+
+
+/* ==========================================================
+   GENERAL
+========================================================== */
 
 html {
   scroll-behavior: smooth;
@@ -65,614 +96,1328 @@ section {
 }
 
 body {
+
   margin: 0;
+
   font-family: 'Inter', sans-serif;
+
   background:
-    radial-gradient(circle at 8% 8%, rgba(6,182,212,0.12), transparent 26%),
-    radial-gradient(circle at 92% 18%, rgba(236,72,153,0.10), transparent 25%),
-    radial-gradient(circle at 50% 80%, rgba(124,58,237,0.07), transparent 28%),
+
+    radial-gradient(
+      circle at 8% 8%,
+      rgba(14,165,233,0.09),
+      transparent 25%
+    ),
+
+    radial-gradient(
+      circle at 92% 18%,
+      rgba(124,58,237,0.07),
+      transparent 25%
+    ),
+
+    radial-gradient(
+      circle at 50% 80%,
+      rgba(37,99,235,0.05),
+      transparent 30%
+    ),
+
     var(--page-bg);
+
   color: var(--text-primary);
+
   overflow-x: hidden;
+
   line-height: 1.65;
 }
 
-/* =========================
+
+/* ==========================================================
    NAVBAR
-========================= */
+========================================================== */
 
 .navbar {
-  background: rgba(255,255,255,0.88) !important;
-  backdrop-filter: blur(22px);
-  -webkit-backdrop-filter: blur(22px);
-  border-bottom: 1px solid rgba(37,99,235,0.12);
-  box-shadow: 0 5px 25px rgba(36,74,120,0.06);
-  padding: 0.85rem 0;
+
+  background:
+    rgba(255,255,255,0.94) !important;
+
+  backdrop-filter: blur(18px);
+
+  -webkit-backdrop-filter: blur(18px);
+
+  border-bottom:
+    1px solid rgba(37,99,235,0.10);
+
+  box-shadow:
+    0 5px 25px rgba(30,64,175,0.06);
+
+  padding:
+    0.85rem 0;
+
   z-index: 1000;
 }
 
+
 .navbar-brand {
-  font-family: 'Playfair Display', serif;
-  font-size: 2.05rem;
-  font-weight: 700;
-  background: var(--primary-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+
+  font-family:
+    'Playfair Display',
+    serif;
+
+  font-size:
+    2.05rem;
+
+  font-weight:
+    700;
+
+  background:
+    var(--primary-gradient);
+
+  -webkit-background-clip:
+    text;
+
+  -webkit-text-fill-color:
+    transparent;
+
+  background-clip:
+    text;
 }
+
 
 .nav-link {
-  color: #334155 !important;
-  font-weight: 600;
-  margin: 0 0.45rem;
-  transition: all 0.25s ease;
-  position: relative;
+
+  color:
+    #334155 !important;
+
+  font-weight:
+    600;
+
+  margin:
+    0 0.45rem;
+
+  transition:
+    all 0.25s ease;
+
+  position:
+    relative;
 }
+
 
 .nav-link:hover {
-  color: var(--accent-blue) !important;
+
+  color:
+    var(--accent-blue) !important;
 }
+
 
 .nav-link::after {
+
   content: '';
-  position: absolute;
-  width: 0;
-  height: 3px;
-  bottom: -7px;
-  left: 0;
-  background: var(--primary-gradient);
-  border-radius: 10px;
-  transition: width 0.25s ease;
+
+  position:
+    absolute;
+
+  width:
+    0;
+
+  height:
+    3px;
+
+  bottom:
+    -7px;
+
+  left:
+    0;
+
+  background:
+    var(--primary-gradient);
+
+  border-radius:
+    10px;
+
+  transition:
+    width 0.25s ease;
 }
+
 
 .nav-link:hover::after {
-  width: 100%;
+
+  width:
+    100%;
 }
+
 
 .navbar-toggler {
-  border-color: rgba(37,99,235,0.20) !important;
-  background: rgba(37,99,235,0.06);
+
+  border-color:
+    rgba(37,99,235,0.20) !important;
+
+  background:
+    rgba(37,99,235,0.06);
 }
+
 
 .navbar-toggler:focus {
-  box-shadow: 0 0 0 0.2rem rgba(37,99,235,0.12);
+
+  box-shadow:
+    0 0 0 0.2rem
+    rgba(37,99,235,0.12);
 }
+
 
 .navbar-toggler-icon {
-  filter: invert(31%) sepia(92%) saturate(2265%) hue-rotate(209deg) brightness(88%) contrast(94%);
+
+  filter:
+    invert(31%)
+    sepia(92%)
+    saturate(2265%)
+    hue-rotate(209deg)
+    brightness(88%)
+    contrast(94%);
 }
 
-/* =========================
+
+/* ==========================================================
    HERO
-   CLEAR MAIN PHOTO
-========================= */
+   MAIN PHOTO IS NOW CLEAR — NO OVERLAY / NO BLUR
+========================================================== */
 
 .hero {
-  min-height: 88vh;
 
-  /* Removed the white/color overlay */
-  background:
+  min-height:
+    88vh;
+
+  background-image:
     url("https://lh3.googleusercontent.com/d/1bixRBwYia7U1ZMcF_qGGCKLb_ASKpdV8");
 
-  background-size: cover;
-  background-position: center;
+  background-size:
+    cover;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  background-position:
+    center;
 
-  position: relative;
-  overflow: hidden;
+  background-repeat:
+    no-repeat;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  text-align:
+    center;
+
+  position:
+    relative;
+
+  overflow:
+    hidden;
 }
 
-/* Removed colored overlay from the hero image */
+
+/*
+  No overlay on the hero image.
+  This keeps the photograph sharp and natural.
+*/
 
 .hero::before {
-  display: none;
+
+  content:
+    none;
 }
 
-/* Removed decorative overlay */
 
 .hero::after {
-  display: none;
+
+  content:
+    none;
 }
+
 
 .hero .container {
-  position: relative;
-  z-index: 2;
+
+  position:
+    relative;
+
+  z-index:
+    2;
 }
+
 
 .hero h1 {
-  font-size: 5rem;
-  font-weight: 700;
-  font-family: 'Playfair Display', serif;
-  background: var(--primary-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 1rem;
-  letter-spacing: -1px;
-  text-shadow: 0 10px 30px rgba(37,99,235,0.10);
+
+  font-size:
+    5rem;
+
+  font-weight:
+    700;
+
+  font-family:
+    'Playfair Display',
+    serif;
+
+  background:
+    var(--primary-gradient);
+
+  -webkit-background-clip:
+    text;
+
+  -webkit-text-fill-color:
+    transparent;
+
+  background-clip:
+    text;
+
+  margin-bottom:
+    1rem;
+
+  letter-spacing:
+    -1px;
+
+  text-shadow:
+    0 5px 25px
+    rgba(255,255,255,0.85);
 }
+
 
 .hero p {
-  display: inline-block;
-  font-size: 1.35rem;
-  color: #26364f;
-  background: rgba(255,255,255,0.78);
-  border: 1px solid rgba(255,255,255,0.95);
-  border-radius: 999px;
-  padding: 0.75rem 1.4rem;
-  box-shadow: 0 12px 35px rgba(36,74,120,0.10);
-  font-weight: 500;
-  max-width: 900px;
-  margin: 0 auto;
+
+  display:
+    inline-block;
+
+  font-size:
+    1.35rem;
+
+  color:
+    #172033;
+
+  background:
+    rgba(255,255,255,0.90);
+
+  border:
+    1px solid
+    rgba(255,255,255,0.95);
+
+  border-radius:
+    999px;
+
+  padding:
+    0.75rem 1.4rem;
+
+  box-shadow:
+    0 12px 35px
+    rgba(30,64,175,0.12);
+
+  font-weight:
+    500;
+
+  max-width:
+    900px;
+
+  margin:
+    0 auto;
 }
 
-/* =========================
+
+/* ==========================================================
    SECTIONS
-========================= */
+========================================================== */
 
 .section {
-  padding: 105px 0;
-  position: relative;
+
+  padding:
+    105px 0;
+
+  position:
+    relative;
 }
+
 
 .section:nth-of-type(even) {
-  background: rgba(239,248,255,0.55);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(239,246,255,0.65),
+      rgba(236,254,255,0.45),
+      rgba(245,243,255,0.55)
+    );
 }
+
 
 .section-title {
-  text-align: center;
-  font-size: 3.15rem;
-  margin-bottom: 70px;
-  font-family: 'Playfair Display', serif;
-  font-weight: 700;
-  color: var(--heading);
-  position: relative;
+
+  text-align:
+    center;
+
+  font-size:
+    3.15rem;
+
+  margin-bottom:
+    70px;
+
+  font-family:
+    'Playfair Display',
+    serif;
+
+  font-weight:
+    700;
+
+  color:
+    var(--heading);
+
+  position:
+    relative;
 }
+
 
 .section-title::after {
-  content: '';
-  position: absolute;
-  bottom: -22px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 115px;
-  height: 5px;
-  background: var(--primary-gradient);
-  border-radius: 99px;
-  box-shadow: 0 5px 15px rgba(124,58,237,0.18);
+
+  content:
+    '';
+
+  position:
+    absolute;
+
+  bottom:
+    -22px;
+
+  left:
+    50%;
+
+  transform:
+    translateX(-50%);
+
+  width:
+    115px;
+
+  height:
+    5px;
+
+  background:
+    var(--primary-gradient);
+
+  border-radius:
+    99px;
+
+  box-shadow:
+    0 5px 15px
+    rgba(37,99,235,0.16);
 }
 
-/* =========================
+
+/* ==========================================================
    GLASS / CONTENT CARDS
-========================= */
+========================================================== */
 
 .glass {
-  background: var(--surface);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border-radius: 24px;
-  padding: 2.5rem;
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow);
+
+  background:
+    rgba(255,255,255,0.94);
+
+  backdrop-filter:
+    blur(14px);
+
+  -webkit-backdrop-filter:
+    blur(14px);
+
+  border-radius:
+    24px;
+
+  padding:
+    2.5rem;
+
+  border:
+    1px solid
+    var(--border);
+
+  box-shadow:
+    var(--shadow);
+
   transition:
     transform 0.35s ease,
     box-shadow 0.35s ease,
     border-color 0.35s ease;
 }
 
+
 .glass:hover {
-  transform: translateY(-7px);
-  box-shadow: 0 24px 55px rgba(36,74,120,0.15);
-  border-color: rgba(37,99,235,0.25);
+
+  transform:
+    translateY(-7px);
+
+  box-shadow:
+    0 24px 55px
+    rgba(30,64,175,0.14);
+
+  border-color:
+    rgba(37,99,235,0.23);
 }
+
 
 #about-text {
-  color: #42536c;
-  line-height: 1.85;
+
+  color:
+    #42536c;
+
+  line-height:
+    1.85;
 }
+
 
 .text-secondary {
-  color: var(--text-secondary) !important;
+
+  color:
+    var(--text-secondary) !important;
 }
 
-/* =========================
+
+/* ==========================================================
    RESEARCH
-========================= */
+========================================================== */
 
 .research-card {
-  height: 295px;
-  background-size: cover;
-  background-position: center;
-  border-radius: 24px;
-  position: relative;
-  overflow: hidden;
-  border: 3px solid rgba(255,255,255,0.9);
-  box-shadow: 0 15px 38px rgba(36,74,120,0.13);
-  transition: all 0.4s ease;
+
+  height:
+    295px;
+
+  background-size:
+    cover;
+
+  background-position:
+    center;
+
+  border-radius:
+    24px;
+
+  position:
+    relative;
+
+  overflow:
+    hidden;
+
+  border:
+    3px solid
+    rgba(255,255,255,0.9);
+
+  box-shadow:
+    0 15px 38px
+    rgba(30,64,175,0.12);
+
+  transition:
+    all 0.4s ease;
 }
+
 
 .research-card:nth-child(3n+1) {
-  border-color: rgba(6,182,212,0.45);
+
+  border-color:
+    rgba(14,165,233,0.40);
 }
+
 
 .research-card:nth-child(3n+2) {
-  border-color: rgba(236,72,153,0.40);
+
+  border-color:
+    rgba(37,99,235,0.35);
 }
+
 
 .research-card:nth-child(3n) {
-  border-color: rgba(249,115,22,0.42);
+
+  border-color:
+    rgba(124,58,237,0.38);
 }
+
 
 .research-card:hover {
-  transform: translateY(-10px) scale(1.015);
-  box-shadow: 0 28px 60px rgba(36,74,120,0.20);
+
+  transform:
+    translateY(-10px)
+    scale(1.015);
+
+  box-shadow:
+    0 28px 60px
+    rgba(30,64,175,0.18);
 }
+
 
 .research-overlay {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  background: linear-gradient(
-    to top,
-    rgba(10,24,48,0.92),
-    rgba(10,24,48,0.25),
-    transparent
-  );
-  padding: 3rem 1.5rem 1.5rem;
-  transition: all 0.35s ease;
+
+  position:
+    absolute;
+
+  bottom:
+    0;
+
+  width:
+    100%;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(10,24,48,0.92),
+      rgba(10,24,48,0.25),
+      transparent
+    );
+
+  padding:
+    3rem 1.5rem 1.5rem;
+
+  transition:
+    all 0.35s ease;
 }
 
-.research-card:hover .research-overlay {
-  background: linear-gradient(
-    to top,
-    rgba(37,99,235,0.90),
-    rgba(124,58,237,0.22),
-    transparent
-  );
+
+.research-card:hover
+.research-overlay {
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(37,99,235,0.90),
+      rgba(14,165,233,0.20),
+      transparent
+    );
 }
+
 
 .research-overlay h5 {
-  color: #fff;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.35);
+
+  color:
+    #fff;
+
+  text-shadow:
+    0 2px 10px
+    rgba(0,0,0,0.35);
 }
+
 
 .research-overlay p {
-  color: rgba(255,255,255,0.92);
+
+  color:
+    rgba(255,255,255,0.92);
 }
 
-/* =========================
+
+/* ==========================================================
    TEAM
-========================= */
+========================================================== */
 
 .team-img {
-  width: 145px;
-  height: 145px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 5px solid #fff;
-  transition: all 0.35s ease;
-  box-shadow: 0 10px 30px rgba(36,74,120,0.16);
+
+  width:
+    145px;
+
+  height:
+    145px;
+
+  border-radius:
+    50%;
+
+  object-fit:
+    cover;
+
+  border:
+    5px solid
+    #fff;
+
+  transition:
+    all 0.35s ease;
+
+  box-shadow:
+    0 10px 30px
+    rgba(30,64,175,0.15);
 }
+
 
 .team-img:hover {
-  border-color: #8b5cf6;
-  transform: scale(1.07) rotate(1deg);
-  box-shadow: 0 14px 38px rgba(124,58,237,0.22);
+
+  border-color:
+    #7c3aed;
+
+  transform:
+    scale(1.07)
+    rotate(1deg);
+
+  box-shadow:
+    0 14px 38px
+    rgba(124,58,237,0.20);
 }
 
-/* =========================
+
+/* ==========================================================
    PROFILE BUTTONS
-========================= */
+========================================================== */
 
 .profile-btn {
-  border: 0;
-  color: #fff;
-  background: var(--primary-gradient);
-  border-radius: 999px;
-  padding: 9px 21px;
-  font-weight: 600;
-  box-shadow: 0 8px 20px rgba(37,99,235,0.18);
-  transition: all 0.3s ease;
+
+  border:
+    0;
+
+  color:
+    #fff;
+
+  background:
+    var(--primary-gradient);
+
+  border-radius:
+    999px;
+
+  padding:
+    9px 21px;
+
+  font-weight:
+    600;
+
+  box-shadow:
+    0 8px 20px
+    rgba(37,99,235,0.18);
+
+  transition:
+    all 0.3s ease;
 }
+
 
 .profile-btn:hover {
-  color: #fff;
-  transform: translateY(-3px);
-  box-shadow: 0 13px 28px rgba(124,58,237,0.25);
+
+  color:
+    #fff;
+
+  transform:
+    translateY(-3px);
+
+  box-shadow:
+    0 13px 28px
+    rgba(37,99,235,0.24);
 }
+
 
 .btn-outline-primary {
-  color: var(--accent-blue) !important;
-  border-color: rgba(37,99,235,0.35) !important;
+
+  color:
+    var(--accent-blue) !important;
+
+  border-color:
+    rgba(37,99,235,0.35) !important;
 }
+
 
 .btn-outline-primary:hover {
-  color: #fff !important;
-  background: var(--primary-gradient) !important;
-  border-color: transparent !important;
+
+  color:
+    #fff !important;
+
+  background:
+    var(--primary-gradient) !important;
+
+  border-color:
+    transparent !important;
 }
 
-/* =========================
+
+/* ==========================================================
    PROFILE MODAL
-========================= */
+========================================================== */
 
 .modal-content {
-  background: linear-gradient(145deg, #ffffff, #f5f9ff);
-  color: var(--text-primary);
-  border: 1px solid rgba(37,99,235,0.15);
-  border-radius: 26px;
-  box-shadow: 0 30px 80px rgba(25,52,91,0.24);
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff,
+      #f5f9ff
+    );
+
+  color:
+    var(--text-primary);
+
+  border:
+    1px solid
+    rgba(37,99,235,0.15);
+
+  border-radius:
+    26px;
+
+  box-shadow:
+    0 30px 80px
+    rgba(25,52,91,0.24);
 }
+
 
 .modal-header {
-  border-bottom: 1px solid rgba(37,99,235,0.10);
+
+  border-bottom:
+    1px solid
+    rgba(37,99,235,0.10);
 }
+
 
 .modal-footer {
-  border-top: 1px solid rgba(37,99,235,0.10);
+
+  border-top:
+    1px solid
+    rgba(37,99,235,0.10);
 }
+
 
 .btn-close {
-  filter: none;
+
+  filter:
+    none;
 }
+
 
 .profile-modal-img {
-  width: 175px;
-  height: 175px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 5px solid #fff;
-  margin-bottom: 20px;
-  box-shadow: 0 12px 30px rgba(37,99,235,0.18);
+
+  width:
+    175px;
+
+  height:
+    175px;
+
+  object-fit:
+    cover;
+
+  border-radius:
+    50%;
+
+  border:
+    5px solid
+    #fff;
+
+  margin-bottom:
+    20px;
+
+  box-shadow:
+    0 12px 30px
+    rgba(37,99,235,0.18);
 }
+
 
 .profile-heading {
-  font-family: 'Playfair Display', serif;
-  color: var(--heading);
-  margin-top: 25px;
-  margin-bottom: 8px;
+
+  font-family:
+    'Playfair Display',
+    serif;
+
+  color:
+    var(--heading);
+
+  margin-top:
+    25px;
+
+  margin-bottom:
+    8px;
 }
+
 
 .profile-text {
-  color: #52627a;
+
+  color:
+    #52627a;
 }
 
-/* =========================
+
+/* ==========================================================
    GALLERY
-========================= */
+========================================================== */
 
 .gallery-card {
-  background: rgba(255,255,255,0.92);
-  border: 1px solid rgba(37,99,235,0.12);
-  border-radius: 22px;
-  overflow: hidden;
-  height: 100%;
-  box-shadow: 0 14px 35px rgba(36,74,120,0.10);
-  transition: all 0.4s ease;
+
+  background:
+    rgba(255,255,255,0.94);
+
+  border:
+    1px solid
+    rgba(37,99,235,0.12);
+
+  border-radius:
+    22px;
+
+  overflow:
+    hidden;
+
+  height:
+    100%;
+
+  box-shadow:
+    0 14px 35px
+    rgba(30,64,175,0.09);
+
+  transition:
+    all 0.4s ease;
 }
+
 
 .gallery-card:hover {
-  transform: translateY(-9px);
-  box-shadow: 0 24px 50px rgba(36,74,120,0.16);
-  border-color: rgba(6,182,212,0.30);
+
+  transform:
+    translateY(-9px);
+
+  box-shadow:
+    0 24px 50px
+    rgba(30,64,175,0.15);
+
+  border-color:
+    rgba(14,165,233,0.30);
 }
+
 
 .gallery-img-wrapper {
-  height: 260px;
-  overflow: hidden;
-  position: relative;
+
+  height:
+    260px;
+
+  overflow:
+    hidden;
+
+  position:
+    relative;
 }
+
 
 .gallery-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s ease;
+
+  width:
+    100%;
+
+  height:
+    100%;
+
+  object-fit:
+    cover;
+
+  transition:
+    transform 0.6s ease;
 }
 
-.gallery-card:hover .gallery-img {
-  transform: scale(1.07);
+
+.gallery-card:hover
+.gallery-img {
+
+  transform:
+    scale(1.07);
 }
+
 
 .gallery-content {
-  padding: 1.5rem;
+
+  padding:
+    1.5rem;
 }
+
 
 .gallery-content h5 {
-  font-family: 'Playfair Display', serif;
-  color: var(--heading);
-  margin-bottom: 0.6rem;
+
+  font-family:
+    'Playfair Display',
+    serif;
+
+  color:
+    var(--heading);
+
+  margin-bottom:
+    0.6rem;
 }
+
 
 .gallery-meta {
-  color: #718096;
-  font-size: 0.9rem;
+
+  color:
+    #718096;
+
+  font-size:
+    0.9rem;
 }
 
-/* =========================
+
+/* ==========================================================
    POSTERS
-========================= */
+========================================================== */
 
 .poster-card {
-  background: rgba(255,255,255,0.94);
-  border: 1px solid rgba(37,99,235,0.12);
-  border-radius: 22px;
-  overflow: hidden;
-  height: 100%;
-  box-shadow: 0 14px 35px rgba(36,74,120,0.10);
-  transition: all 0.4s ease;
+
+  background:
+    rgba(255,255,255,0.94);
+
+  border:
+    1px solid
+    rgba(37,99,235,0.12);
+
+  border-radius:
+    22px;
+
+  overflow:
+    hidden;
+
+  height:
+    100%;
+
+  box-shadow:
+    0 14px 35px
+    rgba(30,64,175,0.09);
+
+  transition:
+    all 0.4s ease;
 }
+
 
 .poster-card:hover {
-  transform: translateY(-9px);
-  box-shadow: 0 25px 55px rgba(36,74,120,0.17);
-  border-color: rgba(236,72,153,0.30);
+
+  transform:
+    translateY(-9px);
+
+  box-shadow:
+    0 25px 55px
+    rgba(30,64,175,0.16);
+
+  border-color:
+    rgba(124,58,237,0.30);
 }
+
 
 .poster-img-wrapper {
-  height: 400px;
-  background: #edf4fb;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
+  height:
+    400px;
+
+  background:
+    #edf4fb;
+
+  overflow:
+    hidden;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
 }
+
 
 .poster-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
+
+  width:
+    100%;
+
+  height:
+    100%;
+
+  object-fit:
+    cover;
+
+  transition:
+    transform 0.5s ease;
 }
 
-.poster-card:hover .poster-img {
-  transform: scale(1.03);
+
+.poster-card:hover
+.poster-img {
+
+  transform:
+    scale(1.03);
 }
+
 
 .poster-content {
-  padding: 1.5rem;
+
+  padding:
+    1.5rem;
 }
+
 
 .poster-content h5 {
-  font-family: 'Playfair Display', serif;
-  color: var(--heading);
+
+  font-family:
+    'Playfair Display',
+    serif;
+
+  color:
+    var(--heading);
 }
 
-/* =========================
+
+/* ==========================================================
    PUBLICATIONS
-========================= */
+========================================================== */
 
 .pub-card {
-  background: rgba(255,255,255,0.90);
-  padding: 1.8rem;
-  border-radius: 18px;
-  margin-bottom: 1.5rem;
-  border: 1px solid rgba(37,99,235,0.10);
-  border-left: 6px solid transparent;
-  border-image: var(--primary-gradient) 1;
-  box-shadow: 0 10px 28px rgba(36,74,120,0.07);
-  transition: all 0.35s ease;
+
+  background:
+    rgba(255,255,255,0.94);
+
+  padding:
+    1.8rem;
+
+  border-radius:
+    18px;
+
+  margin-bottom:
+    1.5rem;
+
+  border:
+    1px solid
+    rgba(37,99,235,0.10);
+
+  border-left:
+    6px solid
+    #2563eb;
+
+  box-shadow:
+    0 10px 28px
+    rgba(30,64,175,0.07);
+
+  transition:
+    all 0.35s ease;
 }
+
 
 .pub-card:hover {
-  transform: translateX(8px);
-  box-shadow: 0 18px 38px rgba(37,99,235,0.13);
-  border-left-color: #6366f1;
+
+  transform:
+    translateX(8px);
+
+  box-shadow:
+    0 18px 38px
+    rgba(37,99,235,0.13);
+
+  border-left-color:
+    #7c3aed;
 }
+
 
 .pub-card h6 {
-  color: var(--heading);
+
+  color:
+    var(--heading);
 }
 
-/* =========================
+
+/* ==========================================================
    CONTACT
-========================= */
+========================================================== */
 
 .contact-glass {
-  max-width: 620px;
-  margin: 0 auto;
-  background: linear-gradient(
-    145deg,
-    rgba(255,255,255,0.96),
-    rgba(239,248,255,0.94)
-  );
+
+  max-width:
+    620px;
+
+  margin:
+    0 auto;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,0.97),
+      rgba(239,248,255,0.95)
+    );
 }
 
-.contact-glass .fa-paper-plane {
-  color: var(--accent-pink) !important;
+
+/*
+   IMPORTANT:
+   Get In Touch is explicitly BLACK.
+*/
+
+.contact-title {
+
+  color:
+    #000000 !important;
+
+  font-weight:
+    600;
 }
 
-/* Get In Touch text is now BLACK */
-.contact-glass .fs-4 {
-  color: #000000 !important;
+
+.contact-glass
+.contact-title {
+
+  color:
+    #000000 !important;
 }
 
-/* =========================
+
+.contact-glass
+.fa-paper-plane {
+
+  color:
+    var(--accent-blue) !important;
+}
+
+
+/*
+   Contact email and address are also black.
+*/
+
+#contact-content {
+
+  color:
+    #000000 !important;
+}
+
+
+#contact-content a {
+
+  color:
+    #000000 !important;
+}
+
+
+#contact-content strong {
+
+  color:
+    #000000 !important;
+}
+
+
+#contact-content .fa-envelope,
+#contact-content .fa-map-marker-alt {
+
+  color:
+    var(--accent-blue) !important;
+}
+
+
+/* ==========================================================
    FOOTER
-========================= */
+========================================================== */
 
 footer {
-  background: linear-gradient(
-    135deg,
-    #172554,
-    #312e81 55%,
-    #7c2d6b
-  );
-  color: rgba(255,255,255,0.92);
-  padding: 3rem 0;
-  text-align: center;
-  border-top: 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      #172554 0%,
+      #1e3a8a 50%,
+      #312e81 100%
+    );
+
+  color:
+    rgba(255,255,255,0.92);
+
+  padding:
+    3rem 0;
+
+  text-align:
+    center;
+
+  border-top:
+    0;
 }
+
 
 footer p {
-  opacity: 0.95 !important;
+
+  opacity:
+    0.95 !important;
 }
 
-/* =========================
+
+/* ==========================================================
    LOADING
-========================= */
+========================================================== */
 
 .loading-text {
-  color: #718096;
+
+  color:
+    #718096;
 }
 
-/* =========================
+
+/* ==========================================================
    SMALL COLOR ACCENTS
-========================= */
+========================================================== */
 
 .text-primary {
-  color: var(--accent-blue) !important;
+
+  color:
+    var(--accent-blue) !important;
 }
+
 
 .text-warning {
-  color: #c2410c !important;
+
+  color:
+    #b45309 !important;
 }
 
-/* =========================
+
+/* ==========================================================
    RESPONSIVE
-========================= */
+========================================================== */
 
 @media (max-width: 768px) {
 
   .hero {
-    min-height: 78vh;
+
+    min-height:
+      78vh;
   }
+
 
   .hero h1 {
-    font-size: 3.25rem;
+
+    font-size:
+      3.25rem;
   }
+
 
   .hero p {
-    font-size: 1rem;
-    border-radius: 20px;
+
+    font-size:
+      1rem;
+
+    border-radius:
+      20px;
   }
+
 
   .section-title {
-    font-size: 2.35rem;
+
+    font-size:
+      2.35rem;
   }
+
 
   .section {
-    padding: 78px 0;
+
+    padding:
+      78px 0;
   }
+
 
   .navbar-brand {
-    font-size: 1.75rem;
+
+    font-size:
+      1.75rem;
   }
+
 
   .poster-img-wrapper {
-    height: 330px;
+
+    height:
+      330px;
   }
+
 
   .gallery-img-wrapper {
-    height: 220px;
+
+    height:
+      220px;
   }
 
+
   .glass {
-    padding: 1.6rem !important;
+
+    padding:
+      1.6rem !important;
   }
 
 }
@@ -685,9 +1430,9 @@ footer p {
 <body>
 
 
-<!-- =========================
+<!-- ==========================================================
      NAVBAR
-========================= -->
+========================================================== -->
 
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
 
@@ -696,6 +1441,7 @@ footer p {
     <a class="navbar-brand" href="#">
       ASPIRE Lab
     </a>
+
 
     <button
       class="navbar-toggler"
@@ -768,9 +1514,9 @@ footer p {
 </nav>
 
 
-<!-- =========================
+<!-- ==========================================================
      HERO
-========================= -->
+========================================================== -->
 
 <section class="hero">
 
@@ -791,9 +1537,9 @@ footer p {
 </section>
 
 
-<!-- =========================
+<!-- ==========================================================
      ABOUT
-========================= -->
+========================================================== -->
 
 <section
   id="about"
@@ -824,9 +1570,9 @@ footer p {
 </section>
 
 
-<!-- =========================
+<!-- ==========================================================
      RESEARCH
-========================= -->
+========================================================== -->
 
 <section
   id="research"
@@ -849,9 +1595,9 @@ footer p {
 </section>
 
 
-<!-- =========================
+<!-- ==========================================================
      PI
-========================= -->
+========================================================== -->
 
 <section
   class="section text-center">
@@ -873,9 +1619,9 @@ footer p {
 </section>
 
 
-<!-- =========================
+<!-- ==========================================================
      TEAM
-========================= -->
+========================================================== -->
 
 <section
   id="team"
@@ -898,9 +1644,9 @@ footer p {
 </section>
 
 
-<!-- =========================
+<!-- ==========================================================
      GALLERY
-========================= -->
+========================================================== -->
 
 <section
   id="gallery"
@@ -923,9 +1669,9 @@ footer p {
 </section>
 
 
-<!-- =========================
+<!-- ==========================================================
      POSTERS
-========================= -->
+========================================================== -->
 
 <section
   id="posters"
@@ -948,9 +1694,9 @@ footer p {
 </section>
 
 
-<!-- =========================
+<!-- ==========================================================
      PUBLICATIONS
-========================= -->
+========================================================== -->
 
 <section
   id="publications"
@@ -972,9 +1718,9 @@ footer p {
 </section>
 
 
-<!-- =========================
+<!-- ==========================================================
      CONTACT
-========================= -->
+========================================================== -->
 
 <section
   id="contact"
@@ -989,15 +1735,17 @@ footer p {
     <div
       class="glass contact-glass py-5 px-4">
 
-      <div class="fs-4 mb-4">
+      <div
+        class="fs-4 mb-4 contact-title">
 
         <i
-          class="fas fa-paper-plane text-primary me-3">
+          class="fas fa-paper-plane me-3">
         </i>
 
         Get In Touch
 
       </div>
+
 
       <div id="contact-content">
 
@@ -1012,9 +1760,9 @@ footer p {
 </section>
 
 
-<!-- =========================
+<!-- ==========================================================
      FOOTER
-========================= -->
+========================================================== -->
 
 <footer>
 
@@ -1035,9 +1783,9 @@ footer p {
 </footer>
 
 
-<!-- =========================
+<!-- ==========================================================
      PROFILE MODAL
-========================= -->
+========================================================== -->
 
 <div
   class="modal fade"
@@ -1059,6 +1807,7 @@ footer p {
           Profile
 
         </h5>
+
 
         <button
           type="button"
@@ -1098,9 +1847,9 @@ footer p {
 </div>
 
 
-<!-- =========================
+<!-- ==========================================================
      BOOTSTRAP
-========================= -->
+========================================================== -->
 
 <script
 src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
@@ -1109,11 +1858,9 @@ src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.j
 
 <script>
 
-/*
-==========================================================
+/* ==========================================================
    GOOGLE SHEET
-==========================================================
-*/
+========================================================== */
 
 const SHEET_ID =
   "1vhSco35e3yQHCFiFJoAmjbHKZ7WV2RQN65xNbK6TIl8";
@@ -1123,11 +1870,9 @@ const FALLBACK_IMAGE =
   "https://via.placeholder.com/800x500?text=ASPIRE+Lab";
 
 
-/*
-==========================================================
+/* ==========================================================
    HTML ESCAPING
-==========================================================
-*/
+========================================================== */
 
 function escapeHtml(value) {
 
@@ -1142,11 +1887,9 @@ function escapeHtml(value) {
 }
 
 
-/*
-==========================================================
+/* ==========================================================
    GET GOOGLE DRIVE FILE ID
-==========================================================
-*/
+========================================================== */
 
 function getDriveFileId(url) {
 
@@ -1167,11 +1910,9 @@ function getDriveFileId(url) {
 }
 
 
-/*
-==========================================================
+/* ==========================================================
    IMAGE URL
-==========================================================
-*/
+========================================================== */
 
 function normalizeImageUrl(url) {
 
@@ -1198,11 +1939,9 @@ function normalizeImageUrl(url) {
 }
 
 
-/*
-==========================================================
+/* ==========================================================
    DRIVE OPEN URL
-==========================================================
-*/
+========================================================== */
 
 function normalizeDriveOpenUrl(url) {
 
@@ -1225,11 +1964,9 @@ function normalizeDriveOpenUrl(url) {
 }
 
 
-/*
-==========================================================
+/* ==========================================================
    GOOGLE SHEET FETCH
-==========================================================
-*/
+========================================================== */
 
 async function fetchSheet(sheetName) {
 
@@ -1271,11 +2008,9 @@ async function fetchSheet(sheetName) {
 }
 
 
-/*
-==========================================================
+/* ==========================================================
    FIRST NON EMPTY VALUE
-==========================================================
-*/
+========================================================== */
 
 function firstNonEmptyValue(obj) {
 
@@ -1306,11 +2041,9 @@ function firstNonEmptyValue(obj) {
 }
 
 
-/*
-==========================================================
+/* ==========================================================
    ABOUT
-==========================================================
-*/
+========================================================== */
 
 async function loadAbout() {
 
@@ -1341,11 +2074,9 @@ async function loadAbout() {
 }
 
 
-/*
-==========================================================
+/* ==========================================================
    RESEARCH
-==========================================================
-*/
+========================================================== */
 
 async function loadResearch() {
 
@@ -1481,11 +2212,9 @@ async function loadResearch() {
 }
 
 
-/*
-==========================================================
+/* ==========================================================
    TEAM
-==========================================================
-*/
+========================================================== */
 
 async function loadTeam() {
 
@@ -1828,11 +2557,9 @@ async function loadTeam() {
 }
 
 
-/*
-==========================================================
+/* ==========================================================
    OPEN PROFILE
-==========================================================
-*/
+========================================================== */
 
 function openProfile(profileId) {
 
@@ -2054,11 +2781,9 @@ function openProfile(profileId) {
 }
 
 
-/*
-==========================================================
+/* ==========================================================
    GALLERY
-==========================================================
-*/
+========================================================== */
 
 async function loadGallery() {
 
@@ -2306,11 +3031,9 @@ async function loadGallery() {
 }
 
 
-/*
-==========================================================
+/* ==========================================================
    POSTERS
-==========================================================
-*/
+========================================================== */
 
 async function loadPosters() {
 
@@ -2614,11 +3337,9 @@ async function loadPosters() {
 }
 
 
-/*
-==========================================================
+/* ==========================================================
    PUBLICATIONS
-==========================================================
-*/
+========================================================== */
 
 async function loadPublications() {
 
@@ -2828,11 +3549,9 @@ async function loadPublications() {
 }
 
 
-/*
-==========================================================
+/* ==========================================================
    CONTACT
-==========================================================
-*/
+========================================================== */
 
 async function loadContact() {
 
@@ -2898,6 +3617,7 @@ async function loadContact() {
 
   });
 
+
   const emailBlock =
     email
 
@@ -2920,7 +3640,6 @@ async function loadContact() {
         )}"
 
         class="
-          text-white
           text-decoration-none
         ">
 
@@ -2954,6 +3673,7 @@ async function loadContact() {
       </strong>
 
     `;
+
 
   const addressBlock =
     address
@@ -3004,6 +3724,7 @@ async function loadContact() {
 
     `;
 
+
   el.innerHTML =
     emailBlock +
     addressBlock;
@@ -3011,11 +3732,9 @@ async function loadContact() {
 }
 
 
-/*
-==========================================================
+/* ==========================================================
    INITIALIZE WEBSITE
-==========================================================
-*/
+========================================================== */
 
 document.addEventListener(
   "DOMContentLoaded",
@@ -3044,3 +3763,75 @@ document.addEventListener(
 </body>
 
 </html>
+```
+
+### What specifically changed
+
+**1. Get In Touch is now definitely black**
+
+I added:
+
+```css
+.contact-title {
+  color: #000000 !important;
+}
+```
+
+and the HTML now uses:
+
+```html
+<div class="fs-4 mb-4 contact-title">
+```
+
+So Bootstrap or another inherited color cannot override it.
+
+**2. Contact email/address are black too**
+
+The previous code had:
+
+```html
+class="text-white text-decoration-none"
+```
+
+on the email link, which was forcing the email to white. That has been removed and overridden with black.
+
+**3. Main hero photograph is clear**
+
+The previous hero had:
+
+```css
+background:
+  linear-gradient(...),
+  url(...);
+```
+
+plus `.hero::before` and `.hero::after` effects.
+
+The new version uses only:
+
+```css
+background-image:
+  url("...");
+```
+
+and both pseudo-element overlays are disabled:
+
+```css
+.hero::before {
+  content: none;
+}
+
+.hero::after {
+  content: none;
+}
+```
+
+So **the main photograph itself is not darkened, tinted, blurred, or covered by a gradient overlay**.
+
+**4. Overall palette is now unified**
+
+I removed the stronger pink/orange combination and centered the site around:
+
+**Blue → Cyan → Violet**
+
+This is more consistent with a scientific/structural biology laboratory website while still keeping the colorful modern appearance.
