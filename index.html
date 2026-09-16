@@ -56,9 +56,13 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
   --shadow: 0 18px 45px rgba(36, 74, 120, 0.12);
 }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
-section { scroll-margin-top: 100px; }
+section {
+  scroll-margin-top: 100px;
+}
 
 body {
   margin: 0;
@@ -105,7 +109,9 @@ body {
   position: relative;
 }
 
-.nav-link:hover { color: var(--accent-blue) !important; }
+.nav-link:hover {
+  color: var(--accent-blue) !important;
+}
 
 .nav-link::after {
   content: '';
@@ -119,14 +125,18 @@ body {
   transition: width 0.25s ease;
 }
 
-.nav-link:hover::after { width: 100%; }
+.nav-link:hover::after {
+  width: 100%;
+}
 
 .navbar-toggler {
   border-color: rgba(37,99,235,0.20) !important;
   background: rgba(37,99,235,0.06);
 }
 
-.navbar-toggler:focus { box-shadow: 0 0 0 0.2rem rgba(37,99,235,0.12); }
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 0.2rem rgba(37,99,235,0.12);
+}
 
 .navbar-toggler-icon {
   filter: invert(31%) sepia(92%) saturate(2265%) hue-rotate(209deg) brightness(88%) contrast(94%);
@@ -134,48 +144,44 @@ body {
 
 /* =========================
    HERO
+   CLEAR MAIN PHOTO
 ========================= */
 
 .hero {
   min-height: 88vh;
+
+  /* Removed the white/color overlay */
   background:
-    linear-gradient(120deg, rgba(255,255,255,0.72), rgba(239,246,255,0.62)),
     url("https://lh3.googleusercontent.com/d/1bixRBwYia7U1ZMcF_qGGCKLb_ASKpdV8");
+
   background-size: cover;
   background-position: center;
+
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
+
   position: relative;
   overflow: hidden;
 }
 
+/* Removed colored overlay from the hero image */
+
 .hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 18% 28%, rgba(6,182,212,0.28), transparent 24%),
-    radial-gradient(circle at 82% 24%, rgba(236,72,153,0.22), transparent 23%),
-    radial-gradient(circle at 50% 88%, rgba(124,58,237,0.17), transparent 28%);
-  pointer-events: none;
+  display: none;
 }
+
+/* Removed decorative overlay */
 
 .hero::after {
-  content: '';
-  position: absolute;
-  width: 380px;
-  height: 380px;
-  right: -140px;
-  bottom: -170px;
-  border-radius: 50%;
-  background: rgba(249,115,22,0.18);
-  filter: blur(8px);
-  pointer-events: none;
+  display: none;
 }
 
-.hero .container { position: relative; z-index: 2; }
+.hero .container {
+  position: relative;
+  z-index: 2;
+}
 
 .hero h1 {
   font-size: 5rem;
@@ -252,7 +258,10 @@ body {
   padding: 2.5rem;
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
-  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
 }
 
 .glass:hover {
@@ -266,7 +275,9 @@ body {
   line-height: 1.85;
 }
 
-.text-secondary { color: var(--text-secondary) !important; }
+.text-secondary {
+  color: var(--text-secondary) !important;
+}
 
 /* =========================
    RESEARCH
@@ -284,9 +295,17 @@ body {
   transition: all 0.4s ease;
 }
 
-.research-card:nth-child(3n+1) { border-color: rgba(6,182,212,0.45); }
-.research-card:nth-child(3n+2) { border-color: rgba(236,72,153,0.40); }
-.research-card:nth-child(3n) { border-color: rgba(249,115,22,0.42); }
+.research-card:nth-child(3n+1) {
+  border-color: rgba(6,182,212,0.45);
+}
+
+.research-card:nth-child(3n+2) {
+  border-color: rgba(236,72,153,0.40);
+}
+
+.research-card:nth-child(3n) {
+  border-color: rgba(249,115,22,0.42);
+}
 
 .research-card:hover {
   transform: translateY(-10px) scale(1.015);
@@ -297,17 +316,33 @@ body {
   position: absolute;
   bottom: 0;
   width: 100%;
-  background: linear-gradient(to top, rgba(10,24,48,0.92), rgba(10,24,48,0.25), transparent);
+  background: linear-gradient(
+    to top,
+    rgba(10,24,48,0.92),
+    rgba(10,24,48,0.25),
+    transparent
+  );
   padding: 3rem 1.5rem 1.5rem;
   transition: all 0.35s ease;
 }
 
 .research-card:hover .research-overlay {
-  background: linear-gradient(to top, rgba(37,99,235,0.90), rgba(124,58,237,0.22), transparent);
+  background: linear-gradient(
+    to top,
+    rgba(37,99,235,0.90),
+    rgba(124,58,237,0.22),
+    transparent
+  );
 }
 
-.research-overlay h5 { color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.35); }
-.research-overlay p { color: rgba(255,255,255,0.92); }
+.research-overlay h5 {
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.35);
+}
+
+.research-overlay p {
+  color: rgba(255,255,255,0.92);
+}
 
 /* =========================
    TEAM
@@ -373,10 +408,17 @@ body {
   box-shadow: 0 30px 80px rgba(25,52,91,0.24);
 }
 
-.modal-header { border-bottom: 1px solid rgba(37,99,235,0.10); }
-.modal-footer { border-top: 1px solid rgba(37,99,235,0.10); }
+.modal-header {
+  border-bottom: 1px solid rgba(37,99,235,0.10);
+}
 
-.btn-close { filter: none; }
+.modal-footer {
+  border-top: 1px solid rgba(37,99,235,0.10);
+}
+
+.btn-close {
+  filter: none;
+}
 
 .profile-modal-img {
   width: 175px;
@@ -395,7 +437,9 @@ body {
   margin-bottom: 8px;
 }
 
-.profile-text { color: #52627a; }
+.profile-text {
+  color: #52627a;
+}
 
 /* =========================
    GALLERY
@@ -417,13 +461,37 @@ body {
   border-color: rgba(6,182,212,0.30);
 }
 
-.gallery-img-wrapper { height: 260px; overflow: hidden; position: relative; }
+.gallery-img-wrapper {
+  height: 260px;
+  overflow: hidden;
+  position: relative;
+}
 
-.gallery-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-.gallery-card:hover .gallery-img { transform: scale(1.07); }
-.gallery-content { padding: 1.5rem; }
-.gallery-content h5 { font-family: 'Playfair Display', serif; color: var(--heading); margin-bottom: 0.6rem; }
-.gallery-meta { color: #718096; font-size: 0.9rem; }
+.gallery-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.gallery-card:hover .gallery-img {
+  transform: scale(1.07);
+}
+
+.gallery-content {
+  padding: 1.5rem;
+}
+
+.gallery-content h5 {
+  font-family: 'Playfair Display', serif;
+  color: var(--heading);
+  margin-bottom: 0.6rem;
+}
+
+.gallery-meta {
+  color: #718096;
+  font-size: 0.9rem;
+}
 
 /* =========================
    POSTERS
@@ -454,10 +522,25 @@ body {
   justify-content: center;
 }
 
-.poster-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-.poster-card:hover .poster-img { transform: scale(1.03); }
-.poster-content { padding: 1.5rem; }
-.poster-content h5 { font-family: 'Playfair Display', serif; color: var(--heading); }
+.poster-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.poster-card:hover .poster-img {
+  transform: scale(1.03);
+}
+
+.poster-content {
+  padding: 1.5rem;
+}
+
+.poster-content h5 {
+  font-family: 'Playfair Display', serif;
+  color: var(--heading);
+}
 
 /* =========================
    PUBLICATIONS
@@ -481,7 +564,9 @@ body {
   border-left-color: #6366f1;
 }
 
-.pub-card h6 { color: var(--heading); }
+.pub-card h6 {
+  color: var(--heading);
+}
 
 /* =========================
    CONTACT
@@ -490,52 +575,106 @@ body {
 .contact-glass {
   max-width: 620px;
   margin: 0 auto;
-  background: linear-gradient(145deg, rgba(255,255,255,0.96), rgba(239,248,255,0.94));
+  background: linear-gradient(
+    145deg,
+    rgba(255,255,255,0.96),
+    rgba(239,248,255,0.94)
+  );
 }
 
-.contact-glass .fa-paper-plane { color: var(--accent-pink) !important; }
+.contact-glass .fa-paper-plane {
+  color: var(--accent-pink) !important;
+}
+
+/* Get In Touch text is now BLACK */
+.contact-glass .fs-4 {
+  color: #000000 !important;
+}
 
 /* =========================
    FOOTER
 ========================= */
 
 footer {
-  background: linear-gradient(135deg, #172554, #312e81 55%, #7c2d6b);
+  background: linear-gradient(
+    135deg,
+    #172554,
+    #312e81 55%,
+    #7c2d6b
+  );
   color: rgba(255,255,255,0.92);
   padding: 3rem 0;
   text-align: center;
   border-top: 0;
 }
 
-footer p { opacity: 0.95 !important; }
+footer p {
+  opacity: 0.95 !important;
+}
 
 /* =========================
    LOADING
 ========================= */
 
-.loading-text { color: #718096; }
+.loading-text {
+  color: #718096;
+}
 
 /* =========================
    SMALL COLOR ACCENTS
 ========================= */
 
-.text-primary { color: var(--accent-blue) !important; }
-.text-warning { color: #c2410c !important; }
+.text-primary {
+  color: var(--accent-blue) !important;
+}
+
+.text-warning {
+  color: #c2410c !important;
+}
 
 /* =========================
    RESPONSIVE
 ========================= */
 
 @media (max-width: 768px) {
-  .hero { min-height: 78vh; }
-  .hero h1 { font-size: 3.25rem; }
-  .hero p { font-size: 1rem; border-radius: 20px; }
-  .section-title { font-size: 2.35rem; }
-  .section { padding: 78px 0; }
-  .navbar-brand { font-size: 1.75rem; }
-  .poster-img-wrapper { height: 330px; }
-  .gallery-img-wrapper { height: 220px; }
-  .glass { padding: 1.6rem !important; }
+
+  .hero {
+    min-height: 78vh;
+  }
+
+  .hero h1 {
+    font-size: 3.25rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+    border-radius: 20px;
+  }
+
+  .section-title {
+    font-size: 2.35rem;
+  }
+
+  .section {
+    padding: 78px 0;
+  }
+
+  .navbar-brand {
+    font-size: 1.75rem;
+  }
+
+  .poster-img-wrapper {
+    height: 330px;
+  }
+
+  .gallery-img-wrapper {
+    height: 220px;
+  }
+
+  .glass {
+    padding: 1.6rem !important;
+  }
+
 }
 
 </style>
@@ -579,59 +718,45 @@ footer p { opacity: 0.95 !important; }
       <ul class="navbar-nav ms-auto">
 
         <li class="nav-item">
-
           <a class="nav-link" href="#about">
             About
           </a>
-
         </li>
 
         <li class="nav-item">
-
           <a class="nav-link" href="#research">
             Research
           </a>
-
         </li>
 
         <li class="nav-item">
-
           <a class="nav-link" href="#team">
             Team
           </a>
-
         </li>
 
         <li class="nav-item">
-
           <a class="nav-link" href="#gallery">
             Gallery
           </a>
-
         </li>
 
         <li class="nav-item">
-
           <a class="nav-link" href="#posters">
             Posters
           </a>
-
         </li>
 
         <li class="nav-item">
-
           <a class="nav-link" href="#publications">
             Publications
           </a>
-
         </li>
 
         <li class="nav-item">
-
           <a class="nav-link" href="#contact">
             Contact
           </a>
-
         </li>
 
       </ul>
@@ -2273,11 +2398,6 @@ async function loadPosters() {
         p.description ||
         p.Description ||
         "";
-
-      /*
-        The PDF link is now the only
-        View Poster button.
-      */
 
       const posterUrl =
         normalizeDriveOpenUrl(
