@@ -1,840 +1,708 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta name="description" content="ASPIRE Lab | Advanced Structural Parasitology & Protein Engineering" />
+
+  <title>ASPIRE Lab | Advanced Structural Parasitology & Protein Engineering</title>
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap"
+    rel="stylesheet">
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+
+    :root {
+      --primary-gradient:
+        linear-gradient(
+          135deg,
+          #3b82f6 0%,
+          #8b5cf6 50%,
+          #ec4899 100%
+        );
+
+      --glass-bg: rgba(255,255,255,0.06);
+      --glass-border: rgba(255,255,255,0.12);
+
+      --text-primary: #ffffff;
+      --text-secondary: rgba(255,255,255,0.8);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    section {
+      scroll-margin-top: 110px;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+
+      background:
+        radial-gradient(
+          circle at top,
+          #0a0e1a,
+          #01050f
+        );
+
+      color: var(--text-primary);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* =========================
+       NAVBAR
+    ========================= */
+
+    .navbar {
+      background: rgba(0,0,0,0.95)!important;
+      backdrop-filter: blur(30px);
+      border-bottom: 1px solid var(--glass-border);
+      padding: 1rem 0;
+      z-index: 1000;
+    }
+
+    .navbar-brand {
+      font-family: 'Playfair Display';
+      font-size: 2.2rem;
+      font-weight: 700;
+
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-link {
+      color: var(--text-secondary)!important;
+      font-weight: 500;
+      margin: 0 0.55rem;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .nav-link:hover {
+      color: #3b82f6 !important;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background: var(--primary-gradient);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: 100vh;
+
+      background:
+        linear-gradient(
+          rgba(0,0,0,0.75),
+          rgba(0,0,0,0.95)
+        ),
+        url("https://lh3.googleusercontent.com/d/1bixRBwYia7U1ZMcF_qGGCKLb_ASKpdV8");
+
+      background-size: cover;
+      background-position: center;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+
+      background:
+        radial-gradient(
+          circle at 30% 20%,
+          rgba(59,130,246,0.2) 0%,
+          transparent 50%
+        );
+    }
+
+    .hero h1 {
+      font-size: 4.5rem;
+      font-weight: 700;
+      font-family: 'Playfair Display';
+
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+
+      margin-bottom: 1.5rem;
+
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero p {
+      font-size: 1.4rem;
+      opacity: 0.95;
+      font-weight: 400;
+      max-width: 800px;
+
+      position: relative;
+      z-index: 2;
+
+      margin: 0 auto;
+    }
+
+    /* =========================
+       SECTIONS
+    ========================= */
+
+    .section {
+      padding: 120px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 3.2rem;
+      margin-bottom: 70px;
+      font-family: 'Playfair Display';
+      font-weight: 700;
+
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -25px;
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      width: 120px;
+      height: 4px;
+
+      background: var(--primary-gradient);
+      border-radius: 2px;
+    }
+
+    /* =========================
+       GLASS CARDS
+    ========================= */
+
+    .glass {
+      background: var(--glass-bg);
+      backdrop-filter: blur(30px);
+
+      border-radius: 24px;
+      padding: 2.5rem;
+
+      border: 1px solid var(--glass-border);
+
+      transition:
+        all 0.5s
+        cubic-bezier(
+          0.25,
+          0.46,
+          0.45,
+          0.94
+        );
+    }
+
+    .glass:hover {
+      transform: translateY(-8px);
+
+      box-shadow:
+        0 25px 50px rgba(0,0,0,0.4);
+
+      border-color:
+        rgba(59,130,246,0.3);
+    }
+
+    /* =========================
+       RESEARCH
+    ========================= */
+
+    .research-card {
+      height: 280px;
+
+      background-size: cover;
+      background-position: center;
+
+      border-radius: 24px;
+      position: relative;
+      overflow: hidden;
+
+      border: 1px solid var(--glass-border);
+
+      transition: all 0.5s ease;
+    }
+
+    .research-card:hover {
+      transform:
+        translateY(-10px)
+        scale(1.02);
+
+      box-shadow:
+        0 25px 50px rgba(0,0,0,0.4);
+    }
+
+    .research-overlay {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+
+      background:
+        linear-gradient(
+          transparent,
+          rgba(0,0,0,0.95)
+        );
+
+      padding: 2rem 1.5rem;
+
+      transition: all 0.4s ease;
+    }
+
+    .research-card:hover
+    .research-overlay {
+      background:
+        linear-gradient(
+          transparent,
+          rgba(59,130,246,0.15)
+        );
+    }
+
+    /* =========================
+       TEAM
+    ========================= */
+
+    .team-img {
+      width: 140px;
+      height: 140px;
+
+      border-radius: 50%;
+      object-fit: cover;
+
+      border:
+        4px solid
+        rgba(255,255,255,0.2);
+
+      transition: all 0.4s ease;
+
+      box-shadow:
+        0 10px 30px
+        rgba(0,0,0,0.4);
+    }
+
+    .team-img:hover {
+      border-color: #3b82f6;
+      transform: scale(1.08);
+    }
+
+    /* =========================
+       PROFILE BUTTON
+    ========================= */
+
+    .profile-btn {
+      border: 1px solid
+        rgba(59,130,246,0.5);
+
+      color: #ffffff;
+
+      background:
+        rgba(59,130,246,0.12);
+
+      border-radius: 30px;
+
+      padding: 8px 20px;
+
+      transition: all 0.3s ease;
+    }
+
+    .profile-btn:hover {
+      background:
+        linear-gradient(
+          135deg,
+          #3b82f6,
+          #8b5cf6
+        );
+
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    /* =========================
+       PROFILE MODAL
+    ========================= */
+
+    .modal-content {
+      background:
+        linear-gradient(
+          145deg,
+          #0b1220,
+          #030712
+        );
+
+      color: #ffffff;
+
+      border:
+        1px solid
+        rgba(255,255,255,0.12);
+
+      border-radius: 24px;
+
+      box-shadow:
+        0 30px 80px
+        rgba(0,0,0,0.6);
+    }
+
+    .modal-header {
+      border-bottom:
+        1px solid
+        rgba(255,255,255,0.1);
+    }
+
+    .modal-footer {
+      border-top:
+        1px solid
+        rgba(255,255,255,0.1);
+    }
+
+    .btn-close {
+      filter: invert(1);
+    }
+
+    .profile-modal-img {
+      width: 170px;
+      height: 170px;
+
+      object-fit: cover;
+      border-radius: 50%;
+
+      border:
+        4px solid
+        rgba(255,255,255,0.2);
+
+      margin-bottom: 20px;
+    }
+
+    .profile-heading {
+      font-family: 'Playfair Display';
+      color: #ffffff;
+
+      margin-top: 25px;
+      margin-bottom: 8px;
+    }
+
+    .profile-text {
+      color:
+        rgba(255,255,255,0.82);
+    }
+
+    /* =========================
+       GALLERY
+    ========================= */
+
+    .gallery-card {
+      background: var(--glass-bg);
+
+      border:
+        1px solid
+        var(--glass-border);
+
+      border-radius: 22px;
+      overflow: hidden;
+
+      height: 100%;
+
+      transition:
+        all 0.45s ease;
+    }
+
+    .gallery-card:hover {
+      transform:
+        translateY(-10px);
+
+      box-shadow:
+        0 25px 50px
+        rgba(0,0,0,0.45);
+
+      border-color:
+        rgba(59,130,246,0.35);
+    }
+
+    .gallery-img-wrapper {
+      height: 260px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .gallery-img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+
+      transition:
+        transform 0.6s ease;
+    }
+
+    .gallery-card:hover
+    .gallery-img {
+      transform: scale(1.08);
+    }
 
-<meta name="description" content="ASPIRE Lab | Advanced Structural Parasitology & Protein Engineering" />
+    .gallery-content {
+      padding: 1.5rem;
+    }
 
-<title>ASPIRE Lab | Advanced Structural Parasitology & Protein Engineering</title>
+    .gallery-content h5 {
+      font-family: 'Playfair Display';
+      margin-bottom: 0.6rem;
+    }
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    .gallery-meta {
+      color:
+        rgba(255,255,255,0.6);
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+      font-size: 0.9rem;
+    }
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    /* =========================
+       POSTERS
+    ========================= */
 
+    .poster-card {
+      background: var(--glass-bg);
 
-<style>
+      border:
+        1px solid
+        var(--glass-border);
 
-:root {
-  --primary-gradient: linear-gradient(
-    135deg,
-    #3b82f6 0%,
-    #8b5cf6 50%,
-    #ec4899 100%
-  );
+      border-radius: 22px;
+      overflow: hidden;
 
-  --glass-bg: rgba(255,255,255,0.06);
-  --glass-border: rgba(255,255,255,0.12);
+      height: 100%;
 
-  --text-primary: #ffffff;
-  --text-secondary: rgba(255,255,255,0.8);
-}
+      transition:
+        all 0.45s ease;
+    }
 
-html {
-  scroll-behavior: smooth;
-}
+    .poster-card:hover {
+      transform:
+        translateY(-10px);
 
-section {
-  scroll-margin-top: 110px;
-}
+      box-shadow:
+        0 25px 50px
+        rgba(0,0,0,0.45);
 
-body {
-  margin: 0;
-  font-family: 'Inter', sans-serif;
+      border-color:
+        rgba(139,92,246,0.4);
+    }
 
-  background:
-    radial-gradient(
-      circle at top,
-      #0a0e1a,
-      #01050f
-    );
+    .poster-img-wrapper {
+      height: 400px;
 
-  color: var(--text-primary);
+      background:
+        rgba(0,0,0,0.3);
 
-  overflow-x: hidden;
+      overflow: hidden;
 
-  line-height: 1.6;
-}
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
+    .poster-img {
+      width: 100%;
+      height: 100%;
 
-/* =========================
-   NAVBAR
-========================= */
+      object-fit: cover;
 
-.navbar {
+      transition:
+        transform 0.5s ease;
+    }
 
-  background: rgba(0,0,0,0.95)!important;
+    .poster-card:hover
+    .poster-img {
+      transform: scale(1.03);
+    }
 
-  backdrop-filter: blur(30px);
+    .poster-content {
+      padding: 1.5rem;
+    }
 
-  border-bottom: 1px solid var(--glass-border);
+    .poster-content h5 {
+      font-family: 'Playfair Display';
+    }
 
-  padding: 1rem 0;
+    /* =========================
+       POSTER / GALLERY VIEWER
+    ========================= */
 
-  z-index: 1000;
-}
+    .poster-viewer {
+      max-height: 85vh;
+      max-width: 100%;
 
-.navbar-brand {
+      width: auto;
+      height: auto;
 
-  font-family: 'Playfair Display';
+      object-fit: contain;
 
-  font-size: 2.2rem;
+      border-radius: 10px;
 
-  font-weight: 700;
+      display: block;
+      margin: 0 auto;
+    }
 
-  background: var(--primary-gradient);
+    .viewer-modal .modal-body {
+      padding: 1rem;
+      background: #000;
+    }
 
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+    /* =========================
+       PUBLICATIONS
+    ========================= */
 
-  background-clip: text;
-}
+    .pub-card {
+      background: var(--glass-bg);
 
-.nav-link {
+      padding: 1.8rem;
 
-  color: var(--text-secondary)!important;
+      border-radius: 18px;
 
-  font-weight: 500;
+      margin-bottom: 1.5rem;
 
-  margin: 0 0.55rem;
+      border-left:
+        5px solid transparent;
 
-  transition: all 0.3s ease;
+      transition:
+        all 0.4s ease;
+    }
 
-  position: relative;
-}
+    .pub-card:hover {
+      transform:
+        translateX(10px);
 
-.nav-link:hover {
+      box-shadow:
+        0 15px 35px
+        rgba(59,130,246,0.2);
 
-  color: #3b82f6 !important;
-}
+      border-left-color:
+        #6366f1;
+    }
 
-.nav-link::after {
+    /* =========================
+       CONTACT
+    ========================= */
 
-  content: '';
+    .contact-glass {
+      max-width: 550px;
+      margin: 0 auto;
+    }
 
-  position: absolute;
+    /* =========================
+       FOOTER
+    ========================= */
 
-  width: 0;
+    footer {
+      background:
+        rgba(0,0,0,0.98);
 
-  height: 2px;
+      backdrop-filter:
+        blur(30px);
 
-  bottom: -5px;
+      padding:
+        3rem 0;
 
-  left: 0;
+      text-align: center;
 
-  background: var(--primary-gradient);
+      border-top:
+        1px solid
+        var(--glass-border);
+    }
 
-  transition: width 0.3s ease;
-}
+    /* =========================
+       LOADING
+    ========================= */
 
-.nav-link:hover::after {
+    .loading-text {
+      color:
+        rgba(255,255,255,0.6);
+    }
 
-  width: 100%;
-}
+    /* =========================
+       RESPONSIVE
+    ========================= */
 
+    @media (max-width: 768px) {
 
-/* =========================
-   HERO
-========================= */
+      .hero h1 {
+        font-size: 3.2rem;
+      }
 
-.hero {
+      .hero p {
+        font-size: 1.1rem;
+      }
 
-  min-height: 100vh;
+      .section-title {
+        font-size: 2.4rem;
+      }
 
-  background:
+      .section {
+        padding: 80px 0;
+      }
 
-    linear-gradient(
-      rgba(0,0,0,0.75),
-      rgba(0,0,0,0.95)
-    ),
+      .navbar-brand {
+        font-size: 1.8rem;
+      }
 
-    url("https://lh3.googleusercontent.com/d/1bixRBwYia7U1ZMcF_qGGCKLb_ASKpdV8");
+      .poster-img-wrapper {
+        height: 330px;
+      }
 
-  background-size: cover;
+      .gallery-img-wrapper {
+        height: 220px;
+      }
+    }
 
-  background-position: center;
+  </style>
 
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  text-align: center;
-
-  position: relative;
-}
-
-.hero::before {
-
-  content: '';
-
-  position: absolute;
-
-  inset: 0;
-
-  background:
-
-    radial-gradient(
-      circle at 30% 20%,
-      rgba(59,130,246,0.2) 0%,
-      transparent 50%
-    );
-}
-
-.hero h1 {
-
-  font-size: 4.5rem;
-
-  font-weight: 700;
-
-  font-family: 'Playfair Display';
-
-  background: var(--primary-gradient);
-
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-  background-clip: text;
-
-  margin-bottom: 1.5rem;
-
-  position: relative;
-
-  z-index: 2;
-}
-
-.hero p {
-
-  font-size: 1.4rem;
-
-  opacity: 0.95;
-
-  font-weight: 400;
-
-  max-width: 800px;
-
-  position: relative;
-
-  z-index: 2;
-
-  margin: 0 auto;
-}
-
-
-/* =========================
-   SECTIONS
-========================= */
-
-.section {
-
-  padding: 120px 0;
-}
-
-.section-title {
-
-  text-align: center;
-
-  font-size: 3.2rem;
-
-  margin-bottom: 70px;
-
-  font-family: 'Playfair Display';
-
-  font-weight: 700;
-
-  background: var(--primary-gradient);
-
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-
-  background-clip: text;
-
-  position: relative;
-}
-
-.section-title::after {
-
-  content: '';
-
-  position: absolute;
-
-  bottom: -25px;
-
-  left: 50%;
-
-  transform: translateX(-50%);
-
-  width: 120px;
-
-  height: 4px;
-
-  background: var(--primary-gradient);
-
-  border-radius: 2px;
-}
-
-
-/* =========================
-   GLASS CARDS
-========================= */
-
-.glass {
-
-  background: var(--glass-bg);
-
-  backdrop-filter: blur(30px);
-
-  border-radius: 24px;
-
-  padding: 2.5rem;
-
-  border: 1px solid var(--glass-border);
-
-  transition:
-    all 0.5s
-    cubic-bezier(
-      0.25,
-      0.46,
-      0.45,
-      0.94
-    );
-}
-
-.glass:hover {
-
-  transform: translateY(-8px);
-
-  box-shadow:
-    0 25px 50px rgba(0,0,0,0.4);
-
-  border-color:
-    rgba(59,130,246,0.3);
-}
-
-
-/* =========================
-   RESEARCH
-========================= */
-
-.research-card {
-
-  height: 280px;
-
-  background-size: cover;
-
-  background-position: center;
-
-  border-radius: 24px;
-
-  position: relative;
-
-  overflow: hidden;
-
-  border: 1px solid var(--glass-border);
-
-  transition: all 0.5s ease;
-}
-
-.research-card:hover {
-
-  transform:
-    translateY(-10px)
-    scale(1.02);
-
-  box-shadow:
-    0 25px 50px rgba(0,0,0,0.4);
-}
-
-.research-overlay {
-
-  position: absolute;
-
-  bottom: 0;
-
-  width: 100%;
-
-  background:
-    linear-gradient(
-      transparent,
-      rgba(0,0,0,0.95)
-    );
-
-  padding: 2rem 1.5rem;
-
-  transition: all 0.4s ease;
-}
-
-.research-card:hover
-.research-overlay {
-
-  background:
-    linear-gradient(
-      transparent,
-      rgba(59,130,246,0.15)
-    );
-}
-
-
-/* =========================
-   TEAM
-========================= */
-
-.team-img {
-
-  width: 140px;
-
-  height: 140px;
-
-  border-radius: 50%;
-
-  object-fit: cover;
-
-  border:
-    4px solid
-    rgba(255,255,255,0.2);
-
-  transition: all 0.4s ease;
-
-  box-shadow:
-    0 10px 30px
-    rgba(0,0,0,0.4);
-}
-
-.team-img:hover {
-
-  border-color: #3b82f6;
-
-  transform: scale(1.08);
-}
-
-
-/* =========================
-   PROFILE BUTTON
-========================= */
-
-.profile-btn {
-
-  border: 1px solid
-    rgba(59,130,246,0.5);
-
-  color: #ffffff;
-
-  background:
-    rgba(59,130,246,0.12);
-
-  border-radius: 30px;
-
-  padding:
-    8px 20px;
-
-  transition: all 0.3s ease;
-}
-
-.profile-btn:hover {
-
-  background:
-    linear-gradient(
-      135deg,
-      #3b82f6,
-      #8b5cf6
-    );
-
-  color: #ffffff;
-
-  transform: translateY(-2px);
-}
-
-
-/* =========================
-   PROFILE MODAL
-========================= */
-
-.modal-content {
-
-  background:
-    linear-gradient(
-      145deg,
-      #0b1220,
-      #030712
-    );
-
-  color: #ffffff;
-
-  border:
-    1px solid
-    rgba(255,255,255,0.12);
-
-  border-radius: 24px;
-
-  box-shadow:
-    0 30px 80px
-    rgba(0,0,0,0.6);
-}
-
-.modal-header {
-
-  border-bottom:
-    1px solid
-    rgba(255,255,255,0.1);
-}
-
-.modal-footer {
-
-  border-top:
-    1px solid
-    rgba(255,255,255,0.1);
-}
-
-.btn-close {
-
-  filter: invert(1);
-}
-
-.profile-modal-img {
-
-  width: 170px;
-
-  height: 170px;
-
-  object-fit: cover;
-
-  border-radius: 50%;
-
-  border:
-    4px solid
-    rgba(255,255,255,0.2);
-
-  margin-bottom: 20px;
-}
-
-.profile-heading {
-
-  font-family:
-    'Playfair Display';
-
-  color: #ffffff;
-
-  margin-top: 25px;
-
-  margin-bottom: 8px;
-}
-
-.profile-text {
-
-  color:
-    rgba(255,255,255,0.82);
-}
-
-
-/* =========================
-   GALLERY
-========================= */
-
-.gallery-card {
-
-  background:
-    var(--glass-bg);
-
-  border:
-    1px solid
-    var(--glass-border);
-
-  border-radius: 22px;
-
-  overflow: hidden;
-
-  height: 100%;
-
-  transition:
-    all 0.45s ease;
-}
-
-.gallery-card:hover {
-
-  transform:
-    translateY(-10px);
-
-  box-shadow:
-    0 25px 50px
-    rgba(0,0,0,0.45);
-
-  border-color:
-    rgba(59,130,246,0.35);
-}
-
-.gallery-img-wrapper {
-
-  height: 260px;
-
-  overflow: hidden;
-
-  position: relative;
-}
-
-.gallery-img {
-
-  width: 100%;
-
-  height: 100%;
-
-  object-fit: cover;
-
-  transition:
-    transform 0.6s ease;
-}
-
-.gallery-card:hover
-.gallery-img {
-
-  transform: scale(1.08);
-}
-
-.gallery-content {
-
-  padding: 1.5rem;
-}
-
-.gallery-content h5 {
-
-  font-family:
-    'Playfair Display';
-
-  margin-bottom: 0.6rem;
-}
-
-.gallery-meta {
-
-  color:
-    rgba(255,255,255,0.6);
-
-  font-size: 0.9rem;
-}
-
-
-/* =========================
-   POSTERS
-========================= */
-
-.poster-card {
-
-  background:
-    var(--glass-bg);
-
-  border:
-    1px solid
-    var(--glass-border);
-
-  border-radius: 22px;
-
-  overflow: hidden;
-
-  height: 100%;
-
-  transition:
-    all 0.45s ease;
-}
-
-.poster-card:hover {
-
-  transform:
-    translateY(-10px);
-
-  box-shadow:
-    0 25px 50px
-    rgba(0,0,0,0.45);
-
-  border-color:
-    rgba(139,92,246,0.4);
-}
-
-.poster-img-wrapper {
-
-  height: 400px;
-
-  background:
-    rgba(0,0,0,0.3);
-
-  overflow: hidden;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-}
-
-.poster-img {
-
-  width: 100%;
-
-  height: 100%;
-
-  object-fit: cover;
-
-  transition:
-    transform 0.5s ease;
-}
-
-.poster-card:hover
-.poster-img {
-
-  transform: scale(1.03);
-}
-
-.poster-content {
-
-  padding: 1.5rem;
-}
-
-.poster-content h5 {
-
-  font-family:
-    'Playfair Display';
-}
-
-
-/* =========================
-   POSTER VIEWER
-========================= */
-
-.poster-viewer {
-
-  max-height: 85vh;
-
-  max-width: 100%;
-
-  object-fit: contain;
-
-  border-radius: 10px;
-}
-
-
-/* =========================
-   PUBLICATIONS
-========================= */
-
-.pub-card {
-
-  background:
-    var(--glass-bg);
-
-  padding: 1.8rem;
-
-  border-radius: 18px;
-
-  margin-bottom: 1.5rem;
-
-  border-left:
-    5px solid transparent;
-
-  transition:
-    all 0.4s ease;
-}
-
-.pub-card:hover {
-
-  transform:
-    translateX(10px);
-
-  box-shadow:
-    0 15px 35px
-    rgba(59,130,246,0.2);
-
-  border-left-color:
-    #6366f1;
-}
-
-
-/* =========================
-   CONTACT
-========================= */
-
-.contact-glass {
-
-  max-width: 550px;
-
-  margin: 0 auto;
-}
-
-
-/* =========================
-   FOOTER
-========================= */
-
-footer {
-
-  background:
-    rgba(0,0,0,0.98);
-
-  backdrop-filter:
-    blur(30px);
-
-  padding:
-    3rem 0;
-
-  text-align: center;
-
-  border-top:
-    1px solid
-    var(--glass-border);
-}
-
-
-/* =========================
-   LOADING
-========================= */
-
-.loading-text {
-
-  color:
-    rgba(255,255,255,0.6);
-}
-
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width: 768px) {
-
-  .hero h1 {
-    font-size: 3.2rem;
-  }
-
-  .hero p {
-    font-size: 1.1rem;
-  }
-
-  .section-title {
-    font-size: 2.4rem;
-  }
-
-  .section {
-    padding: 80px 0;
-  }
-
-  .navbar-brand {
-    font-size: 1.8rem;
-  }
-
-  .poster-img-wrapper {
-    height: 330px;
-  }
-
-  .gallery-img-wrapper {
-    height: 220px;
-  }
-}
-
-</style>
 </head>
 
 
 <body>
-
 
 <!-- =========================
      NAVBAR
@@ -860,7 +728,6 @@ footer {
       <span class="navbar-toggler-icon"></span>
 
     </button>
-
 
     <div
       class="collapse navbar-collapse"
@@ -919,7 +786,6 @@ footer {
 </nav>
 
 
-
 <!-- =========================
      HERO
 ========================= -->
@@ -941,7 +807,6 @@ footer {
   </div>
 
 </section>
-
 
 
 <!-- =========================
@@ -977,7 +842,6 @@ footer {
 </section>
 
 
-
 <!-- =========================
      RESEARCH
 ========================= -->
@@ -1003,7 +867,6 @@ footer {
 </section>
 
 
-
 <!-- =========================
      PI
 ========================= -->
@@ -1026,7 +889,6 @@ footer {
   </div>
 
 </section>
-
 
 
 <!-- =========================
@@ -1054,7 +916,6 @@ footer {
 </section>
 
 
-
 <!-- =========================
      GALLERY
 ========================= -->
@@ -1078,7 +939,6 @@ footer {
   </div>
 
 </section>
-
 
 
 <!-- =========================
@@ -1106,7 +966,6 @@ footer {
 </section>
 
 
-
 <!-- =========================
      PUBLICATIONS
 ========================= -->
@@ -1129,7 +988,6 @@ footer {
   </div>
 
 </section>
-
 
 
 <!-- =========================
@@ -1160,9 +1018,7 @@ footer {
       </div>
 
       <div id="contact-content">
-
         Loading...
-
       </div>
 
     </div>
@@ -1170,7 +1026,6 @@ footer {
   </div>
 
 </section>
-
 
 
 <!-- =========================
@@ -1194,7 +1049,6 @@ footer {
   </div>
 
 </footer>
-
 
 
 <!-- =========================
@@ -1227,17 +1081,16 @@ footer {
           class="btn-close"
           data-bs-dismiss="modal"
           aria-label="Close">
+
         </button>
 
       </div>
-
 
       <div
         class="modal-body"
         id="profileModalBody">
 
       </div>
-
 
       <div class="modal-footer">
 
@@ -1259,13 +1112,14 @@ footer {
 </div>
 
 
-
 <!-- =========================
-     POSTER MODAL
+     IMAGE VIEWER MODAL
+     Used for BOTH Posters
+     AND Workshops/Conferences
 ========================= -->
 
 <div
-  class="modal fade"
+  class="modal fade viewer-modal"
   id="posterModal"
   tabindex="-1"
   aria-hidden="true">
@@ -1290,10 +1144,10 @@ footer {
           class="btn-close"
           data-bs-dismiss="modal"
           aria-label="Close">
+
         </button>
 
       </div>
-
 
       <div
         class="modal-body text-center">
@@ -1313,92 +1167,93 @@ footer {
 </div>
 
 
-
 <!-- =========================
      BOOTSTRAP
 ========================= -->
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
 </script>
-
 
 
 <script>
 
-/* ==========================================================
+/*
+==========================================================
    GOOGLE SHEET
-========================================================== */
+==========================================================
+*/
 
 const SHEET_ID =
   "1vhSco35e3yQHCFiFJoAmjbHKZ7WV2RQN65xNbK6TIl8";
-
 
 const FALLBACK_IMAGE =
   "https://via.placeholder.com/800x500?text=ASPIRE+Lab";
 
 
-
-/* ==========================================================
+/*
+==========================================================
    HTML ESCAPING
-========================================================== */
+==========================================================
+*/
 
 function escapeHtml(value) {
 
   return String(value ?? "")
-
     .replaceAll("&", "&amp;")
-
     .replaceAll("<", "&lt;")
-
     .replaceAll(">", "&gt;")
-
     .replaceAll('"', "&quot;")
-
     .replaceAll("'", "&#039;");
+
 }
 
 
-
-/* ==========================================================
+/*
+==========================================================
    IMAGE URL
-========================================================== */
+==========================================================
+   Handles Google Drive sharing links and direct image
+   URLs.
+
+   IMPORTANT:
+   We use the high-resolution Googleusercontent URL
+   whenever a Drive file ID is detected.
+==========================================================
+*/
 
 function normalizeImageUrl(url) {
 
-  const raw =
-    String(url ?? "").trim();
+  const raw = String(url ?? "").trim();
 
   if (!raw) {
     return FALLBACK_IMAGE;
   }
 
+  /*
+    Google Drive:
+    https://drive.google.com/file/d/FILE_ID/view
+  */
 
   const driveMatch =
-    raw.match(/\/d\/([a-zA-Z0-9_-]+)/)
-    ||
-    raw.match(
-      /[?&]id=([a-zA-Z0-9_-]+)/
-    );
+    raw.match(/\/d\/([a-zA-Z0-9_-]+)/) ||
+    raw.match(/[?&]id=([a-zA-Z0-9_-]+)/);
 
+  if (driveMatch && driveMatch[1]) {
 
-  if (
-    driveMatch &&
-    driveMatch[1]
-  ) {
-
-    return `https://lh3.googleusercontent.com/d/${driveMatch[1]}`;
+    return `https://lh3.googleusercontent.com/d/${driveMatch[1]}=w2000`;
 
   }
-
 
   return raw;
 }
 
 
-
-/* ==========================================================
+/*
+==========================================================
    GOOGLE SHEET FETCH
-========================================================== */
+==========================================================
+*/
 
 async function fetchSheet(sheetName) {
 
@@ -1409,7 +1264,6 @@ async function fetchSheet(sheetName) {
         `https://opensheet.elk.sh/${SHEET_ID}/${sheetName}`
       );
 
-
     if (!res.ok) {
 
       throw new Error(
@@ -1418,10 +1272,8 @@ async function fetchSheet(sheetName) {
 
     }
 
-
     const data =
       await res.json();
-
 
     return Array.isArray(data)
       ? data
@@ -1443,10 +1295,11 @@ async function fetchSheet(sheetName) {
 }
 
 
-
-/* ==========================================================
+/*
+==========================================================
    FIRST NON EMPTY VALUE
-========================================================== */
+==========================================================
+*/
 
 function firstNonEmptyValue(obj) {
 
@@ -1459,7 +1312,6 @@ function firstNonEmptyValue(obj) {
 
   }
 
-
   const vals =
     Object.values(obj)
       .map(v =>
@@ -1467,7 +1319,6 @@ function firstNonEmptyValue(obj) {
           ? ""
           : String(v).trim()
       );
-
 
   return (
     vals.find(
@@ -1479,10 +1330,11 @@ function firstNonEmptyValue(obj) {
 }
 
 
-
-/* ==========================================================
+/*
+==========================================================
    ABOUT
-========================================================== */
+==========================================================
+*/
 
 async function loadAbout() {
 
@@ -1491,32 +1343,21 @@ async function loadAbout() {
       "about-text"
     );
 
-
   if (!el) return;
-
 
   el.textContent =
     "Loading...";
 
-
   const data =
     await fetchSheet("ABOUT");
 
-
   const text =
-
-    data[0]?.text
-    ||
-    data[0]?.Text
-    ||
-    data[0]?.about
-    ||
-    data[0]?.About
-    ||
-    firstNonEmptyValue(data[0])
-    ||
+    data[0]?.text ||
+    data[0]?.Text ||
+    data[0]?.about ||
+    data[0]?.About ||
+    firstNonEmptyValue(data[0]) ||
     "About content coming soon...";
-
 
   el.textContent =
     text;
@@ -1524,10 +1365,11 @@ async function loadAbout() {
 }
 
 
-
-/* ==========================================================
+/*
+==========================================================
    RESEARCH
-========================================================== */
+==========================================================
+*/
 
 async function loadResearch() {
 
@@ -1536,17 +1378,13 @@ async function loadResearch() {
       "research-container"
     );
 
+  if (!container)
+    return;
 
-  if (!container) return;
-
-
-  container.innerHTML =
-    "";
-
+  container.innerHTML = "";
 
   const data =
     await fetchSheet("RESEARCH");
-
 
   if (!data.length) {
 
@@ -1569,8 +1407,8 @@ async function loadResearch() {
     `;
 
     return;
-  }
 
+  }
 
   data.forEach(r => {
 
@@ -1579,18 +1417,15 @@ async function loadResearch() {
       Object.keys(r).length === 0
     ) return;
 
-
     const title =
       r.title ||
       r.Title ||
       "Untitled";
 
-
     const desc =
       r.description ||
       r.Description ||
       "";
-
 
     const img =
       normalizeImageUrl(
@@ -1599,48 +1434,30 @@ async function loadResearch() {
         ""
       );
 
-
     const col =
-      document.createElement(
-        "div"
-      );
-
+      document.createElement("div");
 
     col.className =
       "col-md-4";
 
-
     const card =
-      document.createElement(
-        "div"
-      );
-
+      document.createElement("div");
 
     card.className =
       "research-card";
 
-
     card.style.backgroundImage =
-
       `linear-gradient(
         rgba(0,0,0,0.7),
         rgba(0,0,0,0.95)
       ),
-      url("${img.replaceAll(
-        '"',
-        "%22"
-      )}")`;
-
+      url("${img.replaceAll('"', "%22")}")`;
 
     const overlay =
-      document.createElement(
-        "div"
-      );
-
+      document.createElement("div");
 
     overlay.className =
       "research-overlay";
-
 
     overlay.innerHTML = `
 
@@ -1661,30 +1478,22 @@ async function loadResearch() {
 
     `;
 
+    card.appendChild(overlay);
 
-    card.appendChild(
-      overlay
-    );
+    col.appendChild(card);
 
-
-    col.appendChild(
-      card
-    );
-
-
-    container.appendChild(
-      col
-    );
+    container.appendChild(col);
 
   });
 
 }
 
 
-
-/* ==========================================================
+/*
+==========================================================
    TEAM
-========================================================== */
+==========================================================
+*/
 
 async function loadTeam() {
 
@@ -1693,30 +1502,21 @@ async function loadTeam() {
       "team-container"
     );
 
-
   const piContainer =
     document.getElementById(
       "pi-container"
     );
-
 
   if (
     !teamContainer ||
     !piContainer
   ) return;
 
-
-  teamContainer.innerHTML =
-    "";
-
-
-  piContainer.innerHTML =
-    "";
-
+  teamContainer.innerHTML = "";
+  piContainer.innerHTML = "";
 
   const data =
     await fetchSheet("TEAM");
-
 
   if (!data.length) {
 
@@ -1739,13 +1539,11 @@ async function loadTeam() {
     `;
 
     return;
+
   }
 
-
   let teamHTML = "";
-
   let piHTML = "";
-
 
   data.forEach(
     (m, index) => {
@@ -1755,18 +1553,15 @@ async function loadTeam() {
         Object.keys(m).length === 0
       ) return;
 
-
       const name =
         m.name ||
         m.Name ||
         "Unnamed";
 
-
       const role =
         m.role ||
         m.Role ||
         "";
-
 
       const image =
         normalizeImageUrl(
@@ -1775,40 +1570,33 @@ async function loadTeam() {
           FALLBACK_IMAGE
         );
 
-
       const linkedin =
         m.linkedin ||
         m.LinkedIn ||
         "";
-
 
       const bio =
         m.bio ||
         m.Bio ||
         "";
 
-
       const research =
         m.research ||
         m.Research ||
         "";
-
 
       const hobbies =
         m.hobbies ||
         m.Hobbies ||
         "";
 
-
       const interests =
         m.interests ||
         m.Interests ||
         "";
 
-
       const profileId =
         `profile-${index}`;
-
 
       const card = `
 
@@ -1829,34 +1617,20 @@ async function loadTeam() {
               text-center
             ">
 
-
             <img
-              src="${image.replaceAll(
-                '"',
-                "%22"
-              )}"
-
+              src="${image.replaceAll('"', "%22")}"
               class="team-img mb-3"
-
-              alt="${escapeHtml(
-                name
-              )}"
-
+              alt="${escapeHtml(name)}"
               loading="lazy"
-
               onerror="
                 this.onerror=null;
                 this.src='${FALLBACK_IMAGE}'
               "
             >
 
-
             <h5 class="mb-2">
-
               ${escapeHtml(name)}
-
             </h5>
-
 
             <p
               class="
@@ -1868,7 +1642,6 @@ async function loadTeam() {
 
             </p>
 
-
             <div
               class="
                 mt-auto
@@ -1878,42 +1651,30 @@ async function loadTeam() {
                 justify-content-center
               ">
 
-
               <button
                 type="button"
-
                 class="profile-btn"
+                onclick="openProfile('${profileId}')">
 
-                onclick="openProfile(
-                  '${profileId}'
-                )">
-
-                <i
-                  class="fas fa-user me-2">
-                </i>
+                <i class="fas fa-user me-2"></i>
 
                 View Profile
 
               </button>
 
-
               ${
                 linkedin
                 ?
+
                 `
 
                 <a
-                  href="${escapeHtml(
-                    linkedin
-                  )}"
-
+                  href="${escapeHtml(linkedin)}"
                   target="_blank"
-
                   rel="
                     noopener
                     noreferrer
                   "
-
                   class="
                     text-decoration-none
                   ">
@@ -1930,53 +1691,32 @@ async function loadTeam() {
                 </a>
 
                 `
+
                 :
+
                 ""
+
               }
 
-
             </div>
-
 
             <div
               id="${profileId}"
-
               class="d-none"
 
-              data-name="${escapeHtml(
-                name
-              )}"
+              data-name="${escapeHtml(name)}"
+              data-role="${escapeHtml(role)}"
+              data-image="${escapeHtml(image)}"
 
-              data-role="${escapeHtml(
-                role
-              )}"
+              data-bio="${escapeHtml(bio)}"
+              data-research="${escapeHtml(research)}"
 
-              data-image="${escapeHtml(
-                image
-              )}"
+              data-hobbies="${escapeHtml(hobbies)}"
+              data-interests="${escapeHtml(interests)}"
 
-              data-bio="${escapeHtml(
-                bio
-              )}"
-
-              data-research="${escapeHtml(
-                research
-              )}"
-
-              data-hobbies="${escapeHtml(
-                hobbies
-              )}"
-
-              data-interests="${escapeHtml(
-                interests
-              )}"
-
-              data-linkedin="${escapeHtml(
-                linkedin
-              )}">
+              data-linkedin="${escapeHtml(linkedin)}">
 
             </div>
-
 
           </div>
 
@@ -1984,34 +1724,22 @@ async function loadTeam() {
 
       `;
 
-
       const isPI =
         /principal|pi\b|investigator/i
           .test(role);
 
-
       if (isPI) {
-
         piHTML += card;
-
       }
-
       else {
-
         teamHTML += card;
-
       }
 
     }
   );
 
-
   piContainer.innerHTML =
-
-    piHTML
-
-    ||
-
+    piHTML ||
     `
 
     <div class="col-12">
@@ -2019,9 +1747,7 @@ async function loadTeam() {
       <div class="glass p-4">
 
         <p class="text-secondary mb-0">
-
           Coming soon...
-
         </p>
 
       </div>
@@ -2030,13 +1756,8 @@ async function loadTeam() {
 
     `;
 
-
   teamContainer.innerHTML =
-
-    teamHTML
-
-    ||
-
+    teamHTML ||
     `
 
     <div class="col-12">
@@ -2044,9 +1765,7 @@ async function loadTeam() {
       <div class="glass p-4">
 
         <p class="text-secondary mb-0">
-
           Coming soon...
-
         </p>
 
       </div>
@@ -2058,85 +1777,61 @@ async function loadTeam() {
 }
 
 
-
-/* ==========================================================
+/*
+==========================================================
    OPEN PROFILE
-========================================================== */
+==========================================================
+*/
 
 function openProfile(profileId) {
 
   const data =
-    document.getElementById(
-      profileId
-    );
-
+    document.getElementById(profileId);
 
   if (!data) return;
 
-
   const name =
-    data.dataset.name ||
-    "";
-
+    data.dataset.name || "";
 
   const role =
-    data.dataset.role ||
-    "";
-
+    data.dataset.role || "";
 
   const image =
     data.dataset.image ||
     FALLBACK_IMAGE;
 
-
   const bio =
-    data.dataset.bio ||
-    "";
-
+    data.dataset.bio || "";
 
   const research =
-    data.dataset.research ||
-    "";
-
+    data.dataset.research || "";
 
   const hobbies =
-    data.dataset.hobbies ||
-    "";
-
+    data.dataset.hobbies || "";
 
   const interests =
-    data.dataset.interests ||
-    "";
-
+    data.dataset.interests || "";
 
   const linkedin =
-    data.dataset.linkedin ||
-    "";
-
+    data.dataset.linkedin || "";
 
   document.getElementById(
     "profileModalTitle"
   ).textContent = name;
-
 
   let html = `
 
     <div class="text-center">
 
       <img
-
         src="${image}"
-
         class="profile-modal-img"
-
         alt="${escapeHtml(name)}"
-
         onerror="
           this.onerror=null;
           this.src='${FALLBACK_IMAGE}'
         "
       >
-
 
       <h3
         style="
@@ -2146,9 +1841,7 @@ function openProfile(profileId) {
 
       </h3>
 
-
-      <p
-        class="text-secondary">
+      <p class="text-secondary">
 
         ${escapeHtml(role)}
 
@@ -2158,90 +1851,69 @@ function openProfile(profileId) {
 
   `;
 
-
   if (bio) {
 
     html += `
 
       <h5 class="profile-heading">
-
         About
-
       </h5>
 
       <p class="profile-text">
-
         ${escapeHtml(bio)}
-
       </p>
 
     `;
 
   }
-
 
   if (research) {
 
     html += `
 
       <h5 class="profile-heading">
-
         Current Research
-
       </h5>
 
       <p class="profile-text">
-
         ${escapeHtml(research)}
-
       </p>
 
     `;
 
   }
-
 
   if (hobbies) {
 
     html += `
 
       <h5 class="profile-heading">
-
         Hobbies & Interests
-
       </h5>
 
       <p class="profile-text">
-
         ${escapeHtml(hobbies)}
-
       </p>
 
     `;
 
   }
-
 
   if (interests) {
 
     html += `
 
       <h5 class="profile-heading">
-
         More About Me
-
       </h5>
 
       <p class="profile-text">
-
         ${escapeHtml(interests)}
-
       </p>
 
     `;
 
   }
-
 
   if (linkedin) {
 
@@ -2250,17 +1922,12 @@ function openProfile(profileId) {
       <div class="mt-4">
 
         <a
-          href="${escapeHtml(
-            linkedin
-          )}"
-
+          href="${escapeHtml(linkedin)}"
           target="_blank"
-
           rel="
             noopener
             noreferrer
           "
-
           class="
             btn
             btn-outline-primary
@@ -2284,11 +1951,9 @@ function openProfile(profileId) {
 
   }
 
-
   document.getElementById(
     "profileModalBody"
   ).innerHTML = html;
-
 
   const modal =
     new bootstrap.Modal(
@@ -2297,16 +1962,20 @@ function openProfile(profileId) {
       )
     );
 
-
   modal.show();
 
 }
 
 
-
-/* ==========================================================
+/*
+==========================================================
    GALLERY
-========================================================== */
+==========================================================
+   CHANGE #2:
+   Added View Image button to Workshops &
+   Conferences.
+==========================================================
+*/
 
 async function loadGallery() {
 
@@ -2315,19 +1984,13 @@ async function loadGallery() {
       "gallery-container"
     );
 
+  if (!container)
+    return;
 
-  if (!container) return;
-
-
-  container.innerHTML =
-    "";
-
+  container.innerHTML = "";
 
   const data =
-    await fetchSheet(
-      "GALLERY"
-    );
-
+    await fetchSheet("GALLERY");
 
   if (!data.length) {
 
@@ -2354,38 +2017,32 @@ async function loadGallery() {
 
   }
 
-
-  data.forEach(g => {
+  data.forEach((g, index) => {
 
     if (
       !g ||
       Object.keys(g).length === 0
     ) return;
 
-
     const title =
       g.title ||
       g.Title ||
       "Lab Activity";
-
 
     const event =
       g.event ||
       g.Event ||
       "";
 
-
     const location =
       g.location ||
       g.Location ||
       "";
 
-
     const year =
       g.year ||
       g.Year ||
       "";
-
 
     const image =
       normalizeImageUrl(
@@ -2394,54 +2051,39 @@ async function loadGallery() {
         ""
       );
 
-
     const description =
       g.description ||
       g.Description ||
       "";
 
+    const galleryId =
+      `gallery-${index}`;
 
     const meta = [
-
       event,
-
       location,
-
       year
-
     ]
       .filter(Boolean)
       .map(escapeHtml)
       .join(" · ");
 
-
     const col =
-      document.createElement(
-        "div"
-      );
-
+      document.createElement("div");
 
     col.className =
       "col-lg-4 col-md-6";
-
 
     col.innerHTML = `
 
       <div class="gallery-card">
 
-
         <div class="gallery-img-wrapper">
 
           <img
-
             src="${image}"
-
             class="gallery-img"
-
-            alt="${escapeHtml(
-              title
-            )}"
-
+            alt="${escapeHtml(title)}"
             loading="lazy"
 
             onerror="
@@ -2452,55 +2094,84 @@ async function loadGallery() {
 
         </div>
 
-
         <div class="gallery-content">
 
-
           <h5>
-
-            ${escapeHtml(
-              title
-            )}
-
+            ${escapeHtml(title)}
           </h5>
-
 
           ${
             meta
             ?
+
             `
+
               <div
                 class="gallery-meta mb-2">
 
                 ${meta}
 
               </div>
-            `
-            :
-            ""
-          }
 
+            `
+
+            :
+
+            ""
+
+          }
 
           ${
             description
             ?
+
             `
+
               <p
                 class="
                   text-secondary
-                  mb-0
+                  mb-3
                 ">
 
-                ${escapeHtml(
-                  description
-                )}
+                ${escapeHtml(description)}
 
               </p>
+
             `
+
             :
+
             ""
+
           }
 
+          <!-- NEW VIEW BUTTON -->
+
+          <button
+            type="button"
+
+            class="
+              profile-btn
+              border-0
+            "
+
+            onclick="openPoster(
+              '${galleryId}',
+              '${escapeHtml(title)}',
+              '${image}'
+            )">
+
+            <i
+              class="
+                fas
+                fa-expand
+                me-2
+              ">
+            </i>
+
+            View
+
+          </button>
 
         </div>
 
@@ -2508,20 +2179,22 @@ async function loadGallery() {
 
     `;
 
-
-    container.appendChild(
-      col
-    );
+    container.appendChild(col);
 
   });
 
 }
 
 
-
-/* ==========================================================
+/*
+==========================================================
    POSTERS
-========================================================== */
+==========================================================
+   CHANGE #1:
+   View Poster now uses the high-resolution
+   normalized image URL.
+==========================================================
+*/
 
 async function loadPosters() {
 
@@ -2530,19 +2203,13 @@ async function loadPosters() {
       "posters-container"
     );
 
+  if (!container)
+    return;
 
-  if (!container) return;
-
-
-  container.innerHTML =
-    "";
-
+  container.innerHTML = "";
 
   const data =
-    await fetchSheet(
-      "POSTERS"
-    );
-
+    await fetchSheet("POSTERS");
 
   if (!data.length) {
 
@@ -2568,7 +2235,6 @@ async function loadPosters() {
 
   }
 
-
   data.forEach(
     (p, index) => {
 
@@ -2577,30 +2243,31 @@ async function loadPosters() {
         Object.keys(p).length === 0
       ) return;
 
-
       const title =
         p.title ||
         p.Title ||
         "Research Poster";
-
 
       const event =
         p.event ||
         p.Event ||
         "";
 
-
       const year =
         p.year ||
         p.Year ||
         "";
-
 
       const authors =
         p.authors ||
         p.Authors ||
         "";
 
+      /*
+        IMPORTANT:
+        Normalize here so View Poster gets
+        the high-resolution Google Drive image.
+      */
 
       const image =
         normalizeImageUrl(
@@ -2609,37 +2276,28 @@ async function loadPosters() {
           ""
         );
 
-
       const link =
         p.link ||
         p.Link ||
         "";
-
 
       const description =
         p.description ||
         p.Description ||
         "";
 
-
       const posterId =
         `poster-${index}`;
 
-
       const col =
-        document.createElement(
-          "div"
-        );
-
+        document.createElement("div");
 
       col.className =
         "col-lg-4 col-md-6";
 
-
       col.innerHTML = `
 
         <div class="poster-card">
-
 
           <div
             class="
@@ -2647,15 +2305,9 @@ async function loadPosters() {
             ">
 
             <img
-
               src="${image}"
-
               class="poster-img"
-
-              alt="${escapeHtml(
-                title
-              )}"
-
+              alt="${escapeHtml(title)}"
               loading="lazy"
 
               onerror="
@@ -2666,33 +2318,25 @@ async function loadPosters() {
 
           </div>
 
-
-          <div
-            class="poster-content">
-
+          <div class="poster-content">
 
             <h5>
-
-              ${escapeHtml(
-                title
-              )}
-
+              ${escapeHtml(title)}
             </h5>
-
 
             ${
               event || year
               ?
+
               `
+
                 <p
                   class="
                     text-secondary
                     mb-2
                   ">
 
-                  ${escapeHtml(
-                    event
-                  )}
+                  ${escapeHtml(event)}
 
                   ${
                     event && year
@@ -2700,56 +2344,68 @@ async function loadPosters() {
                       : ""
                   }
 
-                  ${escapeHtml(
-                    year
-                  )}
+                  ${escapeHtml(year)}
 
                 </p>
-              `
-              :
-              ""
-            }
 
+              `
+
+              :
+
+              ""
+
+            }
 
             ${
               authors
+
               ?
+
               `
+
                 <p
-                  class="small opacity-75">
+                  class="
+                    small
+                    opacity-75
+                  ">
 
                   <strong>
                     Authors:
                   </strong>
 
-                  ${escapeHtml(
-                    authors
-                  )}
+                  ${escapeHtml(authors)}
 
                 </p>
-              `
-              :
-              ""
-            }
 
+              `
+
+              :
+
+              ""
+
+            }
 
             ${
               description
+
               ?
+
               `
+
                 <p
                   class="text-secondary">
 
-                  ${escapeHtml(
-                    description
-                  )}
+                  ${escapeHtml(description)}
 
                 </p>
-              `
-              :
-              ""
-            }
 
+              `
+
+              :
+
+              ""
+
+            }
 
             <div
               class="
@@ -2758,9 +2414,9 @@ async function loadPosters() {
                 flex-wrap
               ">
 
+              <!-- FIXED VIEW POSTER -->
 
               <button
-
                 type="button"
 
                 class="
@@ -2770,9 +2426,7 @@ async function loadPosters() {
 
                 onclick="openPoster(
                   '${posterId}',
-                  '${escapeHtml(
-                    title
-                  )}',
+                  '${escapeHtml(title)}',
                   '${image}'
                 )">
 
@@ -2788,18 +2442,15 @@ async function loadPosters() {
 
               </button>
 
-
               ${
                 link
+
                 ?
+
                 `
 
                 <a
-
-                  href="${escapeHtml(
-                    link
-                  )}"
-
+                  href="${escapeHtml(link)}"
                   target="_blank"
 
                   rel="
@@ -2828,13 +2479,14 @@ async function loadPosters() {
                 </a>
 
                 `
+
                 :
+
                 ""
+
               }
 
-
             </div>
-
 
           </div>
 
@@ -2842,45 +2494,92 @@ async function loadPosters() {
 
       `;
 
-
-      container.appendChild(
-        col
-      );
+      container.appendChild(col);
 
     }
+
   );
 
 }
 
 
+/*
+==========================================================
+   OPEN POSTER / OPEN GALLERY IMAGE
+==========================================================
 
-/* ==========================================================
-   OPEN POSTER
-========================================================== */
+   This same function is now used for:
+
+   1. Digital Poster Archive
+   2. Workshops & Conferences
+
+   It opens the image in a large modal and displays
+   the high-resolution Google Drive image.
+==========================================================
+*/
 
 function openPoster(
-  posterId,
+  itemId,
   title,
   image
 ) {
 
-  document.getElementById(
-    "posterModalTitle"
-  ).textContent =
-    title;
+  const modalTitle =
+    document.getElementById(
+      "posterModalTitle"
+    );
 
+  const modalImage =
+    document.getElementById(
+      "posterModalImage"
+    );
 
-  document.getElementById(
-    "posterModalImage"
-  ).src =
-    image;
+  if (!modalTitle || !modalImage)
+    return;
 
+  modalTitle.textContent =
+    title || "Image";
 
-  document.getElementById(
-    "posterModalImage"
-  ).alt =
-    title;
+  /*
+    Normalize once again here.
+    This makes sure even if an original Drive
+    URL reaches this function, it is converted
+    to the high-resolution image URL.
+  */
 
+  const highQualityImage =
+    normalizeImageUrl(image);
+
+  modalImage.src =
+    highQualityImage;
+
+  modalImage.alt =
+    title || "Image";
+
+  /*
+    If the high-resolution image fails,
+    fall back to the supplied image URL.
+  */
+
+  modalImage.onerror = function() {
+
+    this.onerror = null;
+
+    if (
+      image &&
+      image !== highQualityImage
+    ) {
+
+      this.src = image;
+
+    }
+    else {
+
+      this.src = FALLBACK_IMAGE;
+
+    }
+
+  };
 
   const modal =
     new bootstrap.Modal(
@@ -2889,16 +2588,16 @@ function openPoster(
       )
     );
 
-
   modal.show();
 
 }
 
 
-
-/* ==========================================================
+/*
+==========================================================
    PUBLICATIONS
-========================================================== */
+==========================================================
+*/
 
 async function loadPublications() {
 
@@ -2907,19 +2606,13 @@ async function loadPublications() {
       "pub-container"
     );
 
+  if (!container)
+    return;
 
-  if (!container) return;
-
-
-  container.innerHTML =
-    "";
-
+  container.innerHTML = "";
 
   const data =
-    await fetchSheet(
-      "PUBLICATIONS"
-    );
-
+    await fetchSheet("PUBLICATIONS");
 
   if (!data.length) {
 
@@ -2943,15 +2636,12 @@ async function loadPublications() {
 
   }
 
-
   const items =
     [...data]
       .reverse()
       .slice(0, 8);
 
-
   let html = "";
-
 
   items.forEach(p => {
 
@@ -2960,42 +2650,35 @@ async function loadPublications() {
       Object.keys(p).length === 0
     ) return;
 
-
     const title =
       p.title ||
       p.Title ||
       p["Title "] ||
       "Untitled";
 
-
     const authors =
       p.authors ||
       p.Authors ||
       "";
-
 
     const journal =
       p.journal ||
       p.Journal ||
       "";
 
-
     const year =
       p.year ||
       p.Year ||
       "";
-
 
     const link =
       p.link ||
       p.Link ||
       "";
 
-
     html += `
 
       <div class="pub-card">
-
 
         <h6
           class="
@@ -3003,12 +2686,9 @@ async function loadPublications() {
             fw-bold
           ">
 
-          ${escapeHtml(
-            title
-          )}
+          ${escapeHtml(title)}
 
         </h6>
-
 
         <p
           class="
@@ -3016,19 +2696,14 @@ async function loadPublications() {
             opacity-75
           ">
 
-          ${escapeHtml(
-            authors
-          )}
+          ${escapeHtml(authors)}
 
         </p>
-
 
         <small
           class="text-secondary">
 
-          ${escapeHtml(
-            journal
-          )}
+          ${escapeHtml(journal)}
 
           ${
             journal && year
@@ -3036,26 +2711,21 @@ async function loadPublications() {
               : ""
           }
 
-          ${escapeHtml(
-            year
-          )}
+          ${escapeHtml(year)}
 
         </small>
 
-
         ${
           link
+
           ?
+
           `
 
           <br>
 
           <a
-
-            href="${escapeHtml(
-              link
-            )}"
-
+            href="${escapeHtml(link)}"
             target="_blank"
 
             rel="
@@ -3083,10 +2753,12 @@ async function loadPublications() {
           </a>
 
           `
-          :
-          ""
-        }
 
+          :
+
+          ""
+
+        }
 
       </div>
 
@@ -3094,11 +2766,8 @@ async function loadPublications() {
 
   });
 
-
   container.innerHTML =
-    html
-
-    ||
+    html ||
 
     `
 
@@ -3119,10 +2788,11 @@ async function loadPublications() {
 }
 
 
-
-/* ==========================================================
+/*
+==========================================================
    CONTACT
-========================================================== */
+==========================================================
+*/
 
 async function loadContact() {
 
@@ -3131,24 +2801,16 @@ async function loadContact() {
       "contact-content"
     );
 
-
   if (!el) return;
-
 
   el.textContent =
     "Loading...";
 
-
   const data =
-    await fetchSheet(
-      "CONTACT"
-    );
-
+    await fetchSheet("CONTACT");
 
   let email = "";
-
   let address = "";
-
 
   data.forEach(c => {
 
@@ -3157,14 +2819,12 @@ async function loadContact() {
       Object.keys(c).length === 0
     ) return;
 
-
     const key =
       String(
         c.type ||
         c.Type ||
         ""
       ).toLowerCase();
-
 
     const value =
       String(
@@ -3173,7 +2833,6 @@ async function loadContact() {
         ""
       ).trim();
 
-
     if (
       key.includes("email")
     ) {
@@ -3181,7 +2840,6 @@ async function loadContact() {
       email = value;
 
     }
-
 
     if (
       key.includes("address")
@@ -3193,9 +2851,7 @@ async function loadContact() {
 
   });
 
-
   const emailBlock =
-
     email
 
     ?
@@ -3212,22 +2868,14 @@ async function loadContact() {
       </i>
 
       <a
-
-        href="mailto:${escapeHtml(
-          email
-        )}"
-
+        href="mailto:${escapeHtml(email)}"
         class="
           text-white
           text-decoration-none
         ">
 
         <strong>
-
-          ${escapeHtml(
-            email
-          )}
-
+          ${escapeHtml(email)}
         </strong>
 
       </a>
@@ -3253,9 +2901,7 @@ async function loadContact() {
 
     `;
 
-
   const addressBlock =
-
     address
 
     ?
@@ -3274,11 +2920,7 @@ async function loadContact() {
       </i>
 
       <strong>
-
-        ${escapeHtml(
-          address
-        )}
-
+        ${escapeHtml(address)}
       </strong>
 
     `
@@ -3304,7 +2946,6 @@ async function loadContact() {
 
     `;
 
-
   el.innerHTML =
     emailBlock +
     addressBlock;
@@ -3312,34 +2953,30 @@ async function loadContact() {
 }
 
 
-
-/* ==========================================================
+/*
+==========================================================
    INITIALIZE WEBSITE
-========================================================== */
+==========================================================
+*/
 
 document.addEventListener(
   "DOMContentLoaded",
   () => {
 
     loadAbout();
-
     loadResearch();
-
     loadTeam();
 
     loadGallery();
-
     loadPosters();
 
     loadPublications();
-
     loadContact();
 
   }
 );
 
 </script>
-
 
 </body>
 </html>
