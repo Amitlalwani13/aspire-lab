@@ -2,707 +2,1068 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <meta name="description" content="ASPIRE Lab | Advanced Structural Parasitology & Protein Engineering" />
-
-  <title>ASPIRE Lab | Advanced Structural Parasitology & Protein Engineering</title>
-
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-    rel="stylesheet">
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap"
-    rel="stylesheet">
-
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-  <style>
-
-    :root {
-      --primary-gradient:
-        linear-gradient(
-          135deg,
-          #3b82f6 0%,
-          #8b5cf6 50%,
-          #ec4899 100%
-        );
-
-      --glass-bg: rgba(255,255,255,0.06);
-      --glass-border: rgba(255,255,255,0.12);
-
-      --text-primary: #ffffff;
-      --text-secondary: rgba(255,255,255,0.8);
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    section {
-      scroll-margin-top: 110px;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-
-      background:
-        radial-gradient(
-          circle at top,
-          #0a0e1a,
-          #01050f
-        );
-
-      color: var(--text-primary);
-      overflow-x: hidden;
-      line-height: 1.6;
-    }
-
-    /* =========================
-       NAVBAR
-    ========================= */
-
-    .navbar {
-      background: rgba(0,0,0,0.95)!important;
-      backdrop-filter: blur(30px);
-      border-bottom: 1px solid var(--glass-border);
-      padding: 1rem 0;
-      z-index: 1000;
-    }
-
-    .navbar-brand {
-      font-family: 'Playfair Display';
-      font-size: 2.2rem;
-      font-weight: 700;
-
-      background: var(--primary-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .nav-link {
-      color: var(--text-secondary)!important;
-      font-weight: 500;
-      margin: 0 0.55rem;
-      transition: all 0.3s ease;
-      position: relative;
-    }
-
-    .nav-link:hover {
-      color: #3b82f6 !important;
-    }
-
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -5px;
-      left: 0;
-      background: var(--primary-gradient);
-      transition: width 0.3s ease;
-    }
-
-    .nav-link:hover::after {
-      width: 100%;
-    }
-
-    /* =========================
-       HERO
-    ========================= */
-
-    .hero {
-      min-height: 100vh;
-
-      background:
-        linear-gradient(
-          rgba(0,0,0,0.75),
-          rgba(0,0,0,0.95)
-        ),
-        url("https://lh3.googleusercontent.com/d/1bixRBwYia7U1ZMcF_qGGCKLb_ASKpdV8");
-
-      background-size: cover;
-      background-position: center;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      text-align: center;
-      position: relative;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-
-      background:
-        radial-gradient(
-          circle at 30% 20%,
-          rgba(59,130,246,0.2) 0%,
-          transparent 50%
-        );
-    }
-
-    .hero h1 {
-      font-size: 4.5rem;
-      font-weight: 700;
-      font-family: 'Playfair Display';
-
-      background: var(--primary-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-
-      margin-bottom: 1.5rem;
-
-      position: relative;
-      z-index: 2;
-    }
-
-    .hero p {
-      font-size: 1.4rem;
-      opacity: 0.95;
-      font-weight: 400;
-      max-width: 800px;
-
-      position: relative;
-      z-index: 2;
-
-      margin: 0 auto;
-    }
-
-    /* =========================
-       SECTIONS
-    ========================= */
-
-    .section {
-      padding: 120px 0;
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 3.2rem;
-      margin-bottom: 70px;
-      font-family: 'Playfair Display';
-      font-weight: 700;
-
-      background: var(--primary-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-
-      position: relative;
-    }
-
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: -25px;
-      left: 50%;
-
-      transform: translateX(-50%);
-
-      width: 120px;
-      height: 4px;
-
-      background: var(--primary-gradient);
-      border-radius: 2px;
-    }
-
-    /* =========================
-       GLASS CARDS
-    ========================= */
-
-    .glass {
-      background: var(--glass-bg);
-      backdrop-filter: blur(30px);
-
-      border-radius: 24px;
-      padding: 2.5rem;
-
-      border: 1px solid var(--glass-border);
-
-      transition:
-        all 0.5s
-        cubic-bezier(
-          0.25,
-          0.46,
-          0.45,
-          0.94
-        );
-    }
-
-    .glass:hover {
-      transform: translateY(-8px);
-
-      box-shadow:
-        0 25px 50px rgba(0,0,0,0.4);
-
-      border-color:
-        rgba(59,130,246,0.3);
-    }
-
-    /* =========================
-       RESEARCH
-    ========================= */
-
-    .research-card {
-      height: 280px;
-
-      background-size: cover;
-      background-position: center;
-
-      border-radius: 24px;
-      position: relative;
-      overflow: hidden;
-
-      border: 1px solid var(--glass-border);
-
-      transition: all 0.5s ease;
-    }
-
-    .research-card:hover {
-      transform:
-        translateY(-10px)
-        scale(1.02);
-
-      box-shadow:
-        0 25px 50px rgba(0,0,0,0.4);
-    }
-
-    .research-overlay {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-
-      background:
-        linear-gradient(
-          transparent,
-          rgba(0,0,0,0.95)
-        );
-
-      padding: 2rem 1.5rem;
-
-      transition: all 0.4s ease;
-    }
-
-    .research-card:hover
-    .research-overlay {
-      background:
-        linear-gradient(
-          transparent,
-          rgba(59,130,246,0.15)
-        );
-    }
-
-    /* =========================
-       TEAM
-    ========================= */
-
-    .team-img {
-      width: 140px;
-      height: 140px;
-
-      border-radius: 50%;
-      object-fit: cover;
-
-      border:
-        4px solid
-        rgba(255,255,255,0.2);
-
-      transition: all 0.4s ease;
-
-      box-shadow:
-        0 10px 30px
-        rgba(0,0,0,0.4);
-    }
-
-    .team-img:hover {
-      border-color: #3b82f6;
-      transform: scale(1.08);
-    }
-
-    /* =========================
-       PROFILE BUTTON
-    ========================= */
-
-    .profile-btn {
-      border: 1px solid
-        rgba(59,130,246,0.5);
-
-      color: #ffffff;
-
-      background:
-        rgba(59,130,246,0.12);
-
-      border-radius: 30px;
-
-      padding: 8px 20px;
-
-      transition: all 0.3s ease;
-    }
-
-    .profile-btn:hover {
-      background:
-        linear-gradient(
-          135deg,
-          #3b82f6,
-          #8b5cf6
-        );
-
-      color: #ffffff;
-      transform: translateY(-2px);
-    }
-
-    /* =========================
-       PROFILE MODAL
-    ========================= */
-
-    .modal-content {
-      background:
-        linear-gradient(
-          145deg,
-          #0b1220,
-          #030712
-        );
-
-      color: #ffffff;
-
-      border:
-        1px solid
-        rgba(255,255,255,0.12);
-
-      border-radius: 24px;
-
-      box-shadow:
-        0 30px 80px
-        rgba(0,0,0,0.6);
-    }
-
-    .modal-header {
-      border-bottom:
-        1px solid
-        rgba(255,255,255,0.1);
-    }
-
-    .modal-footer {
-      border-top:
-        1px solid
-        rgba(255,255,255,0.1);
-    }
-
-    .btn-close {
-      filter: invert(1);
-    }
-
-    .profile-modal-img {
-      width: 170px;
-      height: 170px;
-
-      object-fit: cover;
-      border-radius: 50%;
-
-      border:
-        4px solid
-        rgba(255,255,255,0.2);
-
-      margin-bottom: 20px;
-    }
-
-    .profile-heading {
-      font-family: 'Playfair Display';
-      color: #ffffff;
-
-      margin-top: 25px;
-      margin-bottom: 8px;
-    }
-
-    .profile-text {
-      color:
-        rgba(255,255,255,0.82);
-    }
-
-    /* =========================
-       GALLERY
-    ========================= */
-
-    .gallery-card {
-      background: var(--glass-bg);
-
-      border:
-        1px solid
-        var(--glass-border);
-
-      border-radius: 22px;
-      overflow: hidden;
-
-      height: 100%;
-
-      transition:
-        all 0.45s ease;
-    }
-
-    .gallery-card:hover {
-      transform:
-        translateY(-10px);
-
-      box-shadow:
-        0 25px 50px
-        rgba(0,0,0,0.45);
-
-      border-color:
-        rgba(59,130,246,0.35);
-    }
-
-    .gallery-img-wrapper {
-      height: 260px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .gallery-img {
-      width: 100%;
-      height: 100%;
-
-      object-fit: cover;
-
-      transition:
-        transform 0.6s ease;
-    }
-
-    .gallery-card:hover
-    .gallery-img {
-      transform: scale(1.08);
-    }
 
-    .gallery-content {
-      padding: 1.5rem;
-    }
+<meta charset="UTF-8" />
 
-    .gallery-content h5 {
-      font-family: 'Playfair Display';
-      margin-bottom: 0.6rem;
-    }
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0" />
 
-    .gallery-meta {
-      color:
-        rgba(255,255,255,0.6);
+<meta name="description"
+content="ASPIRE Lab | Advanced Structural Parasitology & Protein Engineering" />
 
-      font-size: 0.9rem;
-    }
+<title>
+ASPIRE Lab | Advanced Structural Parasitology & Protein Engineering
+</title>
 
-    /* =========================
-       POSTERS
-    ========================= */
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+rel="stylesheet">
 
-    .poster-card {
-      background: var(--glass-bg);
+<link
+href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap"
+rel="stylesheet">
 
-      border:
-        1px solid
-        var(--glass-border);
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-      border-radius: 22px;
-      overflow: hidden;
+<style>
 
-      height: 100%;
+:root {
 
-      transition:
-        all 0.45s ease;
-    }
+  --primary-gradient:
+  linear-gradient(
+    135deg,
+    #3b82f6 0%,
+    #8b5cf6 50%,
+    #ec4899 100%
+  );
 
-    .poster-card:hover {
-      transform:
-        translateY(-10px);
+  --glass-bg:
+  rgba(255,255,255,0.06);
 
-      box-shadow:
-        0 25px 50px
-        rgba(0,0,0,0.45);
+  --glass-border:
+  rgba(255,255,255,0.12);
 
-      border-color:
-        rgba(139,92,246,0.4);
-    }
+  --text-primary:
+  #ffffff;
 
-    .poster-img-wrapper {
-      height: 400px;
+  --text-secondary:
+  rgba(255,255,255,0.8);
 
-      background:
-        rgba(0,0,0,0.3);
+}
 
-      overflow: hidden;
+html {
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+  scroll-behavior:
+  smooth;
 
-    .poster-img {
-      width: 100%;
-      height: 100%;
+}
 
-      object-fit: cover;
+section {
 
-      transition:
-        transform 0.5s ease;
-    }
+  scroll-margin-top:
+  110px;
 
-    .poster-card:hover
-    .poster-img {
-      transform: scale(1.03);
-    }
+}
 
-    .poster-content {
-      padding: 1.5rem;
-    }
+body {
 
-    .poster-content h5 {
-      font-family: 'Playfair Display';
-    }
+  margin: 0;
 
-    /* =========================
-       POSTER / GALLERY VIEWER
-    ========================= */
+  font-family:
+  'Inter', sans-serif;
 
-    .poster-viewer {
-      max-height: 85vh;
-      max-width: 100%;
+  background:
 
-      width: auto;
-      height: auto;
+    radial-gradient(
+      circle at top,
+      #0a0e1a,
+      #01050f
+    );
 
-      object-fit: contain;
+  color:
+  var(--text-primary);
 
-      border-radius: 10px;
+  overflow-x:
+  hidden;
 
-      display: block;
-      margin: 0 auto;
-    }
+  line-height:
+  1.6;
 
-    .viewer-modal .modal-body {
-      padding: 1rem;
-      background: #000;
-    }
+}
 
-    /* =========================
-       PUBLICATIONS
-    ========================= */
 
-    .pub-card {
-      background: var(--glass-bg);
+/* =========================
+   NAVBAR
+========================= */
 
-      padding: 1.8rem;
+.navbar {
 
-      border-radius: 18px;
+  background:
+  rgba(0,0,0,0.95)!important;
 
-      margin-bottom: 1.5rem;
+  backdrop-filter:
+  blur(30px);
 
-      border-left:
-        5px solid transparent;
+  border-bottom:
+  1px solid var(--glass-border);
 
-      transition:
-        all 0.4s ease;
-    }
+  padding:
+  1rem 0;
 
-    .pub-card:hover {
-      transform:
-        translateX(10px);
+  z-index:
+  1000;
 
-      box-shadow:
-        0 15px 35px
-        rgba(59,130,246,0.2);
+}
 
-      border-left-color:
-        #6366f1;
-    }
+.navbar-brand {
 
-    /* =========================
-       CONTACT
-    ========================= */
+  font-family:
+  'Playfair Display';
 
-    .contact-glass {
-      max-width: 550px;
-      margin: 0 auto;
-    }
+  font-size:
+  2.2rem;
 
-    /* =========================
-       FOOTER
-    ========================= */
+  font-weight:
+  700;
 
-    footer {
-      background:
-        rgba(0,0,0,0.98);
+  background:
+  var(--primary-gradient);
 
-      backdrop-filter:
-        blur(30px);
+  -webkit-background-clip:
+  text;
 
-      padding:
-        3rem 0;
+  -webkit-text-fill-color:
+  transparent;
 
-      text-align: center;
+  background-clip:
+  text;
 
-      border-top:
-        1px solid
-        var(--glass-border);
-    }
+}
 
-    /* =========================
-       LOADING
-    ========================= */
+.nav-link {
 
-    .loading-text {
-      color:
-        rgba(255,255,255,0.6);
-    }
+  color:
+  var(--text-secondary)!important;
 
-    /* =========================
-       RESPONSIVE
-    ========================= */
+  font-weight:
+  500;
 
-    @media (max-width: 768px) {
+  margin:
+  0 0.55rem;
 
-      .hero h1 {
-        font-size: 3.2rem;
-      }
+  transition:
+  all 0.3s ease;
 
-      .hero p {
-        font-size: 1.1rem;
-      }
+  position:
+  relative;
 
-      .section-title {
-        font-size: 2.4rem;
-      }
+}
 
-      .section {
-        padding: 80px 0;
-      }
+.nav-link:hover {
 
-      .navbar-brand {
-        font-size: 1.8rem;
-      }
+  color:
+  #3b82f6 !important;
 
-      .poster-img-wrapper {
-        height: 330px;
-      }
+}
 
-      .gallery-img-wrapper {
-        height: 220px;
-      }
-    }
+.nav-link::after {
 
-  </style>
+  content:
+  '';
+
+  position:
+  absolute;
+
+  width:
+  0;
+
+  height:
+  2px;
+
+  bottom:
+  -5px;
+
+  left:
+  0;
+
+  background:
+  var(--primary-gradient);
+
+  transition:
+  width 0.3s ease;
+
+}
+
+.nav-link:hover::after {
+
+  width:
+  100%;
+
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+
+  min-height:
+  100vh;
+
+  background:
+
+    linear-gradient(
+      rgba(0,0,0,0.75),
+      rgba(0,0,0,0.95)
+    ),
+
+    url("https://lh3.googleusercontent.com/d/1bixRBwYia7U1ZMcF_qGGCKLb_ASKpdV8");
+
+  background-size:
+  cover;
+
+  background-position:
+  center;
+
+  display:
+  flex;
+
+  align-items:
+  center;
+
+  justify-content:
+  center;
+
+  text-align:
+  center;
+
+  position:
+  relative;
+
+}
+
+.hero::before {
+
+  content:
+  '';
+
+  position:
+  absolute;
+
+  inset:
+  0;
+
+  background:
+
+    radial-gradient(
+      circle at 30% 20%,
+      rgba(59,130,246,0.2) 0%,
+      transparent 50%
+    );
+
+}
+
+.hero h1 {
+
+  font-size:
+  4.5rem;
+
+  font-weight:
+  700;
+
+  font-family:
+  'Playfair Display';
+
+  background:
+  var(--primary-gradient);
+
+  -webkit-background-clip:
+  text;
+
+  -webkit-text-fill-color:
+  transparent;
+
+  background-clip:
+  text;
+
+  margin-bottom:
+  1.5rem;
+
+  position:
+  relative;
+
+  z-index:
+  2;
+
+}
+
+.hero p {
+
+  font-size:
+  1.4rem;
+
+  opacity:
+  0.95;
+
+  font-weight:
+  400;
+
+  max-width:
+  800px;
+
+  position:
+  relative;
+
+  z-index:
+  2;
+
+  margin:
+  0 auto;
+
+}
+
+
+/* =========================
+   SECTIONS
+========================= */
+
+.section {
+
+  padding:
+  120px 0;
+
+}
+
+.section-title {
+
+  text-align:
+  center;
+
+  font-size:
+  3.2rem;
+
+  margin-bottom:
+  70px;
+
+  font-family:
+  'Playfair Display';
+
+  font-weight:
+  700;
+
+  background:
+  var(--primary-gradient);
+
+  -webkit-background-clip:
+  text;
+
+  -webkit-text-fill-color:
+  transparent;
+
+  background-clip:
+  text;
+
+  position:
+  relative;
+
+}
+
+.section-title::after {
+
+  content:
+  '';
+
+  position:
+  absolute;
+
+  bottom:
+  -25px;
+
+  left:
+  50%;
+
+  transform:
+  translateX(-50%);
+
+  width:
+  120px;
+
+  height:
+  4px;
+
+  background:
+  var(--primary-gradient);
+
+  border-radius:
+  2px;
+
+}
+
+
+/* =========================
+   GLASS CARDS
+========================= */
+
+.glass {
+
+  background:
+  var(--glass-bg);
+
+  backdrop-filter:
+  blur(30px);
+
+  border-radius:
+  24px;
+
+  padding:
+  2.5rem;
+
+  border:
+  1px solid var(--glass-border);
+
+  transition:
+  all 0.5s cubic-bezier(
+    0.25,
+    0.46,
+    0.45,
+    0.94
+  );
+
+}
+
+.glass:hover {
+
+  transform:
+  translateY(-8px);
+
+  box-shadow:
+  0 25px 50px rgba(0,0,0,0.4);
+
+  border-color:
+  rgba(59,130,246,0.3);
+
+}
+
+
+/* =========================
+   RESEARCH
+========================= */
+
+.research-card {
+
+  height:
+  280px;
+
+  background-size:
+  cover;
+
+  background-position:
+  center;
+
+  border-radius:
+  24px;
+
+  position:
+  relative;
+
+  overflow:
+  hidden;
+
+  border:
+  1px solid var(--glass-border);
+
+  transition:
+  all 0.5s ease;
+
+}
+
+.research-card:hover {
+
+  transform:
+  translateY(-10px) scale(1.02);
+
+  box-shadow:
+  0 25px 50px rgba(0,0,0,0.4);
+
+}
+
+.research-overlay {
+
+  position:
+  absolute;
+
+  bottom:
+  0;
+
+  width:
+  100%;
+
+  background:
+  linear-gradient(
+    transparent,
+    rgba(0,0,0,0.95)
+  );
+
+  padding:
+  2rem 1.5rem;
+
+  transition:
+  all 0.4s ease;
+
+}
+
+.research-card:hover
+.research-overlay {
+
+  background:
+  linear-gradient(
+    transparent,
+    rgba(59,130,246,0.15)
+  );
+
+}
+
+
+/* =========================
+   TEAM
+========================= */
+
+.team-img {
+
+  width:
+  140px;
+
+  height:
+  140px;
+
+  border-radius:
+  50%;
+
+  object-fit:
+  cover;
+
+  border:
+  4px solid rgba(255,255,255,0.2);
+
+  transition:
+  all 0.4s ease;
+
+  box-shadow:
+  0 10px 30px rgba(0,0,0,0.4);
+
+}
+
+.team-img:hover {
+
+  border-color:
+  #3b82f6;
+
+  transform:
+  scale(1.08);
+
+}
+
+
+/* =========================
+   PROFILE BUTTON
+========================= */
+
+.profile-btn {
+
+  border:
+  1px solid rgba(59,130,246,0.5);
+
+  color:
+  #ffffff;
+
+  background:
+  rgba(59,130,246,0.12);
+
+  border-radius:
+  30px;
+
+  padding:
+  8px 20px;
+
+  transition:
+  all 0.3s ease;
+
+}
+
+.profile-btn:hover {
+
+  background:
+  linear-gradient(
+    135deg,
+    #3b82f6,
+    #8b5cf6
+  );
+
+  color:
+  #ffffff;
+
+  transform:
+  translateY(-2px);
+
+}
+
+
+/* =========================
+   PROFILE MODAL
+========================= */
+
+.modal-content {
+
+  background:
+  linear-gradient(
+    145deg,
+    #0b1220,
+    #030712
+  );
+
+  color:
+  #ffffff;
+
+  border:
+  1px solid rgba(255,255,255,0.12);
+
+  border-radius:
+  24px;
+
+  box-shadow:
+  0 30px 80px rgba(0,0,0,0.6);
+
+}
+
+.modal-header {
+
+  border-bottom:
+  1px solid rgba(255,255,255,0.1);
+
+}
+
+.modal-footer {
+
+  border-top:
+  1px solid rgba(255,255,255,0.1);
+
+}
+
+.btn-close {
+
+  filter:
+  invert(1);
+
+}
+
+.profile-modal-img {
+
+  width:
+  170px;
+
+  height:
+  170px;
+
+  object-fit:
+  cover;
+
+  border-radius:
+  50%;
+
+  border:
+  4px solid rgba(255,255,255,0.2);
+
+  margin-bottom:
+  20px;
+
+}
+
+.profile-heading {
+
+  font-family:
+  'Playfair Display';
+
+  color:
+  #ffffff;
+
+  margin-top:
+  25px;
+
+  margin-bottom:
+  8px;
+
+}
+
+.profile-text {
+
+  color:
+  rgba(255,255,255,0.82);
+
+}
+
+
+/* =========================
+   GALLERY
+========================= */
+
+.gallery-card {
+
+  background:
+  var(--glass-bg);
+
+  border:
+  1px solid var(--glass-border);
+
+  border-radius:
+  22px;
+
+  overflow:
+  hidden;
+
+  height:
+  100%;
+
+  transition:
+  all 0.45s ease;
+
+}
+
+.gallery-card:hover {
+
+  transform:
+  translateY(-10px);
+
+  box-shadow:
+  0 25px 50px rgba(0,0,0,0.45);
+
+  border-color:
+  rgba(59,130,246,0.35);
+
+}
+
+.gallery-img-wrapper {
+
+  height:
+  260px;
+
+  overflow:
+  hidden;
+
+  position:
+  relative;
+
+}
+
+.gallery-img {
+
+  width:
+  100%;
+
+  height:
+  100%;
+
+  object-fit:
+  cover;
+
+  transition:
+  transform 0.6s ease;
+
+}
+
+.gallery-card:hover
+.gallery-img {
+
+  transform:
+  scale(1.08);
+
+}
+
+.gallery-content {
+
+  padding:
+  1.5rem;
+
+}
+
+.gallery-content h5 {
+
+  font-family:
+  'Playfair Display';
+
+  margin-bottom:
+  0.6rem;
+
+}
+
+.gallery-meta {
+
+  color:
+  rgba(255,255,255,0.6);
+
+  font-size:
+  0.9rem;
+
+}
+
+
+/* =========================
+   POSTERS
+========================= */
+
+.poster-card {
+
+  background:
+  var(--glass-bg);
+
+  border:
+  1px solid var(--glass-border);
+
+  border-radius:
+  22px;
+
+  overflow:
+  hidden;
+
+  height:
+  100%;
+
+  transition:
+  all 0.45s ease;
+
+}
+
+.poster-card:hover {
+
+  transform:
+  translateY(-10px);
+
+  box-shadow:
+  0 25px 50px rgba(0,0,0,0.45);
+
+  border-color:
+  rgba(139,92,246,0.4);
+
+}
+
+.poster-img-wrapper {
+
+  height:
+  400px;
+
+  background:
+  rgba(0,0,0,0.3);
+
+  overflow:
+  hidden;
+
+  display:
+  flex;
+
+  align-items:
+  center;
+
+  justify-content:
+  center;
+
+}
+
+.poster-img {
+
+  width:
+  100%;
+
+  height:
+  100%;
+
+  object-fit:
+  cover;
+
+  transition:
+  transform 0.5s ease;
+
+}
+
+.poster-card:hover
+.poster-img {
+
+  transform:
+  scale(1.03);
+
+}
+
+.poster-content {
+
+  padding:
+  1.5rem;
+
+}
+
+.poster-content h5 {
+
+  font-family:
+  'Playfair Display';
+
+}
+
+
+/* =========================
+   PUBLICATIONS
+========================= */
+
+.pub-card {
+
+  background:
+  var(--glass-bg);
+
+  padding:
+  1.8rem;
+
+  border-radius:
+  18px;
+
+  margin-bottom:
+  1.5rem;
+
+  border-left:
+  5px solid transparent;
+
+  transition:
+  all 0.4s ease;
+
+}
+
+.pub-card:hover {
+
+  transform:
+  translateX(10px);
+
+  box-shadow:
+  0 15px 35px rgba(59,130,246,0.2);
+
+  border-left-color:
+  #6366f1;
+
+}
+
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact-glass {
+
+  max-width:
+  550px;
+
+  margin:
+  0 auto;
+
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+
+  background:
+  rgba(0,0,0,0.98);
+
+  backdrop-filter:
+  blur(30px);
+
+  padding:
+  3rem 0;
+
+  text-align:
+  center;
+
+  border-top:
+  1px solid var(--glass-border);
+
+}
+
+
+/* =========================
+   LOADING
+========================= */
+
+.loading-text {
+
+  color:
+  rgba(255,255,255,0.6);
+
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+  .hero h1 {
+
+    font-size:
+    3.2rem;
+
+  }
+
+  .hero p {
+
+    font-size:
+    1.1rem;
+
+  }
+
+  .section-title {
+
+    font-size:
+    2.4rem;
+
+  }
+
+  .section {
+
+    padding:
+    80px 0;
+
+  }
+
+  .navbar-brand {
+
+    font-size:
+    1.8rem;
+
+  }
+
+  .poster-img-wrapper {
+
+    height:
+    330px;
+
+  }
+
+  .gallery-img-wrapper {
+
+    height:
+    220px;
+
+  }
+
+}
+
+</style>
 
 </head>
 
 
 <body>
+
 
 <!-- =========================
      NAVBAR
@@ -729,6 +1090,7 @@
 
     </button>
 
+
     <div
       class="collapse navbar-collapse"
       id="nav">
@@ -736,45 +1098,59 @@
       <ul class="navbar-nav ms-auto">
 
         <li class="nav-item">
+
           <a class="nav-link" href="#about">
             About
           </a>
+
         </li>
 
         <li class="nav-item">
+
           <a class="nav-link" href="#research">
             Research
           </a>
+
         </li>
 
         <li class="nav-item">
+
           <a class="nav-link" href="#team">
             Team
           </a>
+
         </li>
 
         <li class="nav-item">
+
           <a class="nav-link" href="#gallery">
             Gallery
           </a>
+
         </li>
 
         <li class="nav-item">
+
           <a class="nav-link" href="#posters">
             Posters
           </a>
+
         </li>
 
         <li class="nav-item">
+
           <a class="nav-link" href="#publications">
             Publications
           </a>
+
         </li>
 
         <li class="nav-item">
+
           <a class="nav-link" href="#contact">
             Contact
           </a>
+
         </li>
 
       </ul>
@@ -1018,7 +1394,9 @@
       </div>
 
       <div id="contact-content">
+
         Loading...
+
       </div>
 
     </div>
@@ -1086,11 +1464,13 @@
 
       </div>
 
+
       <div
         class="modal-body"
         id="profileModalBody">
 
       </div>
+
 
       <div class="modal-footer">
 
@@ -1113,66 +1493,11 @@
 
 
 <!-- =========================
-     IMAGE VIEWER MODAL
-     Used for BOTH Posters
-     AND Workshops/Conferences
-========================= -->
-
-<div
-  class="modal fade viewer-modal"
-  id="posterModal"
-  tabindex="-1"
-  aria-hidden="true">
-
-  <div
-    class="modal-dialog modal-xl modal-dialog-centered">
-
-    <div class="modal-content">
-
-      <div class="modal-header">
-
-        <h5
-          class="modal-title"
-          id="posterModalTitle">
-
-          Poster
-
-        </h5>
-
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close">
-
-        </button>
-
-      </div>
-
-      <div
-        class="modal-body text-center">
-
-        <img
-          id="posterModalImage"
-          class="poster-viewer"
-          src=""
-          alt="Research poster">
-
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
-
-
-<!-- =========================
      BOOTSTRAP
 ========================= -->
 
 <script
-  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
 </script>
 
 
@@ -1187,6 +1512,7 @@
 const SHEET_ID =
   "1vhSco35e3yQHCFiFJoAmjbHKZ7WV2RQN65xNbK6TIl8";
 
+
 const FALLBACK_IMAGE =
   "https://via.placeholder.com/800x500?text=ASPIRE+Lab";
 
@@ -1200,6 +1526,7 @@ const FALLBACK_IMAGE =
 function escapeHtml(value) {
 
   return String(value ?? "")
+
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
@@ -1211,41 +1538,84 @@ function escapeHtml(value) {
 
 /*
 ==========================================================
-   IMAGE URL
+   GET GOOGLE DRIVE FILE ID
 ==========================================================
-   Handles Google Drive sharing links and direct image
-   URLs.
+*/
 
-   IMPORTANT:
-   We use the high-resolution Googleusercontent URL
-   whenever a Drive file ID is detected.
+function getDriveFileId(url) {
+
+  const raw =
+    String(url ?? "").trim();
+
+  if (!raw) return "";
+
+  const match =
+    raw.match(/\/file\/d\/([a-zA-Z0-9_-]+)/) ||
+    raw.match(/\/d\/([a-zA-Z0-9_-]+)/) ||
+    raw.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+
+  return match
+    ? match[1]
+    : "";
+
+}
+
+
+/*
+==========================================================
+   IMAGE URL
 ==========================================================
 */
 
 function normalizeImageUrl(url) {
 
-  const raw = String(url ?? "").trim();
+  const raw =
+    String(url ?? "").trim();
 
   if (!raw) {
+
     return FALLBACK_IMAGE;
+
   }
 
-  /*
-    Google Drive:
-    https://drive.google.com/file/d/FILE_ID/view
-  */
+  const driveId =
+    getDriveFileId(raw);
 
-  const driveMatch =
-    raw.match(/\/d\/([a-zA-Z0-9_-]+)/) ||
-    raw.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+  if (driveId) {
 
-  if (driveMatch && driveMatch[1]) {
-
-    return `https://lh3.googleusercontent.com/d/${driveMatch[1]}=w2000`;
+    return `https://drive.google.com/thumbnail?id=${driveId}&sz=w2000`;
 
   }
 
   return raw;
+
+}
+
+
+/*
+==========================================================
+   DRIVE OPEN URL
+==========================================================
+*/
+
+function normalizeDriveOpenUrl(url) {
+
+  const raw =
+    String(url ?? "").trim();
+
+  if (!raw) return "";
+
+  const driveId =
+    getDriveFileId(raw);
+
+  if (driveId) {
+
+    return `https://drive.google.com/file/d/${driveId}/view?usp=sharing`;
+
+  }
+
+  return raw;
+
 }
 
 
@@ -1381,7 +1751,8 @@ async function loadResearch() {
   if (!container)
     return;
 
-  container.innerHTML = "";
+  container.innerHTML =
+    "";
 
   const data =
     await fetchSheet("RESEARCH");
@@ -1435,13 +1806,17 @@ async function loadResearch() {
       );
 
     const col =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
 
     col.className =
       "col-md-4";
 
     const card =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
 
     card.className =
       "research-card";
@@ -1451,10 +1826,15 @@ async function loadResearch() {
         rgba(0,0,0,0.7),
         rgba(0,0,0,0.95)
       ),
-      url("${img.replaceAll('"', "%22")}")`;
+      url("${img.replaceAll(
+        '"',
+        "%22"
+      )}")`;
 
     const overlay =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
 
     overlay.className =
       "research-overlay";
@@ -1478,11 +1858,17 @@ async function loadResearch() {
 
     `;
 
-    card.appendChild(overlay);
+    card.appendChild(
+      overlay
+    );
 
-    col.appendChild(card);
+    col.appendChild(
+      card
+    );
 
-    container.appendChild(col);
+    container.appendChild(
+      col
+    );
 
   });
 
@@ -1512,8 +1898,11 @@ async function loadTeam() {
     !piContainer
   ) return;
 
-  teamContainer.innerHTML = "";
-  piContainer.innerHTML = "";
+  teamContainer.innerHTML =
+    "";
+
+  piContainer.innerHTML =
+    "";
 
   const data =
     await fetchSheet("TEAM");
@@ -1542,8 +1931,11 @@ async function loadTeam() {
 
   }
 
-  let teamHTML = "";
-  let piHTML = "";
+  let teamHTML =
+    "";
+
+  let piHTML =
+    "";
 
   data.forEach(
     (m, index) => {
@@ -1618,10 +2010,19 @@ async function loadTeam() {
             ">
 
             <img
-              src="${image.replaceAll('"', "%22")}"
+              src="${image.replaceAll(
+                '"',
+                "%22"
+              )}"
+
               class="team-img mb-3"
-              alt="${escapeHtml(name)}"
+
+              alt="${escapeHtml(
+                name
+              )}"
+
               loading="lazy"
+
               onerror="
                 this.onerror=null;
                 this.src='${FALLBACK_IMAGE}'
@@ -1629,7 +2030,9 @@ async function loadTeam() {
             >
 
             <h5 class="mb-2">
+
               ${escapeHtml(name)}
+
             </h5>
 
             <p
@@ -1654,9 +2057,13 @@ async function loadTeam() {
               <button
                 type="button"
                 class="profile-btn"
-                onclick="openProfile('${profileId}')">
+                onclick="openProfile(
+                  '${profileId}'
+                )">
 
-                <i class="fas fa-user me-2"></i>
+                <i
+                  class="fas fa-user me-2">
+                </i>
 
                 View Profile
 
@@ -1669,12 +2076,17 @@ async function loadTeam() {
                 `
 
                 <a
-                  href="${escapeHtml(linkedin)}"
+                  href="${escapeHtml(
+                    linkedin
+                  )}"
+
                   target="_blank"
+
                   rel="
                     noopener
                     noreferrer
                   "
+
                   class="
                     text-decoration-none
                   ">
@@ -1695,26 +2107,46 @@ async function loadTeam() {
                 :
 
                 ""
-
               }
 
             </div>
 
             <div
               id="${profileId}"
+
               class="d-none"
 
-              data-name="${escapeHtml(name)}"
-              data-role="${escapeHtml(role)}"
-              data-image="${escapeHtml(image)}"
+              data-name="${escapeHtml(
+                name
+              )}"
 
-              data-bio="${escapeHtml(bio)}"
-              data-research="${escapeHtml(research)}"
+              data-role="${escapeHtml(
+                role
+              )}"
 
-              data-hobbies="${escapeHtml(hobbies)}"
-              data-interests="${escapeHtml(interests)}"
+              data-image="${escapeHtml(
+                image
+              )}"
 
-              data-linkedin="${escapeHtml(linkedin)}">
+              data-bio="${escapeHtml(
+                bio
+              )}"
+
+              data-research="${escapeHtml(
+                research
+              )}"
+
+              data-hobbies="${escapeHtml(
+                hobbies
+              )}"
+
+              data-interests="${escapeHtml(
+                interests
+              )}"
+
+              data-linkedin="${escapeHtml(
+                linkedin
+              )}">
 
             </div>
 
@@ -1729,10 +2161,17 @@ async function loadTeam() {
           .test(role);
 
       if (isPI) {
-        piHTML += card;
+
+        piHTML +=
+          card;
+
       }
+
       else {
-        teamHTML += card;
+
+        teamHTML +=
+          card;
+
       }
 
     }
@@ -1740,6 +2179,7 @@ async function loadTeam() {
 
   piContainer.innerHTML =
     piHTML ||
+
     `
 
     <div class="col-12">
@@ -1747,7 +2187,9 @@ async function loadTeam() {
       <div class="glass p-4">
 
         <p class="text-secondary mb-0">
+
           Coming soon...
+
         </p>
 
       </div>
@@ -1758,6 +2200,7 @@ async function loadTeam() {
 
   teamContainer.innerHTML =
     teamHTML ||
+
     `
 
     <div class="col-12">
@@ -1765,7 +2208,9 @@ async function loadTeam() {
       <div class="glass p-4">
 
         <p class="text-secondary mb-0">
+
           Coming soon...
+
         </p>
 
       </div>
@@ -1786,38 +2231,48 @@ async function loadTeam() {
 function openProfile(profileId) {
 
   const data =
-    document.getElementById(profileId);
+    document.getElementById(
+      profileId
+    );
 
   if (!data) return;
 
   const name =
-    data.dataset.name || "";
+    data.dataset.name ||
+    "";
 
   const role =
-    data.dataset.role || "";
+    data.dataset.role ||
+    "";
 
   const image =
     data.dataset.image ||
     FALLBACK_IMAGE;
 
   const bio =
-    data.dataset.bio || "";
+    data.dataset.bio ||
+    "";
 
   const research =
-    data.dataset.research || "";
+    data.dataset.research ||
+    "";
 
   const hobbies =
-    data.dataset.hobbies || "";
+    data.dataset.hobbies ||
+    "";
 
   const interests =
-    data.dataset.interests || "";
+    data.dataset.interests ||
+    "";
 
   const linkedin =
-    data.dataset.linkedin || "";
+    data.dataset.linkedin ||
+    "";
 
   document.getElementById(
     "profileModalTitle"
-  ).textContent = name;
+  ).textContent =
+    name;
 
   let html = `
 
@@ -1825,8 +2280,11 @@ function openProfile(profileId) {
 
       <img
         src="${image}"
+
         class="profile-modal-img"
+
         alt="${escapeHtml(name)}"
+
         onerror="
           this.onerror=null;
           this.src='${FALLBACK_IMAGE}'
@@ -1841,7 +2299,8 @@ function openProfile(profileId) {
 
       </h3>
 
-      <p class="text-secondary">
+      <p
+        class="text-secondary">
 
         ${escapeHtml(role)}
 
@@ -1856,11 +2315,15 @@ function openProfile(profileId) {
     html += `
 
       <h5 class="profile-heading">
+
         About
+
       </h5>
 
       <p class="profile-text">
+
         ${escapeHtml(bio)}
+
       </p>
 
     `;
@@ -1872,11 +2335,15 @@ function openProfile(profileId) {
     html += `
 
       <h5 class="profile-heading">
+
         Current Research
+
       </h5>
 
       <p class="profile-text">
+
         ${escapeHtml(research)}
+
       </p>
 
     `;
@@ -1888,11 +2355,15 @@ function openProfile(profileId) {
     html += `
 
       <h5 class="profile-heading">
+
         Hobbies & Interests
+
       </h5>
 
       <p class="profile-text">
+
         ${escapeHtml(hobbies)}
+
       </p>
 
     `;
@@ -1904,11 +2375,15 @@ function openProfile(profileId) {
     html += `
 
       <h5 class="profile-heading">
+
         More About Me
+
       </h5>
 
       <p class="profile-text">
+
         ${escapeHtml(interests)}
+
       </p>
 
     `;
@@ -1922,12 +2397,17 @@ function openProfile(profileId) {
       <div class="mt-4">
 
         <a
-          href="${escapeHtml(linkedin)}"
+          href="${escapeHtml(
+            linkedin
+          )}"
+
           target="_blank"
+
           rel="
             noopener
             noreferrer
           "
+
           class="
             btn
             btn-outline-primary
@@ -1953,7 +2433,8 @@ function openProfile(profileId) {
 
   document.getElementById(
     "profileModalBody"
-  ).innerHTML = html;
+  ).innerHTML =
+    html;
 
   const modal =
     new bootstrap.Modal(
@@ -1971,10 +2452,6 @@ function openProfile(profileId) {
 ==========================================================
    GALLERY
 ==========================================================
-   CHANGE #2:
-   Added View Image button to Workshops &
-   Conferences.
-==========================================================
 */
 
 async function loadGallery() {
@@ -1987,10 +2464,13 @@ async function loadGallery() {
   if (!container)
     return;
 
-  container.innerHTML = "";
+  container.innerHTML =
+    "";
 
   const data =
-    await fetchSheet("GALLERY");
+    await fetchSheet(
+      "GALLERY"
+    );
 
   if (!data.length) {
 
@@ -2017,7 +2497,7 @@ async function loadGallery() {
 
   }
 
-  data.forEach((g, index) => {
+  data.forEach(g => {
 
     if (
       !g ||
@@ -2044,20 +2524,25 @@ async function loadGallery() {
       g.Year ||
       "";
 
+    const rawImage =
+      g.image ||
+      g.Image ||
+      "";
+
     const image =
       normalizeImageUrl(
-        g.image ||
-        g.Image ||
-        ""
+        rawImage
+      );
+
+    const viewUrl =
+      normalizeDriveOpenUrl(
+        rawImage
       );
 
     const description =
       g.description ||
       g.Description ||
       "";
-
-    const galleryId =
-      `gallery-${index}`;
 
     const meta = [
       event,
@@ -2069,7 +2554,9 @@ async function loadGallery() {
       .join(" · ");
 
     const col =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
 
     col.className =
       "col-lg-4 col-md-6";
@@ -2078,12 +2565,18 @@ async function loadGallery() {
 
       <div class="gallery-card">
 
-        <div class="gallery-img-wrapper">
+        <div
+          class="gallery-img-wrapper">
 
           <img
             src="${image}"
+
             class="gallery-img"
-            alt="${escapeHtml(title)}"
+
+            alt="${escapeHtml(
+              title
+            )}"
+
             loading="lazy"
 
             onerror="
@@ -2097,7 +2590,11 @@ async function loadGallery() {
         <div class="gallery-content">
 
           <h5>
-            ${escapeHtml(title)}
+
+            ${escapeHtml(
+              title
+            )}
+
           </h5>
 
           ${
@@ -2118,7 +2615,6 @@ async function loadGallery() {
             :
 
             ""
-
           }
 
           ${
@@ -2133,7 +2629,9 @@ async function loadGallery() {
                   mb-3
                 ">
 
-                ${escapeHtml(description)}
+                ${escapeHtml(
+                  description
+                )}
 
               </p>
 
@@ -2142,36 +2640,50 @@ async function loadGallery() {
             :
 
             ""
-
           }
 
-          <!-- NEW VIEW BUTTON -->
+          ${
+            viewUrl
+            ?
 
-          <button
-            type="button"
+            `
 
-            class="
-              profile-btn
-              border-0
-            "
+              <a
+                href="${escapeHtml(
+                  viewUrl
+                )}"
 
-            onclick="openPoster(
-              '${galleryId}',
-              '${escapeHtml(title)}',
-              '${image}'
-            )">
+                target="_blank"
 
-            <i
-              class="
-                fas
-                fa-expand
-                me-2
-              ">
-            </i>
+                rel="
+                  noopener
+                  noreferrer
+                "
 
-            View
+                class="
+                  profile-btn
+                  text-decoration-none
+                  d-inline-block
+                ">
 
-          </button>
+                <i
+                  class="
+                    fas
+                    fa-expand
+                    me-2
+                  ">
+                </i>
+
+                View
+
+              </a>
+
+            `
+
+            :
+
+            ""
+          }
 
         </div>
 
@@ -2179,7 +2691,9 @@ async function loadGallery() {
 
     `;
 
-    container.appendChild(col);
+    container.appendChild(
+      col
+    );
 
   });
 
@@ -2189,10 +2703,6 @@ async function loadGallery() {
 /*
 ==========================================================
    POSTERS
-==========================================================
-   CHANGE #1:
-   View Poster now uses the high-resolution
-   normalized image URL.
 ==========================================================
 */
 
@@ -2206,10 +2716,13 @@ async function loadPosters() {
   if (!container)
     return;
 
-  container.innerHTML = "";
+  container.innerHTML =
+    "";
 
   const data =
-    await fetchSheet("POSTERS");
+    await fetchSheet(
+      "POSTERS"
+    );
 
   if (!data.length) {
 
@@ -2263,12 +2776,6 @@ async function loadPosters() {
         p.Authors ||
         "";
 
-      /*
-        IMPORTANT:
-        Normalize here so View Poster gets
-        the high-resolution Google Drive image.
-      */
-
       const image =
         normalizeImageUrl(
           p.image ||
@@ -2286,11 +2793,20 @@ async function loadPosters() {
         p.Description ||
         "";
 
-      const posterId =
-        `poster-${index}`;
+      /*
+        The PDF link is now the only
+        View Poster button.
+      */
+
+      const posterUrl =
+        normalizeDriveOpenUrl(
+          link
+        );
 
       const col =
-        document.createElement("div");
+        document.createElement(
+          "div"
+        );
 
       col.className =
         "col-lg-4 col-md-6";
@@ -2306,8 +2822,13 @@ async function loadPosters() {
 
             <img
               src="${image}"
+
               class="poster-img"
-              alt="${escapeHtml(title)}"
+
+              alt="${escapeHtml(
+                title
+              )}"
+
               loading="lazy"
 
               onerror="
@@ -2318,10 +2839,15 @@ async function loadPosters() {
 
           </div>
 
-          <div class="poster-content">
+          <div
+            class="poster-content">
 
             <h5>
-              ${escapeHtml(title)}
+
+              ${escapeHtml(
+                title
+              )}
+
             </h5>
 
             ${
@@ -2336,7 +2862,9 @@ async function loadPosters() {
                     mb-2
                   ">
 
-                  ${escapeHtml(event)}
+                  ${escapeHtml(
+                    event
+                  )}
 
                   ${
                     event && year
@@ -2344,7 +2872,9 @@ async function loadPosters() {
                       : ""
                   }
 
-                  ${escapeHtml(year)}
+                  ${escapeHtml(
+                    year
+                  )}
 
                 </p>
 
@@ -2353,27 +2883,24 @@ async function loadPosters() {
               :
 
               ""
-
             }
 
             ${
               authors
-
               ?
 
               `
 
                 <p
-                  class="
-                    small
-                    opacity-75
-                  ">
+                  class="small opacity-75">
 
                   <strong>
                     Authors:
                   </strong>
 
-                  ${escapeHtml(authors)}
+                  ${escapeHtml(
+                    authors
+                  )}
 
                 </p>
 
@@ -2382,12 +2909,10 @@ async function loadPosters() {
               :
 
               ""
-
             }
 
             ${
               description
-
               ?
 
               `
@@ -2395,7 +2920,9 @@ async function loadPosters() {
                 <p
                   class="text-secondary">
 
-                  ${escapeHtml(description)}
+                  ${escapeHtml(
+                    description
+                  )}
 
                 </p>
 
@@ -2404,89 +2931,71 @@ async function loadPosters() {
               :
 
               ""
-
             }
 
-            <div
-              class="
-                d-flex
-                gap-2
-                flex-wrap
-              ">
+            ${
+              posterUrl
+              ?
 
-              <!-- FIXED VIEW POSTER -->
+              `
 
-              <button
-                type="button"
-
-                class="
-                  profile-btn
-                  border-0
-                "
-
-                onclick="openPoster(
-                  '${posterId}',
-                  '${escapeHtml(title)}',
-                  '${image}'
-                )">
-
-                <i
+                <div
                   class="
-                    fas
-                    fa-expand
-                    me-2
-                  ">
-                </i>
-
-                View Poster
-
-              </button>
-
-              ${
-                link
-
-                ?
-
-                `
-
-                <a
-                  href="${escapeHtml(link)}"
-                  target="_blank"
-
-                  rel="
-                    noopener
-                    noreferrer
-                  "
-
-                  class="
-                    btn
-                    btn-outline-light
-                    btn-sm
-                    rounded-pill
-                    px-3
+                    d-flex
+                    gap-2
+                    flex-wrap
                   ">
 
-                  <i
+                  <a
+                    href="${escapeHtml(
+                      posterUrl
+                    )}"
+
+                    target="_blank"
+
+                    rel="
+                      noopener
+                      noreferrer
+                    "
+
                     class="
-                      fas
-                      fa-file-pdf
-                      me-2
+                      profile-btn
+                      text-decoration-none
                     ">
-                  </i>
 
-                  Open PDF
+                    <i
+                      class="
+                        fas
+                        fa-file-pdf
+                        me-2
+                      ">
+                    </i>
 
-                </a>
+                    View Poster
 
-                `
+                  </a>
 
-                :
+                </div>
 
-                ""
+              `
 
-              }
+              :
 
-            </div>
+              `
+
+                <p
+                  class="
+                    text-warning
+                    small
+                    mb-0
+                  ">
+
+                  Poster PDF not available.
+
+                </p>
+
+              `
+            }
 
           </div>
 
@@ -2494,101 +3003,12 @@ async function loadPosters() {
 
       `;
 
-      container.appendChild(col);
+      container.appendChild(
+        col
+      );
 
     }
-
   );
-
-}
-
-
-/*
-==========================================================
-   OPEN POSTER / OPEN GALLERY IMAGE
-==========================================================
-
-   This same function is now used for:
-
-   1. Digital Poster Archive
-   2. Workshops & Conferences
-
-   It opens the image in a large modal and displays
-   the high-resolution Google Drive image.
-==========================================================
-*/
-
-function openPoster(
-  itemId,
-  title,
-  image
-) {
-
-  const modalTitle =
-    document.getElementById(
-      "posterModalTitle"
-    );
-
-  const modalImage =
-    document.getElementById(
-      "posterModalImage"
-    );
-
-  if (!modalTitle || !modalImage)
-    return;
-
-  modalTitle.textContent =
-    title || "Image";
-
-  /*
-    Normalize once again here.
-    This makes sure even if an original Drive
-    URL reaches this function, it is converted
-    to the high-resolution image URL.
-  */
-
-  const highQualityImage =
-    normalizeImageUrl(image);
-
-  modalImage.src =
-    highQualityImage;
-
-  modalImage.alt =
-    title || "Image";
-
-  /*
-    If the high-resolution image fails,
-    fall back to the supplied image URL.
-  */
-
-  modalImage.onerror = function() {
-
-    this.onerror = null;
-
-    if (
-      image &&
-      image !== highQualityImage
-    ) {
-
-      this.src = image;
-
-    }
-    else {
-
-      this.src = FALLBACK_IMAGE;
-
-    }
-
-  };
-
-  const modal =
-    new bootstrap.Modal(
-      document.getElementById(
-        "posterModal"
-      )
-    );
-
-  modal.show();
 
 }
 
@@ -2609,10 +3029,13 @@ async function loadPublications() {
   if (!container)
     return;
 
-  container.innerHTML = "";
+  container.innerHTML =
+    "";
 
   const data =
-    await fetchSheet("PUBLICATIONS");
+    await fetchSheet(
+      "PUBLICATIONS"
+    );
 
   if (!data.length) {
 
@@ -2641,7 +3064,8 @@ async function loadPublications() {
       .reverse()
       .slice(0, 8);
 
-  let html = "";
+  let html =
+    "";
 
   items.forEach(p => {
 
@@ -2686,7 +3110,9 @@ async function loadPublications() {
             fw-bold
           ">
 
-          ${escapeHtml(title)}
+          ${escapeHtml(
+            title
+          )}
 
         </h6>
 
@@ -2696,14 +3122,18 @@ async function loadPublications() {
             opacity-75
           ">
 
-          ${escapeHtml(authors)}
+          ${escapeHtml(
+            authors
+          )}
 
         </p>
 
         <small
           class="text-secondary">
 
-          ${escapeHtml(journal)}
+          ${escapeHtml(
+            journal
+          )}
 
           ${
             journal && year
@@ -2711,13 +3141,14 @@ async function loadPublications() {
               : ""
           }
 
-          ${escapeHtml(year)}
+          ${escapeHtml(
+            year
+          )}
 
         </small>
 
         ${
           link
-
           ?
 
           `
@@ -2725,7 +3156,10 @@ async function loadPublications() {
           <br>
 
           <a
-            href="${escapeHtml(link)}"
+            href="${escapeHtml(
+              link
+            )}"
+
             target="_blank"
 
             rel="
@@ -2757,7 +3191,6 @@ async function loadPublications() {
           :
 
           ""
-
         }
 
       </div>
@@ -2772,10 +3205,16 @@ async function loadPublications() {
     `
 
     <div
-      class="text-center py-5">
+      class="
+        text-center
+        py-5
+      ">
 
       <p
-        class="text-secondary mb-0">
+        class="
+          text-secondary
+          mb-0
+        ">
 
         Publications coming soon...
 
@@ -2807,10 +3246,15 @@ async function loadContact() {
     "Loading...";
 
   const data =
-    await fetchSheet("CONTACT");
+    await fetchSheet(
+      "CONTACT"
+    );
 
-  let email = "";
-  let address = "";
+  let email =
+    "";
+
+  let address =
+    "";
 
   data.forEach(c => {
 
@@ -2837,7 +3281,8 @@ async function loadContact() {
       key.includes("email")
     ) {
 
-      email = value;
+      email =
+        value;
 
     }
 
@@ -2845,7 +3290,8 @@ async function loadContact() {
       key.includes("address")
     ) {
 
-      address = value;
+      address =
+        value;
 
     }
 
@@ -2868,14 +3314,21 @@ async function loadContact() {
       </i>
 
       <a
-        href="mailto:${escapeHtml(email)}"
+        href="mailto:${escapeHtml(
+          email
+        )}"
+
         class="
           text-white
           text-decoration-none
         ">
 
         <strong>
-          ${escapeHtml(email)}
+
+          ${escapeHtml(
+            email
+          )}
+
         </strong>
 
       </a>
@@ -2920,7 +3373,11 @@ async function loadContact() {
       </i>
 
       <strong>
-        ${escapeHtml(address)}
+
+        ${escapeHtml(
+          address
+        )}
+
       </strong>
 
     `
@@ -2964,13 +3421,17 @@ document.addEventListener(
   () => {
 
     loadAbout();
+
     loadResearch();
+
     loadTeam();
 
     loadGallery();
+
     loadPosters();
 
     loadPublications();
+
     loadContact();
 
   }
@@ -2978,5 +3439,7 @@ document.addEventListener(
 
 </script>
 
+
 </body>
+
 </html>
