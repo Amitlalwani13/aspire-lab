@@ -1404,10 +1404,13 @@ async function fetchSheet(sheetName) {
 
   try {
 
+    const url =
+      `https://opensheet.elk.sh/${SHEET_ID}/${encodeURIComponent(sheetName)}?_=${Date.now()}`;
+
     const res =
-      await fetch(
-        `https://opensheet.elk.sh/${SHEET_ID}/${sheetName}`
-      );
+      await fetch(url, {
+        cache: "no-store"
+      });
 
 
     if (!res.ok) {
@@ -1439,6 +1442,40 @@ async function fetchSheet(sheetName) {
     return [];
 
   }
+
+}
+
+
+
+/* ==========================================================
+   SHEET FIELD HELPER
+========================================================== */
+
+function getSheetField(obj, fieldName) {
+
+  if (!obj || typeof obj !== "object") {
+    return "";
+  }
+
+
+  const wanted =
+    String(fieldName || "")
+      .trim()
+      .toLowerCase();
+
+
+  const entry =
+    Object.entries(obj).find(
+      ([key]) =>
+        String(key)
+          .trim()
+          .toLowerCase() === wanted
+    );
+
+
+  return entry
+    ? String(entry[1] ?? "").trim()
+    : "";
 
 }
 
@@ -1709,13 +1746,19 @@ async function loadTeam() {
   teamContainer.innerHTML =
     "";
 
-
   piContainer.innerHTML =
     "";
 
 
+  // Clear old profile data every time the sheet is reloaded.
+  window.teamProfiles = {};
+
+
   const data =
     await fetchSheet("TEAM");
+
+
+  console.log("TEAM data:", data);
 
 
   if (!data.length) {
@@ -1743,7 +1786,6 @@ async function loadTeam() {
 
 
   let teamHTML = "";
-
   let piHTML = "";
 
 
@@ -1756,58 +1798,75 @@ async function loadTeam() {
       ) return;
 
 
+      // Read columns safely even if Google Sheets/OpenSheet returns
+      // different capitalization or accidental spaces in the header.
       const name =
-        m.name ||
-        m.Name ||
+        getSheetField(m, "name") ||
         "Unnamed";
 
 
       const role =
-        m.role ||
-        m.Role ||
-        "";
+        getSheetField(m, "role");
 
 
       const image =
         normalizeImageUrl(
-          m.image ||
-          m.Image ||
+          getSheetField(m, "image") ||
           FALLBACK_IMAGE
         );
 
 
       const linkedin =
-        m.linkedin ||
-        m.LinkedIn ||
-        "";
+        getSheetField(m, "linkedin");
 
 
       const bio =
-        m.bio ||
-        m.Bio ||
-        "";
+        getSheetField(m, "bio");
 
 
       const research =
-        m.research ||
-        m.Research ||
-        "";
+        getSheetField(m, "research");
 
 
       const hobbies =
-        m.hobbies ||
-        m.Hobbies ||
-        "";
+        getSheetField(m, "hobbies");
 
 
       const interests =
-        m.interests ||
-        m.Interests ||
-        "";
+        getSheetField(m, "interests");
+
+
+      console.log(
+        `TEAM MEMBER ${index}:`,
+        {
+          name,
+          role,
+          bio,
+          research,
+          hobbies,
+          interests,
+          linkedin
+        }
+      );
 
 
       const profileId =
         `profile-${index}`;
+
+
+      // Store the complete profile in JavaScript instead of putting
+      // the bio into a data-* HTML attribute. This prevents long text,
+      // quotes, apostrophes and special characters from being altered.
+      window.teamProfiles[profileId] = {
+        name,
+        role,
+        image,
+        bio,
+        research,
+        hobbies,
+        interests,
+        linkedin
+      };
 
 
       const card = `
@@ -1938,46 +1997,6 @@ async function loadTeam() {
             </div>
 
 
-            <div
-              id="${profileId}"
-
-              class="d-none"
-
-              data-name="${escapeHtml(
-                name
-              )}"
-
-              data-role="${escapeHtml(
-                role
-              )}"
-
-              data-image="${escapeHtml(
-                image
-              )}"
-
-              data-bio="${escapeHtml(
-                bio
-              )}"
-
-              data-research="${escapeHtml(
-                research
-              )}"
-
-              data-hobbies="${escapeHtml(
-                hobbies
-              )}"
-
-              data-interests="${escapeHtml(
-                interests
-              )}"
-
-              data-linkedin="${escapeHtml(
-                linkedin
-              )}">
-
-            </div>
-
-
           </div>
 
         </div>
@@ -2007,11 +2026,8 @@ async function loadTeam() {
 
 
   piContainer.innerHTML =
-
     piHTML
-
     ||
-
     `
 
     <div class="col-12">
@@ -2032,11 +2048,8 @@ async function loadTeam() {
 
 
   teamContainer.innerHTML =
-
     teamHTML
-
     ||
-
     `
 
     <div class="col-12">
@@ -2066,57 +2079,94 @@ async function loadTeam() {
 function openProfile(profileId) {
 
   const data =
-    document.getElementById(
+    window.teamProfiles?.[profileId];
+
+
+  if (!data) {
+
+    console.error(
+      "Profile not found:",
       profileId
     );
 
-
-  if (!data) return;
+    return;
+  }
 
 
   const name =
-    data.dataset.name ||
+    data.name ||
     "";
 
 
   const role =
-    data.dataset.role ||
+    data.role ||
     "";
 
 
   const image =
-    data.dataset.image ||
+    data.image ||
     FALLBACK_IMAGE;
 
 
   const bio =
-    data.dataset.bio ||
+    data.bio ||
     "";
 
 
   const research =
-    data.dataset.research ||
+    data.research ||
     "";
 
 
   const hobbies =
-    data.dataset.hobbies ||
+    data.hobbies ||
     "";
 
 
   const interests =
-    data.dataset.interests ||
+    data.interests ||
     "";
 
 
   const linkedin =
-    data.dataset.linkedin ||
+    data.linkedin ||
     "";
 
 
-  document.getElementById(
-    "profileModalTitle"
-  ).textContent = name;
+  console.log(
+    "Opening profile:",
+    {
+      profileId,
+      name,
+      bio
+    }
+  );
+
+
+  const titleEl =
+    document.getElementById(
+      "profileModalTitle"
+    );
+
+
+  const bodyEl =
+    document.getElementById(
+      "profileModalBody"
+    );
+
+
+  if (!titleEl || !bodyEl) {
+
+    console.error(
+      "Profile modal elements not found."
+    );
+
+    return;
+  }
+
+
+  titleEl.textContent =
+    name;
 
 
   let html = `
@@ -2125,7 +2175,7 @@ function openProfile(profileId) {
 
       <img
 
-        src="${image}"
+        src="${escapeHtml(image)}"
 
         class="profile-modal-img"
 
@@ -2169,7 +2219,9 @@ function openProfile(profileId) {
 
       </h5>
 
-      <p class="profile-text">
+      <p
+        class="profile-text"
+        style="white-space:pre-line;">
 
         ${escapeHtml(bio)}
 
@@ -2190,7 +2242,9 @@ function openProfile(profileId) {
 
       </h5>
 
-      <p class="profile-text">
+      <p
+        class="profile-text"
+        style="white-space:pre-line;">
 
         ${escapeHtml(research)}
 
@@ -2211,7 +2265,9 @@ function openProfile(profileId) {
 
       </h5>
 
-      <p class="profile-text">
+      <p
+        class="profile-text"
+        style="white-space:pre-line;">
 
         ${escapeHtml(hobbies)}
 
@@ -2232,7 +2288,9 @@ function openProfile(profileId) {
 
       </h5>
 
-      <p class="profile-text">
+      <p
+        class="profile-text"
+        style="white-space:pre-line;">
 
         ${escapeHtml(interests)}
 
@@ -2285,16 +2343,29 @@ function openProfile(profileId) {
   }
 
 
-  document.getElementById(
-    "profileModalBody"
-  ).innerHTML = html;
+  bodyEl.innerHTML =
+    html;
+
+
+  const modalElement =
+    document.getElementById(
+      "profileModal"
+    );
+
+
+  if (!modalElement) {
+
+    console.error(
+      "Profile modal container not found."
+    );
+
+    return;
+  }
 
 
   const modal =
-    new bootstrap.Modal(
-      document.getElementById(
-        "profileModal"
-      )
+    bootstrap.Modal.getOrCreateInstance(
+      modalElement
     );
 
 
