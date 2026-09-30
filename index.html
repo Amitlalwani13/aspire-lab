@@ -734,6 +734,14 @@ footer p {
 
         <li class="nav-item">
 
+          <a class="nav-link" href="#fun-activities">
+            Fun Activities
+          </a>
+
+        </li>
+
+        <li class="nav-item">
+
           <a class="nav-link" href="#posters">
             Posters
           </a>
@@ -912,6 +920,31 @@ footer p {
     <div
       class="row g-4"
       id="gallery-container">
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     FUN ACTIVITIES
+========================= -->
+
+<section
+  id="fun-activities"
+  class="section">
+
+  <div class="container">
+
+    <h2 class="section-title">
+      Fun Activities
+    </h2>
+
+    <div
+      class="row g-4"
+      id="fun-activities-container">
 
     </div>
 
@@ -2305,6 +2338,257 @@ async function loadGallery() {
 
 /*
 ==========================================================
+   FUN ACTIVITIES
+==========================================================
+*/
+
+async function loadFunActivities() {
+
+  const container =
+    document.getElementById(
+      "fun-activities-container"
+    );
+
+  if (!container)
+    return;
+
+  container.innerHTML =
+    "";
+
+  const data =
+    await fetchSheet(
+      "FUN_ACTIVITIES"
+    );
+
+  if (!data.length) {
+
+    container.innerHTML = `
+
+      <div class="col-12">
+
+        <div class="glass text-center">
+
+          <p class="mb-0 text-secondary">
+
+            Fun activities coming soon...
+
+          </p>
+
+        </div>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+  data.forEach(a => {
+
+    if (
+      !a ||
+      Object.keys(a).length === 0
+    ) return;
+
+    const title =
+      a.title ||
+      a.Title ||
+      "Fun Activity";
+
+    const event =
+      a.event ||
+      a.Event ||
+      "";
+
+    const location =
+      a.location ||
+      a.Location ||
+      "";
+
+    const year =
+      a.year ||
+      a.Year ||
+      "";
+
+    const rawImage =
+      a.image ||
+      a.Image ||
+      "";
+
+    const image =
+      normalizeImageUrl(
+        rawImage
+      );
+
+    const viewUrl =
+      normalizeDriveOpenUrl(
+        rawImage
+      );
+
+    const description =
+      a.description ||
+      a.Description ||
+      "";
+
+    const meta = [
+      event,
+      location,
+      year
+    ]
+      .filter(Boolean)
+      .map(escapeHtml)
+      .join(" · ");
+
+    const col =
+      document.createElement(
+        "div"
+      );
+
+    col.className =
+      "col-lg-4 col-md-6";
+
+    col.innerHTML = `
+
+      <div class="gallery-card">
+
+        <div
+          class="gallery-img-wrapper">
+
+          <img
+            src="${image}"
+
+            class="gallery-img"
+
+            alt="${escapeHtml(
+              title
+            )}"
+
+            loading="lazy"
+
+            onerror="
+              this.onerror=null;
+              this.src='${FALLBACK_IMAGE}'
+            "
+          >
+
+        </div>
+
+        <div class="gallery-content">
+
+          <h5>
+
+            ${escapeHtml(
+              title
+            )}
+
+          </h5>
+
+          ${
+            meta
+            ?
+
+            `
+
+              <div
+                class="gallery-meta mb-2">
+
+                ${meta}
+
+              </div>
+
+            `
+
+            :
+
+            ""
+          }
+
+          ${
+            description
+            ?
+
+            `
+
+              <p
+                class="
+                  text-secondary
+                  mb-3
+                ">
+
+                ${escapeHtml(
+                  description
+                )}
+
+              </p>
+
+            `
+
+            :
+
+            ""
+          }
+
+          ${
+            viewUrl
+            ?
+
+            `
+
+              <a
+                href="${escapeHtml(
+                  viewUrl
+                )}"
+
+                target="_blank"
+
+                rel="
+                  noopener
+                  noreferrer
+                "
+
+                class="
+                  profile-btn
+                  text-decoration-none
+                  d-inline-block
+                ">
+
+                <i
+                  class="
+                    fas
+                    fa-expand
+                    me-2
+                  ">
+                </i>
+
+                View
+
+              </a>
+
+            `
+
+            :
+
+            ""
+          }
+
+        </div>
+
+      </div>
+
+    `;
+
+    container.appendChild(
+      col
+    );
+
+  });
+
+}
+
+
+/*
+==========================================================
    POSTERS
 ==========================================================
 */
@@ -3028,6 +3312,8 @@ document.addEventListener(
     loadTeam();
 
     loadGallery();
+
+    loadFunActivities();
 
     loadPosters();
 
