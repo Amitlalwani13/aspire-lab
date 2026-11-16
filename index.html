@@ -14,11 +14,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-
-/* ==========================================================
-   ASPIRE LAB — BRIGHT SCIENTIFIC SUNRISE THEME
-========================================================== */
-
 :root {
   --primary-gradient: linear-gradient(135deg,#2563eb 0%,#7c3aed 48%,#ec4899 100%);
   --sun-gradient: linear-gradient(135deg,#06b6d4 0%,#3b82f6 45%,#8b5cf6 100%);
@@ -42,7 +37,6 @@
 }
 
 html { scroll-behavior: smooth; }
-
 section { scroll-margin-top: 100px; }
 
 body {
@@ -59,7 +53,6 @@ body {
 }
 
 /* NAVBAR */
-
 .navbar {
   background: rgba(255,255,255,0.88) !important;
   backdrop-filter: blur(22px);
@@ -118,7 +111,6 @@ body {
 }
 
 /* HERO */
-
 .hero {
   min-height: 88vh;
   background-image: url("https://lh3.googleusercontent.com/d/1bixRBwYia7U1ZMcF_qGGCKLb_ASKpdV8");
@@ -168,7 +160,6 @@ body {
 }
 
 /* SECTIONS */
-
 .section {
   padding: 105px 0;
   position: relative;
@@ -202,7 +193,6 @@ body {
 }
 
 /* GLASS CARDS */
-
 .glass {
   background: var(--surface);
   backdrop-filter: blur(18px);
@@ -225,12 +215,9 @@ body {
   line-height: 1.85;
 }
 
-.text-secondary {
-  color: var(--text-secondary) !important;
-}
+.text-secondary { color: var(--text-secondary) !important; }
 
 /* RESEARCH */
-
 .research-card {
   height: 295px;
   background-size: cover;
@@ -273,7 +260,6 @@ body {
 .research-overlay p { color: rgba(255,255,255,0.92); }
 
 /* TEAM */
-
 .team-img {
   width: 145px;
   height: 145px;
@@ -291,7 +277,6 @@ body {
 }
 
 /* PROFILE BUTTONS */
-
 .profile-btn {
   border: 0;
   color: #fff;
@@ -321,7 +306,6 @@ body {
 }
 
 /* PROFILE MODAL */
-
 .modal-content {
   background: linear-gradient(145deg,#ffffff,#f5f9ff);
   color: var(--text-primary);
@@ -354,7 +338,6 @@ body {
 .profile-text { color: #52627a; }
 
 /* GALLERY */
-
 .gallery-card {
   background: rgba(255,255,255,0.92);
   border: 1px solid rgba(37,99,235,0.12);
@@ -385,7 +368,6 @@ body {
 }
 
 .gallery-card:hover .gallery-img { transform: scale(1.07); }
-
 .gallery-content { padding: 1.5rem; }
 
 .gallery-content h5 {
@@ -400,7 +382,6 @@ body {
 }
 
 /* POSTERS */
-
 .poster-card {
   background: rgba(255,255,255,0.94);
   border: 1px solid rgba(37,99,235,0.12);
@@ -434,7 +415,6 @@ body {
 }
 
 .poster-card:hover .poster-img { transform: scale(1.03); }
-
 .poster-content { padding: 1.5rem; }
 
 .poster-content h5 {
@@ -443,7 +423,6 @@ body {
 }
 
 /* PUBLICATIONS */
-
 .pub-card {
   background: rgba(255,255,255,0.90);
   padding: 1.8rem;
@@ -465,7 +444,6 @@ body {
 .pub-card h6 { color: var(--heading); }
 
 /* CONTACT */
-
 .contact-glass {
   max-width: 620px;
   margin: 0 auto;
@@ -473,11 +451,9 @@ body {
 }
 
 .contact-glass .fa-paper-plane { color: var(--accent-pink) !important; }
-
 .contact-glass a[href^="mailto:"] { color: #000000 !important; }
 
 /* FOOTER */
-
 footer {
   background: linear-gradient(135deg,#172554,#312e81 55%,#7c2d6b);
   color: rgba(255,255,255,0.92);
@@ -487,17 +463,11 @@ footer {
 }
 
 footer p { opacity: 0.95 !important; }
-
 .loading-text { color: #718096; }
-
 .text-primary { color: var(--accent-blue) !important; }
 .text-warning { color: #c2410c !important; }
 
-/* ==========================================================
-   NEW SECTIONS — POSTDOCS, ADVERTISEMENTS,
-   SERVERS AND DATABASES
-========================================================== */
-
+/* RESOURCE SECTIONS */
 .resource-card {
   height: 100%;
   background: rgba(255,255,255,0.92);
@@ -559,25 +529,16 @@ footer p { opacity: 0.95 !important; }
 }
 
 .postdoc-card { text-align: center; }
-
 .postdoc-card .team-img { margin-bottom: 1rem; }
 
 /* RESPONSIVE */
-
 @media (max-width: 991px) {
-  .navbar-nav {
-    padding-top: 0.8rem;
-  }
-
-  .nav-link {
-    margin: 0.35rem 0;
-  }
+  .navbar-nav { padding-top: 0.8rem; }
+  .nav-link { margin: 0.35rem 0; }
 }
 
 @media (max-width: 768px) {
-
   .hero { min-height: 78vh; }
-
   .hero h1 { font-size: 3.25rem; }
 
   .hero p {
@@ -586,37 +547,23 @@ footer p { opacity: 0.95 !important; }
   }
 
   .section-title { font-size: 2.35rem; }
-
   .section { padding: 78px 0; }
-
   .navbar-brand { font-size: 1.75rem; }
-
   .poster-img-wrapper { height: 330px; }
-
   .gallery-img-wrapper { height: 220px; }
-
   .glass { padding: 1.6rem !important; }
-
   .resource-card { padding: 1.6rem; }
-
 }
-
 </style>
 </head>
 
 <body>
 
-<!-- ======================================================
-     NAVBAR
-====================================================== -->
-
+<!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-
   <div class="container">
 
-    <a class="navbar-brand" href="#">
-      ASPIRE Lab
-    </a>
+    <a class="navbar-brand" href="#">ASPIRE Lab</a>
 
     <button
       class="navbar-toggler"
@@ -626,344 +573,175 @@ footer p { opacity: 0.95 !important; }
       aria-controls="nav"
       aria-expanded="false"
       aria-label="Toggle navigation">
-
       <span class="navbar-toggler-icon"></span>
-
     </button>
 
     <div class="collapse navbar-collapse" id="nav">
-
       <ul class="navbar-nav ms-auto">
 
         <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-
         <li class="nav-item"><a class="nav-link" href="#research">Research</a></li>
-
-        <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
-
+        <li class="nav-item"><a class="nav-link" href="#team">PhD Scholars</a></li>
         <li class="nav-item"><a class="nav-link" href="#postdocs">Postdocs</a></li>
-
-        <li class="nav-item"><a class="nav-link" href="#advertisements">Opportunities</a></li>
-
-        <li class="nav-item"><a class="nav-link" href="#servers">Servers</a></li>
-
-        <li class="nav-item"><a class="nav-link" href="#databases">Databases</a></li>
-
         <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
-
-        <li class="nav-item"><a class="nav-link" href="#fun-activities">Fun Activities</a></li>
-
         <li class="nav-item"><a class="nav-link" href="#posters">Posters</a></li>
-
+        <li class="nav-item"><a class="nav-link" href="#advertisements">Opportunities</a></li>
         <li class="nav-item"><a class="nav-link" href="#publications">Publications</a></li>
-
+        <li class="nav-item"><a class="nav-link" href="#servers">Servers</a></li>
+        <li class="nav-item"><a class="nav-link" href="#databases">Databases</a></li>
+        <li class="nav-item"><a class="nav-link" href="#fun-activities">Fun Activities</a></li>
         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
 
       </ul>
-
     </div>
-
   </div>
-
 </nav>
 
-
-<!-- ======================================================
-     HERO
-====================================================== -->
-
+<!-- HERO -->
 <section class="hero">
-
   <div class="container">
-
     <h1>ASPIRE Lab</h1>
-
     <p>
       Advanced Structural Parasitology
       • Protein Engineering
       • Drug Discovery
     </p>
-
   </div>
-
 </section>
 
-
-<!-- ======================================================
-     ABOUT
-====================================================== -->
-
+<!-- ABOUT -->
 <section id="about" class="section text-center">
-
   <div class="container">
-
     <h2 class="section-title">About ASPIRE Lab</h2>
-
     <div class="glass p-5 mb-0" style="max-width:900px;margin:auto;">
-
-      <p id="about-text" class="fs-5 mb-4">
-        Loading...
-      </p>
-
+      <p id="about-text" class="fs-5 mb-4">Loading...</p>
     </div>
-
   </div>
-
 </section>
 
-
-<!-- ======================================================
-     RESEARCH
-====================================================== -->
-
+<!-- RESEARCH -->
 <section id="research" class="section">
-
   <div class="container">
-
     <h2 class="section-title">Research Areas</h2>
-
     <div class="row g-4" id="research-container"></div>
-
   </div>
-
 </section>
 
-
-<!-- ======================================================
-     PRINCIPAL INVESTIGATOR
-====================================================== -->
-
+<!-- PRINCIPAL INVESTIGATOR: RETAINED IN ITS ORIGINAL POSITION -->
 <section class="section text-center">
-
   <div class="container">
-
     <h2 class="section-title">Principal Investigator</h2>
-
     <div class="row justify-content-center" id="pi-container"></div>
-
   </div>
-
 </section>
 
-
-<!-- ======================================================
-     TEAM
-====================================================== -->
-
+<!-- PHD SCHOLARS -->
 <section id="team" class="section">
-
   <div class="container">
-
-    <h2 class="section-title">Our Team</h2>
-
+    <h2 class="section-title">PhD Scholars</h2>
     <div class="row" id="team-container"></div>
-
   </div>
-
 </section>
 
-
-<!-- ======================================================
-     POSTDOCTORAL RESEARCHERS — NEW
-====================================================== -->
-
+<!-- POSTDOCTORAL RESEARCHERS -->
 <section id="postdocs" class="section">
-
   <div class="container">
-
     <h2 class="section-title">Postdoctoral Researchers</h2>
-
     <div class="row g-4" id="postdocs-container"></div>
-
   </div>
-
 </section>
 
-
-<!-- ======================================================
-     ADVERTISEMENTS — NEW
-====================================================== -->
-
-<section id="advertisements" class="section">
-
-  <div class="container">
-
-    <h2 class="section-title">Advertisements & Opportunities</h2>
-
-    <div class="row g-4" id="advertisements-container"></div>
-
-  </div>
-
-</section>
-
-
-<!-- ======================================================
-     IMPORTANT SERVERS — NEW
-====================================================== -->
-
-<section id="servers" class="section">
-
-  <div class="container">
-
-    <h2 class="section-title">Important Servers</h2>
-
-    <div class="row g-4" id="servers-container"></div>
-
-  </div>
-
-</section>
-
-
-<!-- ======================================================
-     IMPORTANT DATABASES — NEW
-====================================================== -->
-
-<section id="databases" class="section">
-
-  <div class="container">
-
-    <h2 class="section-title">Important Databases</h2>
-
-    <div class="row g-4" id="databases-container"></div>
-
-  </div>
-
-</section>
-
-
-<!-- ======================================================
-     GALLERY
-====================================================== -->
-
+<!-- GALLERY -->
 <section id="gallery" class="section">
-
   <div class="container">
-
     <h2 class="section-title">Workshops & Conferences</h2>
-
     <div class="row g-4" id="gallery-container"></div>
-
   </div>
-
 </section>
 
-
-<!-- ======================================================
-     FUN ACTIVITIES
-====================================================== -->
-
-<section id="fun-activities" class="section">
-
-  <div class="container">
-
-    <h2 class="section-title">Fun Activities</h2>
-
-    <div class="row g-4" id="fun-activities-container"></div>
-
-  </div>
-
-</section>
-
-
-<!-- ======================================================
-     POSTERS
-====================================================== -->
-
+<!-- POSTERS -->
 <section id="posters" class="section">
-
   <div class="container">
-
     <h2 class="section-title">Digital Poster Archive</h2>
-
     <div class="row g-4" id="posters-container"></div>
-
   </div>
-
 </section>
 
+<!-- OPPORTUNITIES -->
+<section id="advertisements" class="section">
+  <div class="container">
+    <h2 class="section-title">Advertisements & Opportunities</h2>
+    <div class="row g-4" id="advertisements-container"></div>
+  </div>
+</section>
 
-<!-- ======================================================
-     PUBLICATIONS
-====================================================== -->
-
+<!-- PUBLICATIONS -->
 <section id="publications" class="section">
-
   <div class="container">
-
     <h2 class="section-title">Publications</h2>
-
     <div id="pub-container"></div>
-
   </div>
-
 </section>
 
-
-<!-- ======================================================
-     CONTACT
-====================================================== -->
-
-<section id="contact" class="section text-center">
-
+<!-- SERVERS -->
+<section id="servers" class="section">
   <div class="container">
+    <h2 class="section-title">Important Servers</h2>
+    <div class="row g-4" id="servers-container"></div>
+  </div>
+</section>
 
+<!-- DATABASES -->
+<section id="databases" class="section">
+  <div class="container">
+    <h2 class="section-title">Important Databases</h2>
+    <div class="row g-4" id="databases-container"></div>
+  </div>
+</section>
+
+<!-- FUN ACTIVITIES -->
+<section id="fun-activities" class="section">
+  <div class="container">
+    <h2 class="section-title">Fun Activities</h2>
+    <div class="row g-4" id="fun-activities-container"></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section text-center">
+  <div class="container">
     <h2 class="section-title">Contact</h2>
-
     <div class="glass contact-glass py-5 px-4">
 
       <div class="fs-4 mb-4">
-
         <i class="fas fa-paper-plane text-primary me-3"></i>
-
         Get In Touch
-
       </div>
 
       <div id="contact-content">Loading...</div>
 
     </div>
-
   </div>
-
 </section>
 
-
-<!-- ======================================================
-     FOOTER
-====================================================== -->
-
+<!-- FOOTER -->
 <footer>
-
   <div class="container">
-
     <p class="mb-0" style="opacity:0.8;">
-
       © 2026 ASPIRE Lab |
       Advanced Structural Parasitology
       & Protein Engineering
-
     </p>
-
   </div>
-
 </footer>
 
-
-<!-- ======================================================
-     PROFILE MODAL
-====================================================== -->
-
+<!-- PROFILE MODAL -->
 <div class="modal fade" id="profileModal" tabindex="-1" aria-hidden="true">
-
   <div class="modal-dialog modal-lg modal-dialog-centered">
-
     <div class="modal-content">
 
       <div class="modal-header">
-
-        <h5 class="modal-title" id="profileModalTitle">
-          Profile
-        </h5>
+        <h5 class="modal-title" id="profileModalTitle">Profile</h5>
 
         <button
           type="button"
@@ -971,35 +749,24 @@ footer p { opacity: 0.95 !important; }
           data-bs-dismiss="modal"
           aria-label="Close">
         </button>
-
       </div>
 
       <div class="modal-body" id="profileModalBody"></div>
 
       <div class="modal-footer">
-
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Close
         </button>
-
       </div>
 
     </div>
-
   </div>
-
 </div>
 
-
-<!-- ======================================================
-     BOOTSTRAP
-====================================================== -->
-
+<!-- BOOTSTRAP -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-
 <script>
-
 /*
 ==========================================================
    GOOGLE SHEET CONFIGURATION
@@ -1012,7 +779,6 @@ const SHEET_ID =
 const FALLBACK_IMAGE =
   "https://via.placeholder.com/800x500?text=ASPIRE+Lab";
 
-
 /*
 ==========================================================
    HTML ESCAPING
@@ -1020,16 +786,13 @@ const FALLBACK_IMAGE =
 */
 
 function escapeHtml(value) {
-
   return String(value ?? "")
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
-
 }
-
 
 /*
 ==========================================================
@@ -1038,7 +801,6 @@ function escapeHtml(value) {
 */
 
 function getDriveFileId(url) {
-
   const raw = String(url ?? "").trim();
 
   if (!raw) return "";
@@ -1049,9 +811,7 @@ function getDriveFileId(url) {
     raw.match(/[?&]id=([a-zA-Z0-9_-]+)/);
 
   return match ? match[1] : "";
-
 }
-
 
 /*
 ==========================================================
@@ -1060,7 +820,6 @@ function getDriveFileId(url) {
 */
 
 function normalizeImageUrl(url) {
-
   const raw = String(url ?? "").trim();
 
   if (!raw) return FALLBACK_IMAGE;
@@ -1072,9 +831,7 @@ function normalizeImageUrl(url) {
   }
 
   return raw;
-
 }
-
 
 /*
 ==========================================================
@@ -1083,7 +840,6 @@ function normalizeImageUrl(url) {
 */
 
 function normalizeDriveOpenUrl(url) {
-
   const raw = String(url ?? "").trim();
 
   if (!raw) return "";
@@ -1095,9 +851,7 @@ function normalizeDriveOpenUrl(url) {
   }
 
   return raw;
-
 }
-
 
 /*
 ==========================================================
@@ -1106,13 +860,11 @@ function normalizeDriveOpenUrl(url) {
 */
 
 function safeResourceUrl(value) {
-
   const raw = String(value ?? "").trim();
 
   if (!raw) return "";
 
   try {
-
     const url = new URL(raw);
 
     if (
@@ -1123,15 +875,11 @@ function safeResourceUrl(value) {
     }
 
   } catch (err) {
-
     return "";
-
   }
 
   return "";
-
 }
-
 
 /*
 ==========================================================
@@ -1140,9 +888,7 @@ function safeResourceUrl(value) {
 */
 
 async function fetchSheet(sheetName) {
-
   try {
-
     const res = await fetch(
       `https://opensheet.elk.sh/${SHEET_ID}/${encodeURIComponent(sheetName)}`
     );
@@ -1156,15 +902,10 @@ async function fetchSheet(sheetName) {
     return Array.isArray(data) ? data : [];
 
   } catch (err) {
-
     console.error(`Failed to load ${sheetName}:`, err);
-
     return [];
-
   }
-
 }
-
 
 /*
 ==========================================================
@@ -1173,7 +914,6 @@ async function fetchSheet(sheetName) {
 */
 
 function firstNonEmptyValue(obj) {
-
   if (!obj || typeof obj !== "object") return "";
 
   const vals = Object.values(obj).map(v =>
@@ -1181,9 +921,7 @@ function firstNonEmptyValue(obj) {
   );
 
   return vals.find(v => v.length > 0) || "";
-
 }
-
 
 /*
 ==========================================================
@@ -1192,7 +930,6 @@ function firstNonEmptyValue(obj) {
 */
 
 async function loadAbout() {
-
   const el = document.getElementById("about-text");
 
   if (!el) return;
@@ -1210,9 +947,7 @@ async function loadAbout() {
     "About content coming soon...";
 
   el.textContent = text;
-
 }
-
 
 /*
 ==========================================================
@@ -1221,7 +956,6 @@ async function loadAbout() {
 */
 
 async function loadResearch() {
-
   const container = document.getElementById("research-container");
 
   if (!container) return;
@@ -1231,7 +965,6 @@ async function loadResearch() {
   const data = await fetchSheet("RESEARCH");
 
   if (!data.length) {
-
     container.innerHTML = `
       <div class="col-12">
         <div class="glass text-center">
@@ -1241,34 +974,26 @@ async function loadResearch() {
         </div>
       </div>
     `;
-
     return;
-
   }
 
   data.forEach(r => {
-
     if (!r || Object.keys(r).length === 0) return;
 
     const title = r.title || r.Title || "Untitled";
-
     const desc = r.description || r.Description || "";
-
     const img = normalizeImageUrl(r.image || r.Image || "");
 
     const col = document.createElement("div");
-
     col.className = "col-md-4";
 
     const card = document.createElement("div");
-
     card.className = "research-card";
 
     card.style.backgroundImage =
       `linear-gradient(rgba(10,24,48,0.20),rgba(10,24,48,0.70)),url("${img.replaceAll('"', "%22")}")`;
 
     const overlay = document.createElement("div");
-
     overlay.className = "research-overlay";
 
     overlay.innerHTML = `
@@ -1281,15 +1006,10 @@ async function loadResearch() {
     `;
 
     card.appendChild(overlay);
-
     col.appendChild(card);
-
     container.appendChild(col);
-
   });
-
 }
-
 
 /*
 ==========================================================
@@ -1298,21 +1018,17 @@ async function loadResearch() {
 */
 
 async function loadTeam() {
-
   const teamContainer = document.getElementById("team-container");
-
   const piContainer = document.getElementById("pi-container");
 
   if (!teamContainer || !piContainer) return;
 
   teamContainer.innerHTML = "";
-
   piContainer.innerHTML = "";
 
   const data = await fetchSheet("TEAM");
 
   if (!data.length) {
-
     piContainer.innerHTML = `
       <div class="col-12">
         <div class="glass p-4">
@@ -1320,41 +1036,28 @@ async function loadTeam() {
         </div>
       </div>
     `;
-
     return;
-
   }
 
   let teamHTML = "";
-
   let piHTML = "";
 
   data.forEach((m, index) => {
-
     if (!m || Object.keys(m).length === 0) return;
 
     const name = m.name || m.Name || "Unnamed";
-
     const role = m.role || m.Role || "";
-
     const image = normalizeImageUrl(m.image || m.Image || FALLBACK_IMAGE);
-
     const linkedin = m.linkedin || m.LinkedIn || "";
-
     const bio = m.bio || m.Bio || "";
-
     const research = m.research || m.Research || "";
-
     const hobbies = m.hobbies || m.Hobbies || "";
-
     const interests = m.interests || m.Interests || "";
 
     const profileId = `profile-${index}`;
 
     const card = `
-
       <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-
         <div class="glass h-100 d-flex flex-column align-items-center p-4 text-center">
 
           <img
@@ -1414,9 +1117,7 @@ async function loadTeam() {
           </div>
 
         </div>
-
       </div>
-
     `;
 
     const isPI = /principal|pi\b|investigator/i.test(role);
@@ -1426,7 +1127,6 @@ async function loadTeam() {
     } else {
       teamHTML += card;
     }
-
   });
 
   piContainer.innerHTML = piHTML || `
@@ -1444,9 +1144,7 @@ async function loadTeam() {
       </div>
     </div>
   `;
-
 }
-
 
 /*
 ==========================================================
@@ -1455,31 +1153,22 @@ async function loadTeam() {
 */
 
 function openProfile(profileId) {
-
   const data = document.getElementById(profileId);
 
   if (!data) return;
 
   const name = data.dataset.name || "";
-
   const role = data.dataset.role || "";
-
   const image = data.dataset.image || FALLBACK_IMAGE;
-
   const bio = data.dataset.bio || "";
-
   const research = data.dataset.research || "";
-
   const hobbies = data.dataset.hobbies || "";
-
   const interests = data.dataset.interests || "";
-
   const linkedin = safeResourceUrl(data.dataset.linkedin || "");
 
   document.getElementById("profileModalTitle").textContent = name;
 
   let html = `
-
     <div class="text-center">
 
       <img
@@ -1498,7 +1187,6 @@ function openProfile(profileId) {
       </p>
 
     </div>
-
   `;
 
   if (bio) {
@@ -1550,9 +1238,7 @@ function openProfile(profileId) {
   );
 
   modal.show();
-
 }
-
 
 /*
 ==========================================================
@@ -1561,7 +1247,6 @@ function openProfile(profileId) {
 */
 
 async function loadPostdocs() {
-
   const container = document.getElementById("postdocs-container");
 
   if (!container) return;
@@ -1571,7 +1256,6 @@ async function loadPostdocs() {
   const data = await fetchSheet("POSTDOCS");
 
   if (!data.length) {
-
     container.innerHTML = `
       <div class="col-12">
         <div class="glass text-center">
@@ -1581,33 +1265,23 @@ async function loadPostdocs() {
         </div>
       </div>
     `;
-
     return;
-
   }
 
   data.forEach(p => {
-
     if (!p || Object.keys(p).length === 0) return;
 
     const name = p.name || p.Name || "Unnamed";
-
     const role = p.role || p.Role || "Postdoctoral Researcher";
-
     const image = normalizeImageUrl(p.image || p.Image || "");
-
     const bio = p.bio || p.Bio || "";
-
     const research = p.research || p.Research || "";
-
     const linkedin = safeResourceUrl(p.linkedin || p.LinkedIn || "");
 
     const col = document.createElement("div");
-
     col.className = "col-lg-4 col-md-6";
 
     col.innerHTML = `
-
       <div class="glass postdoc-card h-100">
 
         <img
@@ -1654,15 +1328,11 @@ async function loadPostdocs() {
         }
 
       </div>
-
     `;
 
     container.appendChild(col);
-
   });
-
 }
-
 
 /*
 ==========================================================
@@ -1677,7 +1347,6 @@ async function loadResourceSection(
   emptyMessage,
   defaultIcon
 ) {
-
   const container = document.getElementById(containerId);
 
   if (!container) return;
@@ -1687,7 +1356,6 @@ async function loadResourceSection(
   const data = await fetchSheet(sheetName);
 
   if (!data.length) {
-
     container.innerHTML = `
       <div class="col-12">
         <div class="glass text-center">
@@ -1697,13 +1365,10 @@ async function loadResourceSection(
         </div>
       </div>
     `;
-
     return;
-
   }
 
   data.forEach(item => {
-
     if (!item || Object.keys(item).length === 0) return;
 
     const title =
@@ -1735,7 +1400,6 @@ async function loadResourceSection(
     const link = safeResourceUrl(rawLink);
 
     const image = item.image || item.Image || "";
-
     const imageUrl = image ? normalizeImageUrl(image) : "";
 
     const icon =
@@ -1744,11 +1408,9 @@ async function loadResourceSection(
       defaultIcon;
 
     const col = document.createElement("div");
-
     col.className = "col-lg-4 col-md-6";
 
     col.innerHTML = `
-
       <div class="resource-card">
 
         ${
@@ -1809,15 +1471,11 @@ async function loadResourceSection(
         }
 
       </div>
-
     `;
 
     container.appendChild(col);
-
   });
-
 }
-
 
 /*
 ==========================================================
@@ -1826,7 +1484,6 @@ async function loadResourceSection(
 */
 
 async function loadAdvertisements() {
-
   const container = document.getElementById("advertisements-container");
 
   if (!container) return;
@@ -1836,7 +1493,6 @@ async function loadAdvertisements() {
   const data = await fetchSheet("ADVERTISEMENTS");
 
   if (!data.length) {
-
     container.innerHTML = `
       <div class="col-12">
         <div class="glass text-center">
@@ -1846,13 +1502,10 @@ async function loadAdvertisements() {
         </div>
       </div>
     `;
-
     return;
-
   }
 
   data.forEach(a => {
-
     if (!a || Object.keys(a).length === 0) return;
 
     const title = a.title || a.Title || "Opportunity";
@@ -1861,21 +1514,16 @@ async function loadAdvertisements() {
       a.type || a.Type || a.category || a.Category || "";
 
     const description = a.description || a.Description || "";
-
     const date = a.date || a.Date || "";
-
     const deadline = a.deadline || a.Deadline || "";
 
     const rawLink = a.link || a.Link || a.url || a.URL || "";
-
     const link = safeResourceUrl(rawLink);
 
     const col = document.createElement("div");
-
     col.className = "col-lg-4 col-md-6";
 
     col.innerHTML = `
-
       <div class="resource-card h-100">
 
         <div class="resource-icon">
@@ -1931,15 +1579,11 @@ async function loadAdvertisements() {
         }
 
       </div>
-
     `;
 
     container.appendChild(col);
-
   });
-
 }
-
 
 /*
 ==========================================================
@@ -1948,16 +1592,13 @@ async function loadAdvertisements() {
 */
 
 async function loadServers() {
-
   await loadResourceSection(
     "SERVERS",
     "servers-container",
     "Important research servers coming soon...",
     "fas fa-server"
   );
-
 }
-
 
 /*
 ==========================================================
@@ -1966,16 +1607,13 @@ async function loadServers() {
 */
 
 async function loadDatabases() {
-
   await loadResourceSection(
     "DATABASES",
     "databases-container",
     "Important research databases coming soon...",
     "fas fa-database"
   );
-
 }
-
 
 /*
 ==========================================================
@@ -1984,7 +1622,6 @@ async function loadDatabases() {
 */
 
 async function loadGallery() {
-
   const container = document.getElementById("gallery-container");
 
   if (!container) return;
@@ -1994,7 +1631,6 @@ async function loadGallery() {
   const data = await fetchSheet("GALLERY");
 
   if (!data.length) {
-
     container.innerHTML = `
       <div class="col-12">
         <div class="glass text-center">
@@ -2004,29 +1640,19 @@ async function loadGallery() {
         </div>
       </div>
     `;
-
     return;
-
   }
 
   data.forEach(g => {
-
     if (!g || Object.keys(g).length === 0) return;
 
     const title = g.title || g.Title || "Lab Activity";
-
     const event = g.event || g.Event || "";
-
     const location = g.location || g.Location || "";
-
     const year = g.year || g.Year || "";
-
     const rawImage = g.image || g.Image || "";
-
     const image = normalizeImageUrl(rawImage);
-
     const viewUrl = normalizeDriveOpenUrl(rawImage);
-
     const description = g.description || g.Description || "";
 
     const meta = [event,location,year]
@@ -2035,15 +1661,12 @@ async function loadGallery() {
       .join(" · ");
 
     const col = document.createElement("div");
-
     col.className = "col-lg-4 col-md-6";
 
     col.innerHTML = `
-
       <div class="gallery-card">
 
         <div class="gallery-img-wrapper">
-
           <img
             src="${escapeHtml(image)}"
             class="gallery-img"
@@ -2051,7 +1674,6 @@ async function loadGallery() {
             loading="lazy"
             onerror="this.onerror=null;this.src='${FALLBACK_IMAGE}'"
           >
-
         </div>
 
         <div class="gallery-content">
@@ -2085,17 +1707,12 @@ async function loadGallery() {
           }
 
         </div>
-
       </div>
-
     `;
 
     container.appendChild(col);
-
   });
-
 }
-
 
 /*
 ==========================================================
@@ -2104,7 +1721,6 @@ async function loadGallery() {
 */
 
 async function loadFunActivities() {
-
   const container = document.getElementById("fun-activities-container");
 
   if (!container) return;
@@ -2114,7 +1730,6 @@ async function loadFunActivities() {
   const data = await fetchSheet("FUN_ACTIVITIES");
 
   if (!data.length) {
-
     container.innerHTML = `
       <div class="col-12">
         <div class="glass text-center">
@@ -2124,29 +1739,19 @@ async function loadFunActivities() {
         </div>
       </div>
     `;
-
     return;
-
   }
 
   data.forEach(a => {
-
     if (!a || Object.keys(a).length === 0) return;
 
     const title = a.title || a.Title || "Fun Activity";
-
     const event = a.event || a.Event || "";
-
     const location = a.location || a.Location || "";
-
     const year = a.year || a.Year || "";
-
     const rawImage = a.image || a.Image || "";
-
     const image = normalizeImageUrl(rawImage);
-
     const viewUrl = normalizeDriveOpenUrl(rawImage);
-
     const description = a.description || a.Description || "";
 
     const meta = [event,location,year]
@@ -2155,15 +1760,12 @@ async function loadFunActivities() {
       .join(" · ");
 
     const col = document.createElement("div");
-
     col.className = "col-lg-4 col-md-6";
 
     col.innerHTML = `
-
       <div class="gallery-card">
 
         <div class="gallery-img-wrapper">
-
           <img
             src="${escapeHtml(image)}"
             class="gallery-img"
@@ -2171,7 +1773,6 @@ async function loadFunActivities() {
             loading="lazy"
             onerror="this.onerror=null;this.src='${FALLBACK_IMAGE}'"
           >
-
         </div>
 
         <div class="gallery-content">
@@ -2205,17 +1806,12 @@ async function loadFunActivities() {
           }
 
         </div>
-
       </div>
-
     `;
 
     container.appendChild(col);
-
   });
-
 }
-
 
 /*
 ==========================================================
@@ -2224,7 +1820,6 @@ async function loadFunActivities() {
 */
 
 async function loadPosters() {
-
   const container = document.getElementById("posters-container");
 
   if (!container) return;
@@ -2234,7 +1829,6 @@ async function loadPosters() {
   const data = await fetchSheet("POSTERS");
 
   if (!data.length) {
-
     container.innerHTML = `
       <div class="col-12">
         <div class="glass text-center">
@@ -2244,41 +1838,28 @@ async function loadPosters() {
         </div>
       </div>
     `;
-
     return;
-
   }
 
   data.forEach(p => {
-
     if (!p || Object.keys(p).length === 0) return;
 
     const title = p.title || p.Title || "Research Poster";
-
     const event = p.event || p.Event || "";
-
     const year = p.year || p.Year || "";
-
     const authors = p.authors || p.Authors || "";
-
     const image = normalizeImageUrl(p.image || p.Image || "");
-
     const link = p.link || p.Link || "";
-
     const description = p.description || p.Description || "";
-
     const posterUrl = normalizeDriveOpenUrl(link);
 
     const col = document.createElement("div");
-
     col.className = "col-lg-4 col-md-6";
 
     col.innerHTML = `
-
       <div class="poster-card">
 
         <div class="poster-img-wrapper">
-
           <img
             src="${escapeHtml(image)}"
             class="poster-img"
@@ -2286,7 +1867,6 @@ async function loadPosters() {
             loading="lazy"
             onerror="this.onerror=null;this.src='${FALLBACK_IMAGE}'"
           >
-
         </div>
 
         <div class="poster-content">
@@ -2333,17 +1913,12 @@ async function loadPosters() {
           }
 
         </div>
-
       </div>
-
     `;
 
     container.appendChild(col);
-
   });
-
 }
-
 
 /*
 ==========================================================
@@ -2352,7 +1927,6 @@ async function loadPosters() {
 */
 
 async function loadPublications() {
-
   const container = document.getElementById("pub-container");
 
   if (!container) return;
@@ -2362,7 +1936,6 @@ async function loadPublications() {
   const data = await fetchSheet("PUBLICATIONS");
 
   if (!data.length) {
-
     container.innerHTML = `
       <div class="text-center py-5">
         <p class="text-secondary mb-0">
@@ -2370,9 +1943,7 @@ async function loadPublications() {
         </p>
       </div>
     `;
-
     return;
-
   }
 
   const items = [...data].reverse().slice(0,8);
@@ -2380,7 +1951,6 @@ async function loadPublications() {
   let html = "";
 
   items.forEach(p => {
-
     if (!p || Object.keys(p).length === 0) return;
 
     const title =
@@ -2390,15 +1960,11 @@ async function loadPublications() {
       "Untitled";
 
     const authors = p.authors || p.Authors || "";
-
     const journal = p.journal || p.Journal || "";
-
     const year = p.year || p.Year || "";
-
     const link = safeResourceUrl(p.link || p.Link || "");
 
     html += `
-
       <div class="pub-card">
 
         <h6 class="mb-2 fw-bold">
@@ -2431,9 +1997,7 @@ async function loadPublications() {
         }
 
       </div>
-
     `;
-
   });
 
   container.innerHTML = html || `
@@ -2443,9 +2007,7 @@ async function loadPublications() {
       </p>
     </div>
   `;
-
 }
-
 
 /*
 ==========================================================
@@ -2454,7 +2016,6 @@ async function loadPublications() {
 */
 
 async function loadContact() {
-
   const el = document.getElementById("contact-content");
 
   if (!el) return;
@@ -2464,21 +2025,16 @@ async function loadContact() {
   const data = await fetchSheet("CONTACT");
 
   let email = "";
-
   let address = "";
 
   data.forEach(c => {
-
     if (!c || Object.keys(c).length === 0) return;
 
     const key = String(c.type || c.Type || "").toLowerCase();
-
     const value = String(c.value || c.Value || "").trim();
 
     if (key.includes("email")) email = value;
-
     if (key.includes("address")) address = value;
-
   });
 
   const emailBlock = email
@@ -2508,9 +2064,7 @@ async function loadContact() {
     `;
 
   el.innerHTML = emailBlock + addressBlock;
-
 }
-
 
 /*
 ==========================================================
@@ -2519,33 +2073,19 @@ async function loadContact() {
 */
 
 document.addEventListener("DOMContentLoaded", () => {
-
   loadAbout();
-
   loadResearch();
-
   loadTeam();
-
   loadPostdocs();
-
-  loadAdvertisements();
-
-  loadServers();
-
-  loadDatabases();
-
   loadGallery();
-
-  loadFunActivities();
-
   loadPosters();
-
+  loadAdvertisements();
   loadPublications();
-
+  loadServers();
+  loadDatabases();
+  loadFunActivities();
   loadContact();
-
 });
-
 </script>
 
 </body>
