@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -190,6 +189,14 @@ body {
   background: var(--primary-gradient);
   border-radius: 99px;
   box-shadow: 0 5px 15px rgba(124,58,237,0.18);
+}
+
+/* KEEP SELECTED SECTION HEADINGS ON ONE LINE */
+#team .section-title,
+#fun-activities .section-title {
+  white-space: nowrap;
+  font-size: clamp(1.65rem, 4.5vw, 3.15rem);
+  width: 100%;
 }
 
 /* GLASS CARDS */
@@ -547,12 +554,26 @@ footer p { opacity: 0.95 !important; }
   }
 
   .section-title { font-size: 2.35rem; }
+
+  #team .section-title,
+  #fun-activities .section-title {
+    font-size: clamp(1.5rem, 6vw, 2.25rem);
+    white-space: nowrap;
+  }
+
   .section { padding: 78px 0; }
   .navbar-brand { font-size: 1.75rem; }
   .poster-img-wrapper { height: 330px; }
   .gallery-img-wrapper { height: 220px; }
   .glass { padding: 1.6rem !important; }
   .resource-card { padding: 1.6rem; }
+}
+
+@media (max-width: 360px) {
+  #team .section-title,
+  #fun-activities .section-title {
+    font-size: 1.35rem;
+  }
 }
 </style>
 </head>
@@ -582,7 +603,7 @@ footer p { opacity: 0.95 !important; }
         <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
         <li class="nav-item"><a class="nav-link" href="#research">Research</a></li>
         <li class="nav-item"><a class="nav-link" href="#team">PhD Scholars</a></li>
-        <li class="nav-item"><a class="nav-link" href="#postdocs">Postdocs</a></li>
+        <li class="nav-item"><a class="nav-link" href="#postdocs">Postdoc</a></li>
         <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
         <li class="nav-item"><a class="nav-link" href="#posters">Posters</a></li>
         <li class="nav-item"><a class="nav-link" href="#advertisements">Opportunities</a></li>
@@ -627,7 +648,7 @@ footer p { opacity: 0.95 !important; }
   </div>
 </section>
 
-<!-- PRINCIPAL INVESTIGATOR: RETAINED IN ITS ORIGINAL POSITION -->
+<!-- PRINCIPAL INVESTIGATOR -->
 <section class="section text-center">
   <div class="container">
     <h2 class="section-title">Principal Investigator</h2>
@@ -643,10 +664,10 @@ footer p { opacity: 0.95 !important; }
   </div>
 </section>
 
-<!-- POSTDOCTORAL RESEARCHERS -->
+<!-- POSTDOC -->
 <section id="postdocs" class="section">
   <div class="container">
-    <h2 class="section-title">Postdoctoral Researchers</h2>
+    <h2 class="section-title">Postdoc Researchers</h2>
     <div class="row g-4" id="postdocs-container"></div>
   </div>
 </section>
@@ -1242,7 +1263,7 @@ function openProfile(profileId) {
 
 /*
 ==========================================================
-   POSTDOCTORAL RESEARCHERS
+   POSTDOC RESEARCHERS
 ==========================================================
 */
 
@@ -1260,7 +1281,7 @@ async function loadPostdocs() {
       <div class="col-12">
         <div class="glass text-center">
           <p class="text-secondary mb-0">
-            Postdoctoral researcher profiles coming soon...
+            Postdoc profiles coming soon...
           </p>
         </div>
       </div>
