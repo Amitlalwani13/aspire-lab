@@ -133,6 +133,26 @@ body[data-theme=nova] #cur.big{width:54px;height:54px;margin:-27px 0 0 -27px;bac
 #lb img{max-width:92vw;max-height:84vh;border-radius:14px;box-shadow:0 0 0 1px var(--line),0 30px 90px rgba(0,229,255,.18);animation:lbZoom .35s ease}
 @keyframes lbZoom{from{transform:scale(.92)}}
 #lb span{color:var(--muted);font:600 .8rem 'JetBrains Mono',monospace}
+
+/* ===== AESTHETIC POLISH ===== */
+::selection{background:rgba(0,229,255,.28);color:#fff}
+html{scrollbar-width:thin;scrollbar-color:#2a3366 #05060d}
+::-webkit-scrollbar{width:9px}::-webkit-scrollbar-thumb{background:linear-gradient(#00e5ff55,#7c4dff88);border-radius:9px}
+body[data-theme=nova] .hero h1{background-size:220% 100%;animation:shine 7s ease-in-out infinite alternate}
+@keyframes shine{to{background-position:100% 0}}
+body[data-theme=nova] #helix{filter:drop-shadow(0 0 34px rgba(60,120,255,.28))}
+@media(hover:none),(max-width:900px){body[data-theme=nova] #helix{filter:none}}
+body[data-theme=nova] .pbtn{box-shadow:0 8px 26px rgba(124,77,255,.35)}
+body[data-theme=nova] .pbtn.ghost{box-shadow:none;backdrop-filter:blur(6px)}
+body[data-theme=nova] .pbtn.ghost:hover{border-color:var(--acc);box-shadow:0 0 22px rgba(0,229,255,.25)}
+body[data-theme=nova] .card-x{box-shadow:0 18px 50px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.05)}
+body[data-theme=nova] .navbar{box-shadow:0 8px 30px rgba(0,0,0,.35)}
+body[data-theme=nova] .section-title::after{background:var(--g);box-shadow:0 0 16px rgba(0,229,255,.55)}
+body[data-theme=nova] .team-img{border-color:transparent;background:linear-gradient(#0a0c18,#0a0c18) padding-box,var(--g) border-box}
+body[data-theme=nova] .tag{background:rgba(0,229,255,.08)}
+body[data-theme=nova] .stat{transition:background .3s}
+body[data-theme=nova] .stat:hover{background:#0d1126}
+body[data-theme=nova] .hint{opacity:.85}
 </style>
 </head>
 <body data-theme="nova">
@@ -343,10 +363,10 @@ render("DATABASES","databases-container","Important research databases coming so
   const CH="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<>/_#";
   function scramble(el,txt){let f=0;clearInterval(el._sc);el._sc=setInterval(()=>{
     el.textContent=txt.split("").map((c,i)=>c===" "?" ":(i<f/2?c:CH[Math.random()*CH.length|0])).join("");
-    if(++f>txt.length*2+2){clearInterval(el._sc);el.textContent=txt}},30)}
+    if((f+=3)>txt.length*2+2){clearInterval(el._sc);el.textContent=txt}},18)}
   const h1=$(".hero h1");
   new MutationObserver(()=>{if(nova())scramble(h1,"ASPIRE Lab")}).observe(document.body,{attributes:true,attributeFilter:["data-theme"]});
-  const so2=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){so2.unobserve(e.target);if(nova())scramble(e.target,e.target.dataset.t)}}),{threshold:.6});
+  const so2=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){so2.unobserve(e.target);if(nova())scramble(e.target,e.target.dataset.t)}}),{threshold:.25});
   document.querySelectorAll(".section-title").forEach(t=>{t.dataset.t=t.textContent;so2.observe(t)});
   if(nova())scramble(h1,"ASPIRE Lab");
 
@@ -359,56 +379,21 @@ render("DATABASES","databases-container","Important research databases coming so
   addEventListener("resize",size);size();
   addEventListener("mousemove",e=>{mx=e.clientX;my=e.clientY});
 
-  /* ===== FERRITIN 24-MER (octahedral 432), cartoon-ribbon style like the reference ===== */
-  const FOLDP=[],UNF=[],CAGE_PATHS=[],CAGE_SUBUNITS=24;
-  const CAGE_RADIUS=140,HELIX_LENGTH=100,HELIX_STEPS=LITE?24:44,HELIX_RADIUS=4.2,TURNS=6;
-  function addCagePath(points,type,subunit,ph){
-    const indices=[];for(const p of points){indices.push(FOLDP.length);FOLDP.push(p)}
-    CAGE_PATHS.push({indices,type,subunit,ph});
-  }
+  /* ===== FERRITIN 24-MER — real backbone from ferritin_cage.pdb (24 chains, C-alpha trace) ===== */
+  const FD={"ca":[58.2,-24.7,17.0,55.2,-24.7,19.4,52.6,-22.2,18.3,52.2,-18.9,20.1,48.6,-19.6,20.9,49.0,-23.2,22.1,48.0,-23.7,25.8,46.8,-26.8,27.6,46.9,-28.8,24.4,48.5,-32.2,24.5,50.2,-34.2,21.7,47.8,-37.2,22.2,44.7,-34.9,21.9,46.2,-33.7,18.6,46.9,-37.1,17.1,43.4,-38.2,18.2,41.8,-35.3,16.4,43.8,-36.1,13.3,42.6,-39.8,13.4,39.0,-38.7,14.0,39.4,-36.4,11.0,40.5,-39.3,8.8,37.7,-41.5,10.1,35.1,-38.8,9.3,36.5,-38.4,5.8,36.2,-42.2,5.3,32.6,-42.2,6.5,31.8,-39.4,4.1,33.3,-41.4,1.3,31.3,-44.5,2.3,28.0,-42.6,2.3,28.8,-41.1,-1.1,29.3,-44.6,-2.4,26.0,-45.8,-0.7,24.0,-43.0,-2.3,25.4,-43.4,-5.8,24.7,-47.1,-5.6,21.0,-46.5,-5.0,21.1,-43.9,-7.8,21.6,-46.7,-10.3,18.9,-47.8,-12.7,18.7,-51.4,-11.6,17.9,-50.2,-8.1,16.1,-46.9,-8.8,15.3,-45.9,-5.1,15.6,-42.1,-5.2,14.9,-41.3,-1.6,17.5,-43.7,-0.3,20.1,-42.0,-2.5,19.1,-38.6,-1.2,19.2,-39.8,2.4,22.7,-41.2,2.1,23.9,-38.1,0.2,22.7,-35.9,3.1,24.5,-38.2,5.5,27.7,-37.7,3.4,27.4,-34.0,3.5,26.9,-34.0,7.2,29.9,-36.1,7.8,32.0,-33.8,5.6,30.9,-30.7,7.5,31.8,-32.5,10.8,35.3,-33.2,9.5,35.7,-29.6,8.6,34.5,-28.6,12.1,37.2,-30.9,13.6,39.8,-29.3,11.4,38.8,-25.8,12.4,39.0,-26.8,16.1,42.5,-28.2,15.5,43.6,-25.0,14.0,42.1,-22.8,16.8,44.0,-24.6,19.6,47.4,-24.4,17.9,47.6,-28.0,16.6,48.9,-28.8,13.1,46.7,-30.9,10.7,48.1,-34.0,9.1,46.1,-35.6,6.2,46.4,-39.3,5.4,45.0,-41.5,2.7,41.2,-42.1,2.6,40.5,-45.8,2.2,37.7,-46.8,-0.2,34.4,-48.2,1.0,34.1,-51.8,2.0,31.5,-52.8,-0.6,30.8,-52.0,-4.2,27.3,-53.4,-4.1,25.2,-52.5,-1.1,22.5,-55.0,-1.6,18.9,-54.3,-0.6,17.9,-51.2,1.4,17.5,-53.2,4.5,21.3,-54.0,4.4,22.4,-50.5,3.5,20.5,-49.2,6.5,22.3,-51.8,8.7,25.7,-50.8,7.4,25.0,-47.1,8.0,24.0,-48.0,11.6,27.2,-49.9,12.2,29.3,-47.1,10.8,27.5,-44.5,13.0,28.0,-46.7,16.1,31.7,-47.0,15.2,32.1,-43.3,14.9,30.2,-42.7,18.2,32.6,-45.2,20.0,35.6,-43.2,18.5,35.6,-43.2,18.5,34.1,-40.0,19.8,33.6,-41.5,23.3,37.2,-42.7,23.3,38.4,-39.2,22.4,36.3,-37.8,25.2,38.0,-40.3,27.6,41.4,-39.1,26.4,40.4,-35.5,26.8,39.3,-36.0,30.4,42.5,-37.9,31.0,44.6,-34.8,30.2,42.4,-32.2,32.0,41.3,-30.3,28.9,37.8,-28.8,29.5,37.6,-27.0,26.1,37.9,-30.3,24.1,35.3,-32.0,26.3,32.9,-29.1,25.9,33.4,-29.0,22.1,32.7,-32.7,21.8,32.7,-32.7,21.7,29.7,-32.5,24.0,28.3,-29.5,22.2,28.8,-30.5,18.6,29.0,-34.3,18.3,27.6,-36.7,20.9,23.9,-35.7,21.0,23.7,-35.6,17.2,25.2,-39.1,17.0,22.7,-40.4,19.5,19.8,-38.9,17.4,21.2,-40.3,14.2,21.5,-43.8,15.7,18.0,-43.6,17.1,16.6,-42.6,13.7,18.5,-45.4,11.9,17.1,-47.9,14.4,13.5,-46.7,13.8,13.9,-47.0,10.0,15.3,-50.6,10.3,12.5,-51.8,12.5,9.8,-50.4,10.1,11.5,-52.0,7.1,11.5,-55.2,9.0,7.9,-54.8,10.0,6.9,-54.5,6.4,9.4,-56.8,4.7,8.4,-60.3,3.9,6.5,-61.9,2.1,6.1,-59.0,-0.3,9.6,-57.5,0.2,9.7,-55.5,-3.0,6.3,-53.7,-2.5,7.4,-53.1,1.1,10.7,-51.4,0.0,8.8,-49.3,-2.5,6.2,-48.1,-0.0,8.9,-47.3,2.6,10.8,-45.4,-0.0,7.7,-43.4,-1.1,6.2,-42.7,2.3,8.9,-42.4,5.0,12.0,-41.2,3.2,10.2,-39.4,0.3],"ss":"CCCCCCCCCHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHCHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHCCCCCCCCCCCCCCCCHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHCHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHCCCHHHHHHHHHHHHCC","brk":[],"rt":[[1.0,-0.0,0.0,0.0,1.0,-0.0,0.0,-0.0,1.0,0.0,-0.0,-0.0],[0.0018,0.0007,-1.0,1.0,-0.0017,0.0018,-0.0016,-1.0,-0.0007,-0.0957,-0.0821,-0.0467],[-1.0,0.0066,-0.0017,0.0017,-0.0008,-1.0,-0.0066,-1.0,0.0008,0.0878,-0.0731,-0.0486],[-0.0044,-1.0,-0.0,1.0,-0.0044,-0.0,0.0,-0.0,1.0,-0.0402,-0.1174,0.1271],[0.001,-0.0015,1.0,0.0013,1.0,0.0015,-1.0,0.0013,0.001,-0.0611,0.0075,-0.0088],[-1.0,0.0,0.0,0.0,1.0,0.0034,-0.0,0.0034,-1.0,-0.0102,0.0,0.0287],[-0.0033,-1.0,-0.0017,0.0016,0.0017,-1.0,1.0,-0.0033,0.0016,0.0089,0.0241,0.0184],[-0.0026,-1.0,0.0055,-1.0,0.0026,0.0,-0.0,-0.0055,-1.0,-0.0856,0.0683,-0.0613],[-0.0066,-0.0017,1.0,-0.0017,-1.0,-0.0017,1.0,-0.0018,0.0066,-0.019,0.0274,0.0186],[-0.0016,-0.0002,1.0,1.0,-0.006,0.0016,0.006,1.0,0.0002,0.0949,-0.1108,0.0523],[-1.0,0.0035,-0.0047,-0.0035,-1.0,0.0007,-0.0047,0.0007,1.0,0.0918,-0.0453,0.086],[1.0,0.0,0.0066,0.0,-1.0,0.0,0.0066,-0.0,-1.0,0.0012,0.0259,0.0281],[0.0048,-0.0021,-1.0,-0.0014,-1.0,0.0021,-1.0,0.0014,-0.0048,-0.0671,-0.0566,0.0985],[0.0067,1.0,-0.0026,0.0034,-0.0026,-1.0,-1.0,0.0067,-0.0034,0.0569,-0.0742,0.1121],[0.0006,-0.0041,-1.0,-1.0,0.0008,-0.0006,0.0008,1.0,-0.0041,0.0157,0.0445,0.059],[0.0034,1.0,0.0008,1.0,-0.0034,0.0033,0.0033,0.0008,-1.0,0.0607,-0.0786,-0.0677],[0.0036,1.0,-0.006,-1.0,0.0036,-0.0035,-0.0034,0.006,1.0,0.0516,0.1198,0.1057],[0.0,1.0,-0.0025,-0.0032,0.0025,1.0,1.0,-0.0,0.0032,0.0592,0.0865,-0.0765],[1.0,0.0,0.0018,-0.0018,0.004,1.0,0.0,-1.0,0.004,-0.1021,0.0901,-0.0466],[0.0,-1.0,0.0027,-0.0,0.0027,1.0,-1.0,-0.0,-0.0,-0.0699,0.1035,0.1098],[-0.0017,0.0057,1.0,-1.0,0.0051,-0.0017,-0.0051,-1.0,0.0057,0.0755,0.1087,-0.0444],[-1.0,-0.0033,-0.0033,-0.0033,-0.0034,1.0,-0.0033,1.0,0.0034,-0.0089,0.0024,0.0],[1.0,-0.0033,0.0033,0.0033,-0.0001,-1.0,0.0033,1.0,-0.0,-0.0005,0.0261,0.0007],[-0.0,0.0017,-1.0,-0.0017,1.0,0.0017,1.0,0.0017,-0.0,0.0103,-0.0013,0.018]]};
+  const FOLDP=[],UNF=[],CAGE_PATHS=[],CAGE_SUBUNITS=24,SC=2.15;
   (function buildFerritinCage(){
-    const R=[];
-    for(const p of [[0,1,2],[0,2,1],[1,0,2],[1,2,0],[2,0,1],[2,1,0]])
-     for(const sx of[-1,1])for(const sy of[-1,1])for(const sz of[-1,1]){
-      const m=[[0,0,0],[0,0,0],[0,0,0]];m[0][p[0]]=sx;m[1][p[1]]=sy;m[2][p[2]]=sz;
-      const det=m[0][0]*(m[1][1]*m[2][2]-m[1][2]*m[2][1])-m[0][1]*(m[1][0]*m[2][2]-m[1][2]*m[2][0])+m[0][2]*(m[1][0]*m[2][1]-m[1][1]*m[2][0]);
-      if(det===1)R.push(m);
-    }
-    const ap=(m,v)=>({x:m[0][0]*v.x+m[0][1]*v.y+m[0][2]*v.z,y:m[1][0]*v.x+m[1][1]*v.y+m[1][2]*v.z,z:m[2][0]*v.x+m[2][1]*v.y+m[2][2]*v.z});
-    const nrm=v=>{const l=Math.hypot(v.x,v.y,v.z);return{x:v.x/l,y:v.y/l,z:v.z/l}};
-    const cr=(a,b)=>({x:a.y*b.z-a.z*b.y,y:a.z*b.x-a.x*b.z,z:a.x*b.y-a.y*b.x});
-    /* seed subunit sits next to a 4-fold axis (z) -> pinwheel of 4 bundles around each square pore */
-    const n0=nrm({x:.38,y:.17,z:.9});
-    const a0=nrm(cr(n0,{x:1,y:1,z:0}));
-    const b0=cr(n0,a0);
-    const offs=[-22,-7.5,7.5,22],rad=[4,-4,4,-4];
+    const n=FD.ss.length,ca=FD.ca,segs=[];
+    for(let i=0;i<n;){let j=i;while(j<n&&FD.ss[j]===FD.ss[i])j++;segs.push([FD.ss[i],i,j-1]);i=j}
     for(let s=0;s<24;s++){
-      const n=ap(R[s],n0),a=ap(R[s],a0),b=ap(R[s],b0),helices=[];
-      for(let h=0;h<4;h++){
-        const pts=[],ph=[],dir=h%2?-1:1;
-        for(let k=0;k<HELIX_STEPS;k++){
-          const t=k/(HELIX_STEPS-1),ax=(t-.5)*HELIX_LENGTH*dir;
-          const ang=t*Math.PI*2*TURNS+h*1.2,cu=Math.cos(ang)*HELIX_RADIUS,cv=Math.sin(ang)*HELIX_RADIUS;
-          const side=offs[h]+cu,rr=CAGE_RADIUS+rad[h]+cv;
-          pts.push({x:n.x*rr+a.x*ax+b.x*side,y:n.y*rr+a.y*ax+b.y*side,z:n.z*rr+a.z*ax+b.z*side});
-          ph.push(ang);
-        }
-        helices.push(pts);addCagePath(pts,"helix",s,ph);
+      const T=FD.rt[s];
+      const pt=i=>{const x=ca[3*i],y=ca[3*i+1],z=ca[3*i+2];
+        return{x:(T[0]*x+T[1]*y+T[2]*z+T[9])*SC,y:(T[3]*x+T[4]*y+T[5]*z+T[10])*SC,z:(T[6]*x+T[7]*y+T[8]*z+T[11])*SC}};
+      for(const[t,a,b]of segs){
+        const e=Math.min(n-1,b+1),pts=[],ph=[],idx=[];
+        for(let i=a;i<=e;i++){idx.push(FOLDP.length);FOLDP.push(pt(i));ph.push(i*1.7453)}   /* 100 deg per residue */
+        CAGE_PATHS.push({indices:idx,type:t==="H"?"helix":"loop",subunit:s,ph});
       }
-      /* up-down-up-down loops */
-      for(let h=0;h<3;h++){
-        const A=helices[h],B=helices[h+1],end=h%2?0:HELIX_STEPS-1;
-        const p=A[end],q=B[end],loop=[],sg=end?1:-1;
-        for(let k=0;k<=6;k++){const t=k/6,bu=Math.sin(t*Math.PI)*8*sg;
-          loop.push({x:p.x*(1-t)+q.x*t+a.x*bu,y:p.y*(1-t)+q.y*t+a.y*bu,z:p.z*(1-t)+q.z*t+a.z*bu});}
-        addCagePath(loop,"loop",s,null);
-      }
-      /* short E helix pointing toward the 4-fold pore */
-      {const pts=[],ph=[],N=LITE?10:16;
-        for(let k=0;k<N;k++){const t=k/(N-1),ang=t*Math.PI*2*3,sd=-16+(t-.5)*30;
-          const rr=CAGE_RADIUS-8+Math.cos(ang)*3.6,ax=HELIX_LENGTH/2+10+Math.sin(ang)*3.6;
-          pts.push({x:n.x*rr+a.x*ax+b.x*sd,y:n.y*rr+a.y*ax+b.y*sd,z:n.z*rr+a.z*ax+b.z*sd});ph.push(ang);}
-        addCagePath(pts,"helix",s,ph);}
     }
   })();
 
@@ -417,8 +402,6 @@ render("DATABASES","databases-container","Important research databases coming so
 
   const mixc=(a,b,u)=>a.map((v,i)=>v+(b[i]-v)*u);
   const smooth=u=>u*u*(3-2*u);
-  /* purple cartoon palette (subunit 0 is red, like the highlighted chain in the reference) */
-  const PUR={d:[84,48,122],l:[205,155,235]},RED={d:[115,8,34],l:[240,60,95]};
 
   let foldT=0,unfold=false,ry=0,tilt=.12,lastPct=-1;
   const hint=document.createElement("div");hint.className="hint";hc.append(hint);
@@ -439,24 +422,39 @@ render("DATABASES","databases-container","Important research databases coming so
       P2.push({x:260+x1*sc,y:320+y2*sc,z:z2,s:sc});
     }
     hctx.clearRect(0,0,520,640);hctx.lineCap="round";hctx.lineJoin="round";
-    const sorted=CAGE_PATHS.map(path=>{let d=0;for(const ix of path.indices)d+=P2[ix].z;return{path,depth:d/path.indices.length}}).sort((a,b)=>a.depth-b.depth);
-    for(const{path}of sorted){
-      const idx=path.indices,isH=path.type==="helix",pal=path.subunit===0?RED:PUR;
-      for(let k=1;k<idx.length;k++){
-        const p=P2[idx[k-1]],q=P2[idx[k]];
-        const fog=.45+.55*Math.max(0,Math.min(1,(p.z+q.z+380)/760));
-        const sc=(p.s+q.s)*.5;
-        if(isH){
-          const lt=.5+.5*Math.sin(path.ph[k]);
-          const c=mixc(pal.d,pal.l,lt).map(v=>v*fog|0);
-          hctx.strokeStyle=`rgb(${pal.d[0]*fog*.55|0},${pal.d[1]*fog*.55|0},${pal.d[2]*fog*.55|0})`;
-          hctx.lineWidth=(8.6)*sc;hctx.beginPath();hctx.moveTo(p.x,p.y);hctx.lineTo(q.x,q.y);hctx.stroke();
-          hctx.strokeStyle=`rgb(${c[0]},${c[1]},${c[2]})`;
-          hctx.lineWidth=6.4*sc;hctx.beginPath();hctx.moveTo(p.x,p.y);hctx.lineTo(q.x,q.y);hctx.stroke();
-        }else{
-          hctx.strokeStyle=`rgb(${pal.l[0]*fog|0},${pal.l[1]*fog|0},${pal.l[2]*fog|0})`;
-          hctx.lineWidth=1.5*sc;hctx.beginPath();hctx.moveTo(p.x,p.y);hctx.lineTo(q.x,q.y);hctx.stroke();
+    /* group by subunit; far subunits first so near ones cleanly cover them */
+    const subs=Array.from({length:24},(_,i)=>({i,paths:[],d:0,n:0}));
+    for(const path of CAGE_PATHS){const S=subs[path.subunit];let d=0;for(const ix of path.indices)d+=P2[ix].z;S.paths.push({path,depth:d/path.indices.length});S.d+=d;S.n+=path.indices.length}
+    for(const S of subs){S.depth=S.d/S.n;S.paths.sort((a,b)=>a.depth-b.depth)}
+    subs.sort((a,b)=>a.depth-b.depth);
+    for(const S of subs){
+      const sf=Math.max(0,Math.min(1,(S.depth+190)/380));
+      const tk=(S.i%4)/3*.5;                                   /* tiny per-unit tint so neighbours read apart */
+      const bc=mixc([30,105,205],[96,84,225],tk),lc=mixc([85,165,235],[150,150,250],tk);
+      for(const{path}of S.paths){
+        const idx=path.indices,isH=path.type==="helix";
+        /* dark outline under every ribbon */
+        hctx.strokeStyle=`rgba(4,10,34,${.55+.4*sf})`;hctx.lineWidth=(isH?9:4)*(1+(S.depth/700));
+        hctx.beginPath();hctx.moveTo(P2[idx[0]].x,P2[idx[0]].y);
+        for(let k=1;k<idx.length;k++)hctx.lineTo(P2[idx[k]].x,P2[idx[k]].y);hctx.stroke();
+        for(let k=1;k<idx.length;k++){
+          const p=P2[idx[k-1]],q=P2[idx[k]];
+          const depth=Math.max(0,Math.min(1,(p.z+q.z+380)/760));
+          const alpha=isH?.6+depth*.4:.35+depth*.45,c=isH?bc:lc;
+          hctx.strokeStyle=`rgba(${c[0]|0},${c[1]|0},${c[2]|0},${alpha})`;
+          hctx.lineWidth=(isH?6.5:2.2)*((p.s+q.s)*.5);
+          hctx.beginPath();hctx.moveTo(p.x,p.y);hctx.lineTo(q.x,q.y);hctx.stroke();
         }
+        hctx.globalCompositeOperation="lighter";
+        for(let k=1;k<(LITE?1:idx.length);k++){
+          const p=P2[idx[k-1]],q=P2[idx[k]];
+          const coil=isH?.5+.5*Math.sin(path.ph[k]):1;
+          const alpha=isH?(.06+sf*.3)*(.4+.9*coil):.08+sf*.12;
+          hctx.strokeStyle=`rgba(185,225,255,${alpha})`;
+          hctx.lineWidth=(isH?1.9:.7)*((p.s+q.s)*.5);
+          hctx.beginPath();hctx.moveTo(p.x-1.2,p.y-1.2);hctx.lineTo(q.x-1.2,q.y-1.2);hctx.stroke();
+        }
+        hctx.globalCompositeOperation="source-over";
       }
     }
     const pct=Math.round(foldT*100);
