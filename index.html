@@ -20,7 +20,7 @@ h1,h2,h3,h4,h5,h6{font-family:var(--hf);color:var(--head)}
 .nav-link::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:3px;background:var(--g);border-radius:9px;transition:width .25s}
 .nav-link:hover::after{width:100%}
 .navbar-toggler{border:1px solid var(--line);color:var(--ink);font-size:1.2rem}
-.hero{min-height:88vh;background:url("https://lh3.googleusercontent.com/d/1bixRBwYia7U1ZMcF_qGGCKLb_ASKpdV8") center/cover;display:flex;align-items:center;justify-content:center;text-align:center}
+.hero{min-height:88vh;background:url("https://lh3.googleusercontent.com/d/1bixRBwYia7U1ZMcF_qGGCKLb_ASKpdV8=w1200") center/cover;display:flex;align-items:center;justify-content:center;text-align:center}
 .hero h1{font-size:clamp(3rem,9vw,5.5rem);font-weight:700;background:var(--g);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-1px}
 .hero p{display:inline-block;background:var(--nav);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:.7rem 1.4rem;font-weight:500;backdrop-filter:blur(10px);font-size:clamp(.95rem,2.4vw,1.3rem)}
 .section{padding:95px 0}.section:nth-of-type(even){background:var(--alt)}
@@ -48,7 +48,6 @@ h1,h2,h3,h4,h5,h6{font-family:var(--hf);color:var(--head)}
 .mimg{width:170px;height:170px;object-fit:cover;border-radius:50%;border:5px solid var(--acc);margin-bottom:16px}
 footer{background:var(--foot);color:rgba(255,255,255,.92);padding:2.6rem 0;text-align:center}
 .mail{color:var(--head);font-weight:700;text-decoration:none}
-/* theme dots */
 @media(max-width:768px){.section{padding:70px 0}.iw.tall{height:320px}}
 /* ===== LAYOUT THEMES ===== */
 .card-x{position:relative;isolation:isolate}
@@ -60,7 +59,7 @@ body[data-theme]:not([data-theme=rails]) .rv:not(.in){opacity:0}
 body[data-theme] .rv.in{animation:revUp .7s ease backwards}
 @keyframes revUp{from{opacity:0;transform:translateY(28px)}}
 
-/* ===== NOVA: flagship ===== */
+/* ===== NOVA ===== */
 @property --ang{syntax:'<angle>';inherits:false;initial-value:0deg}
 @keyframes spin{to{--ang:360deg}}
 #fx,#helix,#cur,.typed,.cta,.stats{display:none}
@@ -103,7 +102,8 @@ body[data-theme=nova] .rcard .ov{background:linear-gradient(to top,rgba(5,6,13,.
 body[data-theme=nova] .pub{border-left:2px solid var(--acc);border-radius:0 20px 20px 0;background:rgba(255,255,255,.03);position:relative}
 body[data-theme=nova] .pub::before{content:'';position:absolute;left:-7px;top:26px;width:12px;height:12px;border-radius:50%;background:var(--acc);box-shadow:0 0 14px var(--acc)}
 body[data-theme=nova] .tag{font-family:'JetBrains Mono',monospace}
-@media(hover:none){@keyframes marq{to{transform:translateX(-50%)}}
+@keyframes marq{to{transform:translateX(-50%)}}
+
 /* ===== FINAL ADDITIONS ===== */
 html{scroll-behavior:auto!important}
 .hint{display:none}
@@ -112,7 +112,7 @@ body[data-theme=nova] .hint{display:block;grid-column:2;grid-row:5;text-align:ce
  body[data-theme=nova] #helix{display:block;grid-column:1;grid-row:auto;max-width:340px;margin:1.2rem auto 0}
  body[data-theme=nova] .hint{grid-column:1;grid-row:auto}
 }
-body[data-theme=nova] #cur{display:block;position:fixed;left:0;top:0;width:30px;height:30px;margin:-15px 0 0 -15px;border:2px solid rgba(0,229,255,.85);border-radius:50%;pointer-events:none;z-index:4000;transition:width .25s,height .25s,margin .25s,background .25s;mix-blend-mode:normal;background:transparent}
+body[data-theme=nova] #cur{display:none!important;position:fixed;left:0;top:0;width:30px;height:30px;margin:-15px 0 0 -15px;border:2px solid rgba(0,229,255,.85);border-radius:50%;pointer-events:none;z-index:4000;transition:width .25s,height .25s,margin .25s,background .25s;background:transparent}
 body[data-theme=nova] #cur.big{width:54px;height:54px;margin:-27px 0 0 -27px;background:rgba(0,229,255,.05)}
 .iw img{cursor:zoom-in}
 #rail{position:fixed;right:16px;top:50%;transform:translateY(-50%);z-index:1500;display:flex;flex-direction:column;gap:11px}
@@ -198,7 +198,8 @@ const ALIAS={TEAM:["Team","TEAM"],POSTDOCS:["POSTDOC","POSTDOCS"],PUBLICATIONS:[
 const esc=v=>String(v??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");
 const g=(o,...k)=>{for(const x of k)for(const key in o)if(key.trim().toLowerCase()===x&&String(o[key]).trim())return String(o[key]).trim();return""};
 const did=u=>{const m=String(u||"").match(/\/d\/([\w-]+)/)||String(u||"").match(/[?&]id=([\w-]+)/);return m?m[1]:""};
-const img=u=>{u=String(u||"").trim();if(!u)return FB;const d=did(u);return d?`https://drive.google.com/thumbnail?id=${d}&sz=w2000`:u};
+/* sized images: right-sized lh3 CDN instead of 2000px thumbnails */
+const img=(u,w=800)=>{u=String(u||"").trim();if(!u)return FB;const d=did(u);return d?`https://lh3.googleusercontent.com/d/${d}=w${w}`:u};
 const open_=u=>{u=String(u||"").trim();const d=did(u);return d?`https://drive.google.com/file/d/${d}/view?usp=sharing`:safe(u)};
 const safe=u=>{try{const x=new URL(String(u||"").trim());return /^https?:$/.test(x.protocol)?x.href:""}catch(e){return""}};
 const empty=m=>`<div class="col-12"><div class="card-x pad text-center"><p class="muted mb-0">${esc(m)}</p></div></div>`;
@@ -224,16 +225,16 @@ async function render(name,id,msg,fn){
 
 /* Research */
 render("RESEARCH","research-container","Research content coming soon...",r=>{
-  const u=img(g(r,"image")).replace(/"/g,"%22");
+  const u=img(g(r,"image"),900).replace(/"/g,"%22");
   return `<div class="col-md-4"><div class="rcard" style="background-image:linear-gradient(rgba(10,24,48,.2),rgba(10,24,48,.7)),url('${u}')"><div class="ov"><h5>${esc(g(r,"title")||"Untitled")}</h5><p>${esc(g(r,"description"))}</p></div></div></div>`});
 
 /* Team + PI + Postdocs */
 const PROFILES={};
 function person(m,i,pre,defRole){
-  const id=pre+i,P={name:g(m,"name")||"Unnamed",role:g(m,"role")||defRole||"",image:img(g(m,"image")),bio:g(m,"bio"),research:g(m,"research"),hobbies:g(m,"hobbies"),interests:g(m,"interests"),linkedin:safe(g(m,"linkedin"))};
+  const id=pre+i,P={name:g(m,"name")||"Unnamed",role:g(m,"role")||defRole||"",image:img(g(m,"image"),500),bio:g(m,"bio"),research:g(m,"research"),hobbies:g(m,"hobbies"),interests:g(m,"interests"),linkedin:safe(g(m,"linkedin"))};
   PROFILES[id]=P;
   return `<div class="col-lg-3 col-md-4 col-sm-6"><div class="card-x pad d-flex flex-column align-items-center text-center">
-  <img src="${esc(P.image)}" class="team-img mb-3" alt="${esc(P.name)}" loading="lazy" onerror="${err}">
+  <img src="${esc(P.image)}" class="team-img mb-3" alt="${esc(P.name)}" loading="lazy" decoding="async" onerror="${err}">
   <h5 class="mb-1">${esc(P.name)}</h5><p class="muted mb-3">${esc(P.role)}</p>
   <div class="mt-auto d-flex gap-2 align-items-center justify-content-center">
   <button class="pbtn" onclick="openProfile('${id}')"><i class="fas fa-user me-2"></i>View Profile</button>
@@ -263,7 +264,7 @@ function openProfile(id){
 
 /* Gallery + Fun */
 const gal=(a,def)=>{const raw=g(a,"image"),meta=[g(a,"event"),g(a,"location"),g(a,"year")].filter(Boolean).map(esc).join(" · "),v=open_(raw),d=g(a,"description"),t=g(a,"title")||def;
-  return `<div class="col-lg-4 col-md-6"><div class="card-x"><div class="iw"><img src="${esc(img(raw))}" alt="${esc(t)}" loading="lazy" onerror="${err}"></div>
+  return `<div class="col-lg-4 col-md-6"><div class="card-x"><div class="iw"><img src="${esc(img(raw,900))}" data-full="${esc(img(raw,2000))}" alt="${esc(t)}" loading="lazy" decoding="async" onerror="${err}"></div>
   <div class="pad"><h5>${esc(t)}</h5>${meta?`<div class="muted small mb-2">${meta}</div>`:""}${d?`<p class="muted">${esc(d)}</p>`:""}
   ${v?`<a href="${esc(v)}" target="_blank" rel="noopener noreferrer" class="pbtn"><i class="fas fa-expand me-2"></i>View</a>`:""}</div></div></div>`};
 render("GALLERY","gallery-container","Workshop and conference photographs coming soon...",a=>gal(a,"Lab Activity"));
@@ -271,8 +272,8 @@ render("FUN_ACTIVITIES","fun-activities-container","Fun activities coming soon..
 
 /* Posters */
 render("POSTERS","posters-container","Research posters coming soon...",p=>{
-  const t=g(p,"title")||"Research Poster",ev=g(p,"event"),yr=g(p,"year"),au=g(p,"authors"),d=g(p,"description"),u=open_(g(p,"link"));
-  return `<div class="col-lg-4 col-md-6"><div class="card-x"><div class="iw tall"><img src="${esc(img(g(p,"image")))}" alt="${esc(t)}" loading="lazy" onerror="${err}"></div>
+  const t=g(p,"title")||"Research Poster",ev=g(p,"event"),yr=g(p,"year"),au=g(p,"authors"),d=g(p,"description"),u=open_(g(p,"link")),im=g(p,"image");
+  return `<div class="col-lg-4 col-md-6"><div class="card-x"><div class="iw tall"><img src="${esc(img(im,1000))}" data-full="${esc(img(im,2000))}" alt="${esc(t)}" loading="lazy" decoding="async" onerror="${err}"></div>
   <div class="pad"><h5>${esc(t)}</h5>${ev||yr?`<p class="muted mb-2">${esc(ev)}${ev&&yr?" · ":""}${esc(yr)}</p>`:""}
   ${au?`<p class="small muted"><strong>Authors:</strong> ${esc(au)}</p>`:""}${d?`<p class="muted">${esc(d)}</p>`:""}
   ${u?`<a href="${esc(u)}" target="_blank" rel="noopener noreferrer" class="pbtn"><i class="fas fa-file-pdf me-2"></i>View Poster</a>`:`<p class="small muted mb-0">Poster PDF not available.</p>`}</div></div></div>`});
@@ -288,7 +289,7 @@ render("ADVERTISEMENTS","advertisements-container","Advertisements and opportuni
 
 /* Servers + Databases */
 const res=(icon)=>i=>{const t=g(i,"name","title")||"Untitled",c=g(i,"category","type"),d=g(i,"description"),l=safe(g(i,"link","url")),im=g(i,"image"),ic=g(i,"icon")||icon;
-  return `<div class="col-lg-4 col-md-6"><div class="card-x pad">${im?`<img src="${esc(img(im))}" alt="${esc(t)}" loading="lazy" style="width:100%;height:160px;object-fit:contain;margin-bottom:1rem" onerror="this.style.display='none'">`:`<div class="ric"><i class="${esc(ic)}"></i></div>`}
+  return `<div class="col-lg-4 col-md-6"><div class="card-x pad">${im?`<img src="${esc(img(im,600))}" alt="${esc(t)}" loading="lazy" decoding="async" style="width:100%;height:160px;object-fit:contain;margin-bottom:1rem" onerror="this.style.display='none'">`:`<div class="ric"><i class="${esc(ic)}"></i></div>`}
   ${c?`<div class="tag">${esc(c)}</div>`:""}<h5>${esc(t)}</h5>${d?`<p class="muted">${esc(d)}</p>`:""}
   ${l?`<a href="${esc(l)}" target="_blank" rel="noopener noreferrer" class="rlink">Explore <i class="fas fa-external-link-alt ms-1"></i></a>`:""}</div></div>`};
 render("SERVERS","servers-container","Important research servers coming soon...",res("fas fa-server"));
@@ -322,23 +323,23 @@ render("DATABASES","databases-container","Important research databases coming so
   mark();new MutationObserver(mark).observe(document.body,{childList:true,subtree:true});
   document.addEventListener("mousemove",e=>{const c=e.target.closest&&e.target.closest(".card-x");if(!c)return;const r=c.getBoundingClientRect();c.style.setProperty("--mx",(e.clientX-r.left)+"px");c.style.setProperty("--my",(e.clientY-r.top)+"px")});
 })();
+
 /* NOVA effects */
 (function(){
+  const LITE=matchMedia("(hover: none), (pointer: coarse)").matches||innerWidth<900;
   const $=s=>document.querySelector(s),nova=()=>document.body.dataset.theme==="nova";
-  /* hero extras */
   const hc=$(".hero .container");
   const ty=document.createElement("div");ty.className="typed";
   const cta=document.createElement("div");cta.className="cta";
   cta.innerHTML='<a class="pbtn" href="#research">Explore Research</a><a class="pbtn ghost" href="#team">Meet the Team</a>';
-  const hx=document.createElement("canvas");hx.id="helix";hx.width=1040;hx.height=1280;
+  const HS=LITE?1:2;
+  const hx=document.createElement("canvas");hx.id="helix";hx.width=520*HS;hx.height=640*HS;
   hc.append(ty,cta,hx);
-  /* typed words */
-  const WORDS={nova:["Structural Parasitology","Protein Engineering","Drug Discovery"],protein:["Protein Engineering","Structure-Guided Design","Directed Evolution"],drug:["Drug Discovery","Virtual Screening","Molecular Docking"],parasite:["Structural Parasitology","Host–Parasite Interface","Target Identification"]};let wi=0,ci=0,del=false;
-  (function loop(){const words=WORDS[document.body.dataset.skin||"nova"];wi%=words.length;const w=words[wi];ty.textContent=w.slice(0,ci)+"▌";
+  const WORDS={nova:["Structural Parasitology","Protein Engineering","Drug Discovery"]};let wi=0,ci=0,del=false;
+  (function loop(){const words=WORDS[document.body.dataset.skin||"nova"]||WORDS.nova;wi%=words.length;const w=words[wi];ty.textContent=w.slice(0,ci)+"▌";
     if(!del&&ci===w.length){del=true;return setTimeout(loop,1500)}
     if(del&&ci===0){del=false;wi=(wi+1)%words.length}
     ci+=del?-1:1;setTimeout(loop,del?35:75)})();
-  /* scramble text */
   const CH="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<>/_#";
   function scramble(el,txt){let f=0;clearInterval(el._sc);el._sc=setInterval(()=>{
     el.textContent=txt.split("").map((c,i)=>c===" "?" ":(i<f/2?c:CH[Math.random()*CH.length|0])).join("");
@@ -348,666 +349,131 @@ render("DATABASES","databases-container","Important research databases coming so
   const so2=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){so2.unobserve(e.target);if(nova())scramble(e.target,e.target.dataset.t)}}),{threshold:.6});
   document.querySelectorAll(".section-title").forEach(t=>{t.dataset.t=t.textContent;so2.observe(t)});
   if(nova())scramble(h1,"ASPIRE Lab");
-  /* particle network + DNA helix */
+
+  /* particle network */
   const cv=document.createElement("canvas");cv.id="fx";document.body.prepend(cv);
-  const x=cv.getContext("2d"),hctx=hx.getContext("2d");hctx.scale(2,2);
-  let W,H,P=[],mx=-999,my=-999,rot=0;const dpr=Math.min(devicePixelRatio||1,2);
+  const x=cv.getContext("2d"),hctx=hx.getContext("2d");hctx.scale(HS,HS);
+  let W,H,P=[],mx=-999,my=-999;const dpr=Math.min(devicePixelRatio||1,2);
   function size(){W=innerWidth;H=innerHeight;cv.width=W*dpr;cv.height=H*dpr;x.setTransform(dpr,0,0,dpr,0,0);
-    P=Array.from({length:Math.round(Math.min(95,W*H/15000))},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4}))}
+    P=Array.from({length:Math.round(Math.min(LITE?30:95,W*H/15000))},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4}))}
   addEventListener("resize",size);size();
   addEventListener("mousemove",e=>{mx=e.clientX;my=e.clientY});
-   /* ===== FERRITIN-LIKE 24-SUBUNIT CAGE ===== */
 
-/* =========================================================
-   1. FERRITIN CAGE GEOMETRY
-   ========================================================= */
-
-const FOLDP = [];
-const UNF = [];
-const CAGE_PATHS = [];
-const CAGE_SUBUNITS = 24;
-
-const CAGE_RADIUS = 145;
-const HELIX_LENGTH = 68;
-const HELIX_STEPS = 30;
-const HELIX_RADIUS = 2.8;
-
-/* Store a path as indices into the shared 3D coordinate array */
-function addCagePath(points, type, subunit) {
-  const indices = [];
-
-  for (const p of points) {
-    indices.push(FOLDP.length);
-    FOLDP.push(p);
+  /* ===== FERRITIN 24-MER (octahedral 432), cartoon-ribbon style like the reference ===== */
+  const FOLDP=[],UNF=[],CAGE_PATHS=[],CAGE_SUBUNITS=24;
+  const CAGE_RADIUS=140,HELIX_LENGTH=100,HELIX_STEPS=LITE?24:44,HELIX_RADIUS=4.2,TURNS=6;
+  function addCagePath(points,type,subunit,ph){
+    const indices=[];for(const p of points){indices.push(FOLDP.length);FOLDP.push(p)}
+    CAGE_PATHS.push({indices,type,subunit,ph});
   }
-
-  CAGE_PATHS.push({
-    indices,
-    type,
-    subunit
-  });
-}
-
-/* =========================================================
-   2. GENERATE 24 SPHERICAL SUBUNITS
-   ========================================================= */
-
-(function buildFerritinCage() {
-
-  const goldenAngle = Math.PI * (3 - Math.sqrt(5));
-
-  for (let s = 0; s < CAGE_SUBUNITS; s++) {
-
-    /* Fibonacci sphere distribution */
-    const yy = 1 - 2 * (s + 0.5) / CAGE_SUBUNITS;
-    const rr = Math.sqrt(1 - yy * yy);
-    const theta = goldenAngle * s;
-
-    const n = {
-      x: rr * Math.cos(theta),
-      y: yy,
-      z: rr * Math.sin(theta)
-    };
-
-    /* Local coordinate system */
-    const ref = Math.abs(n.y) > 0.9
-      ? { x: 1, y: 0, z: 0 }
-      : { x: 0, y: 1, z: 0 };
-
-    let u = {
-      x: ref.y * n.z - ref.z * n.y,
-      y: ref.z * n.x - ref.x * n.z,
-      z: ref.x * n.y - ref.y * n.x
-    };
-
-    const ul = Math.hypot(u.x, u.y, u.z);
-
-    u = {
-      x: u.x / ul,
-      y: u.y / ul,
-      z: u.z / ul
-    };
-
-    const v = {
-      x: n.y * u.z - n.z * u.y,
-      y: n.z * u.x - n.x * u.z,
-      z: n.x * u.y - n.y * u.x
-    };
-
-    const center = {
-      x: n.x * CAGE_RADIUS,
-      y: n.y * CAGE_RADIUS,
-      z: n.z * CAGE_RADIUS
-    };
-
-    /* Four alpha helices in each protein subunit */
-    const offsets = [
-      [-10, -10],
-      [ 10, -10],
-      [ 10,  10],
-      [-10,  10]
-    ];
-
-    const helices = [];
-
-    for (let h = 0; h < 4; h++) {
-
-      const [ou, ov] = offsets[h];
-      const points = [];
-
-      for (let k = 0; k < HELIX_STEPS; k++) {
-
-        const t = k / (HELIX_STEPS - 1);
-        const axial = (t - 0.5) * HELIX_LENGTH;
-
-        const angle =
-          t * Math.PI * 10 +
-          h * Math.PI * 0.5 +
-          s * 0.17;
-
-        const coilU = Math.cos(angle) * HELIX_RADIUS;
-        const coilV = Math.sin(angle) * HELIX_RADIUS;
-
-        points.push({
-
-          x:
-            center.x +
-            n.x * axial +
-            u.x * (ou + coilU) +
-            v.x * (ov + coilV),
-
-          y:
-            center.y +
-            n.y * axial +
-            u.y * (ou + coilU) +
-            v.y * (ov + coilV),
-
-          z:
-            center.z +
-            n.z * axial +
-            u.z * (ou + coilU) +
-            v.z * (ov + coilV)
-
-        });
-      }
-
-      helices.push(points);
-
-      addCagePath(points, "helix", s);
+  (function buildFerritinCage(){
+    const R=[];
+    for(const p of [[0,1,2],[0,2,1],[1,0,2],[1,2,0],[2,0,1],[2,1,0]])
+     for(const sx of[-1,1])for(const sy of[-1,1])for(const sz of[-1,1]){
+      const m=[[0,0,0],[0,0,0],[0,0,0]];m[0][p[0]]=sx;m[1][p[1]]=sy;m[2][p[2]]=sz;
+      const det=m[0][0]*(m[1][1]*m[2][2]-m[1][2]*m[2][1])-m[0][1]*(m[1][0]*m[2][2]-m[1][2]*m[2][0])+m[0][2]*(m[1][0]*m[2][1]-m[1][1]*m[2][0]);
+      if(det===1)R.push(m);
     }
-
-    /* Connecting loops between the four helices */
-    for (let h = 0; h < 4; h++) {
-
-      const next = (h + 1) % 4;
-
-      for (const end of [0, 1]) {
-
-        const a = end === 0
-          ? helices[h][0]
-          : helices[h][HELIX_STEPS - 1];
-
-        const b = end === 0
-          ? helices[next][0]
-          : helices[next][HELIX_STEPS - 1];
-
-        const loop = [];
-
-        for (let k = 0; k <= 7; k++) {
-
-          const t = k / 7;
-          const bulge = Math.sin(t * Math.PI) * 5;
-
-          loop.push({
-
-            x:
-              a.x * (1 - t) +
-              b.x * t +
-              u.x * bulge,
-
-            y:
-              a.y * (1 - t) +
-              b.y * t +
-              u.y * bulge,
-
-            z:
-              a.z * (1 - t) +
-              b.z * t +
-              u.z * bulge
-
-          });
+    const ap=(m,v)=>({x:m[0][0]*v.x+m[0][1]*v.y+m[0][2]*v.z,y:m[1][0]*v.x+m[1][1]*v.y+m[1][2]*v.z,z:m[2][0]*v.x+m[2][1]*v.y+m[2][2]*v.z});
+    const nrm=v=>{const l=Math.hypot(v.x,v.y,v.z);return{x:v.x/l,y:v.y/l,z:v.z/l}};
+    const cr=(a,b)=>({x:a.y*b.z-a.z*b.y,y:a.z*b.x-a.x*b.z,z:a.x*b.y-a.y*b.x});
+    /* seed subunit sits next to a 4-fold axis (z) -> pinwheel of 4 bundles around each square pore */
+    const n0=nrm({x:.38,y:.17,z:.9});
+    const a0=nrm(cr(n0,{x:1,y:1,z:0}));
+    const b0=cr(n0,a0);
+    const offs=[-22,-7.5,7.5,22],rad=[4,-4,4,-4];
+    for(let s=0;s<24;s++){
+      const n=ap(R[s],n0),a=ap(R[s],a0),b=ap(R[s],b0),helices=[];
+      for(let h=0;h<4;h++){
+        const pts=[],ph=[],dir=h%2?-1:1;
+        for(let k=0;k<HELIX_STEPS;k++){
+          const t=k/(HELIX_STEPS-1),ax=(t-.5)*HELIX_LENGTH*dir;
+          const ang=t*Math.PI*2*TURNS+h*1.2,cu=Math.cos(ang)*HELIX_RADIUS,cv=Math.sin(ang)*HELIX_RADIUS;
+          const side=offs[h]+cu,rr=CAGE_RADIUS+rad[h]+cv;
+          pts.push({x:n.x*rr+a.x*ax+b.x*side,y:n.y*rr+a.y*ax+b.y*side,z:n.z*rr+a.z*ax+b.z*side});
+          ph.push(ang);
         }
+        helices.push(pts);addCagePath(pts,"helix",s,ph);
+      }
+      /* up-down-up-down loops */
+      for(let h=0;h<3;h++){
+        const A=helices[h],B=helices[h+1],end=h%2?0:HELIX_STEPS-1;
+        const p=A[end],q=B[end],loop=[],sg=end?1:-1;
+        for(let k=0;k<=6;k++){const t=k/6,bu=Math.sin(t*Math.PI)*8*sg;
+          loop.push({x:p.x*(1-t)+q.x*t+a.x*bu,y:p.y*(1-t)+q.y*t+a.y*bu,z:p.z*(1-t)+q.z*t+a.z*bu});}
+        addCagePath(loop,"loop",s,null);
+      }
+      /* short E helix pointing toward the 4-fold pore */
+      {const pts=[],ph=[],N=LITE?10:16;
+        for(let k=0;k<N;k++){const t=k/(N-1),ang=t*Math.PI*2*3,sd=-16+(t-.5)*30;
+          const rr=CAGE_RADIUS-8+Math.cos(ang)*3.6,ax=HELIX_LENGTH/2+10+Math.sin(ang)*3.6;
+          pts.push({x:n.x*rr+a.x*ax+b.x*sd,y:n.y*rr+a.y*ax+b.y*sd,z:n.z*rr+a.z*ax+b.z*sd});ph.push(ang);}
+        addCagePath(pts,"helix",s,ph);}
+    }
+  })();
 
-        addCagePath(loop, "loop", s);
+  const NR=FOLDP.length;
+  for(let i=0;i<NR;i++)UNF.push({x:(i/(NR-1)-.5)*470,y:Math.sin(i*.35)*22,z:Math.cos(i*.35)*22});
+
+  const mixc=(a,b,u)=>a.map((v,i)=>v+(b[i]-v)*u);
+  const smooth=u=>u*u*(3-2*u);
+  /* purple cartoon palette (subunit 0 is red, like the highlighted chain in the reference) */
+  const PUR={d:[84,48,122],l:[205,155,235]},RED={d:[115,8,34],l:[240,60,95]};
+
+  let foldT=0,unfold=false,ry=0,tilt=.12,lastPct=-1;
+  const hint=document.createElement("div");hint.className="hint";hc.append(hint);
+  hx.style.cursor="pointer";hx.title="Click to refold ferritin cage";
+  hx.addEventListener("click",()=>{unfold=true});
+
+  function helix(){
+    if(unfold){foldT-=.035;if(foldT<=0){foldT=0;unfold=false}}
+    else if(foldT<1)foldT=Math.min(1,foldT+.0055);
+    tilt+=((.12+((my/innerHeight)-.5)*.3)-tilt)*.05;
+    ry+=.003+((mx>0?mx/innerWidth:.5)-.5)*.012;
+    const cs=Math.cos(ry),sn=Math.sin(ry),ct=Math.cos(tilt),st=Math.sin(tilt),P2=[];
+    for(let i=0;i<NR;i++){
+      const l=smooth(Math.max(0,Math.min(1,foldT*1.7-i/NR*.7)));
+      const f=FOLDP[i],u=UNF[i];
+      const x0=u.x+(f.x-u.x)*l,y0=u.y+(f.y-u.y)*l,z0=u.z+(f.z-u.z)*l;
+      const x1=x0*cs-z0*sn,z1=x0*sn+z0*cs,y2=y0*ct-z1*st,z2=y0*st+z1*ct,sc=700/(700-z2);
+      P2.push({x:260+x1*sc,y:320+y2*sc,z:z2,s:sc});
+    }
+    hctx.clearRect(0,0,520,640);hctx.lineCap="round";hctx.lineJoin="round";
+    const sorted=CAGE_PATHS.map(path=>{let d=0;for(const ix of path.indices)d+=P2[ix].z;return{path,depth:d/path.indices.length}}).sort((a,b)=>a.depth-b.depth);
+    for(const{path}of sorted){
+      const idx=path.indices,isH=path.type==="helix",pal=path.subunit===0?RED:PUR;
+      for(let k=1;k<idx.length;k++){
+        const p=P2[idx[k-1]],q=P2[idx[k]];
+        const fog=.45+.55*Math.max(0,Math.min(1,(p.z+q.z+380)/760));
+        const sc=(p.s+q.s)*.5;
+        if(isH){
+          const lt=.5+.5*Math.sin(path.ph[k]);
+          const c=mixc(pal.d,pal.l,lt).map(v=>v*fog|0);
+          hctx.strokeStyle=`rgb(${pal.d[0]*fog*.55|0},${pal.d[1]*fog*.55|0},${pal.d[2]*fog*.55|0})`;
+          hctx.lineWidth=(8.6)*sc;hctx.beginPath();hctx.moveTo(p.x,p.y);hctx.lineTo(q.x,q.y);hctx.stroke();
+          hctx.strokeStyle=`rgb(${c[0]},${c[1]},${c[2]})`;
+          hctx.lineWidth=6.4*sc;hctx.beginPath();hctx.moveTo(p.x,p.y);hctx.lineTo(q.x,q.y);hctx.stroke();
+        }else{
+          hctx.strokeStyle=`rgb(${pal.l[0]*fog|0},${pal.l[1]*fog|0},${pal.l[2]*fog|0})`;
+          hctx.lineWidth=1.5*sc;hctx.beginPath();hctx.moveTo(p.x,p.y);hctx.lineTo(q.x,q.y);hctx.stroke();
+        }
       }
     }
+    const pct=Math.round(foldT*100);
+    if(pct!==lastPct){lastPct=pct;hint.textContent=pct<100?`Ferritin cage assembly… ${pct}%`:"Ferritin 24-mer ✓ · click the cage to refold"}
   }
 
-})();
-
-/* =========================================================
-   3. UNFOLDED STARTING CONFIGURATION
-   ========================================================= */
-
-const NR = FOLDP.length;
-
-for (let i = 0; i < NR; i++) {
-
-  UNF.push({
-
-    x: (i / (NR - 1) - 0.5) * 470,
-
-    y: Math.sin(i * 0.35) * 22,
-
-    z: Math.cos(i * 0.35) * 22
-
-  });
-
-}
-
-/* =========================================================
-   4. COLOUR AND ANIMATION SETTINGS
-   ========================================================= */
-
-const mixc = (a, b, u) =>
-  a.map((v, i) => v + (b[i] - v) * u);
-
-const CA = [0, 229, 255];
-const CB = [45, 130, 235];
-const CC = [124, 77, 255];
-
-const colAt = t =>
-  t < 0.5
-    ? mixc(CA, CB, t * 2)
-    : mixc(CB, CC, (t - 0.5) * 2);
-
-const smooth = u => u * u * (3 - 2 * u);
-
-let foldT = 0;
-let unfold = false;
-let ry = 0;
-let tilt = 0.2;
-let lig = 0;
-let lastPct = -1;
-
-/* Assembly hint */
-const hint = document.createElement("div");
-hint.className = "hint";
-hc.append(hint);
-
-/* Click cage to trigger refolding */
-hx.style.cursor = "pointer";
-hx.title = "Click to refold ferritin cage";
-
-hx.addEventListener("click", () => {
-  unfold = true;
-});
-
-/* =========================================================
-   5. 3D PROJECTION AND FERRITIN RENDERING
-   ========================================================= */
-
-function helix() {
-
-  const tm = performance.now() / 1000;
-
-  /* Folding animation */
-  if (unfold) {
-
-    foldT -= 0.035;
-
-    if (foldT <= 0) {
-      foldT = 0;
-      unfold = false;
-    }
-
-  } else if (foldT < 1) {
-
-    foldT = Math.min(1, foldT + 0.0055);
-
+  /* click particle bursts */
+  const BU=[];
+  addEventListener("click",e=>{if(!nova())return;
+    for(let i=0;i<(LITE?8:18);i++){const a=Math.random()*6.283,sp=2+Math.random()*4;
+      BU.push({x:e.clientX,y:e.clientY,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,l:50,c:Math.random()<.5?"0,229,255":"255,78,205"})}});
+  function bursts(){
+    for(let i=BU.length-1;i>=0;i--){const b=BU[i];b.x+=b.vx;b.y+=b.vy;b.vx*=.95;b.vy*=.95;
+      if(--b.l<=0){BU.splice(i,1);continue}
+      x.fillStyle=`rgba(${b.c},${b.l/50})`;x.beginPath();x.arc(b.x,b.y,2.4,0,6.3);x.fill()}
   }
 
-  /* Rotation and tilt */
-  tilt += (
-    (.15 + ((my / innerHeight) - 0.5) * 0.5) - tilt
-  ) * 0.05;
-
-  ry +=
-    0.006 +
-    ((mx > 0 ? mx / innerWidth : 0.5) - 0.5) * 0.02;
-
-  const cs = Math.cos(ry);
-  const sn = Math.sin(ry);
-  const ct = Math.cos(tilt);
-  const st = Math.sin(tilt);
-
-  const P2 = [];
-
-  /* Project all cage coordinates */
-  for (let i = 0; i < NR; i++) {
-
-    const l = smooth(
-      Math.max(
-        0,
-        Math.min(
-          1,
-          foldT * 1.7 - i / NR * 0.7
-        )
-      )
-    );
-
-    const f = FOLDP[i];
-    const u = UNF[i];
-
-    const wob =
-      l * Math.sin(tm * 1.5 + i * 0.025) * 0.9;
-
-    const x0 =
-      u.x + (f.x - u.x) * l + wob;
-
-    const y0 =
-      u.y + (f.y - u.y) * l + wob;
-
-    const z0 =
-      u.z + (f.z - u.z) * l + wob;
-
-    const x1 = x0 * cs - z0 * sn;
-    const z1 = x0 * sn + z0 * cs;
-
-    const y2 = y0 * ct - z1 * st;
-    const z2 = y0 * st + z1 * ct;
-
-    const scale = 700 / (700 - z2);
-
-    P2.push({
-
-      x: 260 + x1 * scale,
-      y: 320 + y2 * scale,
-
-      z: z2,
-      s: scale
-
-    });
-  }
-
-  hctx.clearRect(0, 0, 520, 640);
-
-  hctx.lineCap = "round";
-  hctx.lineJoin = "round";
-
-  /* Depth-sort protein subunits */
-  const sortedPaths = CAGE_PATHS.map(path => {
-
-    let depth = 0;
-
-    for (const index of path.indices) {
-      depth += P2[index].z;
-    }
-
-    return {
-      path,
-      depth: depth / path.indices.length
-    };
-
-  }).sort((a, b) => a.depth - b.depth);
-
-  /* =====================================================
-     6. DRAW FOUR-HELIX PROTEIN SUBUNITS
-     ===================================================== */
-
-  for (const item of sortedPaths) {
-
-    const path = item.path;
-    const indices = path.indices;
-
-    if (indices.length < 2) continue;
-
-    const front = Math.max(
-      0,
-      Math.min(1, (item.depth + 190) / 380)
-    );
-
-    const subunitColour = colAt(
-      path.subunit / CAGE_SUBUNITS
-    );
-
-    const helixPath = path.type === "helix";
-
-    const baseWidth = helixPath ? 8.5 : 3.0;
-
-    /* Main protein ribbon */
-    for (let k = 1; k < indices.length; k++) {
-
-      const p = P2[indices[k - 1]];
-      const q = P2[indices[k]];
-
-      const depth = Math.max(
-        0,
-        Math.min(1, (p.z + q.z + 380) / 760)
-      );
-
-      const alpha = helixPath
-        ? 0.55 + depth * 0.4
-        : 0.3 + depth * 0.4;
-
-      hctx.strokeStyle = helixPath
-        ? `rgba(30,105,205,${alpha})`
-        : `rgba(85,165,235,${alpha})`;
-
-      hctx.lineWidth =
-        baseWidth *
-        ((p.s + q.s) * 0.5);
-
-      hctx.beginPath();
-
-      hctx.moveTo(p.x, p.y);
-      hctx.lineTo(q.x, q.y);
-
-      hctx.stroke();
-    }
-
-    /* Luminous ribbon highlight */
-    hctx.globalCompositeOperation = "lighter";
-
-    for (let k = 1; k < indices.length; k++) {
-
-      const p = P2[indices[k - 1]];
-      const q = P2[indices[k]];
-
-      const alpha = helixPath
-        ? 0.16 + front * 0.28
-        : 0.08 + front * 0.12;
-
-      hctx.strokeStyle =
-        `rgba(185,225,255,${alpha})`;
-
-      hctx.lineWidth =
-        (helixPath ? 2.0 : 0.9) *
-        ((p.s + q.s) * 0.5);
-
-      hctx.beginPath();
-
-      hctx.moveTo(p.x - 1.2, p.y - 1.2);
-      hctx.lineTo(q.x - 1.2, q.y - 1.2);
-
-      hctx.stroke();
-    }
-
-    hctx.globalCompositeOperation = "source-over";
-  }
-
-  /* =====================================================
-     7. SUBUNIT HIGHLIGHTS
-     ===================================================== */
-
-  for (let s = 0; s < CAGE_SUBUNITS; s++) {
-
-    const subunitPaths = CAGE_PATHS.filter(
-      p => p.subunit === s && p.type === "helix"
-    );
-
-    for (const path of subunitPaths) {
-
-      const midIndex =
-        path.indices[Math.floor(path.indices.length / 2)];
-
-      const p = P2[midIndex];
-
-      const r = 2.3 * p.s;
-
-      const glow = hctx.createRadialGradient(
-        p.x, p.y, 0,
-        p.x, p.y, r * 4
-      );
-
-      glow.addColorStop(
-        0,
-        "rgba(255,255,255,.45)"
-      );
-
-      glow.addColorStop(
-        0.35,
-        "rgba(0,229,255,.24)"
-      );
-
-      glow.addColorStop(
-        1,
-        "rgba(0,229,255,0)"
-      );
-
-      hctx.fillStyle = glow;
-
-      hctx.beginPath();
-
-      hctx.arc(
-        p.x,
-        p.y,
-        r * 4,
-        0,
-        Math.PI * 2
-      );
-
-      hctx.fill();
-    }
-  }
-
-  /* =====================================================
-     8. ORBITING LIGAND
-     ===================================================== */
-
-  lig += 0.018;
-
-  const Lx = Math.cos(lig) * 190;
-  const Ly = Math.sin(lig * 1.3) * 110;
-  const Lz = Math.sin(lig) * 190;
-
-  const lx = Lx * cs - Lz * sn;
-  const lz = Lx * sn + Lz * cs;
-
-  const ly = Ly * ct - lz * st;
-  const lz2 = Ly * st + lz * ct;
-
-  const ls = 700 / (700 - lz2);
-
-  const drawLig = () => {
-
-    const sx = 260 + lx * ls;
-    const sy = 320 + ly * ls;
-    const r = 10 * ls;
-
-    const gr = hctx.createRadialGradient(
-      sx, sy, 0,
-      sx, sy, r * 3.2
-    );
-
-    gr.addColorStop(
-      0,
-      "rgba(255,255,255,.95)"
-    );
-
-    gr.addColorStop(
-      0.25,
-      "rgba(255,78,205,.8)"
-    );
-
-    gr.addColorStop(
-      1,
-      "rgba(255,78,205,0)"
-    );
-
-    hctx.fillStyle = gr;
-
-    hctx.beginPath();
-
-    hctx.arc(
-      sx,
-      sy,
-      r * 3.2,
-      0,
-      Math.PI * 2
-    );
-
-    hctx.fill();
-  };
-
-  if (lz2 < 0) drawLig();
-
-  if (lz2 >= 0) drawLig();
-
-  /* =====================================================
-     9. ASSEMBLY STATUS
-     ===================================================== */
-
-  const pct = Math.round(foldT * 100);
-
-  if (pct !== lastPct) {
-
-    lastPct = pct;
-
-    hint.textContent =
-      pct < 100
-        ? `Ferritin cage assembly… ${pct}%`
-        : "Ferritin 24-mer ✓ · click the cage to refold";
-
-  }
-
-}
-
-/* =========================================================
-   10. CLICK PARTICLE EFFECTS
-   ========================================================= */
-
-const BU = [];
-
-addEventListener("click", e => {
-
-  if (!nova()) return;
-
-  for (let i = 0; i < 18; i++) {
-
-    const a = Math.random() * 6.283;
-    const speed = 2 + Math.random() * 4;
-
-    BU.push({
-
-      x: e.clientX,
-      y: e.clientY,
-
-      vx: Math.cos(a) * speed,
-      vy: Math.sin(a) * speed,
-
-      l: 50,
-
-      c:
-        Math.random() < 0.5
-          ? "0,229,255"
-          : "255,78,205"
-
-    });
-
-  }
-
-});
-
-function bursts() {
-
-  for (let i = BU.length - 1; i >= 0; i--) {
-
-    const b = BU[i];
-
-    b.x += b.vx;
-    b.y += b.vy;
-
-    b.vx *= 0.95;
-    b.vy *= 0.95;
-
-    if (--b.l <= 0) {
-
-      BU.splice(i, 1);
-      continue;
-
-    }
-
-    x.fillStyle =
-      `rgba(${b.c},${b.l / 50})`;
-
-    x.beginPath();
-
-    x.arc(
-      b.x,
-      b.y,
-      2.4,
-      0,
-      6.3
-    );
-
-    x.fill();
-
-  }
-
-}
-
-/* ===== END FERRITIN-LIKE CAGE ===== */
   (function tick(){requestAnimationFrame(tick);x.clearRect(0,0,W,H);if(!nova())return;
     for(const p of P){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
       const dx=p.x-mx,dy=p.y-my,d=Math.hypot(dx,dy)||1;if(d<140){p.x+=dx/d*1.6;p.y+=dy/d*1.6}}
@@ -1015,264 +481,121 @@ function bursts() {
       for(let j=i+1;j<P.length;j++){const b=P[j],d=Math.hypot(a.x-b.x,a.y-b.y);
         if(d<130){x.strokeStyle=`rgba(124,77,255,${(1-d/130)*.4})`;x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.stroke()}}
       const dm=Math.hypot(a.x-mx,a.y-my);if(dm<180){x.strokeStyle=`rgba(255,78,205,${(1-dm/180)*.7})`;x.beginPath();x.moveTo(a.x,a.y);x.lineTo(mx,my);x.stroke()}}
-    bursts();helix()})();
-    /* custom cursor, tilt, magnetic buttons — desktop only */
-  const touchDevice = window.matchMedia("(hover: none), (pointer: coarse)").matches;
+    bursts();
+    if(scrollY<innerHeight*1.3)helix();   /* stop drawing the cage once scrolled off screen */
+  })();
 
-  if (!touchDevice) {
-    const cur = document.createElement("div");
-    cur.id = "cur";
-    document.body.appendChild(cur);
-
-    let cx = 0, cy = 0, tx = 0, ty2 = 0;
-
-    addEventListener("mousemove", e => {
-      tx = e.clientX;
-      ty2 = e.clientY;
-
-      cur.classList.toggle(
-        "big",
-        !!(e.target.closest && e.target.closest("a,button,.card-x,.rcard"))
-      );
-
-      if (!nova()) return;
-
-      const c = e.target.closest && e.target.closest(".card-x");
-
-      if (c) {
-        const r = c.getBoundingClientRect();
-        const px = (e.clientX - r.left) / r.width - .5;
-        const py = (e.clientY - r.top) / r.height - .5;
-
-        c.style.transform =
-          `perspective(900px) rotateX(${(-py * 9).toFixed(2)}deg) rotateY(${(px * 9).toFixed(2)}deg) translateY(-6px)`;
-      }
-
-      const b = e.target.closest && e.target.closest(".pbtn");
-
-      if (b) {
-        const r = b.getBoundingClientRect();
-
-        b.style.transform =
-          `translate(${((e.clientX-r.left-r.width/2)*.25).toFixed(1)}px,${((e.clientY-r.top-r.height/2)*.35).toFixed(1)}px)`;
-      }
+  /* custom cursor, tilt, magnetic buttons — desktop only */
+  const touchDevice=matchMedia("(hover: none), (pointer: coarse)").matches;
+  if(!touchDevice){
+    const cur=document.createElement("div");cur.id="cur";document.body.appendChild(cur);
+    let cx=0,cy=0,tx=0,ty2=0;
+    addEventListener("mousemove",e=>{
+      tx=e.clientX;ty2=e.clientY;
+      cur.classList.toggle("big",!!(e.target.closest&&e.target.closest("a,button,.card-x,.rcard")));
+      if(!nova())return;
+      const c=e.target.closest&&e.target.closest(".card-x");
+      if(c){const r=c.getBoundingClientRect(),px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;
+        c.style.transform=`perspective(900px) rotateX(${(-py*9).toFixed(2)}deg) rotateY(${(px*9).toFixed(2)}deg) translateY(-6px)`}
+      const b=e.target.closest&&e.target.closest(".pbtn");
+      if(b){const r=b.getBoundingClientRect();
+        b.style.transform=`translate(${((e.clientX-r.left-r.width/2)*.25).toFixed(1)}px,${((e.clientY-r.top-r.height/2)*.35).toFixed(1)}px)`}
     });
-
-    document.addEventListener("mouseout", e => {
-      const c = e.target.closest && e.target.closest(".card-x,.pbtn");
-      if (c && !c.contains(e.relatedTarget)) c.style.transform = "";
-    }, true);
-
-    (function mv() {
-      requestAnimationFrame(mv);
-      cx += (tx - cx) * .18;
-      cy += (ty2 - cy) * .18;
-      cur.style.transform = `translate(${cx}px,${cy}px)`;
-    })();
+    document.addEventListener("mouseout",e=>{
+      const c=e.target.closest&&e.target.closest(".card-x,.pbtn");
+      if(c&&!c.contains(e.relatedTarget))c.style.transform="";
+    },true);
+    (function mv(){requestAnimationFrame(mv);cx+=(tx-cx)*.18;cy+=(ty2-cy)*.18;cur.style.transform=`translate(${cx}px,${cy}px)`})();
   }
 
   /* progress bar, auto-hide nav, scroll spy */
-  const pr = document.createElement("div");
-  pr.id = "prog";
-  document.body.appendChild(pr);
+  const pr=document.createElement("div");pr.id="prog";document.body.appendChild(pr);
+  let ly=0;const nv=$(".navbar");
+  addEventListener("scroll",()=>{
+    pr.style.width=(scrollY/Math.max(1,document.documentElement.scrollHeight-innerHeight)*100)+"%";
+    nv.classList.toggle("navhide",scrollY>ly&&scrollY>500&&!$("#nav.show")&&Date.now()>(window._noHide||0));
+    ly=scrollY;
+  },{passive:true});
 
-  let ly = 0;
-  const nv = $(".navbar");
+  const links=[...document.querySelectorAll(".nav-link")];
+  const spy=new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting)links.forEach(l=>l.classList.toggle("active",l.getAttribute("href")==="#"+e.target.id));
+  }),{rootMargin:"-45% 0px -50% 0px"});
+  document.querySelectorAll("section[id]").forEach(s=>spy.observe(s));
 
-  addEventListener("scroll", () => {
-    pr.style.width =
-      (scrollY / Math.max(1, document.documentElement.scrollHeight - innerHeight) * 100) + "%";
+  document.addEventListener("animationend",e=>{if(e.animationName==="revUp")e.target.classList.add("done")});
 
-    nv.classList.toggle(
-      "navhide",
-      scrollY > ly && scrollY > 500 && !$("#nav.show") &&
-      Date.now() > (window._noHide || 0)
-    );
-
-    ly = scrollY;
-  }, { passive: true });
-
-  const links = [...document.querySelectorAll(".nav-link")];
-
-  const spy = new IntersectionObserver(es => es.forEach(e => {
-    if (e.isIntersecting) {
-      links.forEach(l =>
-        l.classList.toggle("active", l.getAttribute("href") === "#" + e.target.id)
-      );
-    }
-  }), { rootMargin: "-45% 0px -50% 0px" });
-
-  document.querySelectorAll("section[id]").forEach(s => spy.observe(s));
-
-  document.addEventListener("animationend", e => {
-    if (e.animationName === "revUp") e.target.classList.add("done");
-  });
-
-  /* live stats from your sheet */
-  (async () => {
-    const [t, p, pb, po, ga] =
-      await Promise.all(["TEAM", "POSTDOCS", "PUBLICATIONS", "POSTERS", "GALLERY"].map(sheet));
-
-    const phd = t.filter(m =>
-      !/principal|pi\b|investigator/i.test(g(m, "role"))
-    ).length;
-
-    const items = [
-      [phd, "PhD Scholars"],
-      [p.length, "Postdocs"],
-      [pb.length, "Publications"],
-      [po.length, "Posters"],
-      [ga.length, "Events"]
-    ].filter(i => i[0] > 0);
-
-    if (!items.length) return;
-
-    const st = document.createElement("div");
-    st.className = "stats";
-
-    st.innerHTML = items.map(i =>
-      `<div class="stat"><b data-n="${i[0]}">0</b><span>${i[1]}</span></div>`
-    ).join("");
-
-    const after = $(".marq") || $(".hero");
-    after.parentNode.insertBefore(st, after.nextSibling);
-
-    const io = new IntersectionObserver(es => es.forEach(e => {
-      if (!e.isIntersecting) return;
-      io.disconnect();
-
-      st.querySelectorAll("b").forEach(b => {
-        const n = +b.dataset.n;
-        const t0 = performance.now();
-
-        (function f(now) {
-          const k = Math.min(1, (now - t0) / 1500);
-          b.textContent = Math.round(n * (1 - Math.pow(1 - k, 3)));
-          if (k < 1) requestAnimationFrame(f);
-        })(t0);
+  /* live stats from the sheet */
+  (async()=>{
+    const [t,p,pb,po,ga]=await Promise.all(["TEAM","POSTDOCS","PUBLICATIONS","POSTERS","GALLERY"].map(sheet));
+    const phd=t.filter(m=>!/principal|pi\b|investigator/i.test(g(m,"role"))).length;
+    const items=[[phd,"PhD Scholars"],[p.length,"Postdocs"],[pb.length,"Publications"],[po.length,"Posters"],[ga.length,"Events"]].filter(i=>i[0]>0);
+    if(!items.length)return;
+    const st=document.createElement("div");st.className="stats";
+    st.innerHTML=items.map(i=>`<div class="stat"><b data-n="${i[0]}">0</b><span>${i[1]}</span></div>`).join("");
+    const after=$(".marq")||$(".hero");after.parentNode.insertBefore(st,after.nextSibling);
+    const io=new IntersectionObserver(es=>es.forEach(e=>{
+      if(!e.isIntersecting)return;io.disconnect();
+      st.querySelectorAll("b").forEach(b=>{
+        const n=+b.dataset.n,t0=performance.now();
+        (function f(now){const k=Math.min(1,(now-t0)/1500);b.textContent=Math.round(n*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})(t0);
       });
-    }), { threshold: .4 });
-
+    }),{threshold:.4});
     io.observe(st);
   })();
-
 })();
 
 /* final extras */
-(function () {
-
-  /* instant jump to sections and keep nav visible after a jump */
-  document.addEventListener("click", e => {
-    const a = e.target.closest && e.target.closest('a[href^="#"]');
-    if (!a) return;
-
-    const id = a.getAttribute("href");
-    if (id.length < 2) return;
-
-    const el = document.querySelector(id);
-    if (!el) return;
-
-    e.preventDefault();
-    window._noHide = Date.now() + 900;
-
-    const y = el.getBoundingClientRect().top + scrollY -
-      (el.classList.contains("hero") ? 0 : 70);
-
-    window.scrollTo({ top: Math.max(0, y), behavior: "instant" });
-    history.replaceState(null, "", id);
-
-    const c = document.getElementById("nav");
-
-    if (c && c.classList.contains("show")) {
-      const i = bootstrap.Collapse.getInstance(c);
-      i && i.hide();
-    }
+(function(){
+  /* instant jump to sections, keep nav visible after a jump */
+  document.addEventListener("click",e=>{
+    const a=e.target.closest&&e.target.closest('a[href^="#"]');if(!a)return;
+    const id=a.getAttribute("href");if(id.length<2)return;
+    const el=document.querySelector(id);if(!el)return;
+    e.preventDefault();window._noHide=Date.now()+900;
+    const y=el.getBoundingClientRect().top+scrollY-(el.classList.contains("hero")?0:70);
+    window.scrollTo({top:Math.max(0,y),behavior:"instant"});
+    history.replaceState(null,"",id);
+    const c=document.getElementById("nav");
+    if(c&&c.classList.contains("show")){const i=bootstrap.Collapse.getInstance(c);i&&i.hide()}
   });
+  const nv=document.querySelector(".navbar");
+  addEventListener("scroll",()=>{if(Date.now()<(window._noHide||0))nv.classList.remove("navhide")},{passive:true});
 
-  const nv = document.querySelector(".navbar");
-
-  addEventListener("scroll", () => {
-    if (Date.now() < (window._noHide || 0)) {
-      nv.classList.remove("navhide");
-    }
-  }, { passive: true });
-
-  /* side rail with section dots */
-  const rail = document.createElement("nav");
-  rail.id = "rail";
-
-  const secs = [...document.querySelectorAll(".navbar .nav-link")].map(l => ({
-    id: l.getAttribute("href"),
-    t: l.textContent.trim()
-  }));
-
-  rail.innerHTML = secs.map(s =>
-    `<a href="${s.id}" data-l="${s.t}" aria-label="${s.t}"></a>`
-  ).join("");
-
+  /* side rail */
+  const rail=document.createElement("nav");rail.id="rail";
+  const secs=[...document.querySelectorAll(".navbar .nav-link")].map(l=>({id:l.getAttribute("href"),t:l.textContent.trim()}));
+  rail.innerHTML=secs.map(s=>`<a href="${s.id}" data-l="${s.t}" aria-label="${s.t}"></a>`).join("");
   document.body.appendChild(rail);
-
-  const dots = [...rail.querySelectorAll("a")];
-
-  const ro = new IntersectionObserver(es => es.forEach(e => {
-    if (e.isIntersecting) {
-      dots.forEach(d =>
-        d.classList.toggle("on", d.getAttribute("href") === "#" + e.target.id)
-      );
-    }
-  }), { rootMargin: "-45% 0px -50% 0px" });
-
-  secs.forEach(s => {
-    const el = document.querySelector(s.id);
-    el && ro.observe(el);
-  });
+  const dots=[...rail.querySelectorAll("a")];
+  const ro=new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting)dots.forEach(d=>d.classList.toggle("on",d.getAttribute("href")==="#"+e.target.id));
+  }),{rootMargin:"-45% 0px -50% 0px"});
+  secs.forEach(s=>{const el=document.querySelector(s.id);el&&ro.observe(el)});
 
   /* back to top with progress ring */
-  const top = document.createElement("button");
-  top.id = "top";
-  top.setAttribute("aria-label", "Back to top");
-
-  top.innerHTML =
-    '<svg viewBox="0 0 44 44"><circle class="bg" cx="22" cy="22" r="20"/><circle class="fg" cx="22" cy="22" r="20"/></svg><i class="fas fa-arrow-up"></i>';
-
+  const top=document.createElement("button");top.id="top";top.setAttribute("aria-label","Back to top");
+  top.innerHTML='<svg viewBox="0 0 44 44"><circle class="bg" cx="22" cy="22" r="20"/><circle class="fg" cx="22" cy="22" r="20"/></svg><i class="fas fa-arrow-up"></i>';
   document.body.appendChild(top);
+  const fg=top.querySelector(".fg");
+  addEventListener("scroll",()=>{
+    const p=scrollY/Math.max(1,document.documentElement.scrollHeight-innerHeight);
+    top.classList.toggle("show",scrollY>600);fg.style.strokeDashoffset=125.7*(1-p);
+  },{passive:true});
+  top.onclick=()=>scrollTo({top:0,behavior:"instant"});
 
-  const fg = top.querySelector(".fg");
-
-  addEventListener("scroll", () => {
-    const p = scrollY / Math.max(1, document.documentElement.scrollHeight - innerHeight);
-    top.classList.toggle("show", scrollY > 600);
-    fg.style.strokeDashoffset = 125.7 * (1 - p);
-  }, { passive: true });
-
-  top.onclick = () => scrollTo({ top: 0, behavior: "instant" });
-
-  /* photo lightbox */
-  const lb = document.createElement("div");
-  lb.id = "lb";
-  lb.innerHTML = '<img alt=""><span></span>';
-  document.body.appendChild(lb);
-
-  document.addEventListener("click", e => {
-    const im = e.target.closest && e.target.closest(".iw img");
-
-    if (im) {
-      lb.querySelector("img").src = im.src;
-      lb.querySelector("span").textContent =
-        (im.alt || "") + "  ·  click anywhere or press Esc to close";
-      lb.classList.add("open");
-      return;
+  /* photo lightbox: loads the full-resolution image only when opened */
+  const lb=document.createElement("div");lb.id="lb";lb.innerHTML='<img alt=""><span></span>';document.body.appendChild(lb);
+  document.addEventListener("click",e=>{
+    const im=e.target.closest&&e.target.closest(".iw img");
+    if(im){
+      lb.querySelector("img").src=im.dataset.full||im.src;
+      lb.querySelector("span").textContent=(im.alt||"")+"  ·  click anywhere or press Esc to close";
+      lb.classList.add("open");return;
     }
-
-    if (lb.classList.contains("open") && lb.contains(e.target)) {
-      lb.classList.remove("open");
-    }
+    if(lb.classList.contains("open")&&lb.contains(e.target))lb.classList.remove("open");
   });
-
-  addEventListener("keydown", e => {
-    if (e.key === "Escape") lb.classList.remove("open");
-  });
-
+  addEventListener("keydown",e=>{if(e.key==="Escape")lb.classList.remove("open")});
 })();
 </script>
 </body>
