@@ -51,8 +51,8 @@ footer{background:var(--foot);color:rgba(255,255,255,.92);padding:2.6rem 0;text-
 /* theme dots */
 @media(max-width:768px){.section{padding:70px 0}.iw.tall{height:320px}}
 /* ===== LAYOUT THEMES ===== */
-.card-x{position:relative}
-.card-x::before{content:'';position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;z-index:1;background:radial-gradient(380px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.14),transparent 45%)}
+.card-x{position:relative;isolation:isolate}
+.card-x::before{content:'';position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;z-index:-1;background:radial-gradient(380px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.14),transparent 45%)}
 .card-x:hover::before{opacity:1}
 .hero{position:relative}.hero .container{position:relative;z-index:2}
 .marq{display:none}
@@ -82,7 +82,7 @@ body[data-theme=nova] .typed{display:block;grid-column:1;font:600 clamp(1rem,2.4
 body[data-theme=nova] .cta{display:flex;grid-column:1;gap:14px;flex-wrap:wrap;margin-top:1.4rem}
 body[data-theme=nova] .pbtn.ghost{background:transparent;border:1px solid rgba(255,255,255,.3)}
 body[data-theme=nova] #helix{display:block;grid-column:2;grid-row:1/span 4;width:100%;max-width:500px;height:auto;justify-self:center}
-@media(max-width:900px){body[data-theme=nova] .hero .container{grid-template-columns:1fr}body[data-theme=nova] #helix{display:none}}
+@media(max-width:900px){body[data-theme=nova] .hero .container{grid-template-columns:1fr}}
 body[data-theme=nova] .marq{display:block;overflow:hidden;white-space:nowrap;padding:1.4rem 0;border-block:1px solid var(--line);font:700 clamp(2.4rem,7vw,5.5rem) 'Space Grotesk',sans-serif;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.28)}
 body[data-theme=nova] .marq div{display:inline-block;animation:marq 40s linear infinite}
 body[data-theme=nova] .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;max-width:1140px;margin:70px auto 0;width:92%;background:var(--line);border:1px solid var(--line);border-radius:22px;overflow:hidden}
@@ -103,10 +103,36 @@ body[data-theme=nova] .rcard .ov{background:linear-gradient(to top,rgba(5,6,13,.
 body[data-theme=nova] .pub{border-left:2px solid var(--acc);border-radius:0 20px 20px 0;background:rgba(255,255,255,.03);position:relative}
 body[data-theme=nova] .pub::before{content:'';position:absolute;left:-7px;top:26px;width:12px;height:12px;border-radius:50%;background:var(--acc);box-shadow:0 0 14px var(--acc)}
 body[data-theme=nova] .tag{font-family:'JetBrains Mono',monospace}
-body[data-theme=nova] #cur{display:block;position:fixed;left:0;top:0;width:34px;height:34px;margin:-17px 0 0 -17px;border:2px solid #fff;border-radius:50%;pointer-events:none;z-index:4000;mix-blend-mode:difference;transition:width .25s,height .25s,margin .25s,background .25s}
-body[data-theme=nova] #cur.big{width:70px;height:70px;margin:-35px 0 0 -35px;background:#fff}
-@media(hover:none){body[data-theme=nova] #cur{display:none}}
-@keyframes marq{to{transform:translateX(-50%)}}
+@media(hover:none){@keyframes marq{to{transform:translateX(-50%)}}
+/* ===== FINAL ADDITIONS ===== */
+html{scroll-behavior:auto!important}
+.hint{display:none}
+body[data-theme=nova] .hint{display:block;grid-column:2;grid-row:5;text-align:center;font:600 .78rem 'JetBrains Mono',monospace;color:var(--muted);letter-spacing:1px;margin-top:6px}
+@media(max-width:900px){
+ body[data-theme=nova] #helix{display:block;grid-column:1;grid-row:auto;max-width:340px;margin:1.2rem auto 0}
+ body[data-theme=nova] .hint{grid-column:1;grid-row:auto}
+}
+body[data-theme=nova] #cur{display:block;position:fixed;left:0;top:0;width:30px;height:30px;margin:-15px 0 0 -15px;border:2px solid rgba(0,229,255,.85);border-radius:50%;pointer-events:none;z-index:4000;transition:width .25s,height .25s,margin .25s,background .25s;mix-blend-mode:normal;background:transparent}
+body[data-theme=nova] #cur.big{width:54px;height:54px;margin:-27px 0 0 -27px;background:rgba(0,229,255,.05)}
+.iw img{cursor:zoom-in}
+#rail{position:fixed;right:16px;top:50%;transform:translateY(-50%);z-index:1500;display:flex;flex-direction:column;gap:11px}
+#rail a{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.22);position:relative;transition:.3s}
+#rail a.on{background:var(--acc);box-shadow:0 0 12px var(--acc);transform:scale(1.5)}
+#rail a::after{content:attr(data-l);position:absolute;right:22px;top:50%;transform:translateY(-50%);white-space:nowrap;font:600 .7rem 'JetBrains Mono',monospace;background:var(--card);border:1px solid var(--line);color:var(--ink);padding:3px 10px;border-radius:8px;opacity:0;pointer-events:none;transition:.2s}
+#rail a:hover::after{opacity:1}
+@media(max-width:1100px){#rail{display:none}}
+#top{position:fixed;right:22px;bottom:22px;width:48px;height:48px;border:0;border-radius:50%;background:var(--card);color:var(--acc);z-index:1600;display:grid;place-items:center;cursor:pointer;opacity:0;transform:translateY(20px);pointer-events:none;transition:.35s;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+#top.show{opacity:1;transform:none;pointer-events:auto}
+#top svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+#top circle{fill:none;stroke-width:2.5}
+#top .bg{stroke:rgba(255,255,255,.12)}
+#top .fg{stroke:var(--acc);stroke-dasharray:125.7;stroke-dashoffset:125.7;stroke-linecap:round}
+#lb{position:fixed;inset:0;z-index:5000;background:rgba(3,4,10,.93);display:none;align-items:center;justify-content:center;flex-direction:column;gap:14px;cursor:zoom-out;padding:20px}
+#lb.open{display:flex;animation:lbIn .3s ease}
+@keyframes lbIn{from{opacity:0}}
+#lb img{max-width:92vw;max-height:84vh;border-radius:14px;box-shadow:0 0 0 1px var(--line),0 30px 90px rgba(0,229,255,.18);animation:lbZoom .35s ease}
+@keyframes lbZoom{from{transform:scale(.92)}}
+#lb span{color:var(--muted);font:600 .8rem 'JetBrains Mono',monospace}
 </style>
 </head>
 <body data-theme="nova">
@@ -304,7 +330,7 @@ render("DATABASES","databases-container","Important research databases coming so
   const ty=document.createElement("div");ty.className="typed";
   const cta=document.createElement("div");cta.className="cta";
   cta.innerHTML='<a class="pbtn" href="#research">Explore Research</a><a class="pbtn ghost" href="#team">Meet the Team</a>';
-  const hx=document.createElement("canvas");hx.id="helix";hx.width=520;hx.height=640;
+  const hx=document.createElement("canvas");hx.id="helix";hx.width=1040;hx.height=1280;
   hc.append(ty,cta,hx);
   /* typed words */
   const WORDS={nova:["Structural Parasitology","Protein Engineering","Drug Discovery"],protein:["Protein Engineering","Structure-Guided Design","Directed Evolution"],drug:["Drug Discovery","Virtual Screening","Molecular Docking"],parasite:["Structural Parasitology","Host–Parasite Interface","Target Identification"]};let wi=0,ci=0,del=false;
@@ -324,29 +350,74 @@ render("DATABASES","databases-container","Important research databases coming so
   if(nova())scramble(h1,"ASPIRE Lab");
   /* particle network + DNA helix */
   const cv=document.createElement("canvas");cv.id="fx";document.body.prepend(cv);
-  const x=cv.getContext("2d"),hctx=hx.getContext("2d");
+  const x=cv.getContext("2d"),hctx=hx.getContext("2d");hctx.scale(2,2);
   let W,H,P=[],mx=-999,my=-999,rot=0;const dpr=Math.min(devicePixelRatio||1,2);
   function size(){W=innerWidth;H=innerHeight;cv.width=W*dpr;cv.height=H*dpr;x.setTransform(dpr,0,0,dpr,0,0);
     P=Array.from({length:Math.round(Math.min(95,W*H/15000))},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4}))}
   addEventListener("resize",size);size();
   addEventListener("mousemove",e=>{mx=e.clientX;my=e.clientY});
-  function helix(){const w=520,h=640,N=30,R=120,cx=w/2;hctx.clearRect(0,0,w,h);rot+=.018;
-    const pts=[];for(let i=0;i<N;i++)pts.push({y:30+i*(h-60)/(N-1),c:Math.cos(rot+i*.42),s:Math.sin(rot+i*.42)});
-    hctx.lineWidth=2;hctx.strokeStyle="rgba(255,255,255,.18)";
-    pts.forEach(p=>{hctx.beginPath();hctx.moveTo(cx+R*p.c,p.y);hctx.lineTo(cx-R*p.c,p.y);hctx.stroke()});
-    [1,-1].forEach(sg=>{hctx.beginPath();pts.forEach((p,i)=>{const px=cx+sg*R*p.c;i?hctx.lineTo(px,p.y):hctx.moveTo(px,p.y)});
-      hctx.strokeStyle=sg>0?"rgba(0,229,255,.5)":"rgba(255,78,205,.5)";hctx.lineWidth=3;hctx.stroke()});
-    const b=[];pts.forEach(p=>{b.push({x:cx+R*p.c,y:p.y,z:p.s,c:"0,229,255"});b.push({x:cx-R*p.c,y:p.y,z:-p.s,c:"255,78,205"})});
-    b.sort((a,c)=>a.z-c.z).forEach(o=>{hctx.fillStyle=`rgba(${o.c},${.55+.45*(o.z+1)/2})`;hctx.shadowColor=`rgb(${o.c})`;hctx.shadowBlur=14;
-      hctx.beginPath();hctx.arc(o.x,o.y,6+o.z*3.5,0,6.3);hctx.fill()});hctx.shadowBlur=0}
-    (function tick(){requestAnimationFrame(tick);x.clearRect(0,0,W,H);if(!nova())return;
+    /* ===== folded protein (replaces DNA) ===== */
+  const FOLDP=[];
+  (function(){const C=[[-78,-78],[78,-78],[78,78],[-78,78]],R=26,TURNS=6.2,YH=170;
+    for(let hh=0;hh<4;hh++){const y0=hh%2?-YH:YH,y1=-y0,cx0=C[hh][0],cz0=C[hh][1];
+      const st={x:cx0+R*Math.cos(hh*1.2),y:y0,z:cz0+R*Math.sin(hh*1.2)};
+      if(hh){const a=FOLDP[FOLDP.length-1],c={x:(a.x+st.x)*.75,y:a.y+(a.y<0?-62:62),z:(a.z+st.z)*.75};
+        for(let k=1;k<=9;k++){const u=k/10,v=1-u;FOLDP.push({x:v*v*a.x+2*u*v*c.x+u*u*st.x,y:v*v*a.y+2*u*v*c.y+u*u*st.y,z:v*v*a.z+2*u*v*c.z+u*u*st.z})}}
+      for(let i=0;i<70;i++){const t=i/69,ph=t*TURNS*6.2832+hh*1.2;FOLDP.push({x:cx0+R*Math.cos(ph),y:y0+(y1-y0)*t,z:cz0+R*Math.sin(ph)})}}
+  })();
+  const NR=FOLDP.length,UNF=FOLDP.map((p,i)=>({x:(i/(NR-1)-.5)*470,y:Math.sin(i*.35)*22,z:Math.cos(i*.35)*22}));
+  const mixc=(a,b,u)=>a.map((v,i)=>v+(b[i]-v)*u),CA=[0,229,255],CB=[124,77,255],CC=[255,78,205];
+  const colAt=t=>t<.5?mixc(CA,CB,t*2):mixc(CB,CC,(t-.5)*2),smooth=u=>u*u*(3-2*u);
+  let foldT=0,unfold=false,ry=0,tilt=.2,lig=0,lastPct=-1;
+  const hint=document.createElement("div");hint.className="hint";hc.append(hint);
+  hx.style.cursor="pointer";hx.title="Click to refold";hx.addEventListener("click",()=>{unfold=true});
+  function helix(){
+    const tm=performance.now()/1000;
+    if(unfold){foldT-=.035;if(foldT<=0){foldT=0;unfold=false}}else if(foldT<1)foldT=Math.min(1,foldT+.0055);
+    tilt+=((.15+((my/innerHeight)-.5)*.5)-tilt)*.05;
+    ry+=.008+((mx>0?mx/innerWidth:.5)-.5)*.02;
+    const cs=Math.cos(ry),sn=Math.sin(ry),ct=Math.cos(tilt),st=Math.sin(tilt),P2=[];
+    for(let i=0;i<NR;i++){
+      const l=smooth(Math.max(0,Math.min(1,foldT*1.7-i/NR*.7))),f=FOLDP[i],u=UNF[i],wob=l*Math.sin(tm*2+i*.25)*2.2;
+      const x0=u.x+(f.x-u.x)*l+wob,y0=u.y+(f.y-u.y)*l,z0=u.z+(f.z-u.z)*l+wob;
+      const x1=x0*cs-z0*sn,z1=x0*sn+z0*cs,y2=y0*ct-z1*st,z2=y0*st+z1*ct,s=700/(700-z2);
+      P2.push({x:260+x1*s,y:320+y2*s,z:z2,s,t:i/(NR-1)});
+    }
+    hctx.clearRect(0,0,520,640);hctx.lineCap="round";hctx.lineJoin="round";
+    const order=P2.map((_,i)=>i).sort((a,b)=>P2[a].z-P2[b].z);
+    lig+=.018;
+    const Lx=Math.cos(lig)*215,Ly=Math.sin(lig*1.3)*110,Lz=Math.sin(lig)*215;
+    const lx=Lx*cs-Lz*sn,lz=Lx*sn+Lz*cs,ly=Ly*ct-lz*st,lz2=Ly*st+lz*ct,ls=700/(700-lz2);
+    const drawLig=()=>{const sx=260+lx*ls,sy=320+ly*ls,r=11*ls,gr=hctx.createRadialGradient(sx,sy,0,sx,sy,r*3.2);
+      gr.addColorStop(0,"rgba(255,255,255,.95)");gr.addColorStop(.25,"rgba(255,78,205,.8)");gr.addColorStop(1,"rgba(255,78,205,0)");
+      hctx.fillStyle=gr;hctx.beginPath();hctx.arc(sx,sy,r*3.2,0,6.3);hctx.fill()};
+    if(lz2<0)drawLig();
+    for(const i of order){if(!i)continue;const p=P2[i],q=P2[i-1],d=Math.max(0,Math.min(1,(p.z+200)/400)),c=colAt(p.t);
+      hctx.strokeStyle=`rgba(${c[0]|0},${c[1]|0},${c[2]|0},${.5+d*.5})`;hctx.lineWidth=(4+d*6)*p.s;
+      hctx.beginPath();hctx.moveTo(q.x,q.y);hctx.lineTo(p.x,p.y);hctx.stroke()}
+    hctx.globalCompositeOperation="lighter";
+    for(const i of order){if(!i)continue;const p=P2[i],q=P2[i-1],d=Math.max(0,Math.min(1,(p.z+200)/400));
+      hctx.strokeStyle=`rgba(255,255,255,${.22*d})`;hctx.lineWidth=2*p.s;
+      hctx.beginPath();hctx.moveTo(q.x-1.5,q.y-1.5);hctx.lineTo(p.x-1.5,p.y-1.5);hctx.stroke()}
+    hctx.globalCompositeOperation="source-over";
+    if(lz2>=0)drawLig();
+    const pct=Math.round(foldT*100);
+    if(pct!==lastPct){lastPct=pct;hint.textContent=pct<100?`Folding… ${pct}%`:"Folded ✓ · click the protein to refold"}
+  }
+  /* click bursts */
+  const BU=[];
+  addEventListener("click",e=>{if(!nova())return;for(let i=0;i<18;i++){const a=Math.random()*6.283,s=2+Math.random()*4;BU.push({x:e.clientX,y:e.clientY,vx:Math.cos(a)*s,vy:Math.sin(a)*s,l:50,c:Math.random()<.5?"0,229,255":"255,78,205"})}});
+  function bursts(){for(let i=BU.length-1;i>=0;i--){const b=BU[i];b.x+=b.vx;b.y+=b.vy;b.vx*=.95;b.vy*=.95;
+    if(--b.l<=0){BU.splice(i,1);continue}x.fillStyle=`rgba(${b.c},${b.l/50})`;x.beginPath();x.arc(b.x,b.y,2.4,0,6.3);x.fill()}}
+  /* ===== end protein ===== */
+  (function tick(){requestAnimationFrame(tick);x.clearRect(0,0,W,H);if(!nova())return;
     for(const p of P){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
       const dx=p.x-mx,dy=p.y-my,d=Math.hypot(dx,dy)||1;if(d<140){p.x+=dx/d*1.6;p.y+=dy/d*1.6}}
     for(let i=0;i<P.length;i++){const a=P[i];x.fillStyle="rgba(0,229,255,.85)";x.beginPath();x.arc(a.x,a.y,1.7,0,6.3);x.fill();
       for(let j=i+1;j<P.length;j++){const b=P[j],d=Math.hypot(a.x-b.x,a.y-b.y);
         if(d<130){x.strokeStyle=`rgba(124,77,255,${(1-d/130)*.4})`;x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.stroke()}}
       const dm=Math.hypot(a.x-mx,a.y-my);if(dm<180){x.strokeStyle=`rgba(255,78,205,${(1-dm/180)*.7})`;x.beginPath();x.moveTo(a.x,a.y);x.lineTo(mx,my);x.stroke()}}
-    helix()})();
+    bursts();helix()})();
   /* custom cursor, tilt, magnetic buttons */
   const cur=document.createElement("div");cur.id="cur";document.body.appendChild(cur);
   let cx=0,cy=0,tx=0,ty2=0;
@@ -364,7 +435,7 @@ render("DATABASES","databases-container","Important research databases coming so
   const pr=document.createElement("div");pr.id="prog";document.body.appendChild(pr);
   let ly=0;const nv=$(".navbar");
   addEventListener("scroll",()=>{pr.style.width=(scrollY/Math.max(1,document.documentElement.scrollHeight-innerHeight)*100)+"%";
-    nv.classList.toggle("navhide",scrollY>ly&&scrollY>500&&!$("#nav.show"));ly=scrollY},{passive:true});
+    nv.classList.toggle("navhide",scrollY>ly&&scrollY>500&&!$("#nav.show")&&Date.now()>(window._noHide||0));ly=scrollY},{passive:true});
   const links=[...document.querySelectorAll(".nav-link")];
   const spy=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(l=>l.classList.toggle("active",l.getAttribute("href")==="#"+e.target.id))}),{rootMargin:"-45% 0px -50% 0px"});
   document.querySelectorAll("section[id]").forEach(s=>spy.observe(s));
@@ -383,6 +454,45 @@ render("DATABASES","databases-container","Important research databases coming so
         (function f(now){const k=Math.min(1,(now-t0)/1500);b.textContent=Math.round(n*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})(t0)})}),{threshold:.4});
     io.observe(st);
   })();
+})();
+/* final extras */
+(function(){
+  /* instant jump to sections (no slow scrolling) and keep nav visible after a jump */
+  document.addEventListener("click",e=>{
+    const a=e.target.closest&&e.target.closest('a[href^="#"]');if(!a)return;
+    const id=a.getAttribute("href");if(id.length<2)return;
+    const el=document.querySelector(id);if(!el)return;
+    e.preventDefault();window._noHide=Date.now()+900;
+    const y=el.getBoundingClientRect().top+scrollY-(el.classList.contains("hero")?0:70);
+    window.scrollTo({top:Math.max(0,y),behavior:"instant"});
+    history.replaceState(null,"",id);
+    const c=document.getElementById("nav");if(c&&c.classList.contains("show")){const i=bootstrap.Collapse.getInstance(c);i&&i.hide()}
+  });
+  const nv=document.querySelector(".navbar");
+  addEventListener("scroll",()=>{if(Date.now()<(window._noHide||0))nv.classList.remove("navhide")},{passive:true});
+  /* side rail with section dots */
+  const rail=document.createElement("nav");rail.id="rail";
+  const secs=[...document.querySelectorAll(".navbar .nav-link")].map(l=>({id:l.getAttribute("href"),t:l.textContent.trim()}));
+  rail.innerHTML=secs.map(s=>`<a href="${s.id}" data-l="${s.t}" aria-label="${s.t}"></a>`).join("");
+  document.body.appendChild(rail);
+  const dots=[...rail.querySelectorAll("a")];
+  const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)dots.forEach(d=>d.classList.toggle("on",d.getAttribute("href")==="#"+e.target.id))}),{rootMargin:"-45% 0px -50% 0px"});
+  secs.forEach(s=>{const el=document.querySelector(s.id);el&&ro.observe(el)});
+  /* back to top with progress ring */
+  const top=document.createElement("button");top.id="top";top.setAttribute("aria-label","Back to top");
+  top.innerHTML='<svg viewBox="0 0 44 44"><circle class="bg" cx="22" cy="22" r="20"/><circle class="fg" cx="22" cy="22" r="20"/></svg><i class="fas fa-arrow-up"></i>';
+  document.body.appendChild(top);
+  const fg=top.querySelector(".fg");
+  addEventListener("scroll",()=>{const p=scrollY/Math.max(1,document.documentElement.scrollHeight-innerHeight);
+    top.classList.toggle("show",scrollY>600);fg.style.strokeDashoffset=125.7*(1-p)},{passive:true});
+  top.onclick=()=>scrollTo({top:0,behavior:"instant"});
+  /* photo lightbox */
+  const lb=document.createElement("div");lb.id="lb";lb.innerHTML='<img alt=""><span></span>';document.body.appendChild(lb);
+  document.addEventListener("click",e=>{
+    const im=e.target.closest&&e.target.closest(".iw img");
+    if(im){lb.querySelector("img").src=im.src;lb.querySelector("span").textContent=(im.alt||"")+"  ·  click anywhere or press Esc to close";lb.classList.add("open");return}
+    if(lb.classList.contains("open")&&lb.contains(e.target))lb.classList.remove("open")});
+  addEventListener("keydown",e=>{if(e.key==="Escape")lb.classList.remove("open")});
 })();
 </script>
 </body>
