@@ -36,13 +36,7 @@ h1,h2,h3,h4,h5,h6{font-family:var(--hf);color:var(--head)}
 .rcard:hover{transform:translateY(-9px) scale(1.015)}
 .rcard .ov{position:absolute;bottom:0;width:100%;padding:3rem 1.4rem 1.4rem;background:linear-gradient(to top,rgba(10,24,48,.93),transparent)}
 .rcard h5{color:#fff;font-size:1.35rem}.rcard p{color:rgba(255,255,255,.92);margin:0}
-.iw{height:250px;overflow:hidden}
-.iw img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;image-rendering:auto;backface-visibility:hidden;transition:transform .6s}
-.team-img,.mimg{display:block;object-fit:cover;object-position:center;image-rendering:auto}
-@media(hover:none),(pointer:coarse){
-  .iw img,.team-img,.mimg{transform:none!important;transition:none!important}
-  .card-x:hover .iw img{transform:none}
-}
+.iw{height:250px;overflow:hidden}.iw img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
 .card-x:hover .iw img{transform:scale(1.07)}.iw.tall{height:390px;background:var(--alt)}
 .pub{background:var(--card);border:1px solid var(--line);border-left:6px solid var(--acc);border-radius:var(--r);padding:1.5rem;margin-bottom:1.2rem;box-shadow:var(--sh);transition:.3s}
 .pub:hover{transform:translateX(8px)}
@@ -115,7 +109,7 @@ html{scroll-behavior:auto!important}
 .hint{display:none}
 body[data-theme=nova] .hint{display:block;grid-column:2;grid-row:5;text-align:center;font:600 .78rem 'JetBrains Mono',monospace;color:var(--muted);letter-spacing:1px;margin-top:6px}
 @media(max-width:900px){
- body[data-theme=nova] #helix{display:block;grid-column:1;grid-row:auto;width:min(86vw,360px);max-width:360px;height:auto;margin:1.2rem auto 0}
+ body[data-theme=nova] #helix{display:block;grid-column:1;grid-row:auto;max-width:340px;margin:1.2rem auto 0}
  body[data-theme=nova] .hint{grid-column:1;grid-row:auto}
 }
 body[data-theme=nova] #cur{display:block;position:fixed;left:0;top:0;width:30px;height:30px;margin:-15px 0 0 -15px;border:2px solid rgba(0,229,255,.85);border-radius:50%;pointer-events:none;z-index:4000;transition:width .25s,height .25s,margin .25s,background .25s;mix-blend-mode:normal;background:transparent}
@@ -204,14 +198,7 @@ const ALIAS={TEAM:["Team","TEAM"],POSTDOCS:["POSTDOC","POSTDOCS"],PUBLICATIONS:[
 const esc=v=>String(v??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");
 const g=(o,...k)=>{for(const x of k)for(const key in o)if(key.trim().toLowerCase()===x&&String(o[key]).trim())return String(o[key]).trim();return""};
 const did=u=>{const m=String(u||"").match(/\/d\/([\w-]+)/)||String(u||"").match(/[?&]id=([\w-]+)/);return m?m[1]:""};
-const img=(u,width=2000)=>{
-  u=String(u||"").trim();
-  if(!u)return FB;
-  const d=did(u);
-  // Googleusercontent serves the original Drive image at the requested width,
-  // avoiding the smaller thumbnail variant that can look soft on high-DPI phones.
-  return d?`https://lh3.googleusercontent.com/d/${d}=w${width}`:u;
-};
+const img=u=>{u=String(u||"").trim();if(!u)return FB;const d=did(u);return d?`https://drive.google.com/thumbnail?id=${d}&sz=w2000`:u};
 const open_=u=>{u=String(u||"").trim();const d=did(u);return d?`https://drive.google.com/file/d/${d}/view?usp=sharing`:safe(u)};
 const safe=u=>{try{const x=new URL(String(u||"").trim());return /^https?:$/.test(x.protocol)?x.href:""}catch(e){return""}};
 const empty=m=>`<div class="col-12"><div class="card-x pad text-center"><p class="muted mb-0">${esc(m)}</p></div></div>`;
@@ -243,10 +230,10 @@ render("RESEARCH","research-container","Research content coming soon...",r=>{
 /* Team + PI + Postdocs */
 const PROFILES={};
 function person(m,i,pre,defRole){
-  const id=pre+i,P={name:g(m,"name")||"Unnamed",role:g(m,"role")||defRole||"",image:img(g(m,"image"),1000),bio:g(m,"bio"),research:g(m,"research"),hobbies:g(m,"hobbies"),interests:g(m,"interests"),linkedin:safe(g(m,"linkedin"))};
+  const id=pre+i,P={name:g(m,"name")||"Unnamed",role:g(m,"role")||defRole||"",image:img(g(m,"image")),bio:g(m,"bio"),research:g(m,"research"),hobbies:g(m,"hobbies"),interests:g(m,"interests"),linkedin:safe(g(m,"linkedin"))};
   PROFILES[id]=P;
   return `<div class="col-lg-3 col-md-4 col-sm-6"><div class="card-x pad d-flex flex-column align-items-center text-center">
-  <img src="${esc(img(g(m,"image"),1000))}" class="team-img mb-3" alt="${esc(P.name)}" loading="lazy" decoding="async" fetchpriority="low" onerror="${err}">
+  <img src="${esc(P.image)}" class="team-img mb-3" alt="${esc(P.name)}" loading="lazy" onerror="${err}">
   <h5 class="mb-1">${esc(P.name)}</h5><p class="muted mb-3">${esc(P.role)}</p>
   <div class="mt-auto d-flex gap-2 align-items-center justify-content-center">
   <button class="pbtn" onclick="openProfile('${id}')"><i class="fas fa-user me-2"></i>View Profile</button>
@@ -268,7 +255,7 @@ function openProfile(id){
   const P=PROFILES[id];if(!P)return;
   document.getElementById("pmTitle").textContent=P.name;
   const sec=(t,v)=>v?`<h5 class="mt-4 mb-2">${t}</h5><p class="muted">${esc(v)}</p>`:"";
-  document.getElementById("pmBody").innerHTML=`<div class="text-center"><img src="${esc(img(g(PROFILES[id]||{},"image"),1400))}" class="mimg" alt="${esc(P.name)}" decoding="async" onerror="${err}"><h3>${esc(P.name)}</h3><p class="muted">${esc(P.role)}</p></div>`
+  document.getElementById("pmBody").innerHTML=`<div class="text-center"><img src="${esc(P.image)}" class="mimg" alt="${esc(P.name)}" onerror="${err}"><h3>${esc(P.name)}</h3><p class="muted">${esc(P.role)}</p></div>`
    +sec("About",P.bio)+sec("Current Research",P.research)+sec("Hobbies & Interests",P.hobbies)+sec("More About Me",P.interests)
    +(P.linkedin?`<div class="mt-4"><a href="${esc(P.linkedin)}" target="_blank" rel="noopener noreferrer" class="pbtn"><i class="fab fa-linkedin me-2"></i>LinkedIn</a></div>`:"");
   new bootstrap.Modal(document.getElementById("profileModal")).show();
@@ -276,7 +263,7 @@ function openProfile(id){
 
 /* Gallery + Fun */
 const gal=(a,def)=>{const raw=g(a,"image"),meta=[g(a,"event"),g(a,"location"),g(a,"year")].filter(Boolean).map(esc).join(" · "),v=open_(raw),d=g(a,"description"),t=g(a,"title")||def;
-  return `<div class="col-lg-4 col-md-6"><div class="card-x"><div class="iw"><img src="${esc(img(raw))}" alt="${esc(t)}" loading="lazy" decoding="async" onerror="${err}"></div>
+  return `<div class="col-lg-4 col-md-6"><div class="card-x"><div class="iw"><img src="${esc(img(raw))}" alt="${esc(t)}" loading="lazy" onerror="${err}"></div>
   <div class="pad"><h5>${esc(t)}</h5>${meta?`<div class="muted small mb-2">${meta}</div>`:""}${d?`<p class="muted">${esc(d)}</p>`:""}
   ${v?`<a href="${esc(v)}" target="_blank" rel="noopener noreferrer" class="pbtn"><i class="fas fa-expand me-2"></i>View</a>`:""}</div></div></div>`};
 render("GALLERY","gallery-container","Workshop and conference photographs coming soon...",a=>gal(a,"Lab Activity"));
@@ -285,7 +272,7 @@ render("FUN_ACTIVITIES","fun-activities-container","Fun activities coming soon..
 /* Posters */
 render("POSTERS","posters-container","Research posters coming soon...",p=>{
   const t=g(p,"title")||"Research Poster",ev=g(p,"event"),yr=g(p,"year"),au=g(p,"authors"),d=g(p,"description"),u=open_(g(p,"link"));
-  return `<div class="col-lg-4 col-md-6"><div class="card-x"><div class="iw tall"><img src="${esc(img(g(p,"image")))}" alt="${esc(t)}" loading="lazy" decoding="async" onerror="${err}"></div>
+  return `<div class="col-lg-4 col-md-6"><div class="card-x"><div class="iw tall"><img src="${esc(img(g(p,"image")))}" alt="${esc(t)}" loading="lazy" onerror="${err}"></div>
   <div class="pad"><h5>${esc(t)}</h5>${ev||yr?`<p class="muted mb-2">${esc(ev)}${ev&&yr?" · ":""}${esc(yr)}</p>`:""}
   ${au?`<p class="small muted"><strong>Authors:</strong> ${esc(au)}</p>`:""}${d?`<p class="muted">${esc(d)}</p>`:""}
   ${u?`<a href="${esc(u)}" target="_blank" rel="noopener noreferrer" class="pbtn"><i class="fas fa-file-pdf me-2"></i>View Poster</a>`:`<p class="small muted mb-0">Poster PDF not available.</p>`}</div></div></div>`});
@@ -364,184 +351,663 @@ render("DATABASES","databases-container","Important research databases coming so
   /* particle network + DNA helix */
   const cv=document.createElement("canvas");cv.id="fx";document.body.prepend(cv);
   const x=cv.getContext("2d"),hctx=hx.getContext("2d");hctx.scale(2,2);
-  let W,H,P=[],mx=-999,my=-999,rot=0;const dpr=Math.min(devicePixelRatio||1,2.5);
+  let W,H,P=[],mx=-999,my=-999,rot=0;const dpr=Math.min(devicePixelRatio||1,2);
   function size(){W=innerWidth;H=innerHeight;cv.width=W*dpr;cv.height=H*dpr;x.setTransform(dpr,0,0,dpr,0,0);
-    P=Array.from({length:Math.round(Math.min(matchMedia("(hover:none),(pointer:coarse)").matches?28:95,W*H/(matchMedia("(hover:none),(pointer:coarse)").matches?42000:15000)))},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4}))}
+    P=Array.from({length:Math.round(Math.min(95,W*H/15000))},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4}))}
   addEventListener("resize",size);size();
   addEventListener("mousemove",e=>{mx=e.clientX;my=e.clientY});
-   /* ===== FERRITIN-LIKE 24-SUBUNIT CAGE =====
-      A hollow, rotating shell made from 24 four-helix subunits.
-      One front-facing subunit is highlighted in red, as in the reference figure.
-   */
-   const V3 = {
-     add:(a,b)=>({x:a.x+b.x,y:a.y+b.y,z:a.z+b.z}),
-     mul:(a,s)=>({x:a.x*s,y:a.y*s,z:a.z*s}),
-     dot:(a,b)=>a.x*b.x+a.y*b.y+a.z*b.z,
-     cross:(a,b)=>({x:a.y*b.z-a.z*b.y,y:a.z*b.x-a.x*b.z,z:a.x*b.y-a.y*b.x}),
-     norm:a=>{const m=Math.hypot(a.x,a.y,a.z)||1;return{x:a.x/m,y:a.y/m,z:a.z/m}}
-   };
+   /* ===== FERRITIN-LIKE 24-SUBUNIT CAGE ===== */
 
-   const FERRITIN = [];
-   const FERRITIN_SUBUNITS = 24;
-   const FERRITIN_RADIUS = 126;
-   const HELIX_COUNT = 4;
-   const HELIX_STEPS = 34;
+/* =========================================================
+   1. FERRITIN CAGE GEOMETRY
+   ========================================================= */
 
-   function makeFerritinCage(){
-     const faces = [
-       {n:{x:1,y:0,z:0},u:{x:0,y:1,z:0},v:{x:0,y:0,z:1}},
-       {n:{x:-1,y:0,z:0},u:{x:0,y:-1,z:0},v:{x:0,y:0,z:1}},
-       {n:{x:0,y:1,z:0},u:{x:0,y:0,z:1},v:{x:1,y:0,z:0}},
-       {n:{x:0,y:-1,z:0},u:{x:0,y:0,z:-1},v:{x:1,y:0,z:0}},
-       {n:{x:0,y:0,z:1},u:{x:1,y:0,z:0},v:{x:0,y:1,z:0}},
-       {n:{x:0,y:0,z:-1},u:{x:-1,y:0,z:0},v:{x:0,y:1,z:0}}
-     ];
-     const grid = [-0.43,0.43];
-     let id = 0;
+const FOLDP = [];
+const UNF = [];
+const CAGE_PATHS = [];
+const CAGE_SUBUNITS = 24;
 
-     for(const face of faces){
-       for(const gu of grid){
-         for(const gv of grid){
-           const normal = V3.norm(V3.add(face.n,V3.add(V3.mul(face.u,gu),V3.mul(face.v,gv))));
-           const u = V3.norm(V3.cross(Math.abs(normal.y)>.92?{x:1,y:0,z:0}:{x:0,y:1,z:0},normal));
-           const v = V3.norm(V3.cross(normal,u));
-           const center = V3.mul(normal,FERRITIN_RADIUS);
-           const offsets = [[-7.2,-7.2],[7.2,-7.2],[7.2,7.2],[-7.2,7.2]];
-           const helices = [];
+const CAGE_RADIUS = 145;
+const HELIX_LENGTH = 68;
+const HELIX_STEPS = 30;
+const HELIX_RADIUS = 2.8;
 
-           for(let h=0;h<HELIX_COUNT;h++){
-             const points=[];
-             const [ou,ov]=offsets[h];
-             for(let k=0;k<HELIX_STEPS;k++){
-               const t=k/(HELIX_STEPS-1);
-               const axial=(t-.5)*58;
-               const angle=t*Math.PI*8+ h*Math.PI/2 + id*.11;
-               const cu=Math.cos(angle)*2.15;
-               const cv=Math.sin(angle)*2.15;
-               points.push({
-                 x:center.x+normal.x*axial+u.x*(ou+cu)+v.x*(ov+cv),
-                 y:center.y+normal.y*axial+u.y*(ou+cu)+v.y*(ov+cv),
-                 z:center.z+normal.z*axial+u.z*(ou+cu)+v.z*(ov+cv)
-               });
-             }
-             helices.push(points);
-             FERRITIN.push({points,type:"helix",subunit:id});
-           }
+/* Store a path as indices into the shared 3D coordinate array */
+function addCagePath(points, type, subunit) {
+  const indices = [];
 
-           // Flexible BC-like loops join the four helices at both ends.
-           for(let h=0;h<HELIX_COUNT;h++){
-             const next=(h+1)%HELIX_COUNT;
-             for(const end of [0,1]){
-               const a=end===0?helices[h][0]:helices[h][HELIX_STEPS-1];
-               const b=end===0?helices[next][0]:helices[next][HELIX_STEPS-1];
-               const loop=[];
-               for(let k=0;k<=10;k++){
-                 const t=k/10,bulge=Math.sin(Math.PI*t)*5.5;
-                 loop.push({
-                   x:a.x*(1-t)+b.x*t+u.x*bulge,
-                   y:a.y*(1-t)+b.y*t+u.y*bulge,
-                   z:a.z*(1-t)+b.z*t+u.z*bulge
-                 });
-               }
-               FERRITIN.push({points:loop,type:"loop",subunit:id});
-             }
-           }
-           id++;
-         }
-       }
-     }
-   }
-   makeFerritinCage();
+  for (const p of points) {
+    indices.push(FOLDP.length);
+    FOLDP.push(p);
+  }
 
-   // Pick the subunit facing the viewer most directly for the red highlight.
-   const FRONT_SUBUNIT = (() => {
-     let best=0,bestZ=-Infinity;
-     for(let i=0;i<FERRITIN_SUBUNITS;i++){
-       const z=FERRITIN.filter(p=>p.subunit===i&&p.type==="helix")
-         .flatMap(p=>p.points).reduce((s,p)=>s+p.z,0);
-       if(z>bestZ){bestZ=z;best=i;}
-     }
-     return best;
-   })();
+  CAGE_PATHS.push({
+    indices,
+    type,
+    subunit
+  });
+}
 
-   let cageRotation=0;
-   let cageTilt=.16;
-   let foldT=1;
-   let unfold=false;
-   let lastPct=-1;
-   const hint=document.createElement("div");
-   hint.className="hint";
-   hc.append(hint);
-   hx.style.cursor="pointer";
-   hx.title="Click the ferritin cage to replay its assembly";
-   hx.addEventListener("click",()=>{unfold=true;foldT=0;});
+/* =========================================================
+   2. GENERATE 24 SPHERICAL SUBUNITS
+   ========================================================= */
 
-   function helix(){
-     const now=performance.now()/1000;
-     const touchDevice=window.matchMedia("(hover:none),(pointer:coarse)").matches;
-     if(unfold){
-       foldT=Math.min(1,foldT+.035);
-       if(foldT>=1)unfold=false;
-     }else if(foldT<1){
-       foldT=Math.min(1,foldT+.012);
-     }
+(function buildFerritinCage() {
 
-     cageRotation += touchDevice ? .0025 : .004;
-     const targetTilt=.16+(!touchDevice&&my>-100?((my/innerHeight)-.5)*.18:0);
-     cageTilt+=(targetTilt-cageTilt)*.035;
+  const goldenAngle = Math.PI * (3 - Math.sqrt(5));
 
-     const cy=Math.cos(cageRotation),sy=Math.sin(cageRotation);
-     const cx=Math.cos(cageTilt),sx=Math.sin(cageTilt);
-     const projected=FERRITIN.map(item=>{
-       const pts=item.points.map(p=>{
-         const rx=p.x*cy-p.z*sy;
-         const rz=p.x*sy+p.z*cy;
-         const yy=p.y*cx-rz*sx;
-         const zz=p.y*sx+rz*cx;
-         const scale=720/(720-zz);
-         return{x:260+rx*scale,y:320+yy*scale,z:zz,scale};
-       });
-       const depth=pts.reduce((a,p)=>a+p.z,0)/pts.length;
-       return{...item,pts,depth};
-     }).sort((a,b)=>a.depth-b.depth);
+  for (let s = 0; s < CAGE_SUBUNITS; s++) {
 
-     hctx.clearRect(0,0,520,640);
-     hctx.lineCap="round";
-     hctx.lineJoin="round";
+    /* Fibonacci sphere distribution */
+    const yy = 1 - 2 * (s + 0.5) / CAGE_SUBUNITS;
+    const rr = Math.sqrt(1 - yy * yy);
+    const theta = goldenAngle * s;
 
-     for(const item of projected){
-       const isHelix=item.type==="helix";
-       const selected=item.subunit===FRONT_SUBUNIT;
-       const front=Math.max(0,Math.min(1,(item.depth+150)/300));
-       const base=selected?(isHelix?"226,54,68":"255,120,126"):(isHelix?"139,103,169":"190,163,207");
-       const alpha=isHelix?.62+front*.34:.32+front*.45;
+    const n = {
+      x: rr * Math.cos(theta),
+      y: yy,
+      z: rr * Math.sin(theta)
+    };
 
-       hctx.beginPath();
-       hctx.moveTo(item.pts[0].x,item.pts[0].y);
-       for(let i=1;i<item.pts.length;i++)hctx.lineTo(item.pts[i].x,item.pts[i].y);
-       hctx.strokeStyle=`rgba(${base},${alpha})`;
-       hctx.lineWidth=(isHelix?6.2:2.2)*item.pts.reduce((s,p)=>s+p.scale,0)/item.pts.length;
-       hctx.stroke();
+    /* Local coordinate system */
+    const ref = Math.abs(n.y) > 0.9
+      ? { x: 1, y: 0, z: 0 }
+      : { x: 0, y: 1, z: 0 };
 
-       // Fine specular highlight gives the helices a protein-ribbon appearance.
-       if(isHelix){
-         hctx.beginPath();
-         hctx.moveTo(item.pts[0].x-1.15,item.pts[0].y-1.15);
-         for(let i=1;i<item.pts.length;i++)hctx.lineTo(item.pts[i].x-1.15,item.pts[i].y-1.15);
-         hctx.strokeStyle=selected?"rgba(255,205,205,.48)":`rgba(235,220,255,${.12+front*.22})`;
-         hctx.lineWidth=1.25;
-         hctx.stroke();
-       }
-     }
+    let u = {
+      x: ref.y * n.z - ref.z * n.y,
+      y: ref.z * n.x - ref.x * n.z,
+      z: ref.x * n.y - ref.y * n.x
+    };
 
-     // Subtle cage assembly indicator; no artificial ligand or solid central sphere.
-     const pct=Math.round(foldT*100);
-     if(pct!==lastPct){
-       lastPct=pct;
-       hint.textContent=pct<100?`Ferritin cage assembling · ${pct}%`:"Ferritin 24-subunit cage · click to replay";
-     }
-   }
-   /* ===== END FERRITIN-LIKE CAGE ===== */
+    const ul = Math.hypot(u.x, u.y, u.z);
+
+    u = {
+      x: u.x / ul,
+      y: u.y / ul,
+      z: u.z / ul
+    };
+
+    const v = {
+      x: n.y * u.z - n.z * u.y,
+      y: n.z * u.x - n.x * u.z,
+      z: n.x * u.y - n.y * u.x
+    };
+
+    const center = {
+      x: n.x * CAGE_RADIUS,
+      y: n.y * CAGE_RADIUS,
+      z: n.z * CAGE_RADIUS
+    };
+
+    /* Four alpha helices in each protein subunit */
+    const offsets = [
+      [-10, -10],
+      [ 10, -10],
+      [ 10,  10],
+      [-10,  10]
+    ];
+
+    const helices = [];
+
+    for (let h = 0; h < 4; h++) {
+
+      const [ou, ov] = offsets[h];
+      const points = [];
+
+      for (let k = 0; k < HELIX_STEPS; k++) {
+
+        const t = k / (HELIX_STEPS - 1);
+        const axial = (t - 0.5) * HELIX_LENGTH;
+
+        const angle =
+          t * Math.PI * 10 +
+          h * Math.PI * 0.5 +
+          s * 0.17;
+
+        const coilU = Math.cos(angle) * HELIX_RADIUS;
+        const coilV = Math.sin(angle) * HELIX_RADIUS;
+
+        points.push({
+
+          x:
+            center.x +
+            n.x * axial +
+            u.x * (ou + coilU) +
+            v.x * (ov + coilV),
+
+          y:
+            center.y +
+            n.y * axial +
+            u.y * (ou + coilU) +
+            v.y * (ov + coilV),
+
+          z:
+            center.z +
+            n.z * axial +
+            u.z * (ou + coilU) +
+            v.z * (ov + coilV)
+
+        });
+      }
+
+      helices.push(points);
+
+      addCagePath(points, "helix", s);
+    }
+
+    /* Connecting loops between the four helices */
+    for (let h = 0; h < 4; h++) {
+
+      const next = (h + 1) % 4;
+
+      for (const end of [0, 1]) {
+
+        const a = end === 0
+          ? helices[h][0]
+          : helices[h][HELIX_STEPS - 1];
+
+        const b = end === 0
+          ? helices[next][0]
+          : helices[next][HELIX_STEPS - 1];
+
+        const loop = [];
+
+        for (let k = 0; k <= 7; k++) {
+
+          const t = k / 7;
+          const bulge = Math.sin(t * Math.PI) * 5;
+
+          loop.push({
+
+            x:
+              a.x * (1 - t) +
+              b.x * t +
+              u.x * bulge,
+
+            y:
+              a.y * (1 - t) +
+              b.y * t +
+              u.y * bulge,
+
+            z:
+              a.z * (1 - t) +
+              b.z * t +
+              u.z * bulge
+
+          });
+        }
+
+        addCagePath(loop, "loop", s);
+      }
+    }
+  }
+
+})();
+
+/* =========================================================
+   3. UNFOLDED STARTING CONFIGURATION
+   ========================================================= */
+
+const NR = FOLDP.length;
+
+for (let i = 0; i < NR; i++) {
+
+  UNF.push({
+
+    x: (i / (NR - 1) - 0.5) * 470,
+
+    y: Math.sin(i * 0.35) * 22,
+
+    z: Math.cos(i * 0.35) * 22
+
+  });
+
+}
+
+/* =========================================================
+   4. COLOUR AND ANIMATION SETTINGS
+   ========================================================= */
+
+const mixc = (a, b, u) =>
+  a.map((v, i) => v + (b[i] - v) * u);
+
+const CA = [0, 229, 255];
+const CB = [45, 130, 235];
+const CC = [124, 77, 255];
+
+const colAt = t =>
+  t < 0.5
+    ? mixc(CA, CB, t * 2)
+    : mixc(CB, CC, (t - 0.5) * 2);
+
+const smooth = u => u * u * (3 - 2 * u);
+
+let foldT = 0;
+let unfold = false;
+let ry = 0;
+let tilt = 0.2;
+let lig = 0;
+let lastPct = -1;
+
+/* Assembly hint */
+const hint = document.createElement("div");
+hint.className = "hint";
+hc.append(hint);
+
+/* Click cage to trigger refolding */
+hx.style.cursor = "pointer";
+hx.title = "Click to refold ferritin cage";
+
+hx.addEventListener("click", () => {
+  unfold = true;
+});
+
+/* =========================================================
+   5. 3D PROJECTION AND FERRITIN RENDERING
+   ========================================================= */
+
+function helix() {
+
+  const tm = performance.now() / 1000;
+
+  /* Folding animation */
+  if (unfold) {
+
+    foldT -= 0.035;
+
+    if (foldT <= 0) {
+      foldT = 0;
+      unfold = false;
+    }
+
+  } else if (foldT < 1) {
+
+    foldT = Math.min(1, foldT + 0.0055);
+
+  }
+
+  /* Rotation and tilt */
+  tilt += (
+    (.15 + ((my / innerHeight) - 0.5) * 0.5) - tilt
+  ) * 0.05;
+
+  ry +=
+    0.006 +
+    ((mx > 0 ? mx / innerWidth : 0.5) - 0.5) * 0.02;
+
+  const cs = Math.cos(ry);
+  const sn = Math.sin(ry);
+  const ct = Math.cos(tilt);
+  const st = Math.sin(tilt);
+
+  const P2 = [];
+
+  /* Project all cage coordinates */
+  for (let i = 0; i < NR; i++) {
+
+    const l = smooth(
+      Math.max(
+        0,
+        Math.min(
+          1,
+          foldT * 1.7 - i / NR * 0.7
+        )
+      )
+    );
+
+    const f = FOLDP[i];
+    const u = UNF[i];
+
+    const wob =
+      l * Math.sin(tm * 1.5 + i * 0.025) * 0.9;
+
+    const x0 =
+      u.x + (f.x - u.x) * l + wob;
+
+    const y0 =
+      u.y + (f.y - u.y) * l + wob;
+
+    const z0 =
+      u.z + (f.z - u.z) * l + wob;
+
+    const x1 = x0 * cs - z0 * sn;
+    const z1 = x0 * sn + z0 * cs;
+
+    const y2 = y0 * ct - z1 * st;
+    const z2 = y0 * st + z1 * ct;
+
+    const scale = 700 / (700 - z2);
+
+    P2.push({
+
+      x: 260 + x1 * scale,
+      y: 320 + y2 * scale,
+
+      z: z2,
+      s: scale
+
+    });
+  }
+
+  hctx.clearRect(0, 0, 520, 640);
+
+  hctx.lineCap = "round";
+  hctx.lineJoin = "round";
+
+  /* Depth-sort protein subunits */
+  const sortedPaths = CAGE_PATHS.map(path => {
+
+    let depth = 0;
+
+    for (const index of path.indices) {
+      depth += P2[index].z;
+    }
+
+    return {
+      path,
+      depth: depth / path.indices.length
+    };
+
+  }).sort((a, b) => a.depth - b.depth);
+
+  /* =====================================================
+     6. DRAW FOUR-HELIX PROTEIN SUBUNITS
+     ===================================================== */
+
+  for (const item of sortedPaths) {
+
+    const path = item.path;
+    const indices = path.indices;
+
+    if (indices.length < 2) continue;
+
+    const front = Math.max(
+      0,
+      Math.min(1, (item.depth + 190) / 380)
+    );
+
+    const subunitColour = colAt(
+      path.subunit / CAGE_SUBUNITS
+    );
+
+    const helixPath = path.type === "helix";
+
+    const baseWidth = helixPath ? 8.5 : 3.0;
+
+    /* Main protein ribbon */
+    for (let k = 1; k < indices.length; k++) {
+
+      const p = P2[indices[k - 1]];
+      const q = P2[indices[k]];
+
+      const depth = Math.max(
+        0,
+        Math.min(1, (p.z + q.z + 380) / 760)
+      );
+
+      const alpha = helixPath
+        ? 0.55 + depth * 0.4
+        : 0.3 + depth * 0.4;
+
+      hctx.strokeStyle = helixPath
+        ? `rgba(30,105,205,${alpha})`
+        : `rgba(85,165,235,${alpha})`;
+
+      hctx.lineWidth =
+        baseWidth *
+        ((p.s + q.s) * 0.5);
+
+      hctx.beginPath();
+
+      hctx.moveTo(p.x, p.y);
+      hctx.lineTo(q.x, q.y);
+
+      hctx.stroke();
+    }
+
+    /* Luminous ribbon highlight */
+    hctx.globalCompositeOperation = "lighter";
+
+    for (let k = 1; k < indices.length; k++) {
+
+      const p = P2[indices[k - 1]];
+      const q = P2[indices[k]];
+
+      const alpha = helixPath
+        ? 0.16 + front * 0.28
+        : 0.08 + front * 0.12;
+
+      hctx.strokeStyle =
+        `rgba(185,225,255,${alpha})`;
+
+      hctx.lineWidth =
+        (helixPath ? 2.0 : 0.9) *
+        ((p.s + q.s) * 0.5);
+
+      hctx.beginPath();
+
+      hctx.moveTo(p.x - 1.2, p.y - 1.2);
+      hctx.lineTo(q.x - 1.2, q.y - 1.2);
+
+      hctx.stroke();
+    }
+
+    hctx.globalCompositeOperation = "source-over";
+  }
+
+  /* =====================================================
+     7. SUBUNIT HIGHLIGHTS
+     ===================================================== */
+
+  for (let s = 0; s < CAGE_SUBUNITS; s++) {
+
+    const subunitPaths = CAGE_PATHS.filter(
+      p => p.subunit === s && p.type === "helix"
+    );
+
+    for (const path of subunitPaths) {
+
+      const midIndex =
+        path.indices[Math.floor(path.indices.length / 2)];
+
+      const p = P2[midIndex];
+
+      const r = 2.3 * p.s;
+
+      const glow = hctx.createRadialGradient(
+        p.x, p.y, 0,
+        p.x, p.y, r * 4
+      );
+
+      glow.addColorStop(
+        0,
+        "rgba(255,255,255,.45)"
+      );
+
+      glow.addColorStop(
+        0.35,
+        "rgba(0,229,255,.24)"
+      );
+
+      glow.addColorStop(
+        1,
+        "rgba(0,229,255,0)"
+      );
+
+      hctx.fillStyle = glow;
+
+      hctx.beginPath();
+
+      hctx.arc(
+        p.x,
+        p.y,
+        r * 4,
+        0,
+        Math.PI * 2
+      );
+
+      hctx.fill();
+    }
+  }
+
+  /* =====================================================
+     8. ORBITING LIGAND
+     ===================================================== */
+
+  lig += 0.018;
+
+  const Lx = Math.cos(lig) * 190;
+  const Ly = Math.sin(lig * 1.3) * 110;
+  const Lz = Math.sin(lig) * 190;
+
+  const lx = Lx * cs - Lz * sn;
+  const lz = Lx * sn + Lz * cs;
+
+  const ly = Ly * ct - lz * st;
+  const lz2 = Ly * st + lz * ct;
+
+  const ls = 700 / (700 - lz2);
+
+  const drawLig = () => {
+
+    const sx = 260 + lx * ls;
+    const sy = 320 + ly * ls;
+    const r = 10 * ls;
+
+    const gr = hctx.createRadialGradient(
+      sx, sy, 0,
+      sx, sy, r * 3.2
+    );
+
+    gr.addColorStop(
+      0,
+      "rgba(255,255,255,.95)"
+    );
+
+    gr.addColorStop(
+      0.25,
+      "rgba(255,78,205,.8)"
+    );
+
+    gr.addColorStop(
+      1,
+      "rgba(255,78,205,0)"
+    );
+
+    hctx.fillStyle = gr;
+
+    hctx.beginPath();
+
+    hctx.arc(
+      sx,
+      sy,
+      r * 3.2,
+      0,
+      Math.PI * 2
+    );
+
+    hctx.fill();
+  };
+
+  if (lz2 < 0) drawLig();
+
+  if (lz2 >= 0) drawLig();
+
+  /* =====================================================
+     9. ASSEMBLY STATUS
+     ===================================================== */
+
+  const pct = Math.round(foldT * 100);
+
+  if (pct !== lastPct) {
+
+    lastPct = pct;
+
+    hint.textContent =
+      pct < 100
+        ? `Ferritin cage assembly… ${pct}%`
+        : "Ferritin 24-mer ✓ · click the cage to refold";
+
+  }
+
+}
+
+/* =========================================================
+   10. CLICK PARTICLE EFFECTS
+   ========================================================= */
+
+const BU = [];
+
+addEventListener("click", e => {
+
+  if (!nova()) return;
+
+  for (let i = 0; i < 18; i++) {
+
+    const a = Math.random() * 6.283;
+    const speed = 2 + Math.random() * 4;
+
+    BU.push({
+
+      x: e.clientX,
+      y: e.clientY,
+
+      vx: Math.cos(a) * speed,
+      vy: Math.sin(a) * speed,
+
+      l: 50,
+
+      c:
+        Math.random() < 0.5
+          ? "0,229,255"
+          : "255,78,205"
+
+    });
+
+  }
+
+});
+
+function bursts() {
+
+  for (let i = BU.length - 1; i >= 0; i--) {
+
+    const b = BU[i];
+
+    b.x += b.vx;
+    b.y += b.vy;
+
+    b.vx *= 0.95;
+    b.vy *= 0.95;
+
+    if (--b.l <= 0) {
+
+      BU.splice(i, 1);
+      continue;
+
+    }
+
+    x.fillStyle =
+      `rgba(${b.c},${b.l / 50})`;
+
+    x.beginPath();
+
+    x.arc(
+      b.x,
+      b.y,
+      2.4,
+      0,
+      6.3
+    );
+
+    x.fill();
+
+  }
+
+}
+
+/* ===== END FERRITIN-LIKE CAGE ===== */
   (function tick(){requestAnimationFrame(tick);x.clearRect(0,0,W,H);if(!nova())return;
     for(const p of P){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
       const dx=p.x-mx,dy=p.y-my,d=Math.hypot(dx,dy)||1;if(d<140){p.x+=dx/d*1.6;p.y+=dy/d*1.6}}
