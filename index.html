@@ -356,60 +356,583 @@ render("DATABASES","databases-container","Important research databases coming so
     P=Array.from({length:Math.round(Math.min(95,W*H/15000))},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4}))}
   addEventListener("resize",size);size();
   addEventListener("mousemove",e=>{mx=e.clientX;my=e.clientY});
-    /* ===== folded protein (replaces DNA) ===== */
-  const FOLDP=[];
-  (function(){const C=[[-78,-78],[78,-78],[78,78],[-78,78]],R=26,TURNS=6.2,YH=170;
-    for(let hh=0;hh<4;hh++){const y0=hh%2?-YH:YH,y1=-y0,cx0=C[hh][0],cz0=C[hh][1];
-      const st={x:cx0+R*Math.cos(hh*1.2),y:y0,z:cz0+R*Math.sin(hh*1.2)};
-      if(hh){const a=FOLDP[FOLDP.length-1],c={x:(a.x+st.x)*.75,y:a.y+(a.y<0?-62:62),z:(a.z+st.z)*.75};
-        for(let k=1;k<=9;k++){const u=k/10,v=1-u;FOLDP.push({x:v*v*a.x+2*u*v*c.x+u*u*st.x,y:v*v*a.y+2*u*v*c.y+u*u*st.y,z:v*v*a.z+2*u*v*c.z+u*u*st.z})}}
-      for(let i=0;i<70;i++){const t=i/69,ph=t*TURNS*6.2832+hh*1.2;FOLDP.push({x:cx0+R*Math.cos(ph),y:y0+(y1-y0)*t,z:cz0+R*Math.sin(ph)})}}
-  })();
-  const NR=FOLDP.length,UNF=FOLDP.map((p,i)=>({x:(i/(NR-1)-.5)*470,y:Math.sin(i*.35)*22,z:Math.cos(i*.35)*22}));
-  const mixc=(a,b,u)=>a.map((v,i)=>v+(b[i]-v)*u),CA=[0,229,255],CB=[124,77,255],CC=[255,78,205];
-  const colAt=t=>t<.5?mixc(CA,CB,t*2):mixc(CB,CC,(t-.5)*2),smooth=u=>u*u*(3-2*u);
-  let foldT=0,unfold=false,ry=0,tilt=.2,lig=0,lastPct=-1;
-  const hint=document.createElement("div");hint.className="hint";hc.append(hint);
-  hx.style.cursor="pointer";hx.title="Click to refold";hx.addEventListener("click",()=>{unfold=true});
-  function helix(){
-    const tm=performance.now()/1000;
-    if(unfold){foldT-=.035;if(foldT<=0){foldT=0;unfold=false}}else if(foldT<1)foldT=Math.min(1,foldT+.0055);
-    tilt+=((.15+((my/innerHeight)-.5)*.5)-tilt)*.05;
-    ry+=.008+((mx>0?mx/innerWidth:.5)-.5)*.02;
-    const cs=Math.cos(ry),sn=Math.sin(ry),ct=Math.cos(tilt),st=Math.sin(tilt),P2=[];
-    for(let i=0;i<NR;i++){
-      const l=smooth(Math.max(0,Math.min(1,foldT*1.7-i/NR*.7))),f=FOLDP[i],u=UNF[i],wob=l*Math.sin(tm*2+i*.25)*2.2;
-      const x0=u.x+(f.x-u.x)*l+wob,y0=u.y+(f.y-u.y)*l,z0=u.z+(f.z-u.z)*l+wob;
-      const x1=x0*cs-z0*sn,z1=x0*sn+z0*cs,y2=y0*ct-z1*st,z2=y0*st+z1*ct,s=700/(700-z2);
-      P2.push({x:260+x1*s,y:320+y2*s,z:z2,s,t:i/(NR-1)});
+    /* ===== ferritin-like cage protein (replaces DNA) ===== */
+const FOLDP=[];
+const CAGE_EDGES=[];
+
+(function(){
+  const R=178;
+  const rings=[
+    {n:8,  y:-0.72},
+    {n:12, y:-0.38},
+    {n:12, y:0.0},
+    {n:12, y:0.38},
+    {n:8,  y:0.72}
+  ];
+
+  const shell=[];
+  let offset=0;
+
+  /* Create the spherical ferritin-like cage shell */
+  rings.forEach((ring,ri)=>{
+    const yy=ring.y;
+    const rr=Math.sqrt(1-yy*yy)*R;
+
+    for(let j=0;j<ring.n;j++){
+      const th=(j/ring.n)*Math.PI*2+(ri%2?Math.PI/ring.n:0);
+
+      shell.push({
+        x:rr*Math.cos(th),
+        y:yy*R,
+        z:rr*Math.sin(th),
+        ring:ri,
+        pos:j
+      });
     }
-    hctx.clearRect(0,0,520,640);hctx.lineCap="round";hctx.lineJoin="round";
-    const order=P2.map((_,i)=>i).sort((a,b)=>P2[a].z-P2[b].z);
-    lig+=.018;
-    const Lx=Math.cos(lig)*215,Ly=Math.sin(lig*1.3)*110,Lz=Math.sin(lig)*215;
-    const lx=Lx*cs-Lz*sn,lz=Lx*sn+Lz*cs,ly=Ly*ct-lz*st,lz2=Ly*st+lz*ct,ls=700/(700-lz2);
-    const drawLig=()=>{const sx=260+lx*ls,sy=320+ly*ls,r=11*ls,gr=hctx.createRadialGradient(sx,sy,0,sx,sy,r*3.2);
-      gr.addColorStop(0,"rgba(255,255,255,.95)");gr.addColorStop(.25,"rgba(255,78,205,.8)");gr.addColorStop(1,"rgba(255,78,205,0)");
-      hctx.fillStyle=gr;hctx.beginPath();hctx.arc(sx,sy,r*3.2,0,6.3);hctx.fill()};
-    if(lz2<0)drawLig();
-    for(const i of order){if(!i)continue;const p=P2[i],q=P2[i-1],d=Math.max(0,Math.min(1,(p.z+200)/400)),c=colAt(p.t);
-      hctx.strokeStyle=`rgba(${c[0]|0},${c[1]|0},${c[2]|0},${.5+d*.5})`;hctx.lineWidth=(4+d*6)*p.s;
-      hctx.beginPath();hctx.moveTo(q.x,q.y);hctx.lineTo(p.x,p.y);hctx.stroke()}
-    hctx.globalCompositeOperation="lighter";
-    for(const i of order){if(!i)continue;const p=P2[i],q=P2[i-1],d=Math.max(0,Math.min(1,(p.z+200)/400));
-      hctx.strokeStyle=`rgba(255,255,255,${.22*d})`;hctx.lineWidth=2*p.s;
-      hctx.beginPath();hctx.moveTo(q.x-1.5,q.y-1.5);hctx.lineTo(p.x-1.5,p.y-1.5);hctx.stroke()}
-    hctx.globalCompositeOperation="source-over";
-    if(lz2>=0)drawLig();
-    const pct=Math.round(foldT*100);
-    if(pct!==lastPct){lastPct=pct;hint.textContent=pct<100?`Folding… ${pct}%`:"Folded ✓ · click the protein to refold"}
+  });
+
+  /* Connect neighbouring subunits around each ring */
+  rings.forEach((ring,ri)=>{
+    const start=offset;
+
+    for(let j=0;j<ring.n;j++){
+      const a=start+j;
+      const b=start+(j+1)%ring.n;
+      CAGE_EDGES.push([a,b]);
+    }
+
+    offset+=ring.n;
+  });
+
+  /* Connect adjacent rings */
+  offset=0;
+
+  for(let ri=0;ri<rings.length-1;ri++){
+    const r1=rings[ri];
+    const r2=rings[ri+1];
+    const s1=offset;
+    const s2=offset+r1.n;
+
+    for(let j=0;j<r1.n;j++){
+      const a=s1+j;
+      const t=j/r1.n;
+      const k=Math.floor(t*r2.n);
+
+      CAGE_EDGES.push([a,s2+k%r2.n]);
+
+      if(r2.n>r1.n){
+        CAGE_EDGES.push([a,s2+(k+1)%r2.n]);
+      }
+    }
+
+    offset+=r1.n;
   }
-  /* click bursts */
-  const BU=[];
-  addEventListener("click",e=>{if(!nova())return;for(let i=0;i<18;i++){const a=Math.random()*6.283,s=2+Math.random()*4;BU.push({x:e.clientX,y:e.clientY,vx:Math.cos(a)*s,vy:Math.sin(a)*s,l:50,c:Math.random()<.5?"0,229,255":"255,78,205"})}});
-  function bursts(){for(let i=BU.length-1;i>=0;i--){const b=BU[i];b.x+=b.vx;b.y+=b.vy;b.vx*=.95;b.vy*=.95;
-    if(--b.l<=0){BU.splice(i,1);continue}x.fillStyle=`rgba(${b.c},${b.l/50})`;x.beginPath();x.arc(b.x,b.y,2.4,0,6.3);x.fill()}}
-  /* ===== end protein ===== */
+
+  /*
+   * Convert each cage connection into a short curved
+   * protein-like segment.
+   */
+  const edgeStart=[];
+
+  for(const edge of CAGE_EDGES){
+    const a=shell[edge[0]];
+    const b=shell[edge[1]];
+
+    edgeStart.push(FOLDP.length);
+
+    for(let k=0;k<5;k++){
+      const u=k/4;
+      const v=1-u;
+
+      const x=v*a.x+u*b.x;
+      const y=v*a.y+u*b.y;
+      const z=v*a.z+u*b.z;
+
+      const midx=(a.x+b.x)*.5;
+      const midy=(a.y+b.y)*.5;
+      const midz=(a.z+b.z)*.5;
+
+      const bulge=Math.sin(u*Math.PI)*7;
+
+      const len=Math.sqrt(midx*midx+midy*midy+midz*midz)||1;
+
+      FOLDP.push({
+        x:x+(midx/len)*bulge,
+        y:y+(midy/len)*bulge,
+        z:z+(midz/len)*bulge
+      });
+    }
+  }
+
+  /*
+   * Add small bright nodes at cage vertices.
+   * These make the structure look more like a
+   * multimeric ferritin shell rather than a wire sphere.
+   */
+  for(const p of shell){
+    FOLDP.push({
+      x:p.x,
+      y:p.y,
+      z:p.z
+    });
+  }
+})();
+
+const NR=FOLDP.length;
+
+const UNF=FOLDP.map((p,i)=>({
+  x:(i/(NR-1)-.5)*470,
+  y:Math.sin(i*.35)*22,
+  z:Math.cos(i*.35)*22
+}));
+
+const mixc=(a,b,u)=>a.map((v,i)=>v+(b[i]-v)*u),
+      CA=[0,229,255],
+      CB=[124,77,255],
+      CC=[255,78,205];
+
+const colAt=t=>t<.5
+  ?mixc(CA,CB,t*2)
+  :mixc(CB,CC,(t-.5)*2);
+
+const smooth=u=>u*u*(3-2*u);
+
+let foldT=0,
+    unfold=false,
+    ry=0,
+    tilt=.2,
+    lig=0,
+    lastPct=-1;
+
+const hint=document.createElement("div");
+hint.className="hint";
+hc.append(hint);
+
+hx.style.cursor="pointer";
+hx.title="Click to refold";
+
+hx.addEventListener("click",()=>{
+  unfold=true;
+});
+
+function helix(){
+
+  const tm=performance.now()/1000;
+
+  if(unfold){
+    foldT-=.035;
+
+    if(foldT<=0){
+      foldT=0;
+      unfold=false;
+    }
+
+  }else if(foldT<1){
+    foldT=Math.min(1,foldT+.0055);
+  }
+
+  tilt+=(
+    (.15+((my/innerHeight)-.5)*.5)-tilt
+  )*.05;
+
+  ry+=.008+(
+    (mx>0?mx/innerWidth:.5)-.5
+  )*.02;
+
+  const cs=Math.cos(ry),
+        sn=Math.sin(ry),
+        ct=Math.cos(tilt),
+        st=Math.sin(tilt),
+        P2=[];
+
+  /* =========================
+     TRANSFORM CAGE
+     ========================= */
+  for(let i=0;i<NR;i++){
+
+    const l=smooth(
+      Math.max(
+        0,
+        Math.min(
+          1,
+          foldT*1.7-i/NR*.7
+        )
+      )
+    );
+
+    const f=FOLDP[i],
+          u=UNF[i];
+
+    const wob=l*Math.sin(
+      tm*2+i*.25
+    )*1.8;
+
+    const x0=
+      u.x+(f.x-u.x)*l+wob;
+
+    const y0=
+      u.y+(f.y-u.y)*l+wob;
+
+    const z0=
+      u.z+(f.z-u.z)*l+wob;
+
+    const x1=x0*cs-z0*sn,
+          z1=x0*sn+z0*cs;
+
+    const y2=y0*ct-z1*st,
+          z2=y0*st+z1*ct;
+
+    const s=700/(700-z2);
+
+    P2.push({
+      x:260+x1*s,
+      y:320+y2*s,
+      z:z2,
+      s,
+      t:i/(NR-1)
+    });
+  }
+
+  hctx.clearRect(0,0,520,640);
+
+  hctx.lineCap="round";
+  hctx.lineJoin="round";
+
+  /* =========================
+     DRAW CAGE EDGES
+     ========================= */
+
+  hctx.globalCompositeOperation="source-over";
+
+  for(let e=0;e<CAGE_EDGES.length;e++){
+
+    const edge=CAGE_EDGES[e];
+
+    const start=Math.floor(e*5);
+
+    for(let k=1;k<5;k++){
+
+      const i=start+k;
+      const j=start+k-1;
+
+      if(i>=P2.length || j>=P2.length)continue;
+
+      const p=P2[i],
+            q=P2[j];
+
+      const d=Math.max(
+        0,
+        Math.min(
+          1,
+          (p.z+200)/400
+        )
+      );
+
+      const c=colAt(
+        (p.t+q.t)*.5
+      );
+
+      hctx.strokeStyle=
+        `rgba(${c[0]|0},${c[1]|0},${c[2]|0},${.42+d*.48})`;
+
+      hctx.lineWidth=
+        (3.2+d*4.8)*
+        ((p.s+q.s)*.5);
+
+      hctx.beginPath();
+      hctx.moveTo(q.x,q.y);
+      hctx.lineTo(p.x,p.y);
+      hctx.stroke();
+    }
+  }
+
+  /* =========================
+     BRIGHT INNER HIGHLIGHT
+     ========================= */
+
+  hctx.globalCompositeOperation="lighter";
+
+  for(let e=0;e<CAGE_EDGES.length;e++){
+
+    const edge=CAGE_EDGES[e];
+
+    const start=Math.floor(e*5);
+
+    for(let k=1;k<5;k++){
+
+      const i=start+k;
+      const j=start+k-1;
+
+      if(i>=P2.length || j>=P2.length)continue;
+
+      const p=P2[i],
+            q=P2[j];
+
+      const d=Math.max(
+        0,
+        Math.min(
+          1,
+          (p.z+200)/400
+        )
+      );
+
+      hctx.strokeStyle=
+        `rgba(255,255,255,${.12+d*.22})`;
+
+      hctx.lineWidth=
+        1.2*((p.s+q.s)*.5);
+
+      hctx.beginPath();
+      hctx.moveTo(q.x-1,q.y-1);
+      hctx.lineTo(p.x-1,p.y-1);
+      hctx.stroke();
+    }
+  }
+
+  /* =========================
+     CAGE VERTEX NODES
+     ========================= */
+
+  const vertexStart=NR-CAGE_EDGES.length*0;
+
+  /*
+   * The shell vertices are appended after all
+   * edge points. Reconstruct their start index.
+   */
+  const shellVertexCount=52;
+  const shellStart=NR-shellVertexCount;
+
+  for(let i=shellStart;i<NR;i++){
+
+    const p=P2[i];
+
+    const d=Math.max(
+      0,
+      Math.min(
+        1,
+        (p.z+200)/400
+      )
+    );
+
+    const r=2.6*p.s;
+
+    const gr=hctx.createRadialGradient(
+      p.x,p.y,0,
+      p.x,p.y,r*3.5
+    );
+
+    gr.addColorStop(
+      0,
+      "rgba(255,255,255,.9)"
+    );
+
+    gr.addColorStop(
+      .3,
+      `rgba(0,229,255,${.45+d*.2})`
+    );
+
+    gr.addColorStop(
+      1,
+      "rgba(0,229,255,0)"
+    );
+
+    hctx.fillStyle=gr;
+
+    hctx.beginPath();
+    hctx.arc(
+      p.x,
+      p.y,
+      r*3.5,
+      0,
+      6.3
+    );
+
+    hctx.fill();
+  }
+
+  hctx.globalCompositeOperation="source-over";
+
+  /* =========================
+     ORBITING LIGAND
+     ========================= */
+
+  lig+=.018;
+
+  const Lx=Math.cos(lig)*215,
+        Ly=Math.sin(lig*1.3)*110,
+        Lz=Math.sin(lig)*215;
+
+  const lx=Lx*cs-Lz*sn,
+        lz=Lx*sn+Lz*cs,
+        ly=Ly*ct-lz*st,
+        lz2=Ly*st+lz*ct,
+        ls=700/(700-lz2);
+
+  const drawLig=()=>{
+
+    const sx=260+lx*ls,
+          sy=320+ly*ls,
+          r=11*ls;
+
+    const gr=hctx.createRadialGradient(
+      sx,sy,0,
+      sx,sy,r*3.2
+    );
+
+    gr.addColorStop(
+      0,
+      "rgba(255,255,255,.95)"
+    );
+
+    gr.addColorStop(
+      .25,
+      "rgba(255,78,205,.8)"
+    );
+
+    gr.addColorStop(
+      1,
+      "rgba(255,78,205,0)"
+    );
+
+    hctx.fillStyle=gr;
+
+    hctx.beginPath();
+    hctx.arc(
+      sx,
+      sy,
+      r*3.2,
+      0,
+      6.3
+    );
+
+    hctx.fill();
+  };
+
+  if(lz2<0)drawLig();
+
+  /* =========================
+     CAGE DEPTH HIGHLIGHT
+     ========================= */
+
+  for(let e=0;e<CAGE_EDGES.length;e++){
+
+    const edge=CAGE_EDGES[e];
+    const start=Math.floor(e*5);
+
+    for(let k=1;k<5;k++){
+
+      const i=start+k;
+      const j=start+k-1;
+
+      if(i>=P2.length || j>=P2.length)continue;
+
+      const p=P2[i],
+            q=P2[j];
+
+      if(p.z<0)continue;
+
+      const d=Math.max(
+        0,
+        Math.min(
+          1,
+          (p.z+200)/400
+        )
+      );
+
+      hctx.strokeStyle=
+        `rgba(255,255,255,${.08+d*.16})`;
+
+      hctx.lineWidth=
+        1.5*((p.s+q.s)*.5);
+
+      hctx.beginPath();
+      hctx.moveTo(q.x-1.5,q.y-1.5);
+      hctx.lineTo(p.x-1.5,p.y-1.5);
+      hctx.stroke();
+    }
+  }
+
+  hctx.globalCompositeOperation="source-over";
+
+  if(lz2>=0)drawLig();
+
+  /* =========================
+     STATUS
+     ========================= */
+
+  const pct=Math.round(foldT*100);
+
+  if(pct!==lastPct){
+
+    lastPct=pct;
+
+    hint.textContent=
+      pct<100
+        ?`Cage assembly… ${pct}%`
+        :"Ferritin-like cage ✓ · click the protein to refold";
+  }
+}
+
+
+/* ===== click bursts ===== */
+const BU=[];
+
+addEventListener("click",e=>{
+  if(!nova())return;
+
+  for(let i=0;i<18;i++){
+
+    const a=Math.random()*6.283,
+          s=2+Math.random()*4;
+
+    BU.push({
+      x:e.clientX,
+      y:e.clientY,
+      vx:Math.cos(a)*s,
+      vy:Math.sin(a)*s,
+      l:50,
+      c:Math.random()<.5
+        ?"0,229,255"
+        :"255,78,205"
+    });
+  }
+});
+
+function bursts(){
+
+  for(let i=BU.length-1;i>=0;i--){
+
+    const b=BU[i];
+
+    b.x+=b.vx;
+    b.y+=b.vy;
+
+    b.vx*=.95;
+    b.vy*=.95;
+
+    if(--b.l<=0){
+      BU.splice(i,1);
+      continue;
+    }
+
+    x.fillStyle=
+      `rgba(${b.c},${b.l/50})`;
+
+    x.beginPath();
+
+    x.arc(
+      b.x,
+      b.y,
+      2.4,
+      0,
+      6.3
+    );
+
+    x.fill();
+  }
+}
+
+/* ===== end protein ===== */
   (function tick(){requestAnimationFrame(tick);x.clearRect(0,0,W,H);if(!nova())return;
     for(const p of P){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
       const dx=p.x-mx,dy=p.y-my,d=Math.hypot(dx,dy)||1;if(d<140){p.x+=dx/d*1.6;p.y+=dy/d*1.6}}
