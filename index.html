@@ -1016,81 +1016,263 @@ function bursts() {
         if(d<130){x.strokeStyle=`rgba(124,77,255,${(1-d/130)*.4})`;x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.stroke()}}
       const dm=Math.hypot(a.x-mx,a.y-my);if(dm<180){x.strokeStyle=`rgba(255,78,205,${(1-dm/180)*.7})`;x.beginPath();x.moveTo(a.x,a.y);x.lineTo(mx,my);x.stroke()}}
     bursts();helix()})();
-  /* custom cursor, tilt, magnetic buttons */
-  const cur=document.createElement("div");cur.id="cur";document.body.appendChild(cur);
-  let cx=0,cy=0,tx=0,ty2=0;
-  addEventListener("mousemove",e=>{tx=e.clientX;ty2=e.clientY;
-    cur.classList.toggle("big",!!(e.target.closest&&e.target.closest("a,button,.card-x,.rcard")));
-    if(!nova())return;
-    const c=e.target.closest&&e.target.closest(".card-x");
-    if(c){const r=c.getBoundingClientRect(),px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;
-      c.style.transform=`perspective(900px) rotateX(${(-py*9).toFixed(2)}deg) rotateY(${(px*9).toFixed(2)}deg) translateY(-6px)`}
-    const b=e.target.closest&&e.target.closest(".pbtn");
-    if(b){const r=b.getBoundingClientRect();b.style.transform=`translate(${((e.clientX-r.left-r.width/2)*.25).toFixed(1)}px,${((e.clientY-r.top-r.height/2)*.35).toFixed(1)}px)`}});
-  document.addEventListener("mouseout",e=>{const c=e.target.closest&&e.target.closest(".card-x,.pbtn");if(c&&!c.contains(e.relatedTarget))c.style.transform=""},true);
-  (function mv(){requestAnimationFrame(mv);cx+=(tx-cx)*.18;cy+=(ty2-cy)*.18;cur.style.transform=`translate(${cx}px,${cy}px)`})();
+    /* custom cursor, tilt, magnetic buttons — desktop only */
+  const touchDevice = window.matchMedia("(hover: none), (pointer: coarse)").matches;
+
+  if (!touchDevice) {
+    const cur = document.createElement("div");
+    cur.id = "cur";
+    document.body.appendChild(cur);
+
+    let cx = 0, cy = 0, tx = 0, ty2 = 0;
+
+    addEventListener("mousemove", e => {
+      tx = e.clientX;
+      ty2 = e.clientY;
+
+      cur.classList.toggle(
+        "big",
+        !!(e.target.closest && e.target.closest("a,button,.card-x,.rcard"))
+      );
+
+      if (!nova()) return;
+
+      const c = e.target.closest && e.target.closest(".card-x");
+
+      if (c) {
+        const r = c.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - .5;
+        const py = (e.clientY - r.top) / r.height - .5;
+
+        c.style.transform =
+          `perspective(900px) rotateX(${(-py * 9).toFixed(2)}deg) rotateY(${(px * 9).toFixed(2)}deg) translateY(-6px)`;
+      }
+
+      const b = e.target.closest && e.target.closest(".pbtn");
+
+      if (b) {
+        const r = b.getBoundingClientRect();
+
+        b.style.transform =
+          `translate(${((e.clientX-r.left-r.width/2)*.25).toFixed(1)}px,${((e.clientY-r.top-r.height/2)*.35).toFixed(1)}px)`;
+      }
+    });
+
+    document.addEventListener("mouseout", e => {
+      const c = e.target.closest && e.target.closest(".card-x,.pbtn");
+      if (c && !c.contains(e.relatedTarget)) c.style.transform = "";
+    }, true);
+
+    (function mv() {
+      requestAnimationFrame(mv);
+      cx += (tx - cx) * .18;
+      cy += (ty2 - cy) * .18;
+      cur.style.transform = `translate(${cx}px,${cy}px)`;
+    })();
+  }
+
   /* progress bar, auto-hide nav, scroll spy */
-  const pr=document.createElement("div");pr.id="prog";document.body.appendChild(pr);
-  let ly=0;const nv=$(".navbar");
-  addEventListener("scroll",()=>{pr.style.width=(scrollY/Math.max(1,document.documentElement.scrollHeight-innerHeight)*100)+"%";
-    nv.classList.toggle("navhide",scrollY>ly&&scrollY>500&&!$("#nav.show")&&Date.now()>(window._noHide||0));ly=scrollY},{passive:true});
-  const links=[...document.querySelectorAll(".nav-link")];
-  const spy=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(l=>l.classList.toggle("active",l.getAttribute("href")==="#"+e.target.id))}),{rootMargin:"-45% 0px -50% 0px"});
-  document.querySelectorAll("section[id]").forEach(s=>spy.observe(s));
-  document.addEventListener("animationend",e=>{if(e.animationName==="revUp")e.target.classList.add("done")});
+  const pr = document.createElement("div");
+  pr.id = "prog";
+  document.body.appendChild(pr);
+
+  let ly = 0;
+  const nv = $(".navbar");
+
+  addEventListener("scroll", () => {
+    pr.style.width =
+      (scrollY / Math.max(1, document.documentElement.scrollHeight - innerHeight) * 100) + "%";
+
+    nv.classList.toggle(
+      "navhide",
+      scrollY > ly && scrollY > 500 && !$("#nav.show") &&
+      Date.now() > (window._noHide || 0)
+    );
+
+    ly = scrollY;
+  }, { passive: true });
+
+  const links = [...document.querySelectorAll(".nav-link")];
+
+  const spy = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) {
+      links.forEach(l =>
+        l.classList.toggle("active", l.getAttribute("href") === "#" + e.target.id)
+      );
+    }
+  }), { rootMargin: "-45% 0px -50% 0px" });
+
+  document.querySelectorAll("section[id]").forEach(s => spy.observe(s));
+
+  document.addEventListener("animationend", e => {
+    if (e.animationName === "revUp") e.target.classList.add("done");
+  });
+
   /* live stats from your sheet */
-  (async()=>{
-    const [t,p,pb,po,ga]=await Promise.all(["TEAM","POSTDOCS","PUBLICATIONS","POSTERS","GALLERY"].map(sheet));
-    const phd=t.filter(m=>!/principal|pi\b|investigator/i.test(g(m,"role"))).length;
-    const items=[[phd,"PhD Scholars"],[p.length,"Postdocs"],[pb.length,"Publications"],[po.length,"Posters"],[ga.length,"Events"]].filter(i=>i[0]>0);
-    if(!items.length)return;
-    const st=document.createElement("div");st.className="stats";
-    st.innerHTML=items.map(i=>`<div class="stat"><b data-n="${i[0]}">0</b><span>${i[1]}</span></div>`).join("");
-    const after=$(".marq")||$(".hero");after.parentNode.insertBefore(st,after.nextSibling);
-    const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;io.disconnect();
-      st.querySelectorAll("b").forEach(b=>{const n=+b.dataset.n,t0=performance.now();
-        (function f(now){const k=Math.min(1,(now-t0)/1500);b.textContent=Math.round(n*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})(t0)})}),{threshold:.4});
+  (async () => {
+    const [t, p, pb, po, ga] =
+      await Promise.all(["TEAM", "POSTDOCS", "PUBLICATIONS", "POSTERS", "GALLERY"].map(sheet));
+
+    const phd = t.filter(m =>
+      !/principal|pi\b|investigator/i.test(g(m, "role"))
+    ).length;
+
+    const items = [
+      [phd, "PhD Scholars"],
+      [p.length, "Postdocs"],
+      [pb.length, "Publications"],
+      [po.length, "Posters"],
+      [ga.length, "Events"]
+    ].filter(i => i[0] > 0);
+
+    if (!items.length) return;
+
+    const st = document.createElement("div");
+    st.className = "stats";
+
+    st.innerHTML = items.map(i =>
+      `<div class="stat"><b data-n="${i[0]}">0</b><span>${i[1]}</span></div>`
+    ).join("");
+
+    const after = $(".marq") || $(".hero");
+    after.parentNode.insertBefore(st, after.nextSibling);
+
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (!e.isIntersecting) return;
+      io.disconnect();
+
+      st.querySelectorAll("b").forEach(b => {
+        const n = +b.dataset.n;
+        const t0 = performance.now();
+
+        (function f(now) {
+          const k = Math.min(1, (now - t0) / 1500);
+          b.textContent = Math.round(n * (1 - Math.pow(1 - k, 3)));
+          if (k < 1) requestAnimationFrame(f);
+        })(t0);
+      });
+    }), { threshold: .4 });
+
     io.observe(st);
   })();
+
 })();
+
 /* final extras */
-(function(){
-  /* instant jump to sections (no slow scrolling) and keep nav visible after a jump */
-  document.addEventListener("click",e=>{
-    const a=e.target.closest&&e.target.closest('a[href^="#"]');if(!a)return;
-    const id=a.getAttribute("href");if(id.length<2)return;
-    const el=document.querySelector(id);if(!el)return;
-    e.preventDefault();window._noHide=Date.now()+900;
-    const y=el.getBoundingClientRect().top+scrollY-(el.classList.contains("hero")?0:70);
-    window.scrollTo({top:Math.max(0,y),behavior:"instant"});
-    history.replaceState(null,"",id);
-    const c=document.getElementById("nav");if(c&&c.classList.contains("show")){const i=bootstrap.Collapse.getInstance(c);i&&i.hide()}
+(function () {
+
+  /* instant jump to sections and keep nav visible after a jump */
+  document.addEventListener("click", e => {
+    const a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a) return;
+
+    const id = a.getAttribute("href");
+    if (id.length < 2) return;
+
+    const el = document.querySelector(id);
+    if (!el) return;
+
+    e.preventDefault();
+    window._noHide = Date.now() + 900;
+
+    const y = el.getBoundingClientRect().top + scrollY -
+      (el.classList.contains("hero") ? 0 : 70);
+
+    window.scrollTo({ top: Math.max(0, y), behavior: "instant" });
+    history.replaceState(null, "", id);
+
+    const c = document.getElementById("nav");
+
+    if (c && c.classList.contains("show")) {
+      const i = bootstrap.Collapse.getInstance(c);
+      i && i.hide();
+    }
   });
-  const nv=document.querySelector(".navbar");
-  addEventListener("scroll",()=>{if(Date.now()<(window._noHide||0))nv.classList.remove("navhide")},{passive:true});
+
+  const nv = document.querySelector(".navbar");
+
+  addEventListener("scroll", () => {
+    if (Date.now() < (window._noHide || 0)) {
+      nv.classList.remove("navhide");
+    }
+  }, { passive: true });
+
   /* side rail with section dots */
-  const rail=document.createElement("nav");rail.id="rail";
-  const secs=[...document.querySelectorAll(".navbar .nav-link")].map(l=>({id:l.getAttribute("href"),t:l.textContent.trim()}));
-  rail.innerHTML=secs.map(s=>`<a href="${s.id}" data-l="${s.t}" aria-label="${s.t}"></a>`).join("");
+  const rail = document.createElement("nav");
+  rail.id = "rail";
+
+  const secs = [...document.querySelectorAll(".navbar .nav-link")].map(l => ({
+    id: l.getAttribute("href"),
+    t: l.textContent.trim()
+  }));
+
+  rail.innerHTML = secs.map(s =>
+    `<a href="${s.id}" data-l="${s.t}" aria-label="${s.t}"></a>`
+  ).join("");
+
   document.body.appendChild(rail);
-  const dots=[...rail.querySelectorAll("a")];
-  const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)dots.forEach(d=>d.classList.toggle("on",d.getAttribute("href")==="#"+e.target.id))}),{rootMargin:"-45% 0px -50% 0px"});
-  secs.forEach(s=>{const el=document.querySelector(s.id);el&&ro.observe(el)});
+
+  const dots = [...rail.querySelectorAll("a")];
+
+  const ro = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) {
+      dots.forEach(d =>
+        d.classList.toggle("on", d.getAttribute("href") === "#" + e.target.id)
+      );
+    }
+  }), { rootMargin: "-45% 0px -50% 0px" });
+
+  secs.forEach(s => {
+    const el = document.querySelector(s.id);
+    el && ro.observe(el);
+  });
+
   /* back to top with progress ring */
-  const top=document.createElement("button");top.id="top";top.setAttribute("aria-label","Back to top");
-  top.innerHTML='<svg viewBox="0 0 44 44"><circle class="bg" cx="22" cy="22" r="20"/><circle class="fg" cx="22" cy="22" r="20"/></svg><i class="fas fa-arrow-up"></i>';
+  const top = document.createElement("button");
+  top.id = "top";
+  top.setAttribute("aria-label", "Back to top");
+
+  top.innerHTML =
+    '<svg viewBox="0 0 44 44"><circle class="bg" cx="22" cy="22" r="20"/><circle class="fg" cx="22" cy="22" r="20"/></svg><i class="fas fa-arrow-up"></i>';
+
   document.body.appendChild(top);
-  const fg=top.querySelector(".fg");
-  addEventListener("scroll",()=>{const p=scrollY/Math.max(1,document.documentElement.scrollHeight-innerHeight);
-    top.classList.toggle("show",scrollY>600);fg.style.strokeDashoffset=125.7*(1-p)},{passive:true});
-  top.onclick=()=>scrollTo({top:0,behavior:"instant"});
+
+  const fg = top.querySelector(".fg");
+
+  addEventListener("scroll", () => {
+    const p = scrollY / Math.max(1, document.documentElement.scrollHeight - innerHeight);
+    top.classList.toggle("show", scrollY > 600);
+    fg.style.strokeDashoffset = 125.7 * (1 - p);
+  }, { passive: true });
+
+  top.onclick = () => scrollTo({ top: 0, behavior: "instant" });
+
   /* photo lightbox */
-  const lb=document.createElement("div");lb.id="lb";lb.innerHTML='<img alt=""><span></span>';document.body.appendChild(lb);
-  document.addEventListener("click",e=>{
-    const im=e.target.closest&&e.target.closest(".iw img");
-    if(im){lb.querySelector("img").src=im.src;lb.querySelector("span").textContent=(im.alt||"")+"  ·  click anywhere or press Esc to close";lb.classList.add("open");return}
-    if(lb.classList.contains("open")&&lb.contains(e.target))lb.classList.remove("open")});
-  addEventListener("keydown",e=>{if(e.key==="Escape")lb.classList.remove("open")});
+  const lb = document.createElement("div");
+  lb.id = "lb";
+  lb.innerHTML = '<img alt=""><span></span>';
+  document.body.appendChild(lb);
+
+  document.addEventListener("click", e => {
+    const im = e.target.closest && e.target.closest(".iw img");
+
+    if (im) {
+      lb.querySelector("img").src = im.src;
+      lb.querySelector("span").textContent =
+        (im.alt || "") + "  ·  click anywhere or press Esc to close";
+      lb.classList.add("open");
+      return;
+    }
+
+    if (lb.classList.contains("open") && lb.contains(e.target)) {
+      lb.classList.remove("open");
+    }
+  });
+
+  addEventListener("keydown", e => {
+    if (e.key === "Escape") lb.classList.remove("open");
+  });
+
 })();
 </script>
 </body>
