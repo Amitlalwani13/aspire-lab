@@ -3,515 +3,214 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="ASPIRE Lab | Advanced Structural Parasitology & Protein Engineering">
 <title>ASPIRE Lab | Advanced Structural Parasitology & Protein Engineering</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;700&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
-:root {
---primary-gradient: linear-gradient(135deg,#2563eb 0%,#7c3aed 48%,#ec4899 100%);
---sun-gradient: linear-gradient(135deg,#06b6d4 0%,#3b82f6 45%,#8b5cf6 100%);
---warm-gradient: linear-gradient(135deg,#f97316 0%,#ec4899 55%,#8b5cf6 100%);
---mint-gradient: linear-gradient(135deg,#10b981 0%,#06b6d4 100%);
---page-bg: #f7f9fc;
---page-bg-soft: #eef8ff;
---surface: rgba(255,255,255,0.90);
---surface-strong: #ffffff;
---border: rgba(37,99,235,0.13);
---text-primary: #14213d;
---text-secondary: #52627a;
---heading: #172554;
---accent-blue: #2563eb;
---accent-cyan: #06b6d4;
---accent-violet: #7c3aed;
---accent-pink: #ec4899;
---accent-orange: #f97316;
---accent-green: #10b981;
---shadow: 0 18px 45px rgba(36,74,120,0.12);
+:root{--bg:radial-gradient(circle at 8% 8%,rgba(6,182,212,.14),transparent 28%),radial-gradient(circle at 92% 18%,rgba(236,72,153,.11),transparent 26%),#f7f9fc;--alt:rgba(239,248,255,.6);--card:rgba(255,255,255,.92);--nav:rgba(255,255,255,.88);--ink:#14213d;--muted:#52627a;--head:#172554;--line:rgba(37,99,235,.14);--g:linear-gradient(135deg,#2563eb,#7c3aed 48%,#ec4899);--acc:#2563eb;--foot:linear-gradient(135deg,#172554,#312e81 55%,#7c2d6b);--r:24px;--hf:'Playfair Display',serif;--sh:0 16px 40px rgba(36,74,120,.12)}
+html{scroll-behavior:smooth}section{scroll-margin-top:90px}
+body{margin:0;font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;overflow-x:hidden;transition:background .4s,color .4s}
+h1,h2,h3,h4,h5,h6{font-family:var(--hf);color:var(--head)}
+.text-secondary,.muted{color:var(--muted)!important}
+.navbar{background:var(--nav)!important;backdrop-filter:blur(20px);border-bottom:1px solid var(--line);padding:.8rem 0}
+.navbar-brand{font-family:var(--hf);font-size:1.9rem;font-weight:700;background:var(--g);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.nav-link{color:var(--ink)!important;font-weight:600;font-size:.9rem;white-space:nowrap;position:relative}
+.nav-link:hover{color:var(--acc)!important}
+.nav-link::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:3px;background:var(--g);border-radius:9px;transition:width .25s}
+.nav-link:hover::after{width:100%}
+.navbar-toggler{border:1px solid var(--line);color:var(--ink);font-size:1.2rem}
+.hero{min-height:88vh;background:url("https://lh3.googleusercontent.com/d/1bixRBwYia7U1ZMcF_qGGCKLb_ASKpdV8") center/cover;display:flex;align-items:center;justify-content:center;text-align:center}
+.hero h1{font-size:clamp(3rem,9vw,5.5rem);font-weight:700;background:var(--g);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-1px}
+.hero p{display:inline-block;background:var(--nav);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:.7rem 1.4rem;font-weight:500;backdrop-filter:blur(10px);font-size:clamp(.95rem,2.4vw,1.3rem)}
+.section{padding:95px 0}.section:nth-of-type(even){background:var(--alt)}
+.section-title{text-align:center;font-size:clamp(1.7rem,5vw,3.1rem);font-weight:700;margin-bottom:68px;position:relative}
+.section-title::after{content:'';position:absolute;left:50%;bottom:-20px;transform:translateX(-50%);width:110px;height:5px;border-radius:99px;background:var(--g)}
+.card-x{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);transition:transform .35s,border-color .35s,box-shadow .35s;height:100%;overflow:hidden}
+.card-x:hover{transform:translateY(-7px);border-color:var(--acc)}
+.pad{padding:2rem}
+.team-img{width:140px;height:140px;border-radius:50%;object-fit:cover;border:5px solid var(--acc);box-shadow:var(--sh)}
+.pbtn{border:0;color:#fff!important;background:var(--g);border-radius:min(var(--r),999px);padding:9px 20px;font-weight:600;text-decoration:none;display:inline-block;cursor:pointer;transition:.3s}
+.pbtn:hover{transform:translateY(-3px);filter:brightness(1.1)}
+.rcard{height:290px;background-size:cover;background-position:center;border-radius:var(--r);position:relative;overflow:hidden;border:2px solid var(--line);box-shadow:var(--sh);transition:.4s}
+.rcard:hover{transform:translateY(-9px) scale(1.015)}
+.rcard .ov{position:absolute;bottom:0;width:100%;padding:3rem 1.4rem 1.4rem;background:linear-gradient(to top,rgba(10,24,48,.93),transparent)}
+.rcard h5{color:#fff;font-size:1.35rem}.rcard p{color:rgba(255,255,255,.92);margin:0}
+.iw{height:250px;overflow:hidden}.iw img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.card-x:hover .iw img{transform:scale(1.07)}.iw.tall{height:390px;background:var(--alt)}
+.pub{background:var(--card);border:1px solid var(--line);border-left:6px solid var(--acc);border-radius:var(--r);padding:1.5rem;margin-bottom:1.2rem;box-shadow:var(--sh);transition:.3s}
+.pub:hover{transform:translateX(8px)}
+.tag{display:inline-block;background:var(--alt);color:var(--acc);border:1px solid var(--line);padding:4px 12px;border-radius:30px;font-size:.78rem;font-weight:600;margin-bottom:.8rem}
+.ric{font-size:2rem;margin-bottom:.8rem;background:var(--g);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.rlink{color:var(--acc);font-weight:600;text-decoration:none}
+.modal-content{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:var(--r);backdrop-filter:blur(20px)}
+.modal-header,.modal-footer{border-color:var(--line)}
+.mimg{width:170px;height:170px;object-fit:cover;border-radius:50%;border:5px solid var(--acc);margin-bottom:16px}
+footer{background:var(--foot);color:rgba(255,255,255,.92);padding:2.6rem 0;text-align:center}
+.mail{color:var(--head);font-weight:700;text-decoration:none}
+/* theme dots */
+@media(max-width:768px){.section{padding:70px 0}.iw.tall{height:320px}}
+/* ===== LAYOUT THEMES ===== */
+.card-x{position:relative}
+.card-x::before{content:'';position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;z-index:1;background:radial-gradient(380px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.14),transparent 45%)}
+.card-x:hover::before{opacity:1}
+.hero{position:relative}.hero .container{position:relative;z-index:2}
+.marq{display:none}
+body[data-theme]:not([data-theme=rails]) .rv:not(.in){opacity:0}
+body[data-theme] .rv.in{animation:revUp .7s ease backwards}
+@keyframes revUp{from{opacity:0;transform:translateY(28px)}}
+#themes{position:fixed;bottom:14px;z-index:2000;display:flex;align-items:center;background:var(--nav);border:1px solid var(--line);backdrop-filter:blur(14px);border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.25);color:var(--ink);left:50%;right:auto;transform:translateX(-50%);max-width:94vw;overflow-x:auto;padding:6px;gap:2px}
+#themes span{display:none}
+#themes button{width:auto;height:auto;border:0;box-shadow:none;border-radius:999px;padding:7px 13px;background:transparent;font:600 .75rem 'Inter',sans-serif;color:var(--ink);white-space:nowrap}
+#themes button.on{background:var(--g);color:#fff;box-shadow:none}
+
+/* 1. FLOAT: animated aurora + floating pill nav + spotlight cards */
+body[data-theme=float]{--bg:#07070f;--alt:rgba(255,255,255,.03);--card:rgba(255,255,255,.06);--nav:rgba(18,18,36,.62);--ink:#eceaff;--muted:#a9a6cc;--head:#fff;--line:rgba(255,255,255,.14);--g:linear-gradient(120deg,#ff7ab6,#a78bfa 45%,#38bdf8);--acc:#a78bfa;--foot:#04040a;--r:26px;--hf:'Space Grotesk',sans-serif;--sh:0 20px 60px rgba(0,0,0,.5)}
+body[data-theme=float]::before{content:'';position:fixed;inset:-25%;z-index:-1;filter:blur(45px);background:radial-gradient(circle at 20% 30%,rgba(255,80,160,.38),transparent 35%),radial-gradient(circle at 80% 20%,rgba(56,189,248,.32),transparent 35%),radial-gradient(circle at 60% 80%,rgba(139,92,246,.38),transparent 35%);animation:blob 16s ease-in-out infinite alternate}
+@keyframes blob{to{transform:translate(5%,-4%) rotate(9deg) scale(1.18)}}
+body[data-theme=float] .navbar{top:14px;left:50%;right:auto;transform:translateX(-50%);width:min(1180px,95%);border:1px solid var(--line);border-radius:999px;padding:.55rem 1rem;box-shadow:0 18px 50px rgba(0,0,0,.45)}
+body[data-theme=float] .navbar-brand{font-size:1.5rem}
+body[data-theme=float] .nav-link{font-size:.78rem;margin:0 .1rem}
+body[data-theme=float] .hero::before{content:'';position:absolute;inset:0;background:linear-gradient(rgba(7,7,15,.55),rgba(7,7,15,.9))}
+body[data-theme=float] .hero h1{font-size:clamp(3.4rem,11vw,7.5rem)}
+body[data-theme=float] .card-x:hover{transform:translateY(-8px) scale(1.02)}
+@media(max-width:991px){body[data-theme=float] .navbar{border-radius:26px}}
+
+/* 2. SIDE: dashboard with fixed left sidebar */
+body[data-theme=side]{--bg:#f1f5f9;--alt:transparent;--card:#fff;--nav:#0b1220;--ink:#0f172a;--muted:#64748b;--head:#0b1220;--line:#e2e8f0;--g:linear-gradient(135deg,#6366f1,#06b6d4);--acc:#4f46e5;--foot:#0b1220;--r:14px;--hf:'Inter',sans-serif;--sh:0 1px 3px rgba(15,23,42,.08)}
+body[data-theme=side] .section-title{text-align:left;font-size:2rem;font-weight:800;margin-bottom:46px}
+body[data-theme=side] .section-title::after{left:0;transform:none;width:56px;height:4px;bottom:-14px}
+body[data-theme=side] .hero{min-height:62vh;justify-content:flex-start;text-align:left}
+body[data-theme=side] .hero::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,18,32,.85),rgba(11,18,32,.2))}
+body[data-theme=side] .hero h1{-webkit-text-fill-color:#fff;background:none;font-size:clamp(2.6rem,7vw,4.6rem)}
+body[data-theme=side] .hero p{background:rgba(255,255,255,.14);color:#fff;border-color:rgba(255,255,255,.3)}
+@media(min-width:992px){
+ body[data-theme=side]{padding-left:260px}
+ body[data-theme=side] .navbar{top:0;bottom:0;left:0;right:auto;width:260px;padding:1.6rem 1rem;border:0;overflow-y:auto;align-items:flex-start}
+ body[data-theme=side] .navbar>.container{flex-direction:column;align-items:flex-start;padding:0;max-width:none;height:100%}
+ body[data-theme=side] .navbar-toggler{display:none}
+ body[data-theme=side] .navbar-collapse{display:block!important;width:100%}
+ body[data-theme=side] .navbar-nav{flex-direction:column;margin:1.6rem 0 0!important}
+ body[data-theme=side] .nav-link{color:#cbd5e1!important;padding:.6rem .9rem;border-radius:10px;margin:2px 0}
+ body[data-theme=side] .nav-link:hover{background:rgba(255,255,255,.08);color:#fff!important}
+ body[data-theme=side] .nav-link::after{display:none}
 }
-html { scroll-behavior: smooth; }
-section { scroll-margin-top: 100px; }
-body {
-margin: 0;
-font-family: 'Inter',sans-serif;
-background:
-radial-gradient(circle at 8% 8%,rgba(6,182,212,0.12),transparent 26%),
-radial-gradient(circle at 92% 18%,rgba(236,72,153,0.10),transparent 25%),
-radial-gradient(circle at 50% 80%,rgba(124,58,237,0.07),transparent 28%),
-var(--page-bg);
-color: var(--text-primary);
-overflow-x: hidden;
-line-height: 1.65;
-}
-/* NAVBAR */
-.navbar {
-background: rgba(255,255,255,0.88) !important;
-backdrop-filter: blur(22px);
--webkit-backdrop-filter: blur(22px);
-border-bottom: 1px solid rgba(37,99,235,0.12);
-box-shadow: 0 5px 25px rgba(36,74,120,0.06);
-padding: 0.85rem 0;
-z-index: 1000;
-}
-.navbar-brand {
-font-family: 'Playfair Display',serif;
-font-size: 2.05rem;
-font-weight: 700;
-background: var(--primary-gradient);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-background-clip: text;
-}
-.nav-link {
-color: #334155 !important;
-font-weight: 600;
-font-size: 0.94rem;
-white-space: nowrap;
-margin: 0 0.2rem;
-transition: all 0.25s ease;
-position: relative;
-}
-.nav-link:hover { color: var(--accent-blue) !important; }
-.nav-link::after {
-content: '';
-position: absolute;
-width: 0;
-height: 3px;
-bottom: -7px;
-left: 0;
-background: var(--primary-gradient);
-border-radius: 10px;
-transition: width 0.25s ease;
-}
-.nav-link:hover::after { width: 100%; }
-.navbar-toggler {
-border-color: rgba(37,99,235,0.20) !important;
-background: rgba(37,99,235,0.06);
-}
-.navbar-toggler:focus {
-box-shadow: 0 0 0 0.2rem rgba(37,99,235,0.12);
-}
-.navbar-toggler-icon {
-filter: invert(31%) sepia(92%) saturate(2265%) hue-rotate(209deg) brightness(88%) contrast(94%);
-}
-/* HERO */
-.hero {
-min-height: 88vh;
-background-image: url("https://lh3.googleusercontent.com/d/1bixRBwYia7U1ZMcF_qGGCKLb_ASKpdV8");
-background-size: cover;
-background-position: center;
-display: flex;
-align-items: center;
-justify-content: center;
-text-align: center;
-position: relative;
-overflow: hidden;
-}
-.hero::before,
-.hero::after { display: none; }
-.hero .container {
-position: relative;
-z-index: 2;
-}
-.hero h1 {
-font-size: 5rem;
-font-weight: 700;
-font-family: 'Playfair Display',serif;
-background: var(--primary-gradient);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-background-clip: text;
-margin-bottom: 1rem;
-letter-spacing: -1px;
-text-shadow: 0 10px 30px rgba(37,99,235,0.10);
-}
-.hero p {
-display: inline-block;
-font-size: 1.35rem;
-color: #26364f;
-background: rgba(255,255,255,0.78);
-border: 1px solid rgba(255,255,255,0.95);
-border-radius: 999px;
-padding: 0.75rem 1.4rem;
-box-shadow: 0 12px 35px rgba(36,74,120,0.10);
-font-weight: 500;
-max-width: 900px;
-margin: 0 auto;
-}
-/* SECTIONS */
-.section {
-padding: 105px 0;
-position: relative;
-}
-.section:nth-of-type(even) {
-background: rgba(239,248,255,0.55);
-}
-.section-title {
-text-align: center;
-font-size: 3.15rem;
-margin-bottom: 70px;
-font-family: 'Playfair Display',serif;
-font-weight: 700;
-color: var(--heading);
-position: relative;
-}
-.section-title::after {
-content: '';
-position: absolute;
-bottom: -22px;
-left: 50%;
-transform: translateX(-50%);
-width: 115px;
-height: 5px;
-background: var(--primary-gradient);
-border-radius: 99px;
-box-shadow: 0 5px 15px rgba(124,58,237,0.18);
-}
-/* KEEP SELECTED SECTION HEADINGS ON ONE LINE */
-#team .section-title,
-#fun-activities .section-title {
-white-space: nowrap;
-font-size: clamp(1.65rem, 4.5vw, 3.15rem);
-width: 100%;
-}
-/* GLASS CARDS */
-.glass {
-background: var(--surface);
-backdrop-filter: blur(18px);
--webkit-backdrop-filter: blur(18px);
-border-radius: 24px;
-padding: 2.5rem;
-border: 1px solid var(--border);
-box-shadow: var(--shadow);
-transition: transform 0.35s ease,box-shadow 0.35s ease,border-color 0.35s ease;
-}
-.glass:hover {
-transform: translateY(-7px);
-box-shadow: 0 24px 55px rgba(36,74,120,0.15);
-border-color: rgba(37,99,235,0.25);
-}
-#about-text {
-color: #42536c;
-line-height: 1.85;
-}
-.text-secondary { color: var(--text-secondary) !important; }
-/* RESEARCH */
-.research-card {
-height: 295px;
-background-size: cover;
-background-position: center;
-border-radius: 24px;
-position: relative;
-overflow: hidden;
-border: 3px solid rgba(255,255,255,0.9);
-box-shadow: 0 15px 38px rgba(36,74,120,0.13);
-transition: all 0.4s ease;
-}
-.research-card:nth-child(3n+1) { border-color: rgba(6,182,212,0.45); }
-.research-card:nth-child(3n+2) { border-color: rgba(236,72,153,0.40); }
-.research-card:nth-child(3n) { border-color: rgba(249,115,22,0.42); }
-.research-card:hover {
-transform: translateY(-10px) scale(1.015);
-box-shadow: 0 28px 60px rgba(36,74,120,0.20);
-}
-.research-overlay {
-position: absolute;
-bottom: 0;
-width: 100%;
-background: linear-gradient(to top,rgba(10,24,48,0.92),rgba(10,24,48,0.25),transparent);
-padding: 3rem 1.5rem 1.5rem;
-transition: all 0.35s ease;
-}
-.research-card:hover .research-overlay {
-background: linear-gradient(to top,rgba(37,99,235,0.90),rgba(124,58,237,0.22),transparent);
-}
-.research-overlay h5 {
-color: #fff;
-text-shadow: 0 2px 10px rgba(0,0,0,0.35);
-}
-.research-overlay p { color: rgba(255,255,255,0.92); }
-/* TEAM */
-.team-img {
-width: 145px;
-height: 145px;
-border-radius: 50%;
-object-fit: cover;
-border: 5px solid #fff;
-transition: all 0.35s ease;
-box-shadow: 0 10px 30px rgba(36,74,120,0.16);
-}
-.team-img:hover {
-border-color: #8b5cf6;
-transform: scale(1.07) rotate(1deg);
-box-shadow: 0 14px 38px rgba(124,58,237,0.22);
-}
-/* PROFILE BUTTONS */
-.profile-btn {
-border: 0;
-color: #fff;
-background: var(--primary-gradient);
-border-radius: 999px;
-padding: 9px 21px;
-font-weight: 600;
-box-shadow: 0 8px 20px rgba(37,99,235,0.18);
-transition: all 0.3s ease;
-}
-.profile-btn:hover {
-color: #fff;
-transform: translateY(-3px);
-box-shadow: 0 13px 28px rgba(124,58,237,0.25);
-}
-.btn-outline-primary {
-color: var(--accent-blue) !important;
-border-color: rgba(37,99,235,0.35) !important;
-}
-.btn-outline-primary:hover {
-color: #fff !important;
-background: var(--primary-gradient) !important;
-border-color: transparent !important;
-}
-/* PROFILE MODAL */
-.modal-content {
-background: linear-gradient(145deg,#ffffff,#f5f9ff);
-color: var(--text-primary);
-border: 1px solid rgba(37,99,235,0.15);
-border-radius: 26px;
-box-shadow: 0 30px 80px rgba(25,52,91,0.24);
-}
-.modal-header { border-bottom: 1px solid rgba(37,99,235,0.10); }
-.modal-footer { border-top: 1px solid rgba(37,99,235,0.10); }
-.btn-close { filter: none; }
-.profile-modal-img {
-width: 175px;
-height: 175px;
-object-fit: cover;
-border-radius: 50%;
-border: 5px solid #fff;
-margin-bottom: 20px;
-box-shadow: 0 12px 30px rgba(37,99,235,0.18);
-}
-.profile-heading {
-font-family: 'Playfair Display',serif;
-color: var(--heading);
-margin-top: 25px;
-margin-bottom: 8px;
-}
-.profile-text { color: #52627a; }
-/* GALLERY */
-.gallery-card {
-background: rgba(255,255,255,0.92);
-border: 1px solid rgba(37,99,235,0.12);
-border-radius: 22px;
-overflow: hidden;
-height: 100%;
-box-shadow: 0 14px 35px rgba(36,74,120,0.10);
-transition: all 0.4s ease;
-}
-.gallery-card:hover {
-transform: translateY(-9px);
-box-shadow: 0 24px 50px rgba(36,74,120,0.16);
-border-color: rgba(6,182,212,0.30);
-}
-.gallery-img-wrapper {
-height: 260px;
-overflow: hidden;
-position: relative;
-}
-.gallery-img {
-width: 100%;
-height: 100%;
-object-fit: cover;
-transition: transform 0.6s ease;
-}
-.gallery-card:hover .gallery-img { transform: scale(1.07); }
-.gallery-content { padding: 1.5rem; }
-.gallery-content h5 {
-font-family: 'Playfair Display',serif;
-color: var(--heading);
-margin-bottom: 0.6rem;
-}
-.gallery-meta {
-color: #718096;
-font-size: 0.9rem;
-}
-/* POSTERS */
-.poster-card {
-background: rgba(255,255,255,0.94);
-border: 1px solid rgba(37,99,235,0.12);
-border-radius: 22px;
-overflow: hidden;
-height: 100%;
-box-shadow: 0 14px 35px rgba(36,74,120,0.10);
-transition: all 0.4s ease;
-}
-.poster-card:hover {
-transform: translateY(-9px);
-box-shadow: 0 25px 55px rgba(36,74,120,0.17);
-border-color: rgba(236,72,153,0.30);
-}
-.poster-img-wrapper {
-height: 400px;
-background: #edf4fb;
-overflow: hidden;
-display: flex;
-align-items: center;
-justify-content: center;
-}
-.poster-img {
-width: 100%;
-height: 100%;
-object-fit: cover;
-transition: transform 0.5s ease;
-}
-.poster-card:hover .poster-img { transform: scale(1.03); }
-.poster-content { padding: 1.5rem; }
-.poster-content h5 {
-font-family: 'Playfair Display',serif;
-color: var(--heading);
-}
-/* PUBLICATIONS */
-.pub-card {
-background: rgba(255,255,255,0.90);
-padding: 1.8rem;
-border-radius: 18px;
-margin-bottom: 1.5rem;
-border: 1px solid rgba(37,99,235,0.10);
-border-left: 6px solid transparent;
-border-image: var(--primary-gradient) 1;
-box-shadow: 0 10px 28px rgba(36,74,120,0.07);
-transition: all 0.35s ease;
-}
-.pub-card:hover {
-transform: translateX(8px);
-box-shadow: 0 18px 38px rgba(37,99,235,0.13);
-border-left-color: #6366f1;
-}
-.pub-card h6 { color: var(--heading); }
-/* CONTACT */
-.contact-glass {
-max-width: 620px;
-margin: 0 auto;
-background: linear-gradient(145deg,rgba(255,255,255,0.96),rgba(239,248,255,0.94));
-}
-.contact-glass .fa-paper-plane { color: var(--accent-pink) !important; }
-.contact-glass a[href^="mailto:"] { color: #000000 !important; }
-/* FOOTER */
-footer {
-background: linear-gradient(135deg,#172554,#312e81 55%,#7c2d6b);
-color: rgba(255,255,255,0.92);
-padding: 3rem 0;
-text-align: center;
-border-top: 0;
-}
-footer p { opacity: 0.95 !important; }
-.loading-text { color: #718096; }
-.text-primary { color: var(--accent-blue) !important; }
-.text-warning { color: #c2410c !important; }
-/* RESOURCE SECTIONS */
-.resource-card {
-height: 100%;
-background: rgba(255,255,255,0.92);
-border: 1px solid rgba(37,99,235,0.13);
-border-radius: 22px;
-padding: 2rem;
-box-shadow: 0 14px 35px rgba(36,74,120,0.09);
-transition: all 0.35s ease;
-}
-.resource-card:hover {
-transform: translateY(-7px);
-box-shadow: 0 24px 50px rgba(36,74,120,0.15);
-border-color: rgba(124,58,237,0.30);
-}
-.resource-card h5 {
-font-family: 'Playfair Display',serif;
-color: var(--heading);
-margin-bottom: 1rem;
-}
-.resource-card p { color: var(--text-secondary); }
-.resource-category {
-display: inline-block;
-background: linear-gradient(135deg,rgba(6,182,212,0.12),rgba(124,58,237,0.12));
-color: #5141a5;
-padding: 5px 13px;
-border-radius: 30px;
-font-size: 0.8rem;
-font-weight: 600;
-margin-bottom: 1rem;
-}
-.resource-link {
-display: inline-block;
-text-decoration: none;
-color: #2563eb;
-font-weight: 600;
-margin-top: 0.7rem;
-}
-.resource-link:hover { color: #7c3aed; }
-.resource-icon {
-font-size: 2rem;
-margin-bottom: 1rem;
-background: var(--primary-gradient);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-}
-.resource-image {
-width: 100%;
-height: 170px;
-object-fit: contain;
-margin-bottom: 1rem;
-}
-.postdoc-card { text-align: center; }
-.postdoc-card .team-img { margin-bottom: 1rem; }
-/* RESPONSIVE */
-@media (max-width: 991px) {
-.navbar-nav { padding-top: 0.8rem; }
-.nav-link { margin: 0.35rem 0; }
-}
-@media (max-width: 768px) {
-.hero { min-height: 78vh; }
-.hero h1 { font-size: 3.25rem; }
-.hero p {
-font-size: 1rem;
-border-radius: 20px;
-}
-.section-title { font-size: 2.35rem; }
-#team .section-title,
-#fun-activities .section-title {
-font-size: clamp(1.5rem, 6vw, 2.25rem);
-white-space: nowrap;
-}
-.section { padding: 78px 0; }
-.navbar-brand { font-size: 1.75rem; }
-.poster-img-wrapper { height: 330px; }
-.gallery-img-wrapper { height: 220px; }
-.glass { padding: 1.6rem !important; }
-.resource-card { padding: 1.6rem; }
-}
-@media (max-width: 360px) {
-#team .section-title,
-#fun-activities .section-title {
-font-size: 1.35rem;
-}
-}
+
+/* 3. BENTO: tile grid with mixed sizes and pastel tiles */
+body[data-theme=bento]{--bg:#f4f1ea;--alt:transparent;--card:#fff;--nav:rgba(244,241,234,.88);--ink:#111;--muted:#605b52;--head:#111;--line:rgba(0,0,0,.08);--g:linear-gradient(135deg,#ff5e3a,#ff2e93);--acc:#ff4d2e;--foot:#111;--r:30px;--hf:'Space Grotesk',sans-serif;--sh:none}
+body[data-theme=bento] .section-title{text-align:left;font-weight:700;letter-spacing:-1px;margin-bottom:44px}
+body[data-theme=bento] .section-title::after{display:none}
+body[data-theme=bento] .hero{margin:84px 16px 0;border-radius:40px;min-height:72vh}
+body[data-theme=bento] .hero::before{content:'';position:absolute;inset:0;background:linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.55))}
+body[data-theme=bento] .hero h1{-webkit-text-fill-color:#fff;background:none}
+body[data-theme=bento] .hero p{background:#fff;color:#111}
+body[data-theme=bento] .section .row{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-flow:dense;gap:18px;margin:0}
+body[data-theme=bento] .section .row>*{width:auto;max-width:none;padding:0;margin:0}
+body[data-theme=bento] .row>.col-12{grid-column:1/-1}
+body[data-theme=bento] #research-container>:nth-child(5n+1),body[data-theme=bento] #gallery-container>:nth-child(5n+1),body[data-theme=bento] #fun-activities-container>:nth-child(5n+1),body[data-theme=bento] #advertisements-container>:nth-child(5n+1),body[data-theme=bento] #servers-container>:nth-child(5n+1),body[data-theme=bento] #databases-container>:nth-child(5n+1){grid-column:span 2}
+body[data-theme=bento] #pi-container{grid-template-columns:minmax(0,300px);justify-content:center}
+body[data-theme=bento] .rcard{height:100%;min-height:280px}
+body[data-theme=bento] .row>:nth-child(4n+2) .card-x{background:#e8e4ff}
+body[data-theme=bento] .row>:nth-child(4n+3) .card-x{background:#ffe9d6}
+body[data-theme=bento] .row>:nth-child(4n) .card-x{background:#d9f5ea}
+body[data-theme=bento] .card-x:hover{transform:scale(1.025) rotate(-.4deg)}
+@media(max-width:991px){body[data-theme=bento] .section .row{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:575px){body[data-theme=bento] .section .row{grid-template-columns:1fr}body[data-theme=bento] .row>*{grid-column:auto!important}}
+
+/* 4. RAILS: cinematic dark with horizontal scroll rows */
+body[data-theme=rails]{--bg:#0a0a0c;--alt:#0f0f13;--card:#16161c;--nav:rgba(10,10,12,.72);--ink:#eee;--muted:#9a9aa6;--head:#fff;--line:rgba(255,255,255,.1);--g:linear-gradient(120deg,#f59e0b,#ef4444);--acc:#f59e0b;--foot:#000;--r:14px;--hf:'Inter',sans-serif;--sh:0 10px 30px rgba(0,0,0,.5)}
+body[data-theme=rails] .container{max-width:none;padding:0 4vw}
+body[data-theme=rails] .section{padding:60px 0}
+body[data-theme=rails] .section-title{text-align:left;font-size:1.7rem;font-weight:800;margin-bottom:22px}
+body[data-theme=rails] .section-title::after{left:0;transform:none;width:46px;height:4px;bottom:-10px}
+body[data-theme=rails] .section .row{display:flex;flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x mandatory;gap:18px;padding:12px 4px 26px;margin:0;scrollbar-width:thin;scrollbar-color:#f59e0b #1a1a20}
+body[data-theme=rails] .section .row>*{flex:0 0 min(310px,80vw);width:auto;max-width:none;padding:0;margin:0;scroll-snap-align:start}
+body[data-theme=rails] .row>.col-12{flex:1 0 100%}
+body[data-theme=rails] .card-x:hover,body[data-theme=rails] .rcard:hover{transform:scale(1.045);z-index:3}
+body[data-theme=rails] .hero{min-height:92vh;align-items:flex-end;justify-content:flex-start;text-align:left;padding-bottom:9vh}
+body[data-theme=rails] .hero::before{content:'';position:absolute;inset:0;background:linear-gradient(to top,#0a0a0c 4%,rgba(0,0,0,.25))}
+body[data-theme=rails] .hero h1{-webkit-text-fill-color:#fff;background:none;font-size:clamp(3rem,10vw,7rem)}
+body[data-theme=rails] .hero p{background:rgba(245,158,11,.18);color:#fcd34d;border-color:rgba(245,158,11,.4)}
+
+/* 5. BRUTAL: neo-brutalist, loud and playful */
+body[data-theme=brutal]{--bg:radial-gradient(#00000026 1.2px,transparent 1.2px) 0 0/20px 20px,#fff6d6;--alt:transparent;--card:#fff;--nav:#ffe14d;--ink:#000;--muted:#222;--head:#000;--line:#000;--g:linear-gradient(90deg,#000,#000);--acc:#ff3d81;--foot:#000;--r:0px;--hf:'Space Grotesk',sans-serif;--sh:7px 7px 0 #000}
+body[data-theme=brutal] .navbar{border-bottom:4px solid #000;backdrop-filter:none}
+body[data-theme=brutal] .nav-link{font-weight:700;padding:.3rem .55rem!important}
+body[data-theme=brutal] .nav-link:hover{background:#000;color:#ffe14d!important}
+body[data-theme=brutal] .nav-link::after{display:none}
+body[data-theme=brutal] .hero h1{-webkit-text-fill-color:#000;background:#ffe14d;padding:.05em .3em;border:4px solid #000;box-shadow:9px 9px 0 #000;transform:rotate(-1.5deg);display:inline-block;text-transform:uppercase}
+body[data-theme=brutal] .hero p{background:#ff3d81;color:#000;border:3px solid #000;border-radius:0;box-shadow:5px 5px 0 #000;font-weight:700;margin-top:1.6rem}
+body[data-theme=brutal] .marq{display:block;overflow:hidden;background:#000;color:#ffe14d;border-block:4px solid #000;white-space:nowrap;font:700 1.15rem 'Space Grotesk',sans-serif;padding:.7rem 0}
+body[data-theme=brutal] .marq div{display:inline-block;animation:marq 22s linear infinite}
+@keyframes marq{to{transform:translateX(-50%)}}
+body[data-theme=brutal] .section-title{background:#000;color:#fff;display:table;margin:0 auto 70px;padding:.2em .7em;transform:rotate(-1.2deg);text-transform:uppercase;font-size:clamp(1.4rem,4vw,2.5rem)}
+body[data-theme=brutal] .section-title::after{display:none}
+body[data-theme=brutal] .card-x,body[data-theme=brutal] .pub,body[data-theme=brutal] .rcard{border:3px solid #000}
+body[data-theme=brutal] .card-x:hover{transform:translate(-4px,-4px) rotate(-.6deg);box-shadow:11px 11px 0 #000}
+body[data-theme=brutal] .row>:nth-child(4n+1) .card-x{background:#ffd6e7}
+body[data-theme=brutal] .row>:nth-child(4n+2) .card-x{background:#c7f0ff}
+body[data-theme=brutal] .row>:nth-child(4n+3) .card-x{background:#d9f99d}
+body[data-theme=brutal] .team-img{border:4px solid #000;border-radius:0}
+body[data-theme=brutal] .pbtn{background:#ffe14d;color:#000!important;border:3px solid #000;border-radius:0;box-shadow:4px 4px 0 #000}
+body[data-theme=brutal] .pbtn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 #000;filter:none}
+body[data-theme=brutal] .tag{background:#000;color:#fff;border-radius:0}
+body[data-theme=brutal] .modal-content{border:4px solid #000;box-shadow:10px 10px 0 #000}
+body[data-theme=brutal] .card-x::before{display:none}
+/* ===== NOVA: flagship ===== */
+@property --ang{syntax:'<angle>';inherits:false;initial-value:0deg}
+@keyframes spin{to{--ang:360deg}}
+#fx,#helix,#cur,.typed,.cta,.stats{display:none}
+#prog{position:fixed;top:0;left:0;height:3px;width:0;background:var(--g);z-index:3000}
+body[data-theme] .rv.in.done{animation:none}
+body[data-theme=nova]{--bg:#05060d;--alt:transparent;--card:#0a0c18;--nav:rgba(8,10,22,.6);--ink:#e8ecff;--muted:#8f9bc4;--head:#fff;--line:rgba(255,255,255,.1);--g:linear-gradient(110deg,#00e5ff,#7c4dff 50%,#ff4ecd);--acc:#00e5ff;--foot:#03040a;--r:22px;--hf:'Space Grotesk',sans-serif;--sh:0 20px 60px rgba(0,0,0,.5);counter-reset:sec}
+body[data-theme=nova] #fx{display:block;position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+body[data-theme=nova] .navbar{transition:transform .4s;border-bottom:1px solid var(--line)}
+body[data-theme=nova] .navbar.navhide{transform:translateY(-100%)}
+body[data-theme=nova] .nav-link{font-size:.78rem;letter-spacing:.3px}
+body[data-theme=nova] .nav-link.active{color:var(--acc)!important}
+body[data-theme=nova] .nav-link.active::after{width:100%}
+body[data-theme=nova] .hero{min-height:100vh;text-align:left;justify-content:flex-start;padding-top:70px}
+body[data-theme=nova] .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 72% 50%,rgba(124,77,255,.28),transparent 55%),linear-gradient(rgba(5,6,13,.8),rgba(5,6,13,.96))}
+body[data-theme=nova] .hero .container{display:grid;grid-template-columns:1.1fr .9fr;align-items:center;column-gap:2rem}
+body[data-theme=nova] .hero h1{grid-column:1;font-size:clamp(3.6rem,10vw,8.2rem);line-height:.95;margin:0 0 1.2rem;font-family:var(--hf)}
+body[data-theme=nova] .hero p{display:none}
+body[data-theme=nova] .typed{display:block;grid-column:1;font:600 clamp(1rem,2.4vw,1.4rem) 'JetBrains Mono',monospace;color:var(--acc);min-height:2em}
+body[data-theme=nova] .cta{display:flex;grid-column:1;gap:14px;flex-wrap:wrap;margin-top:1.4rem}
+body[data-theme=nova] .pbtn.ghost{background:transparent;border:1px solid rgba(255,255,255,.3)}
+body[data-theme=nova] #helix{display:block;grid-column:2;grid-row:1/span 4;width:100%;max-width:500px;height:auto;justify-self:center}
+@media(max-width:900px){body[data-theme=nova] .hero .container{grid-template-columns:1fr}body[data-theme=nova] #helix{display:none}}
+body[data-theme=nova] .marq{display:block;overflow:hidden;white-space:nowrap;padding:1.4rem 0;border-block:1px solid var(--line);font:700 clamp(2.4rem,7vw,5.5rem) 'Space Grotesk',sans-serif;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.28)}
+body[data-theme=nova] .marq div{display:inline-block;animation:marq 40s linear infinite}
+body[data-theme=nova] .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;max-width:1140px;margin:70px auto 0;width:92%;background:var(--line);border:1px solid var(--line);border-radius:22px;overflow:hidden}
+.stat{background:#080a16;padding:2rem 1rem;text-align:center}
+.stat b{display:block;font:700 3.2rem 'Space Grotesk',sans-serif;background:var(--g);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.stat span{color:var(--muted);font:600 .72rem 'JetBrains Mono',monospace;letter-spacing:2px;text-transform:uppercase}
+body[data-theme=nova] .section{padding:110px 0}
+body[data-theme=nova] .section-title{counter-increment:sec;text-align:left;font-size:clamp(2.2rem,6vw,4.4rem);letter-spacing:-2px;line-height:1;margin-bottom:64px}
+body[data-theme=nova] .section-title::before{content:'/ ' counter(sec,decimal-leading-zero);display:block;font:600 .85rem 'JetBrains Mono',monospace;letter-spacing:3px;color:var(--acc);margin-bottom:14px}
+body[data-theme=nova] .section-title::after{left:0;transform:none;width:70px;height:3px;bottom:-20px}
+body[data-theme=nova] .card-x{border:1px solid transparent;background:linear-gradient(var(--card),var(--card)) padding-box,linear-gradient(rgba(255,255,255,.1),rgba(255,255,255,.1)) border-box}
+body[data-theme=nova] .card-x:hover,body[data-theme=nova] .card-x.rv.in.done:hover{background:linear-gradient(var(--card),var(--card)) padding-box,conic-gradient(from var(--ang),transparent 55%,#00e5ff,#ff4ecd,transparent) border-box;transform:none}
+body[data-theme=nova] .card-x.rv.in.done:hover{animation:spin 3s linear infinite}
+body[data-theme=nova] .team-img{filter:grayscale(1) contrast(1.1);transition:filter .4s,transform .4s}
+body[data-theme=nova] .card-x:hover .team-img{filter:none;transform:scale(1.06)}
+body[data-theme=nova] .rcard{border:1px solid var(--line)}
+body[data-theme=nova] .rcard .ov{background:linear-gradient(to top,rgba(5,6,13,.97),rgba(5,6,13,.1))}
+body[data-theme=nova] .pub{border-left:2px solid var(--acc);border-radius:0 20px 20px 0;background:rgba(255,255,255,.03);position:relative}
+body[data-theme=nova] .pub::before{content:'';position:absolute;left:-7px;top:26px;width:12px;height:12px;border-radius:50%;background:var(--acc);box-shadow:0 0 14px var(--acc)}
+body[data-theme=nova] .tag{font-family:'JetBrains Mono',monospace}
+body[data-theme=nova] #cur{display:block;position:fixed;left:0;top:0;width:34px;height:34px;margin:-17px 0 0 -17px;border:2px solid #fff;border-radius:50%;pointer-events:none;z-index:4000;mix-blend-mode:difference;transition:width .25s,height .25s,margin .25s,background .25s}
+body[data-theme=nova] #cur.big{width:70px;height:70px;margin:-35px 0 0 -35px;background:#fff}
+@media(hover:none){body[data-theme=nova] #cur{display:none}}
 </style>
 </head>
 <body>
-<!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+
+<nav class="navbar navbar-expand-lg fixed-top">
 <div class="container">
 <a class="navbar-brand" href="#">ASPIRE Lab</a>
-<button
-class="navbar-toggler"
-type="button"
-data-bs-toggle="collapse"
-data-bs-target="#nav"
-aria-controls="nav"
-aria-expanded="false"
-aria-label="Toggle navigation">
-<span class="navbar-toggler-icon"></span>
-</button>
-<div class="collapse navbar-collapse" id="nav">
-<ul class="navbar-nav ms-auto">
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-label="Menu"><i class="fas fa-bars"></i></button>
+<div class="collapse navbar-collapse" id="nav"><ul class="navbar-nav ms-auto">
 <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
 <li class="nav-item"><a class="nav-link" href="#research">Research</a></li>
 <li class="nav-item"><a class="nav-link" href="#team">PhD Scholars</a></li>
@@ -524,1243 +223,275 @@ aria-label="Toggle navigation">
 <li class="nav-item"><a class="nav-link" href="#databases">Databases</a></li>
 <li class="nav-item"><a class="nav-link" href="#fun-activities">Fun Activities</a></li>
 <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-</ul>
-</div>
-</div>
+</ul></div></div>
 </nav>
-<!-- HERO -->
-<section class="hero">
-<div class="container">
+
+<section class="hero"><div class="container">
 <h1>ASPIRE Lab</h1>
-<p>
-Advanced Structural Parasitology
-• Protein Engineering
-• Drug Discovery
-</p>
-</div>
-</section>
-<!-- ABOUT -->
-<section id="about" class="section text-center">
-<div class="container">
+<p>Advanced Structural Parasitology • Protein Engineering • Drug Discovery</p>
+</div></section>
+
+<section id="about" class="section text-center"><div class="container">
 <h2 class="section-title">About ASPIRE Lab</h2>
-<div class="glass p-5 mb-0" style="max-width:900px;margin:auto;">
-<p id="about-text" class="fs-5 mb-4">Loading...</p>
-</div>
-</div>
-</section>
-<!-- RESEARCH -->
-<section id="research" class="section">
-<div class="container">
-<h2 class="section-title">Research Areas</h2>
-<div class="row g-4" id="research-container"></div>
-</div>
-</section>
-<!-- PRINCIPAL INVESTIGATOR -->
-<section class="section text-center">
-<div class="container">
-<h2 class="section-title">Principal Investigator</h2>
-<div class="row justify-content-center" id="pi-container"></div>
-</div>
-</section>
-<!-- PHD SCHOLARS -->
-<section id="team" class="section">
-<div class="container">
-<h2 class="section-title">PhD Scholars</h2>
-<div class="row" id="team-container"></div>
-</div>
-</section>
-<!-- POSTDOC -->
-<section id="postdocs" class="section">
-<div class="container">
-<h2 class="section-title">Postdoc Researchers</h2>
-<div class="row g-4" id="postdocs-container"></div>
-</div>
-</section>
-<!-- GALLERY -->
-<section id="gallery" class="section">
-<div class="container">
-<h2 class="section-title">Workshops & Conferences</h2>
-<div class="row g-4" id="gallery-container"></div>
-</div>
-</section>
-<!-- POSTERS -->
-<section id="posters" class="section">
-<div class="container">
-<h2 class="section-title">Digital Poster Archive</h2>
-<div class="row g-4" id="posters-container"></div>
-</div>
-</section>
-<!-- OPPORTUNITIES -->
-<section id="advertisements" class="section">
-<div class="container">
-<h2 class="section-title">Advertisements & Opportunities</h2>
-<div class="row g-4" id="advertisements-container"></div>
-</div>
-</section>
-<!-- PUBLICATIONS -->
-<section id="publications" class="section">
-<div class="container">
-<h2 class="section-title">Publications</h2>
-<div id="pub-container"></div>
-</div>
-</section>
-<!-- SERVERS -->
-<section id="servers" class="section">
-<div class="container">
-<h2 class="section-title">Important Servers</h2>
-<div class="row g-4" id="servers-container"></div>
-</div>
-</section>
-<!-- DATABASES -->
-<section id="databases" class="section">
-<div class="container">
-<h2 class="section-title">Important Databases</h2>
-<div class="row g-4" id="databases-container"></div>
-</div>
-</section>
-<!-- FUN ACTIVITIES -->
-<section id="fun-activities" class="section">
-<div class="container">
-<h2 class="section-title">Fun Activities</h2>
-<div class="row g-4" id="fun-activities-container"></div>
-</div>
-</section>
-<!-- CONTACT -->
-<section id="contact" class="section text-center">
-<div class="container">
-<h2 class="section-title">Contact</h2>
-<div class="glass contact-glass py-5 px-4">
-<div class="fs-4 mb-4">
-<i class="fas fa-paper-plane text-primary me-3"></i>
-Get In Touch
-</div>
-<div id="contact-content">Loading...</div>
-</div>
-</div>
-</section>
-<!-- FOOTER -->
-<footer>
-<div class="container">
-<p class="mb-0" style="opacity:0.8;">
-© 2026 ASPIRE Lab |
-Advanced Structural Parasitology
-& Protein Engineering
-</p>
-</div>
-</footer>
-<!-- PROFILE MODAL -->
-<div class="modal fade" id="profileModal" tabindex="-1" aria-hidden="true">
-<div class="modal-dialog modal-lg modal-dialog-centered">
-<div class="modal-content">
-<div class="modal-header">
-<h5 class="modal-title" id="profileModalTitle">Profile</h5>
-<button
-type="button"
-class="btn-close"
-data-bs-dismiss="modal"
-aria-label="Close">
-</button>
-</div>
-<div class="modal-body" id="profileModalBody"></div>
-<div class="modal-footer">
-<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-Close
-</button>
-</div>
-</div>
-</div>
-</div>
-<!-- BOOTSTRAP -->
+<div class="card-x pad" style="max-width:900px;margin:auto"><p id="about-text" class="fs-5 mb-0 muted">Loading...</p></div>
+</div></section>
+
+<section id="research" class="section"><div class="container"><h2 class="section-title">Research Areas</h2><div class="row g-4" id="research-container"></div></div></section>
+<section class="section text-center"><div class="container"><h2 class="section-title">Principal Investigator</h2><div class="row justify-content-center" id="pi-container"></div></div></section>
+<section id="team" class="section"><div class="container"><h2 class="section-title">PhD Scholars</h2><div class="row g-4" id="team-container"></div></div></section>
+<section id="postdocs" class="section"><div class="container"><h2 class="section-title">Postdoc Researchers</h2><div class="row g-4" id="postdocs-container"></div></div></section>
+<section id="gallery" class="section"><div class="container"><h2 class="section-title">Workshops &amp; Conferences</h2><div class="row g-4" id="gallery-container"></div></div></section>
+<section id="posters" class="section"><div class="container"><h2 class="section-title">Digital Poster Archive</h2><div class="row g-4" id="posters-container"></div></div></section>
+<section id="advertisements" class="section"><div class="container"><h2 class="section-title">Advertisements &amp; Opportunities</h2><div class="row g-4" id="advertisements-container"></div></div></section>
+<section id="publications" class="section"><div class="container"><h2 class="section-title">Publications</h2><div id="pub-container"></div></div></section>
+<section id="servers" class="section"><div class="container"><h2 class="section-title">Important Servers</h2><div class="row g-4" id="servers-container"></div></div></section>
+<section id="databases" class="section"><div class="container"><h2 class="section-title">Important Databases</h2><div class="row g-4" id="databases-container"></div></div></section>
+<section id="fun-activities" class="section"><div class="container"><h2 class="section-title">Fun Activities</h2><div class="row g-4" id="fun-activities-container"></div></div></section>
+<section id="contact" class="section text-center"><div class="container"><h2 class="section-title">Contact</h2>
+<div class="card-x pad" style="max-width:620px;margin:auto"><div class="fs-4 mb-4"><i class="fas fa-paper-plane me-3" style="color:var(--acc)"></i>Get In Touch</div><div id="contact-content">Loading...</div></div>
+</div></section>
+
+<footer><div class="container"><p class="mb-0">© 2026 ASPIRE Lab | Advanced Structural Parasitology &amp; Protein Engineering</p></div></footer>
+
+<div class="modal fade" id="profileModal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content">
+<div class="modal-header"><h5 class="modal-title" id="pmTitle">Profile</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+<div class="modal-body" id="pmBody"></div>
+<div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
+</div></div></div>
+
+<div id="themes" title="Change design"><button data-t="nova">Nova</button><button data-t="aurora">Aurora</button><button data-t="float">Float</button><button data-t="side">Sidebar</button><button data-t="bento">Bento</button><button data-t="rails">Rails</button><button data-t="brutal">Brutal</button></div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-/*
-\==========================================================
-GOOGLE SHEET CONFIGURATION
-\==========================================================
-*/
-const SHEET_ID =
-"1vhSco35e3yQHCFiFJoAmjbHKZ7WV2RQN65xNbK6TIl8";
-const FALLBACK_IMAGE =
-"https://via.placeholder.com/800x500?text=ASPIRE+Lab";
-/*
-\==========================================================
-HTML ESCAPING
-\==========================================================
-*/
-function escapeHtml(value) {
-return String(value ?? "")
-.replaceAll("&", "&amp;")
-.replaceAll("<", "&lt;")
-.replaceAll(">", "&gt;")
-.replaceAll('"', "&quot;")
-.replaceAll("'", "&#039;");
-}
-/*
-\==========================================================
-GOOGLE DRIVE FILE ID
-\==========================================================
-*/
-function getDriveFileId(url) {
-const raw = String(url ?? "").trim();
-if (!raw) return "";
-const match =
-raw.match(/\/file\/d\/([a-zA-Z0-9_-]+)/) ||
-raw.match(/\/d\/([a-zA-Z0-9_-]+)/) ||
-raw.match(/[?&]id=([a-zA-Z0-9_-]+)/);
-return match ? match[1] : "";
-}
-/*
-\==========================================================
-IMAGE URL NORMALIZATION
-\==========================================================
-*/
-function normalizeImageUrl(url) {
-const raw = String(url ?? "").trim();
-if (!raw) return FALLBACK_IMAGE;
-const driveId = getDriveFileId(raw);
-if (driveId) {
-return `https://drive.google.com/thumbnail?id=${driveId}&sz=w2000`;
-}
-return raw;
-}
-/*
-\==========================================================
-DRIVE OPEN URL
-\==========================================================
-*/
-function normalizeDriveOpenUrl(url) {
-const raw = String(url ?? "").trim();
-if (!raw) return "";
-const driveId = getDriveFileId(raw);
-if (driveId) {
-return `https://drive.google.com/file/d/${driveId}/view?usp=sharing`;
-}
-return raw;
-}
-/*
-\==========================================================
-SAFE EXTERNAL URL
-\==========================================================
-*/
-function safeResourceUrl(value) {
-const raw = String(value ?? "").trim();
-if (!raw) return "";
-try {
-const url = new URL(raw);
-if (
-url.protocol === "https:" ||
-url.protocol === "http:"
-) {
-return url.href;
-}
-} catch (err) {
-return "";
-}
-return "";
-}
-/*
-\==========================================================
-GOOGLE SHEET FETCH
-\==========================================================
-*/
-const SHEET_NAME_ALIASES = {
-TEAM: ["Team", "TEAM"],
-POSTDOCS: ["POSTDOC", "POSTDOCS"],
-PUBLICATIONS: ["Publications", "PUBLICATIONS"]
-};
-async function fetchSheet(sheetName) {
-const sheetNames = SHEET_NAME_ALIASES[sheetName] || [sheetName];
-for (const actualSheetName of sheetNames) {
-try {
-const res = await fetch(
-`https://opensheet.elk.sh/${SHEET_ID}/${encodeURIComponent(actualSheetName)}`
-);
-if (!res.ok) continue;
-const data = await res.json();
-if (Array.isArray(data) && data.length > 0) {
-return data;
-}
-} catch (err) {
-console.error(`Failed to load ${actualSheetName}:`, err);
-}
-}
-console.warn(`No data returned for worksheet: ${sheetName}`);
-return [];
-}
-/*
-\==========================================================
-FIRST NON EMPTY VALUE
-\==========================================================
-*/
-function firstNonEmptyValue(obj) {
-if (!obj || typeof obj !== "object") return "";
-const vals = Object.values(obj).map(v =>
-v == null ? "" : String(v).trim()
-);
-return vals.find(v => v.length > 0) || "";
-}
-/*
-\==========================================================
-ABOUT
-\==========================================================
-*/
-async function loadAbout() {
-const el = document.getElementById("about-text");
-if (!el) return;
-el.textContent = "Loading...";
-const data = await fetchSheet("ABOUT");
-const text =
-data[0]?.text ||
-data[0]?.Text ||
-data[0]?.about ||
-data[0]?.About ||
-firstNonEmptyValue(data[0]) ||
-"About content coming soon...";
-el.textContent = text;
-}
-/*
-\==========================================================
-RESEARCH
-\==========================================================
-*/
-async function loadResearch() {
-const container = document.getElementById("research-container");
-if (!container) return;
-container.innerHTML = "";
-const data = await fetchSheet("RESEARCH");
-if (!data.length) {
-container.innerHTML = `
-<div class="col-12">
-<div class="glass text-center">
-<p class="mb-0 text-secondary">
-Research content coming soon...
-</p>
-</div>
-</div>
-`;
-return;
-}
-data.forEach(r => {
-if (!r || Object.keys(r).length === 0) return;
-const title = r.title || r.Title || "Untitled";
-const desc = r.description || r.Description || "";
-const img = normalizeImageUrl(r.image || r.Image || "");
-const col = document.createElement("div");
-col.className = "col-md-4";
-const card = document.createElement("div");
-card.className = "research-card";
-card.style.backgroundImage =
-`linear-gradient(rgba(10,24,48,0.20),rgba(10,24,48,0.70)),url("${img.replaceAll('"', "%22")}")`;
-const overlay = document.createElement("div");
-overlay.className = "research-overlay";
-overlay.innerHTML = `
-<h5 style="font-family:'Playfair Display';font-size:1.4rem;">
-${escapeHtml(title)}
-</h5>
-<p class="mb-0">
-${escapeHtml(desc)}
-</p>
-`;
-card.appendChild(overlay);
-col.appendChild(card);
-container.appendChild(col);
-});
-}
-/*
-\==========================================================
-TEAM AND PRINCIPAL INVESTIGATOR
-\==========================================================
-*/
-async function loadTeam() {
-const teamContainer = document.getElementById("team-container");
-const piContainer = document.getElementById("pi-container");
-if (!teamContainer || !piContainer) return;
-teamContainer.innerHTML = "";
-piContainer.innerHTML = "";
-const data = await fetchSheet("TEAM");
-if (!data.length) {
-piContainer.innerHTML = `
-<div class="col-12">
-<div class="glass p-4">
-<p class="text-secondary mb-0">Coming soon...</p>
-</div>
-</div>
-`;
-return;
-}
-let teamHTML = "";
-let piHTML = "";
-data.forEach((m, index) => {
-if (!m || Object.keys(m).length === 0) return;
-const name = m.name || m.Name || "Unnamed";
-const role = m.role || m.Role || "";
-const image = normalizeImageUrl(m.image || m.Image || FALLBACK_IMAGE);
-const linkedin = m.linkedin || m.LinkedIn || "";
-const bio = m.bio || m.Bio || "";
-const research = m.research || m.Research || "";
-const hobbies = m.hobbies || m.Hobbies || "";
-const interests = m.interests || m.Interests || "";
-const profileId = `profile-${index}`;
-const card = `
-<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-<div class="glass h-100 d-flex flex-column align-items-center p-4 text-center">
-<img
-src="${escapeHtml(image)}"
-class="team-img mb-3"
-alt="${escapeHtml(name)}"
-loading="lazy"
-onerror="this.onerror=null;this.src='${FALLBACK_IMAGE}'"
->
-<h5 class="mb-2">
-${escapeHtml(name)}
-</h5>
-<p class="text-secondary mb-3">
-${escapeHtml(role)}
-</p>
-<div class="mt-auto d-flex gap-2 align-items-center justify-content-center">
-<button
-type="button"
-class="profile-btn"
-onclick="openProfile('${profileId}')">
-<i class="fas fa-user me-2"></i>
-View Profile
-</button>
-${
-linkedin
-? `
-<a href="${escapeHtml(linkedin)}"
-target="_blank"
-rel="noopener noreferrer"
-class="text-decoration-none">
-<i class="fab fa-linkedin text-primary fs-4"></i>
-</a>
-`
-: ""
-}
-</div>
-<div
-id="${profileId}"
-class="d-none"
-data-name="${escapeHtml(name)}"
-data-role="${escapeHtml(role)}"
-data-image="${escapeHtml(image)}"
-data-bio="${escapeHtml(bio)}"
-data-research="${escapeHtml(research)}"
-data-hobbies="${escapeHtml(hobbies)}"
-data-interests="${escapeHtml(interests)}"
-data-linkedin="${escapeHtml(linkedin)}">
-</div>
-</div>
-</div>
-`;
-const isPI = /principal|pi\b|investigator/i.test(role);
-if (isPI) {
-piHTML += card;
-} else {
-teamHTML += card;
-}
-});
-piContainer.innerHTML = piHTML || `
-<div class="col-12">
-<div class="glass p-4">
-<p class="text-secondary mb-0">Coming soon...</p>
-</div>
-</div>
-`;
-teamContainer.innerHTML = teamHTML || `
-<div class="col-12">
-<div class="glass p-4">
-<p class="text-secondary mb-0">Coming soon...</p>
-</div>
-</div>
-`;
-}
-/*
-\==========================================================
-OPEN PROFILE MODAL
-\==========================================================
-*/
-function openProfile(profileId) {
-const data = document.getElementById(profileId);
-if (!data) return;
-const name = data.dataset.name || "";
-const role = data.dataset.role || "";
-const image = data.dataset.image || FALLBACK_IMAGE;
-const bio = data.dataset.bio || "";
-const research = data.dataset.research || "";
-const hobbies = data.dataset.hobbies || "";
-const interests = data.dataset.interests || "";
-const linkedin = safeResourceUrl(data.dataset.linkedin || "");
-document.getElementById("profileModalTitle").textContent = name;
-let html = `
-<div class="text-center">
-<img
-src="${escapeHtml(image)}"
-class="profile-modal-img"
-alt="${escapeHtml(name)}"
-onerror="this.onerror=null;this.src='${FALLBACK_IMAGE}'"
->
-<h3 style="font-family:'Playfair Display';">
-${escapeHtml(name)}
-</h3>
-<p class="text-secondary">
-${escapeHtml(role)}
-</p>
-</div>
-`;
-if (bio) {
-html += `
-<h5 class="profile-heading">About</h5>
-<p class="profile-text">${escapeHtml(bio)}</p>
-`;
-}
-if (research) {
-html += `
-<h5 class="profile-heading">Current Research</h5>
-<p class="profile-text">${escapeHtml(research)}</p>
-`;
-}
-if (hobbies) {
-html += `
-<h5 class="profile-heading">Hobbies & Interests</h5>
-<p class="profile-text">${escapeHtml(hobbies)}</p>
-`;
-}
-if (interests) {
-html += `
-<h5 class="profile-heading">More About Me</h5>
-<p class="profile-text">${escapeHtml(interests)}</p>
-`;
-}
-if (linkedin) {
-html += `
-<div class="mt-4">
-<a href="${escapeHtml(linkedin)}"
-target="_blank"
-rel="noopener noreferrer"
-class="btn btn-outline-primary">
-<i class="fab fa-linkedin me-2"></i>
-LinkedIn
-</a>
-</div>
-`;
-}
-document.getElementById("profileModalBody").innerHTML = html;
-const modal = new bootstrap.Modal(
-document.getElementById("profileModal")
-);
-modal.show();
-}
-/*
-\==========================================================
-POSTDOC RESEARCHERS
-\==========================================================
-*/
-async function loadPostdocs() {
-  const container = document.getElementById("postdocs-container");
-  if (!container) return;
+const SHEET_ID="1vhSco35e3yQHCFiFJoAmjbHKZ7WV2RQN65xNbK6TIl8";
+const FB="https://via.placeholder.com/800x500?text=ASPIRE+Lab";
+const ALIAS={TEAM:["Team","TEAM"],POSTDOCS:["POSTDOC","POSTDOCS"],PUBLICATIONS:["Publications","PUBLICATIONS"]};
+const esc=v=>String(v??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");
+const g=(o,...k)=>{for(const x of k)for(const key in o)if(key.trim().toLowerCase()===x&&String(o[key]).trim())return String(o[key]).trim();return""};
+const did=u=>{const m=String(u||"").match(/\/d\/([\w-]+)/)||String(u||"").match(/[?&]id=([\w-]+)/);return m?m[1]:""};
+const img=u=>{u=String(u||"").trim();if(!u)return FB;const d=did(u);return d?`https://drive.google.com/thumbnail?id=${d}&sz=w2000`:u};
+const open_=u=>{u=String(u||"").trim();const d=did(u);return d?`https://drive.google.com/file/d/${d}/view?usp=sharing`:safe(u)};
+const safe=u=>{try{const x=new URL(String(u||"").trim());return /^https?:$/.test(x.protocol)?x.href:""}catch(e){return""}};
+const empty=m=>`<div class="col-12"><div class="card-x pad text-center"><p class="muted mb-0">${esc(m)}</p></div></div>`;
+const err=`this.onerror=null;this.src='${FB}'`;
 
-  container.innerHTML = "";
-  const data = await fetchSheet("POSTDOCS");
+async function sheetRaw(name){
+  for(const n of ALIAS[name]||[name]){
+    try{const r=await fetch(`https://opensheet.elk.sh/${SHEET_ID}/${encodeURIComponent(n)}`);
+      if(!r.ok)continue;const d=await r.json();
+      if(Array.isArray(d)&&d.length)return d.filter(x=>x&&Object.keys(x).length)}catch(e){console.error(n,e)}}
+  return[];
+}
+const _sc={};const sheet=n=>_sc[n]||(_sc[n]=sheetRaw(n));
+async function render(name,id,msg,fn){
+  const el=document.getElementById(id);if(!el)return;
+  const d=await sheet(name);
+  el.innerHTML=d.length?d.map(fn).join(""):empty(msg);
+}
 
-  if (!data.length) {
-    container.innerHTML = `
-      <div class="col-12">
-        <div class="glass p-4 text-center">
-          <p class="text-secondary mb-0">Postdoc profiles coming soon...</p>
-        </div>
-      </div>
-    `;
-    return;
-  }
+/* About */
+(async()=>{const d=await sheet("ABOUT");const o=d[0]||{};
+  document.getElementById("about-text").textContent=g(o,"text","about")||Object.values(o).find(v=>String(v).trim())||"About content coming soon...";})();
 
-  data.forEach((p, index) => {
-    if (!p || Object.keys(p).length === 0) return;
+/* Research */
+render("RESEARCH","research-container","Research content coming soon...",r=>{
+  const u=img(g(r,"image")).replace(/"/g,"%22");
+  return `<div class="col-md-4"><div class="rcard" style="background-image:linear-gradient(rgba(10,24,48,.2),rgba(10,24,48,.7)),url('${u}')"><div class="ov"><h5>${esc(g(r,"title")||"Untitled")}</h5><p>${esc(g(r,"description"))}</p></div></div></div>`});
 
-    const name = p.name || p.Name || "Unnamed";
-    const role = p.role || p.Role || "Postdoctoral Researcher";
-    const image = normalizeImageUrl(p.image || p.Image || FALLBACK_IMAGE);
-    const linkedin = p.linkedin || p.LinkedIn || "";
-    const bio = p.bio || p.Bio || "";
-    const research = p.research || p.Research || "";
-    const hobbies = p.hobbies || p.Hobbies || "";
-    const interests = p.interests || p.Interests || "";
+/* Team + PI + Postdocs */
+const PROFILES={};
+function person(m,i,pre,defRole){
+  const id=pre+i,P={name:g(m,"name")||"Unnamed",role:g(m,"role")||defRole||"",image:img(g(m,"image")),bio:g(m,"bio"),research:g(m,"research"),hobbies:g(m,"hobbies"),interests:g(m,"interests"),linkedin:safe(g(m,"linkedin"))};
+  PROFILES[id]=P;
+  return `<div class="col-lg-3 col-md-4 col-sm-6"><div class="card-x pad d-flex flex-column align-items-center text-center">
+  <img src="${esc(P.image)}" class="team-img mb-3" alt="${esc(P.name)}" loading="lazy" onerror="${err}">
+  <h5 class="mb-1">${esc(P.name)}</h5><p class="muted mb-3">${esc(P.role)}</p>
+  <div class="mt-auto d-flex gap-2 align-items-center justify-content-center">
+  <button class="pbtn" onclick="openProfile('${id}')"><i class="fas fa-user me-2"></i>View Profile</button>
+  ${P.linkedin?`<a href="${esc(P.linkedin)}" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin fs-4" style="color:var(--acc)"></i></a>`:""}
+  </div></div></div>`;
+}
+(async()=>{
+  const d=await sheet("TEAM"),pi=document.getElementById("pi-container"),tm=document.getElementById("team-container");
+  if(!d.length){pi.innerHTML=tm.innerHTML=empty("Coming soon...");return}
+  let a="",b="";
+  d.forEach((m,i)=>{const c=person(m,i,"t",""),role=g(m,"role");/principal|pi\b|investigator/i.test(role)?a+=c:b+=c});
+  pi.innerHTML=a||empty("Coming soon...");tm.innerHTML=b||empty("Coming soon...");
+})();
+(async()=>{
+  const d=await sheet("POSTDOCS"),el=document.getElementById("postdocs-container");
+  el.innerHTML=d.length?d.map((m,i)=>person(m,i,"p","Postdoctoral Researcher")).join(""):empty("Postdoc profiles coming soon...");
+})();
+function openProfile(id){
+  const P=PROFILES[id];if(!P)return;
+  document.getElementById("pmTitle").textContent=P.name;
+  const sec=(t,v)=>v?`<h5 class="mt-4 mb-2">${t}</h5><p class="muted">${esc(v)}</p>`:"";
+  document.getElementById("pmBody").innerHTML=`<div class="text-center"><img src="${esc(P.image)}" class="mimg" alt="${esc(P.name)}" onerror="${err}"><h3>${esc(P.name)}</h3><p class="muted">${esc(P.role)}</p></div>`
+   +sec("About",P.bio)+sec("Current Research",P.research)+sec("Hobbies & Interests",P.hobbies)+sec("More About Me",P.interests)
+   +(P.linkedin?`<div class="mt-4"><a href="${esc(P.linkedin)}" target="_blank" rel="noopener noreferrer" class="pbtn"><i class="fab fa-linkedin me-2"></i>LinkedIn</a></div>`:"");
+  new bootstrap.Modal(document.getElementById("profileModal")).show();
+}
 
-    const profileId = `postdoc-profile-${index}`;
+/* Gallery + Fun */
+const gal=(a,def)=>{const raw=g(a,"image"),meta=[g(a,"event"),g(a,"location"),g(a,"year")].filter(Boolean).map(esc).join(" · "),v=open_(raw),d=g(a,"description"),t=g(a,"title")||def;
+  return `<div class="col-lg-4 col-md-6"><div class="card-x"><div class="iw"><img src="${esc(img(raw))}" alt="${esc(t)}" loading="lazy" onerror="${err}"></div>
+  <div class="pad"><h5>${esc(t)}</h5>${meta?`<div class="muted small mb-2">${meta}</div>`:""}${d?`<p class="muted">${esc(d)}</p>`:""}
+  ${v?`<a href="${esc(v)}" target="_blank" rel="noopener noreferrer" class="pbtn"><i class="fas fa-expand me-2"></i>View</a>`:""}</div></div></div>`};
+render("GALLERY","gallery-container","Workshop and conference photographs coming soon...",a=>gal(a,"Lab Activity"));
+render("FUN_ACTIVITIES","fun-activities-container","Fun activities coming soon...",a=>gal(a,"Fun Activity"));
 
-    const col = document.createElement("div");
-    col.className = "col-lg-3 col-md-4 col-sm-6 mb-4";
+/* Posters */
+render("POSTERS","posters-container","Research posters coming soon...",p=>{
+  const t=g(p,"title")||"Research Poster",ev=g(p,"event"),yr=g(p,"year"),au=g(p,"authors"),d=g(p,"description"),u=open_(g(p,"link"));
+  return `<div class="col-lg-4 col-md-6"><div class="card-x"><div class="iw tall"><img src="${esc(img(g(p,"image")))}" alt="${esc(t)}" loading="lazy" onerror="${err}"></div>
+  <div class="pad"><h5>${esc(t)}</h5>${ev||yr?`<p class="muted mb-2">${esc(ev)}${ev&&yr?" · ":""}${esc(yr)}</p>`:""}
+  ${au?`<p class="small muted"><strong>Authors:</strong> ${esc(au)}</p>`:""}${d?`<p class="muted">${esc(d)}</p>`:""}
+  ${u?`<a href="${esc(u)}" target="_blank" rel="noopener noreferrer" class="pbtn"><i class="fas fa-file-pdf me-2"></i>View Poster</a>`:`<p class="small muted mb-0">Poster PDF not available.</p>`}</div></div></div>`});
 
-    col.innerHTML = `
-      <div class="glass h-100 d-flex flex-column align-items-center p-4 text-center">
-        <img
-          src="${escapeHtml(image)}"
-          class="team-img mb-3"
-          alt="${escapeHtml(name)}"
-          loading="lazy"
-          onerror="this.onerror=null;this.src='${FALLBACK_IMAGE}'"
-        >
+/* Opportunities */
+render("ADVERTISEMENTS","advertisements-container","Advertisements and opportunities coming soon...",a=>{
+  const c=g(a,"type","category"),d=g(a,"description"),dt=g(a,"date"),dl=g(a,"deadline"),l=safe(g(a,"link","url"));
+  return `<div class="col-lg-4 col-md-6"><div class="card-x pad"><div class="ric"><i class="fas fa-bullhorn"></i></div>${c?`<div class="tag">${esc(c)}</div>`:""}
+  <h5>${esc(g(a,"title")||"Opportunity")}</h5>${d?`<p class="muted">${esc(d)}</p>`:""}
+  ${dt?`<p class="small muted mb-1"><i class="far fa-calendar me-2"></i>${esc(dt)}</p>`:""}
+  ${dl?`<p class="small mb-2" style="color:#c2410c"><i class="fas fa-clock me-2"></i>Deadline: ${esc(dl)}</p>`:""}
+  ${l?`<a href="${esc(l)}" target="_blank" rel="noopener noreferrer" class="rlink">View Advertisement <i class="fas fa-external-link-alt ms-1"></i></a>`:""}</div></div>`});
 
-        <h5 class="mb-2">${escapeHtml(name)}</h5>
-        <p class="text-secondary mb-3">${escapeHtml(role)}</p>
+/* Servers + Databases */
+const res=(icon)=>i=>{const t=g(i,"name","title")||"Untitled",c=g(i,"category","type"),d=g(i,"description"),l=safe(g(i,"link","url")),im=g(i,"image"),ic=g(i,"icon")||icon;
+  return `<div class="col-lg-4 col-md-6"><div class="card-x pad">${im?`<img src="${esc(img(im))}" alt="${esc(t)}" loading="lazy" style="width:100%;height:160px;object-fit:contain;margin-bottom:1rem" onerror="this.style.display='none'">`:`<div class="ric"><i class="${esc(ic)}"></i></div>`}
+  ${c?`<div class="tag">${esc(c)}</div>`:""}<h5>${esc(t)}</h5>${d?`<p class="muted">${esc(d)}</p>`:""}
+  ${l?`<a href="${esc(l)}" target="_blank" rel="noopener noreferrer" class="rlink">Explore <i class="fas fa-external-link-alt ms-1"></i></a>`:""}</div></div>`};
+render("SERVERS","servers-container","Important research servers coming soon...",res("fas fa-server"));
+render("DATABASES","databases-container","Important research databases coming soon...",res("fas fa-database"));
 
-        <div class="mt-auto d-flex gap-2 align-items-center justify-content-center">
-          <button
-            type="button"
-            class="profile-btn"
-            onclick="openProfile('${profileId}')">
-            <i class="fas fa-user me-2"></i>
-            View Profile
-          </button>
+/* Publications */
+(async()=>{
+  const d=await sheet("PUBLICATIONS"),el=document.getElementById("pub-container");
+  el.innerHTML=d.length?[...d].reverse().slice(0,8).map(p=>{const j=g(p,"journal"),y=g(p,"year"),l=safe(g(p,"link"));
+    return `<div class="pub"><h6 class="fw-bold mb-2">${esc(g(p,"title")||"Untitled")}</h6><p class="muted mb-2">${esc(g(p,"authors"))}</p>
+    <small class="muted">${esc(j)}${j&&y?", ":""}${esc(y)}</small>
+    ${l?`<br><a href="${esc(l)}" target="_blank" rel="noopener noreferrer" class="rlink d-inline-block mt-2"><i class="fas fa-external-link-alt me-1"></i>View Paper</a>`:""}</div>`}).join(""):`<p class="text-center muted">Publications coming soon...</p>`;
+})();
 
-          ${
-            linkedin
-              ? `
-                <a href="${escapeHtml(linkedin)}"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="text-decoration-none">
-                  <i class="fab fa-linkedin text-primary fs-4"></i>
-                </a>
-              `
-              : ""
-          }
-        </div>
+/* Contact */
+(async()=>{
+  const d=await sheet("CONTACT");let e="",a="";
+  d.forEach(c=>{const k=g(c,"type").toLowerCase(),v=g(c,"value");if(k.includes("email"))e=v;if(k.includes("address"))a=v});
+  document.getElementById("contact-content").innerHTML=
+   `<i class="fas fa-envelope fs-5 me-3"></i>${e?`<a class="mail" href="mailto:${esc(e)}">${esc(e)}</a>`:"<strong>Email not set</strong>"}<br><br><i class="fas fa-map-marker-alt fs-5 me-3"></i><strong>${esc(a)||"Address not set"}</strong>`;
+})();
 
-        <div
-          id="${profileId}"
-          class="d-none"
-          data-name="${escapeHtml(name)}"
-          data-role="${escapeHtml(role)}"
-          data-image="${escapeHtml(image)}"
-          data-bio="${escapeHtml(bio)}"
-          data-research="${escapeHtml(research)}"
-          data-hobbies="${escapeHtml(hobbies)}"
-          data-interests="${escapeHtml(interests)}"
-          data-linkedin="${escapeHtml(linkedin)}">
-        </div>
-      </div>
-    `;
-
-    container.appendChild(col);
-  });
+/* Theme switcher */
+const OK=["nova","aurora","float","side","bento","rails","brutal"];
+function setTheme(t){
+  if(t==="aurora")document.body.removeAttribute("data-theme");else document.body.dataset.theme=t;
+  document.querySelectorAll("#themes button").forEach(b=>b.classList.toggle("on",b.dataset.t===t));
+  try{localStorage.setItem("aspireTheme2",t)}catch(e){}
 }
-/*
-\==========================================================
-GENERIC RESOURCE SECTIONS
-SERVERS AND DATABASES
-\==========================================================
-*/
-async function loadResourceSection(
-sheetName,
-containerId,
-emptyMessage,
-defaultIcon
-) {
-const container = document.getElementById(containerId);
-if (!container) return;
-container.innerHTML = "";
-const data = await fetchSheet(sheetName);
-if (!data.length) {
-container.innerHTML = `
-<div class="col-12">
-<div class="glass text-center">
-<p class="text-secondary mb-0">
-${escapeHtml(emptyMessage)}
-</p>
-</div>
-</div>
-`;
-return;
-}
-data.forEach(item => {
-if (!item || Object.keys(item).length === 0) return;
-const title =
-item.name ||
-item.Name ||
-item.title ||
-item.Title ||
-"Untitled";
-const category =
-item.category ||
-item.Category ||
-item.type ||
-item.Type ||
-"";
-const description =
-item.description ||
-item.Description ||
-"";
-const rawLink =
-item.link ||
-item.Link ||
-item.url ||
-item.URL ||
-"";
-const link = safeResourceUrl(rawLink);
-const image = item.image || item.Image || "";
-const imageUrl = image ? normalizeImageUrl(image) : "";
-const icon =
-item.icon ||
-item.Icon ||
-defaultIcon;
-const col = document.createElement("div");
-col.className = "col-lg-4 col-md-6";
-col.innerHTML = `
-<div class="resource-card">
-${
-imageUrl
-? `
-<img
-src="${escapeHtml(imageUrl)}"
-class="resource-image"
-alt="${escapeHtml(title)}"
-loading="lazy"
-onerror="this.style.display='none'"
->
-`
-: `
-<div class="resource-icon">
-<i class="${escapeHtml(icon)}"></i>
-</div>
-`
-}
-${
-category
-? `
-<div class="resource-category">
-${escapeHtml(category)}
-</div>
-`
-: ""
-}
-<h5>
-${escapeHtml(title)}
-</h5>
-${
-description
-? `
-<p class="mb-2">
-${escapeHtml(description)}
-</p>
-`
-: ""
-}
-${
-link
-? `
-<a
-href="${escapeHtml(link)}"
-target="_blank"
-rel="noopener noreferrer"
-class="resource-link">
-Explore
-<i class="fas fa-external-link-alt ms-1"></i>
-</a>
-`
-: ""
-}
-</div>
-`;
-container.appendChild(col);
-});
-}
-/*
-\==========================================================
-ADVERTISEMENTS AND OPPORTUNITIES
-\==========================================================
-*/
-async function loadAdvertisements() {
-const container = document.getElementById("advertisements-container");
-if (!container) return;
-container.innerHTML = "";
-const data = await fetchSheet("ADVERTISEMENTS");
-if (!data.length) {
-container.innerHTML = `
-<div class="col-12">
-<div class="glass text-center">
-<p class="text-secondary mb-0">
-Advertisements and opportunities coming soon...
-</p>
-</div>
-</div>
-`;
-return;
-}
-data.forEach(a => {
-if (!a || Object.keys(a).length === 0) return;
-const title = a.title || a.Title || "Opportunity";
-const category =
-a.type || a.Type || a.category || a.Category || "";
-const description = a.description || a.Description || "";
-const date = a.date || a.Date || "";
-const deadline = a.deadline || a.Deadline || "";
-const rawLink = a.link || a.Link || a.url || a.URL || "";
-const link = safeResourceUrl(rawLink);
-const col = document.createElement("div");
-col.className = "col-lg-4 col-md-6";
-col.innerHTML = `
-<div class="resource-card h-100">
-<div class="resource-icon">
-<i class="fas fa-bullhorn"></i>
-</div>
-${
-category
-? `<div class="resource-category">
-${escapeHtml(category)}
-</div>`
-: ""
-}
-<h5>
-${escapeHtml(title)}
-</h5>
-${
-description
-? `<p>${escapeHtml(description)}</p>`
-: ""
-}
-${
-date
-? `<p class="small text-secondary mb-1">
-<i class="far fa-calendar me-2"></i>
-${escapeHtml(date)}
-</p>`
-: ""
-}
-${
-deadline
-? `<p class="small text-warning mb-2">
-<i class="fas fa-clock me-2"></i>
-Deadline: ${escapeHtml(deadline)}
-</p>`
-: ""
-}
-${
-link
-? `<a href="${escapeHtml(link)}"
-target="_blank"
-rel="noopener noreferrer"
-class="resource-link">
-View Advertisement
-<i class="fas fa-external-link-alt ms-1"></i>
-</a>`
-: ""
-}
-</div>
-`;
-container.appendChild(col);
-});
-}
-/*
-\==========================================================
-IMPORTANT SERVERS
-\==========================================================
-*/
-async function loadServers() {
-await loadResourceSection(
-"SERVERS",
-"servers-container",
-"Important research servers coming soon...",
-"fas fa-server"
-);
-}
-/*
-\==========================================================
-IMPORTANT DATABASES
-\==========================================================
-*/
-async function loadDatabases() {
-await loadResourceSection(
-"DATABASES",
-"databases-container",
-"Important research databases coming soon...",
-"fas fa-database"
-);
-}
-/*
-\==========================================================
-GALLERY
-\==========================================================
-*/
-async function loadGallery() {
-const container = document.getElementById("gallery-container");
-if (!container) return;
-container.innerHTML = "";
-const data = await fetchSheet("GALLERY");
-if (!data.length) {
-container.innerHTML = `
-<div class="col-12">
-<div class="glass text-center">
-<p class="mb-0 text-secondary">
-Workshop and conference photographs coming soon...
-</p>
-</div>
-</div>
-`;
-return;
-}
-data.forEach(g => {
-if (!g || Object.keys(g).length === 0) return;
-const title = g.title || g.Title || "Lab Activity";
-const event = g.event || g.Event || "";
-const location = g.location || g.Location || "";
-const year = g.year || g.Year || "";
-const rawImage = g.image || g.Image || "";
-const image = normalizeImageUrl(rawImage);
-const viewUrl = normalizeDriveOpenUrl(rawImage);
-const description = g.description || g.Description || "";
-const meta = [event,location,year]
-.filter(Boolean)
-.map(escapeHtml)
-.join(" · ");
-const col = document.createElement("div");
-col.className = "col-lg-4 col-md-6";
-col.innerHTML = `
-<div class="gallery-card">
-<div class="gallery-img-wrapper">
-<img
-src="${escapeHtml(image)}"
-class="gallery-img"
-alt="${escapeHtml(title)}"
-loading="lazy"
-onerror="this.onerror=null;this.src='${FALLBACK_IMAGE}'"
->
-</div>
-<div class="gallery-content">
-<h5>${escapeHtml(title)}</h5>
-${
-meta
-? `<div class="gallery-meta mb-2">${meta}</div>`
-: ""
-}
-${
-description
-? `<p class="text-secondary mb-3">${escapeHtml(description)}</p>`
-: ""
-}
-${
-viewUrl
-? `
-<a href="${escapeHtml(viewUrl)}"
-target="_blank"
-rel="noopener noreferrer"
-class="profile-btn text-decoration-none d-inline-block">
-<i class="fas fa-expand me-2"></i>
-View
-</a>
-`
-: ""
-}
-</div>
-</div>
-`;
-container.appendChild(col);
-});
-}
-/*
-\==========================================================
-FUN ACTIVITIES
-\==========================================================
-*/
-async function loadFunActivities() {
-const container = document.getElementById("fun-activities-container");
-if (!container) return;
-container.innerHTML = "";
-const data = await fetchSheet("FUN_ACTIVITIES");
-if (!data.length) {
-container.innerHTML = `
-<div class="col-12">
-<div class="glass text-center">
-<p class="mb-0 text-secondary">
-Fun activities coming soon...
-</p>
-</div>
-</div>
-`;
-return;
-}
-data.forEach(a => {
-if (!a || Object.keys(a).length === 0) return;
-const title = a.title || a.Title || "Fun Activity";
-const event = a.event || a.Event || "";
-const location = a.location || a.Location || "";
-const year = a.year || a.Year || "";
-const rawImage = a.image || a.Image || "";
-const image = normalizeImageUrl(rawImage);
-const viewUrl = normalizeDriveOpenUrl(rawImage);
-const description = a.description || a.Description || "";
-const meta = [event,location,year]
-.filter(Boolean)
-.map(escapeHtml)
-.join(" · ");
-const col = document.createElement("div");
-col.className = "col-lg-4 col-md-6";
-col.innerHTML = `
-<div class="gallery-card">
-<div class="gallery-img-wrapper">
-<img
-src="${escapeHtml(image)}"
-class="gallery-img"
-alt="${escapeHtml(title)}"
-loading="lazy"
-onerror="this.onerror=null;this.src='${FALLBACK_IMAGE}'"
->
-</div>
-<div class="gallery-content">
-<h5>${escapeHtml(title)}</h5>
-${
-meta
-? `<div class="gallery-meta mb-2">${meta}</div>`
-: ""
-}
-${
-description
-? `<p class="text-secondary mb-3">${escapeHtml(description)}</p>`
-: ""
-}
-${
-viewUrl
-? `
-<a href="${escapeHtml(viewUrl)}"
-target="_blank"
-rel="noopener noreferrer"
-class="profile-btn text-decoration-none d-inline-block">
-<i class="fas fa-expand me-2"></i>
-View
-</a>
-`
-: ""
-}
-</div>
-</div>
-`;
-container.appendChild(col);
-});
-}
-/*
-\==========================================================
-POSTERS
-\==========================================================
-*/
-async function loadPosters() {
-const container = document.getElementById("posters-container");
-if (!container) return;
-container.innerHTML = "";
-const data = await fetchSheet("POSTERS");
-if (!data.length) {
-container.innerHTML = `
-<div class="col-12">
-<div class="glass text-center">
-<p class="mb-0 text-secondary">
-Research posters coming soon...
-</p>
-</div>
-</div>
-`;
-return;
-}
-data.forEach(p => {
-if (!p || Object.keys(p).length === 0) return;
-const title = p.title || p.Title || "Research Poster";
-const event = p.event || p.Event || "";
-const year = p.year || p.Year || "";
-const authors = p.authors || p.Authors || "";
-const image = normalizeImageUrl(p.image || p.Image || "");
-const link = p.link || p.Link || "";
-const description = p.description || p.Description || "";
-const posterUrl = normalizeDriveOpenUrl(link);
-const col = document.createElement("div");
-col.className = "col-lg-4 col-md-6";
-col.innerHTML = `
-<div class="poster-card">
-<div class="poster-img-wrapper">
-<img
-src="${escapeHtml(image)}"
-class="poster-img"
-alt="${escapeHtml(title)}"
-loading="lazy"
-onerror="this.onerror=null;this.src='${FALLBACK_IMAGE}'"
->
-</div>
-<div class="poster-content">
-<h5>${escapeHtml(title)}</h5>
-${
-event || year
-? `<p class="text-secondary mb-2">
-${escapeHtml(event)}
-${event && year ? " · " : ""}
-${escapeHtml(year)}
-</p>`
-: ""
-}
-${
-authors
-? `<p class="small opacity-75">
-<strong>Authors:</strong>
-${escapeHtml(authors)}
-</p>`
-: ""
-}
-${
-description
-? `<p class="text-secondary">${escapeHtml(description)}</p>`
-: ""
-}
-${
-posterUrl
-? `<a href="${escapeHtml(posterUrl)}"
-target="_blank"
-rel="noopener noreferrer"
-class="profile-btn text-decoration-none">
-<i class="fas fa-file-pdf me-2"></i>
-View Poster
-</a>`
-: `<p class="text-warning small mb-0">
-Poster PDF not available.
-</p>`
-}
-</div>
-</div>
-`;
-container.appendChild(col);
-});
-}
-/*
-\==========================================================
-PUBLICATIONS
-\==========================================================
-*/
-async function loadPublications() {
-const container = document.getElementById("pub-container");
-if (!container) return;
-container.innerHTML = "";
-const data = await fetchSheet("PUBLICATIONS");
-if (!data.length) {
-container.innerHTML = `
-<div class="text-center py-5">
-<p class="text-secondary mb-0">
-Publications coming soon...
-</p>
-</div>
-`;
-return;
-}
-const items = [...data].reverse().slice(0,8);
-let html = "";
-items.forEach(p => {
-if (!p || Object.keys(p).length === 0) return;
-const title =
-p.title ||
-p.Title ||
-p["Title "] ||
-"Untitled";
-const authors = p.authors || p.Authors || "";
-const journal = p.journal || p.Journal || "";
-const year = p.year || p.Year || "";
-const link = safeResourceUrl(p.link || p.Link || "");
-html += `
-<div class="pub-card">
-<h6 class="mb-2 fw-bold">
-${escapeHtml(title)}
-</h6>
-<p class="mb-2 opacity-75">
-${escapeHtml(authors)}
-</p>
-<small class="text-secondary">
-${escapeHtml(journal)}
-${journal && year ? ", " : ""}
-${escapeHtml(year)}
-</small>
-${
-link
-? `
-<br>
-<a href="${escapeHtml(link)}"
-target="_blank"
-rel="noopener noreferrer"
-class="text-decoration-none mt-2 d-inline-block">
-<i class="fas fa-external-link-alt me-1 text-primary"></i>
-View Paper
-</a>
-`
-: ""
-}
-</div>
-`;
-});
-container.innerHTML = html || `
-<div class="text-center py-5">
-<p class="text-secondary mb-0">
-Publications coming soon...
-</p>
-</div>
-`;
-}
-/*
-\==========================================================
-CONTACT
-\==========================================================
-*/
-async function loadContact() {
-const el = document.getElementById("contact-content");
-if (!el) return;
-el.textContent = "Loading...";
-const data = await fetchSheet("CONTACT");
-let email = "";
-let address = "";
-data.forEach(c => {
-if (!c || Object.keys(c).length === 0) return;
-const key = String(c.type || c.Type || "").toLowerCase();
-const value = String(c.value || c.Value || "").trim();
-if (key.includes("email")) email = value;
-if (key.includes("address")) address = value;
-});
-const emailBlock = email
-? `
-<i class="fas fa-envelope fs-5 me-3"></i>
-<a href="mailto:${escapeHtml(email)}"
-class="text-decoration-none"
-style="color:#000000 !important;">
-<strong>${escapeHtml(email)}</strong>
-</a>
-`
-: `
-<i class="fas fa-envelope fs-5 me-3"></i>
-<strong>Email not set</strong>
-`;
-const addressBlock = address
-? `
-<br><br>
-<i class="fas fa-map-marker-alt fs-5 me-3"></i>
-<strong>${escapeHtml(address)}</strong>
-`
-: `
-<br><br>
-<i class="fas fa-map-marker-alt fs-5 me-3"></i>
-<strong>Address not set</strong>
-`;
-el.innerHTML = emailBlock + addressBlock;
-}
-/*
-\==========================================================
-INITIALIZE WEBSITE
-\==========================================================
-*/
-document.addEventListener("DOMContentLoaded", () => {
-loadAbout();
-loadResearch();
-loadTeam();
-loadPostdocs();
-loadGallery();
-loadPosters();
-loadAdvertisements();
-loadPublications();
-loadServers();
-loadDatabases();
-loadFunActivities();
-loadContact();
-});
+document.querySelectorAll("#themes button").forEach(b=>b.onclick=()=>{setTheme(b.dataset.t);window.scrollTo({top:0})});
+let st="nova";try{st=localStorage.getItem("aspireTheme2")||"nova"}catch(e){}
+if(!OK.includes(st))st="nova";
+setTheme(st);
+/* effects */
+(function(){
+  const m=document.createElement("div");m.className="marq";
+  const t="STRUCTURAL PARASITOLOGY ✦ PROTEIN ENGINEERING ✦ DRUG DISCOVERY ✦ ";
+  m.innerHTML="<div>"+t.repeat(8)+"</div>";
+  const h=document.querySelector(".hero");h.parentNode.insertBefore(m,h.nextSibling);
+  const io="IntersectionObserver" in window?new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.08}):null;
+  const mark=()=>document.querySelectorAll(".card-x,.rcard,.pub,.section-title").forEach(el=>{if(el.dataset.rv)return;el.dataset.rv=1;el.classList.add("rv");io?io.observe(el):el.classList.add("in")});
+  mark();new MutationObserver(mark).observe(document.body,{childList:true,subtree:true});
+  document.addEventListener("mousemove",e=>{const c=e.target.closest&&e.target.closest(".card-x");if(!c)return;const r=c.getBoundingClientRect();c.style.setProperty("--mx",(e.clientX-r.left)+"px");c.style.setProperty("--my",(e.clientY-r.top)+"px")});
+})();
+/* NOVA effects */
+(function(){
+  const $=s=>document.querySelector(s),nova=()=>document.body.dataset.theme==="nova";
+  /* hero extras */
+  const hc=$(".hero .container");
+  const ty=document.createElement("div");ty.className="typed";
+  const cta=document.createElement("div");cta.className="cta";
+  cta.innerHTML='<a class="pbtn" href="#research">Explore Research</a><a class="pbtn ghost" href="#team">Meet the Team</a>';
+  const hx=document.createElement("canvas");hx.id="helix";hx.width=520;hx.height=640;
+  hc.append(ty,cta,hx);
+  /* typed words */
+  const words=["Structural Parasitology","Protein Engineering","Drug Discovery"];let wi=0,ci=0,del=false;
+  (function loop(){const w=words[wi];ty.textContent=w.slice(0,ci)+"▌";
+    if(!del&&ci===w.length){del=true;return setTimeout(loop,1500)}
+    if(del&&ci===0){del=false;wi=(wi+1)%words.length}
+    ci+=del?-1:1;setTimeout(loop,del?35:75)})();
+  /* scramble text */
+  const CH="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<>/_#";
+  function scramble(el,txt){let f=0;clearInterval(el._sc);el._sc=setInterval(()=>{
+    el.textContent=txt.split("").map((c,i)=>c===" "?" ":(i<f/2?c:CH[Math.random()*CH.length|0])).join("");
+    if(++f>txt.length*2+2){clearInterval(el._sc);el.textContent=txt}},30)}
+  const h1=$(".hero h1");
+  new MutationObserver(()=>{if(nova())scramble(h1,"ASPIRE Lab")}).observe(document.body,{attributes:true,attributeFilter:["data-theme"]});
+  const so2=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){so2.unobserve(e.target);if(nova())scramble(e.target,e.target.dataset.t)}}),{threshold:.6});
+  document.querySelectorAll(".section-title").forEach(t=>{t.dataset.t=t.textContent;so2.observe(t)});
+  if(nova())scramble(h1,"ASPIRE Lab");
+  /* particle network + DNA helix */
+  const cv=document.createElement("canvas");cv.id="fx";document.body.prepend(cv);
+  const x=cv.getContext("2d"),hctx=hx.getContext("2d");
+  let W,H,P=[],mx=-999,my=-999,rot=0;const dpr=Math.min(devicePixelRatio||1,2);
+  function size(){W=innerWidth;H=innerHeight;cv.width=W*dpr;cv.height=H*dpr;x.setTransform(dpr,0,0,dpr,0,0);
+    P=Array.from({length:Math.round(Math.min(95,W*H/15000))},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4}))}
+  addEventListener("resize",size);size();
+  addEventListener("mousemove",e=>{mx=e.clientX;my=e.clientY});
+  function helix(){const w=520,h=640,N=30,R=120,cx=w/2;hctx.clearRect(0,0,w,h);rot+=.018;
+    const pts=[];for(let i=0;i<N;i++)pts.push({y:30+i*(h-60)/(N-1),c:Math.cos(rot+i*.42),s:Math.sin(rot+i*.42)});
+    hctx.lineWidth=2;hctx.strokeStyle="rgba(255,255,255,.18)";
+    pts.forEach(p=>{hctx.beginPath();hctx.moveTo(cx+R*p.c,p.y);hctx.lineTo(cx-R*p.c,p.y);hctx.stroke()});
+    [1,-1].forEach(sg=>{hctx.beginPath();pts.forEach((p,i)=>{const px=cx+sg*R*p.c;i?hctx.lineTo(px,p.y):hctx.moveTo(px,p.y)});
+      hctx.strokeStyle=sg>0?"rgba(0,229,255,.5)":"rgba(255,78,205,.5)";hctx.lineWidth=3;hctx.stroke()});
+    const b=[];pts.forEach(p=>{b.push({x:cx+R*p.c,y:p.y,z:p.s,c:"0,229,255"});b.push({x:cx-R*p.c,y:p.y,z:-p.s,c:"255,78,205"})});
+    b.sort((a,c)=>a.z-c.z).forEach(o=>{hctx.fillStyle=`rgba(${o.c},${.55+.45*(o.z+1)/2})`;hctx.shadowColor=`rgb(${o.c})`;hctx.shadowBlur=14;
+      hctx.beginPath();hctx.arc(o.x,o.y,6+o.z*3.5,0,6.3);hctx.fill()});hctx.shadowBlur=0}
+  (function tick(){requestAnimationFrame(tick);x.clearRect(0,0,W,H);if(!nova())return;
+    for(const p of P){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
+      const dx=p.x-mx,dy=p.y-my,d=Math.hypot(dx,dy)||1;if(d<140){p.x+=dx/d*1.6;p.y+=dy/d*1.6}}
+    for(let i=0;i<P.length;i++){const a=P[i];x.fillStyle="rgba(0,229,255,.85)";x.beginPath();x.arc(a.x,a.y,1.7,0,6.3);x.fill();
+      for(let j=i+1;j<P.length;j++){const b=P[j],d=Math.hypot(a.x-b.x,a.y-b.y);
+        if(d<130){x.strokeStyle=`rgba(124,77,255,${(1-d/130)*.4})`;x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.stroke()}}
+      const dm=Math.hypot(a.x-mx,a.y-my);if(dm<180){x.strokeStyle=`rgba(255,78,205,${(1-dm/180)*.7})`;x.beginPath();x.moveTo(a.x,a.y);x.lineTo(mx,my);x.stroke()}}
+    helix()})();
+  /* custom cursor, tilt, magnetic buttons */
+  const cur=document.createElement("div");cur.id="cur";document.body.appendChild(cur);
+  let cx=0,cy=0,tx=0,ty2=0;
+  addEventListener("mousemove",e=>{tx=e.clientX;ty2=e.clientY;
+    cur.classList.toggle("big",!!(e.target.closest&&e.target.closest("a,button,.card-x,.rcard")));
+    if(!nova())return;
+    const c=e.target.closest&&e.target.closest(".card-x");
+    if(c){const r=c.getBoundingClientRect(),px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;
+      c.style.transform=`perspective(900px) rotateX(${(-py*9).toFixed(2)}deg) rotateY(${(px*9).toFixed(2)}deg) translateY(-6px)`}
+    const b=e.target.closest&&e.target.closest(".pbtn");
+    if(b){const r=b.getBoundingClientRect();b.style.transform=`translate(${((e.clientX-r.left-r.width/2)*.25).toFixed(1)}px,${((e.clientY-r.top-r.height/2)*.35).toFixed(1)}px)`}});
+  document.addEventListener("mouseout",e=>{const c=e.target.closest&&e.target.closest(".card-x,.pbtn");if(c&&!c.contains(e.relatedTarget))c.style.transform=""},true);
+  (function mv(){requestAnimationFrame(mv);cx+=(tx-cx)*.18;cy+=(ty2-cy)*.18;cur.style.transform=`translate(${cx}px,${cy}px)`})();
+  /* progress bar, auto-hide nav, scroll spy */
+  const pr=document.createElement("div");pr.id="prog";document.body.appendChild(pr);
+  let ly=0;const nv=$(".navbar");
+  addEventListener("scroll",()=>{pr.style.width=(scrollY/Math.max(1,document.documentElement.scrollHeight-innerHeight)*100)+"%";
+    nv.classList.toggle("navhide",scrollY>ly&&scrollY>500&&!$("#nav.show"));ly=scrollY},{passive:true});
+  const links=[...document.querySelectorAll(".nav-link")];
+  const spy=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(l=>l.classList.toggle("active",l.getAttribute("href")==="#"+e.target.id))}),{rootMargin:"-45% 0px -50% 0px"});
+  document.querySelectorAll("section[id]").forEach(s=>spy.observe(s));
+  document.addEventListener("animationend",e=>{if(e.animationName==="revUp")e.target.classList.add("done")});
+  /* live stats from your sheet */
+  (async()=>{
+    const [t,p,pb,po,ga]=await Promise.all(["TEAM","POSTDOCS","PUBLICATIONS","POSTERS","GALLERY"].map(sheet));
+    const phd=t.filter(m=>!/principal|pi\b|investigator/i.test(g(m,"role"))).length;
+    const items=[[phd,"PhD Scholars"],[p.length,"Postdocs"],[pb.length,"Publications"],[po.length,"Posters"],[ga.length,"Events"]].filter(i=>i[0]>0);
+    if(!items.length)return;
+    const st=document.createElement("div");st.className="stats";
+    st.innerHTML=items.map(i=>`<div class="stat"><b data-n="${i[0]}">0</b><span>${i[1]}</span></div>`).join("");
+    const after=$(".marq")||$(".hero");after.parentNode.insertBefore(st,after.nextSibling);
+    const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;io.disconnect();
+      st.querySelectorAll("b").forEach(b=>{const n=+b.dataset.n,t0=performance.now();
+        (function f(now){const k=Math.min(1,(now-t0)/1500);b.textContent=Math.round(n*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})(t0)})}),{threshold:.4});
+    io.observe(st);
+  })();
+})();
 </script>
 </body>
 </html>
-
