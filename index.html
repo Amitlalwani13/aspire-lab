@@ -1,4242 +1,2115 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
-
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <meta name="description" content="ASPIRE Lab | Advanced Structural Parasitology & Protein Engineering">
-
-
 
 <title>ASPIRE Lab | Advanced Structural Parasitology & Protein Engineering</title>
 
-
-
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght\@300;400;500;600;700&family=Playfair+Display:wght\@400;700&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-
-
 <style>
-
 :root {
-
-  --primary-gradient: linear-gradient(135deg,#2563eb 0%,#7c3aed 48%,#ec4899 100%);
-
-  --sun-gradient: linear-gradient(135deg,#06b6d4 0%,#3b82f6 45%,#8b5cf6 100%);
-
-  --warm-gradient: linear-gradient(135deg,#f97316 0%,#ec4899 55%,#8b5cf6 100%);
-
-  --mint-gradient: linear-gradient(135deg,#10b981 0%,#06b6d4 100%);
-
-  --page-bg: #f7f9fc;
-
-  --page-bg-soft: #eef8ff;
-
-  --surface: rgba(255,255,255,0.90);
-
-  --surface-strong: #ffffff;
-
-  --border: rgba(37,99,235,0.13);
-
-  --text-primary: #14213d;
-
-  --text-secondary: #52627a;
-
-  --heading: #172554;
-
-  --accent-blue: #2563eb;
-
-  --accent-cyan: #06b6d4;
-
-  --accent-violet: #7c3aed;
-
-  --accent-pink: #ec4899;
-
-  --accent-orange: #f97316;
-
-  --accent-green: #10b981;
-
-  --shadow: 0 18px 45px rgba(36,74,120,0.12);
-
+  --primary-gradient: linear-gradient(135deg,#2563eb 0%,#7c3aed 48%,#ec4899 100%);
+  --sun-gradient: linear-gradient(135deg,#06b6d4 0%,#3b82f6 45%,#8b5cf6 100%);
+  --warm-gradient: linear-gradient(135deg,#f97316 0%,#ec4899 55%,#8b5cf6 100%);
+  --mint-gradient: linear-gradient(135deg,#10b981 0%,#06b6d4 100%);
+  --page-bg: #f7f9fc;
+  --page-bg-soft: #eef8ff;
+  --surface: rgba(255,255,255,0.90);
+  --surface-strong: #ffffff;
+  --border: rgba(37,99,235,0.13);
+  --text-primary: #14213d;
+  --text-secondary: #52627a;
+  --heading: #172554;
+  --accent-blue: #2563eb;
+  --accent-cyan: #06b6d4;
+  --accent-violet: #7c3aed;
+  --accent-pink: #ec4899;
+  --accent-orange: #f97316;
+  --accent-green: #10b981;
+  --shadow: 0 18px 45px rgba(36,74,120,0.12);
 }
-
-
 
 html { scroll-behavior: smooth; }
-
 section { scroll-margin-top: 100px; }
 
-
-
 body {
-
-  margin: 0;
-
-  font-family: 'Inter',sans-serif;
-
-  background:
-
-    radial-gradient(circle at 8% 8%,rgba(6,182,212,0.12),transparent 26%),
-
-    radial-gradient(circle at 92% 18%,rgba(236,72,153,0.10),transparent 25%),
-
-    radial-gradient(circle at 50% 80%,rgba(124,58,237,0.07),transparent 28%),
-
-    var(--page-bg);
-
-  color: var(--text-primary);
-
-  overflow-x: hidden;
-
-  line-height: 1.65;
-
+  margin: 0;
+  font-family: 'Inter',sans-serif;
+  background:
+    radial-gradient(circle at 8% 8%,rgba(6,182,212,0.12),transparent 26%),
+    radial-gradient(circle at 92% 18%,rgba(236,72,153,0.10),transparent 25%),
+    radial-gradient(circle at 50% 80%,rgba(124,58,237,0.07),transparent 28%),
+    var(--page-bg);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  line-height: 1.65;
 }
-
-
 
 /* NAVBAR */
-
 .navbar {
-
-  background: rgba(255,255,255,0.88) !important;
-
-  backdrop-filter: blur(22px);
-
-  -webkit-backdrop-filter: blur(22px);
-
-  border-bottom: 1px solid rgba(37,99,235,0.12);
-
-  box-shadow: 0 5px 25px rgba(36,74,120,0.06);
-
-  padding: 0.85rem 0;
-
-  z-index: 1000;
-
+  background: rgba(255,255,255,0.88) !important;
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  border-bottom: 1px solid rgba(37,99,235,0.12);
+  box-shadow: 0 5px 25px rgba(36,74,120,0.06);
+  padding: 0.85rem 0;
+  z-index: 1000;
 }
-
-
 
 .navbar-brand {
-
-  font-family: 'Playfair Display',serif;
-
-  font-size: 2.05rem;
-
-  font-weight: 700;
-
-  background: var(--primary-gradient);
-
-  -webkit-background-clip: text;
-
-  -webkit-text-fill-color: transparent;
-
-  background-clip: text;
-
+  font-family: 'Playfair Display',serif;
+  font-size: 2.05rem;
+  font-weight: 700;
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
-
-
 
 .nav-link {
-
-  color: #334155 !important;
-
-  font-weight: 600;
-
-  font-size: 0.94rem;
-
-  white-space: nowrap;
-
-  margin: 0 0.2rem;
-
-  transition: all 0.25s ease;
-
-  position: relative;
-
+  color: #334155 !important;
+  font-weight: 600;
+  font-size: 0.94rem;
+  white-space: nowrap;
+  margin: 0 0.2rem;
+  transition: all 0.25s ease;
+  position: relative;
 }
-
-
 
 .nav-link:hover { color: var(--accent-blue) !important; }
 
-
-
 .nav-link::after {
-
-  content: '';
-
-  position: absolute;
-
-  width: 0;
-
-  height: 3px;
-
-  bottom: -7px;
-
-  left: 0;
-
-  background: var(--primary-gradient);
-
-  border-radius: 10px;
-
-  transition: width 0.25s ease;
-
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 3px;
+  bottom: -7px;
+  left: 0;
+  background: var(--primary-gradient);
+  border-radius: 10px;
+  transition: width 0.25s ease;
 }
-
-
 
 .nav-link:hover::after { width: 100%; }
 
-
-
 .navbar-toggler {
-
-  border-color: rgba(37,99,235,0.20) !important;
-
-  background: rgba(37,99,235,0.06);
-
+  border-color: rgba(37,99,235,0.20) !important;
+  background: rgba(37,99,235,0.06);
 }
-
-
 
 .navbar-toggler:focus {
-
-  box-shadow: 0 0 0 0.2rem rgba(37,99,235,0.12);
-
+  box-shadow: 0 0 0 0.2rem rgba(37,99,235,0.12);
 }
-
-
 
 .navbar-toggler-icon {
-
-  filter: invert(31%) sepia(92%) saturate(2265%) hue-rotate(209deg) brightness(88%) contrast(94%);
-
+  filter: invert(31%) sepia(92%) saturate(2265%) hue-rotate(209deg) brightness(88%) contrast(94%);
 }
-
-
 
 /* HERO */
-
 .hero {
-
-  min-height: 88vh;
-
-  background-image: url("https://lh3.googleusercontent.com/d/1bixRBwYia7U1ZMcF_qGGCKLb_ASKpdV8");
-
-  background-size: cover;
-
-  background-position: center;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  text-align: center;
-
-  position: relative;
-
-  overflow: hidden;
-
+  min-height: 88vh;
+  background-image: url("https://lh3.googleusercontent.com/d/1bixRBwYia7U1ZMcF_qGGCKLb_ASKpdV8");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
 }
-
-
 
 .hero::before,
-
 .hero::after { display: none; }
 
-
-
 .hero .container {
-
-  position: relative;
-
-  z-index: 2;
-
+  position: relative;
+  z-index: 2;
 }
-
-
 
 .hero h1 {
-
-  font-size: 5rem;
-
-  font-weight: 700;
-
-  font-family: 'Playfair Display',serif;
-
-  background: var(--primary-gradient);
-
-  -webkit-background-clip: text;
-
-  -webkit-text-fill-color: transparent;
-
-  background-clip: text;
-
-  margin-bottom: 1rem;
-
-  letter-spacing: -1px;
-
-  text-shadow: 0 10px 30px rgba(37,99,235,0.10);
-
+  font-size: 5rem;
+  font-weight: 700;
+  font-family: 'Playfair Display',serif;
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+  letter-spacing: -1px;
+  text-shadow: 0 10px 30px rgba(37,99,235,0.10);
 }
-
-
 
 .hero p {
-
-  display: inline-block;
-
-  font-size: 1.35rem;
-
-  color: #26364f;
-
-  background: rgba(255,255,255,0.78);
-
-  border: 1px solid rgba(255,255,255,0.95);
-
-  border-radius: 999px;
-
-  padding: 0.75rem 1.4rem;
-
-  box-shadow: 0 12px 35px rgba(36,74,120,0.10);
-
-  font-weight: 500;
-
-  max-width: 900px;
-
-  margin: 0 auto;
-
+  display: inline-block;
+  font-size: 1.35rem;
+  color: #26364f;
+  background: rgba(255,255,255,0.78);
+  border: 1px solid rgba(255,255,255,0.95);
+  border-radius: 999px;
+  padding: 0.75rem 1.4rem;
+  box-shadow: 0 12px 35px rgba(36,74,120,0.10);
+  font-weight: 500;
+  max-width: 900px;
+  margin: 0 auto;
 }
-
-
 
 /* SECTIONS */
-
 .section {
-
-  padding: 105px 0;
-
-  position: relative;
-
+  padding: 105px 0;
+  position: relative;
 }
-
-
 
 .section:nth-of-type(even) {
-
-  background: rgba(239,248,255,0.55);
-
+  background: rgba(239,248,255,0.55);
 }
-
-
 
 .section-title {
-
-  text-align: center;
-
-  font-size: 3.15rem;
-
-  margin-bottom: 70px;
-
-  font-family: 'Playfair Display',serif;
-
-  font-weight: 700;
-
-  color: var(--heading);
-
-  position: relative;
-
+  text-align: center;
+  font-size: 3.15rem;
+  margin-bottom: 70px;
+  font-family: 'Playfair Display',serif;
+  font-weight: 700;
+  color: var(--heading);
+  position: relative;
 }
-
-
 
 .section-title::after {
-
-  content: '';
-
-  position: absolute;
-
-  bottom: -22px;
-
-  left: 50%;
-
-  transform: translateX(-50%);
-
-  width: 115px;
-
-  height: 5px;
-
-  background: var(--primary-gradient);
-
-  border-radius: 99px;
-
-  box-shadow: 0 5px 15px rgba(124,58,237,0.18);
-
+  content: '';
+  position: absolute;
+  bottom: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 115px;
+  height: 5px;
+  background: var(--primary-gradient);
+  border-radius: 99px;
+  box-shadow: 0 5px 15px rgba(124,58,237,0.18);
 }
-
-
 
 /* KEEP SELECTED SECTION HEADINGS ON ONE LINE */
-
-\#team .section-title,
-
-\#fun-activities .section-title {
-
-  white-space: nowrap;
-
-  font-size: clamp(1.65rem, 4.5vw, 3.15rem);
-
-  width: 100%;
-
+#team .section-title,
+#fun-activities .section-title {
+  white-space: nowrap;
+  font-size: clamp(1.65rem, 4.5vw, 3.15rem);
+  width: 100%;
 }
-
-
 
 /* GLASS CARDS */
-
 .glass {
-
-  background: var(--surface);
-
-  backdrop-filter: blur(18px);
-
-  -webkit-backdrop-filter: blur(18px);
-
-  border-radius: 24px;
-
-  padding: 2.5rem;
-
-  border: 1px solid var(--border);
-
-  box-shadow: var(--shadow);
-
-  transition: transform 0.35s ease,box-shadow 0.35s ease,border-color 0.35s ease;
-
+  background: var(--surface);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-radius: 24px;
+  padding: 2.5rem;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  transition: transform 0.35s ease,box-shadow 0.35s ease,border-color 0.35s ease;
 }
-
-
 
 .glass:hover {
-
-  transform: translateY(-7px);
-
-  box-shadow: 0 24px 55px rgba(36,74,120,0.15);
-
-  border-color: rgba(37,99,235,0.25);
-
+  transform: translateY(-7px);
+  box-shadow: 0 24px 55px rgba(36,74,120,0.15);
+  border-color: rgba(37,99,235,0.25);
 }
 
-
-
-\#about-text {
-
-  color: #42536c;
-
-  line-height: 1.85;
-
+#about-text {
+  color: #42536c;
+  line-height: 1.85;
 }
-
-
 
 .text-secondary { color: var(--text-secondary) !important; }
 
-
-
 /* RESEARCH */
-
 .research-card {
-
-  height: 295px;
-
-  background-size: cover;
-
-  background-position: center;
-
-  border-radius: 24px;
-
-  position: relative;
-
-  overflow: hidden;
-
-  border: 3px solid rgba(255,255,255,0.9);
-
-  box-shadow: 0 15px 38px rgba(36,74,120,0.13);
-
-  transition: all 0.4s ease;
-
+  height: 295px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 24px;
+  position: relative;
+  overflow: hidden;
+  border: 3px solid rgba(255,255,255,0.9);
+  box-shadow: 0 15px 38px rgba(36,74,120,0.13);
+  transition: all 0.4s ease;
 }
-
-
 
 .research-card:nth-child(3n+1) { border-color: rgba(6,182,212,0.45); }
-
 .research-card:nth-child(3n+2) { border-color: rgba(236,72,153,0.40); }
-
 .research-card:nth-child(3n) { border-color: rgba(249,115,22,0.42); }
 
-
-
 .research-card:hover {
-
-  transform: translateY(-10px) scale(1.015);
-
-  box-shadow: 0 28px 60px rgba(36,74,120,0.20);
-
+  transform: translateY(-10px) scale(1.015);
+  box-shadow: 0 28px 60px rgba(36,74,120,0.20);
 }
-
-
 
 .research-overlay {
-
-  position: absolute;
-
-  bottom: 0;
-
-  width: 100%;
-
-  background: linear-gradient(to top,rgba(10,24,48,0.92),rgba(10,24,48,0.25),transparent);
-
-  padding: 3rem 1.5rem 1.5rem;
-
-  transition: all 0.35s ease;
-
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(to top,rgba(10,24,48,0.92),rgba(10,24,48,0.25),transparent);
+  padding: 3rem 1.5rem 1.5rem;
+  transition: all 0.35s ease;
 }
-
-
 
 .research-card:hover .research-overlay {
-
-  background: linear-gradient(to top,rgba(37,99,235,0.90),rgba(124,58,237,0.22),transparent);
-
+  background: linear-gradient(to top,rgba(37,99,235,0.90),rgba(124,58,237,0.22),transparent);
 }
-
-
 
 .research-overlay h5 {
-
-  color: #fff;
-
-  text-shadow: 0 2px 10px rgba(0,0,0,0.35);
-
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.35);
 }
-
-
 
 .research-overlay p { color: rgba(255,255,255,0.92); }
 
-
-
 /* TEAM */
-
 .team-img {
-
-  width: 145px;
-
-  height: 145px;
-
-  border-radius: 50%;
-
-  object-fit: cover;
-
-  border: 5px solid #fff;
-
-  transition: all 0.35s ease;
-
-  box-shadow: 0 10px 30px rgba(36,74,120,0.16);
-
+  width: 145px;
+  height: 145px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid #fff;
+  transition: all 0.35s ease;
+  box-shadow: 0 10px 30px rgba(36,74,120,0.16);
 }
-
-
 
 .team-img:hover {
-
-  border-color: #8b5cf6;
-
-  transform: scale(1.07) rotate(1deg);
-
-  box-shadow: 0 14px 38px rgba(124,58,237,0.22);
-
+  border-color: #8b5cf6;
+  transform: scale(1.07) rotate(1deg);
+  box-shadow: 0 14px 38px rgba(124,58,237,0.22);
 }
-
-
 
 /* PROFILE BUTTONS */
-
 .profile-btn {
-
-  border: 0;
-
-  color: #fff;
-
-  background: var(--primary-gradient);
-
-  border-radius: 999px;
-
-  padding: 9px 21px;
-
-  font-weight: 600;
-
-  box-shadow: 0 8px 20px rgba(37,99,235,0.18);
-
-  transition: all 0.3s ease;
-
+  border: 0;
+  color: #fff;
+  background: var(--primary-gradient);
+  border-radius: 999px;
+  padding: 9px 21px;
+  font-weight: 600;
+  box-shadow: 0 8px 20px rgba(37,99,235,0.18);
+  transition: all 0.3s ease;
 }
-
-
 
 .profile-btn:hover {
-
-  color: #fff;
-
-  transform: translateY(-3px);
-
-  box-shadow: 0 13px 28px rgba(124,58,237,0.25);
-
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 13px 28px rgba(124,58,237,0.25);
 }
-
-
 
 .btn-outline-primary {
-
-  color: var(--accent-blue) !important;
-
-  border-color: rgba(37,99,235,0.35) !important;
-
+  color: var(--accent-blue) !important;
+  border-color: rgba(37,99,235,0.35) !important;
 }
-
-
 
 .btn-outline-primary:hover {
-
-  color: #fff !important;
-
-  background: var(--primary-gradient) !important;
-
-  border-color: transparent !important;
-
+  color: #fff !important;
+  background: var(--primary-gradient) !important;
+  border-color: transparent !important;
 }
-
-
 
 /* PROFILE MODAL */
-
 .modal-content {
-
-  background: linear-gradient(145deg,#ffffff,#f5f9ff);
-
-  color: var(--text-primary);
-
-  border: 1px solid rgba(37,99,235,0.15);
-
-  border-radius: 26px;
-
-  box-shadow: 0 30px 80px rgba(25,52,91,0.24);
-
+  background: linear-gradient(145deg,#ffffff,#f5f9ff);
+  color: var(--text-primary);
+  border: 1px solid rgba(37,99,235,0.15);
+  border-radius: 26px;
+  box-shadow: 0 30px 80px rgba(25,52,91,0.24);
 }
-
-
 
 .modal-header { border-bottom: 1px solid rgba(37,99,235,0.10); }
-
 .modal-footer { border-top: 1px solid rgba(37,99,235,0.10); }
-
 .btn-close { filter: none; }
 
-
-
 .profile-modal-img {
-
-  width: 175px;
-
-  height: 175px;
-
-  object-fit: cover;
-
-  border-radius: 50%;
-
-  border: 5px solid #fff;
-
-  margin-bottom: 20px;
-
-  box-shadow: 0 12px 30px rgba(37,99,235,0.18);
-
+  width: 175px;
+  height: 175px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  margin-bottom: 20px;
+  box-shadow: 0 12px 30px rgba(37,99,235,0.18);
 }
-
-
 
 .profile-heading {
-
-  font-family: 'Playfair Display',serif;
-
-  color: var(--heading);
-
-  margin-top: 25px;
-
-  margin-bottom: 8px;
-
+  font-family: 'Playfair Display',serif;
+  color: var(--heading);
+  margin-top: 25px;
+  margin-bottom: 8px;
 }
-
-
 
 .profile-text { color: #52627a; }
 
-
-
 /* GALLERY */
-
 .gallery-card {
-
-  background: rgba(255,255,255,0.92);
-
-  border: 1px solid rgba(37,99,235,0.12);
-
-  border-radius: 22px;
-
-  overflow: hidden;
-
-  height: 100%;
-
-  box-shadow: 0 14px 35px rgba(36,74,120,0.10);
-
-  transition: all 0.4s ease;
-
+  background: rgba(255,255,255,0.92);
+  border: 1px solid rgba(37,99,235,0.12);
+  border-radius: 22px;
+  overflow: hidden;
+  height: 100%;
+  box-shadow: 0 14px 35px rgba(36,74,120,0.10);
+  transition: all 0.4s ease;
 }
-
-
 
 .gallery-card:hover {
-
-  transform: translateY(-9px);
-
-  box-shadow: 0 24px 50px rgba(36,74,120,0.16);
-
-  border-color: rgba(6,182,212,0.30);
-
+  transform: translateY(-9px);
+  box-shadow: 0 24px 50px rgba(36,74,120,0.16);
+  border-color: rgba(6,182,212,0.30);
 }
-
-
 
 .gallery-img-wrapper {
-
-  height: 260px;
-
-  overflow: hidden;
-
-  position: relative;
-
+  height: 260px;
+  overflow: hidden;
+  position: relative;
 }
-
-
 
 .gallery-img {
-
-  width: 100%;
-
-  height: 100%;
-
-  object-fit: cover;
-
-  transition: transform 0.6s ease;
-
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
 }
-
-
 
 .gallery-card:hover .gallery-img { transform: scale(1.07); }
-
 .gallery-content { padding: 1.5rem; }
 
-
-
 .gallery-content h5 {
-
-  font-family: 'Playfair Display',serif;
-
-  color: var(--heading);
-
-  margin-bottom: 0.6rem;
-
+  font-family: 'Playfair Display',serif;
+  color: var(--heading);
+  margin-bottom: 0.6rem;
 }
-
-
 
 .gallery-meta {
-
-  color: #718096;
-
-  font-size: 0.9rem;
-
+  color: #718096;
+  font-size: 0.9rem;
 }
-
-
 
 /* POSTERS */
-
 .poster-card {
-
-  background: rgba(255,255,255,0.94);
-
-  border: 1px solid rgba(37,99,235,0.12);
-
-  border-radius: 22px;
-
-  overflow: hidden;
-
-  height: 100%;
-
-  box-shadow: 0 14px 35px rgba(36,74,120,0.10);
-
-  transition: all 0.4s ease;
-
+  background: rgba(255,255,255,0.94);
+  border: 1px solid rgba(37,99,235,0.12);
+  border-radius: 22px;
+  overflow: hidden;
+  height: 100%;
+  box-shadow: 0 14px 35px rgba(36,74,120,0.10);
+  transition: all 0.4s ease;
 }
-
-
 
 .poster-card:hover {
-
-  transform: translateY(-9px);
-
-  box-shadow: 0 25px 55px rgba(36,74,120,0.17);
-
-  border-color: rgba(236,72,153,0.30);
-
+  transform: translateY(-9px);
+  box-shadow: 0 25px 55px rgba(36,74,120,0.17);
+  border-color: rgba(236,72,153,0.30);
 }
-
-
 
 .poster-img-wrapper {
-
-  height: 400px;
-
-  background: #edf4fb;
-
-  overflow: hidden;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
+  height: 400px;
+  background: #edf4fb;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
-
 
 .poster-img {
-
-  width: 100%;
-
-  height: 100%;
-
-  object-fit: cover;
-
-  transition: transform 0.5s ease;
-
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
 }
-
-
 
 .poster-card:hover .poster-img { transform: scale(1.03); }
-
 .poster-content { padding: 1.5rem; }
 
-
-
 .poster-content h5 {
-
-  font-family: 'Playfair Display',serif;
-
-  color: var(--heading);
-
+  font-family: 'Playfair Display',serif;
+  color: var(--heading);
 }
-
-
 
 /* PUBLICATIONS */
-
 .pub-card {
-
-  background: rgba(255,255,255,0.90);
-
-  padding: 1.8rem;
-
-  border-radius: 18px;
-
-  margin-bottom: 1.5rem;
-
-  border: 1px solid rgba(37,99,235,0.10);
-
-  border-left: 6px solid transparent;
-
-  border-image: var(--primary-gradient) 1;
-
-  box-shadow: 0 10px 28px rgba(36,74,120,0.07);
-
-  transition: all 0.35s ease;
-
+  background: rgba(255,255,255,0.90);
+  padding: 1.8rem;
+  border-radius: 18px;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(37,99,235,0.10);
+  border-left: 6px solid transparent;
+  border-image: var(--primary-gradient) 1;
+  box-shadow: 0 10px 28px rgba(36,74,120,0.07);
+  transition: all 0.35s ease;
 }
-
-
 
 .pub-card:hover {
-
-  transform: translateX(8px);
-
-  box-shadow: 0 18px 38px rgba(37,99,235,0.13);
-
-  border-left-color: #6366f1;
-
+  transform: translateX(8px);
+  box-shadow: 0 18px 38px rgba(37,99,235,0.13);
+  border-left-color: #6366f1;
 }
-
-
 
 .pub-card h6 { color: var(--heading); }
 
-
-
 /* CONTACT */
-
 .contact-glass {
-
-  max-width: 620px;
-
-  margin: 0 auto;
-
-  background: linear-gradient(145deg,rgba(255,255,255,0.96),rgba(239,248,255,0.94));
-
+  max-width: 620px;
+  margin: 0 auto;
+  background: linear-gradient(145deg,rgba(255,255,255,0.96),rgba(239,248,255,0.94));
 }
-
-
 
 .contact-glass .fa-paper-plane { color: var(--accent-pink) !important; }
-
 .contact-glass a[href^="mailto:"] { color: #000000 !important; }
 
-
-
 /* FOOTER */
-
 footer {
-
-  background: linear-gradient(135deg,#172554,#312e81 55%,#7c2d6b);
-
-  color: rgba(255,255,255,0.92);
-
-  padding: 3rem 0;
-
-  text-align: center;
-
-  border-top: 0;
-
+  background: linear-gradient(135deg,#172554,#312e81 55%,#7c2d6b);
+  color: rgba(255,255,255,0.92);
+  padding: 3rem 0;
+  text-align: center;
+  border-top: 0;
 }
-
-
 
 footer p { opacity: 0.95 !important; }
-
 .loading-text { color: #718096; }
-
 .text-primary { color: var(--accent-blue) !important; }
-
 .text-warning { color: #c2410c !important; }
 
-
-
 /* RESOURCE SECTIONS */
-
 .resource-card {
-
-  height: 100%;
-
-  background: rgba(255,255,255,0.92);
-
-  border: 1px solid rgba(37,99,235,0.13);
-
-  border-radius: 22px;
-
-  padding: 2rem;
-
-  box-shadow: 0 14px 35px rgba(36,74,120,0.09);
-
-  transition: all 0.35s ease;
-
+  height: 100%;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid rgba(37,99,235,0.13);
+  border-radius: 22px;
+  padding: 2rem;
+  box-shadow: 0 14px 35px rgba(36,74,120,0.09);
+  transition: all 0.35s ease;
 }
-
-
 
 .resource-card:hover {
-
-  transform: translateY(-7px);
-
-  box-shadow: 0 24px 50px rgba(36,74,120,0.15);
-
-  border-color: rgba(124,58,237,0.30);
-
+  transform: translateY(-7px);
+  box-shadow: 0 24px 50px rgba(36,74,120,0.15);
+  border-color: rgba(124,58,237,0.30);
 }
-
-
 
 .resource-card h5 {
-
-  font-family: 'Playfair Display',serif;
-
-  color: var(--heading);
-
-  margin-bottom: 1rem;
-
+  font-family: 'Playfair Display',serif;
+  color: var(--heading);
+  margin-bottom: 1rem;
 }
-
-
 
 .resource-card p { color: var(--text-secondary); }
 
-
-
 .resource-category {
-
-  display: inline-block;
-
-  background: linear-gradient(135deg,rgba(6,182,212,0.12),rgba(124,58,237,0.12));
-
-  color: #5141a5;
-
-  padding: 5px 13px;
-
-  border-radius: 30px;
-
-  font-size: 0.8rem;
-
-  font-weight: 600;
-
-  margin-bottom: 1rem;
-
+  display: inline-block;
+  background: linear-gradient(135deg,rgba(6,182,212,0.12),rgba(124,58,237,0.12));
+  color: #5141a5;
+  padding: 5px 13px;
+  border-radius: 30px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
 }
-
-
 
 .resource-link {
-
-  display: inline-block;
-
-  text-decoration: none;
-
-  color: #2563eb;
-
-  font-weight: 600;
-
-  margin-top: 0.7rem;
-
+  display: inline-block;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: 600;
+  margin-top: 0.7rem;
 }
-
-
 
 .resource-link:hover { color: #7c3aed; }
 
-
-
 .resource-icon {
-
-  font-size: 2rem;
-
-  margin-bottom: 1rem;
-
-  background: var(--primary-gradient);
-
-  -webkit-background-clip: text;
-
-  -webkit-text-fill-color: transparent;
-
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-
-
 
 .resource-image {
-
-  width: 100%;
-
-  height: 170px;
-
-  object-fit: contain;
-
-  margin-bottom: 1rem;
-
+  width: 100%;
+  height: 170px;
+  object-fit: contain;
+  margin-bottom: 1rem;
 }
-
-
 
 .postdoc-card { text-align: center; }
-
 .postdoc-card .team-img { margin-bottom: 1rem; }
 
-
-
 /* RESPONSIVE */
-
 @media (max-width: 991px) {
-
-  .navbar-nav { padding-top: 0.8rem; }
-
-  .nav-link { margin: 0.35rem 0; }
-
+  .navbar-nav { padding-top: 0.8rem; }
+  .nav-link { margin: 0.35rem 0; }
 }
-
-
 
 @media (max-width: 768px) {
+  .hero { min-height: 78vh; }
+  .hero h1 { font-size: 3.25rem; }
 
-  .hero { min-height: 78vh; }
+  .hero p {
+    font-size: 1rem;
+    border-radius: 20px;
+  }
 
-  .hero h1 { font-size: 3.25rem; }
+  .section-title { font-size: 2.35rem; }
 
+  #team .section-title,
+  #fun-activities .section-title {
+    font-size: clamp(1.5rem, 6vw, 2.25rem);
+    white-space: nowrap;
+  }
 
-
-  .hero p {
-
-    font-size: 1rem;
-
-    border-radius: 20px;
-
-  }
-
-
-
-  .section-title { font-size: 2.35rem; }
-
-
-
-  #team .section-title,
-
-  #fun-activities .section-title {
-
-    font-size: clamp(1.5rem, 6vw, 2.25rem);
-
-    white-space: nowrap;
-
-  }
-
-
-
-  .section { padding: 78px 0; }
-
-  .navbar-brand { font-size: 1.75rem; }
-
-  .poster-img-wrapper { height: 330px; }
-
-  .gallery-img-wrapper { height: 220px; }
-
-  .glass { padding: 1.6rem !important; }
-
-  .resource-card { padding: 1.6rem; }
-
+  .section { padding: 78px 0; }
+  .navbar-brand { font-size: 1.75rem; }
+  .poster-img-wrapper { height: 330px; }
+  .gallery-img-wrapper { height: 220px; }
+  .glass { padding: 1.6rem !important; }
+  .resource-card { padding: 1.6rem; }
 }
-
-
 
 @media (max-width: 360px) {
-
-  #team .section-title,
-
-  #fun-activities .section-title {
-
-    font-size: 1.35rem;
-
-  }
-
+  #team .section-title,
+  #fun-activities .section-title {
+    font-size: 1.35rem;
+  }
 }
-
 </style>
-
 </head>
-
-
 
 <body>
 
-
-
 <!-- NAVBAR -->
-
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <div class="container">
 
-  <div class="container">
+    <a class="navbar-brand" href="#">ASPIRE Lab</a>
 
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#nav"
+      aria-controls="nav"
+      aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto">
 
-    <a class="navbar-brand" href="#">ASPIRE Lab</a>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#research">Research</a></li>
+        <li class="nav-item"><a class="nav-link" href="#team">PhD Scholars</a></li>
+        <li class="nav-item"><a class="nav-link" href="#postdocs">Postdoc</a></li>
+        <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link" href="#posters">Posters</a></li>
+        <li class="nav-item"><a class="nav-link" href="#advertisements">Opportunities</a></li>
+        <li class="nav-item"><a class="nav-link" href="#publications">Publications</a></li>
+        <li class="nav-item"><a class="nav-link" href="#servers">Servers</a></li>
+        <li class="nav-item"><a class="nav-link" href="#databases">Databases</a></li>
+        <li class="nav-item"><a class="nav-link" href="#fun-activities">Fun Activities</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
 
-
-
-    <button
-
-      class="navbar-toggler"
-
-      type="button"
-
-      data-bs-toggle="collapse"
-
-      data-bs-target="#nav"
-
-      aria-controls="nav"
-
-      aria-expanded="false"
-
-      aria-label="Toggle navigation">
-
-      <span class="navbar-toggler-icon"></span>
-
-    </button>
-
-
-
-    <div class="collapse navbar-collapse" id="nav">
-
-      <ul class="navbar-nav ms-auto">
-
-
-
-        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-
-        <li class="nav-item"><a class="nav-link" href="#research">Research</a></li>
-
-        <li class="nav-item"><a class="nav-link" href="#team">PhD Scholars</a></li>
-
-        <li class="nav-item"><a class="nav-link" href="#postdocs">Postdoc</a></li>
-
-        <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
-
-        <li class="nav-item"><a class="nav-link" href="#posters">Posters</a></li>
-
-        <li class="nav-item"><a class="nav-link" href="#advertisements">Opportunities</a></li>
-
-        <li class="nav-item"><a class="nav-link" href="#publications">Publications</a></li>
-
-        <li class="nav-item"><a class="nav-link" href="#servers">Servers</a></li>
-
-        <li class="nav-item"><a class="nav-link" href="#databases">Databases</a></li>
-
-        <li class="nav-item"><a class="nav-link" href="#fun-activities">Fun Activities</a></li>
-
-        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-
-
-
-      </ul>
-
-    </div>
-
-  </div>
-
+      </ul>
+    </div>
+  </div>
 </nav>
 
-
-
 <!-- HERO -->
-
 <section class="hero">
-
-  <div class="container">
-
-    <h1>ASPIRE Lab</h1>
-
-    <p>
-
-      Advanced Structural Parasitology
-
-      • Protein Engineering
-
-      • Drug Discovery
-
-    </p>
-
-  </div>
-
+  <div class="container">
+    <h1>ASPIRE Lab</h1>
+    <p>
+      Advanced Structural Parasitology
+      • Protein Engineering
+      • Drug Discovery
+    </p>
+  </div>
 </section>
-
-
 
 <!-- ABOUT -->
-
 <section id="about" class="section text-center">
-
-  <div class="container">
-
-    <h2 class="section-title">About ASPIRE Lab</h2>
-
-    <div class="glass p-5 mb-0" style="max-width:900px;margin:auto;">
-
-      <p id="about-text" class="fs-5 mb-4">Loading...</p>
-
-    </div>
-
-  </div>
-
+  <div class="container">
+    <h2 class="section-title">About ASPIRE Lab</h2>
+    <div class="glass p-5 mb-0" style="max-width:900px;margin:auto;">
+      <p id="about-text" class="fs-5 mb-4">Loading...</p>
+    </div>
+  </div>
 </section>
-
-
 
 <!-- RESEARCH -->
-
 <section id="research" class="section">
-
-  <div class="container">
-
-    <h2 class="section-title">Research Areas</h2>
-
-    <div class="row g-4" id="research-container"></div>
-
-  </div>
-
+  <div class="container">
+    <h2 class="section-title">Research Areas</h2>
+    <div class="row g-4" id="research-container"></div>
+  </div>
 </section>
-
-
 
 <!-- PRINCIPAL INVESTIGATOR -->
-
 <section class="section text-center">
-
-  <div class="container">
-
-    <h2 class="section-title">Principal Investigator</h2>
-
-    <div class="row justify-content-center" id="pi-container"></div>
-
-  </div>
-
+  <div class="container">
+    <h2 class="section-title">Principal Investigator</h2>
+    <div class="row justify-content-center" id="pi-container"></div>
+  </div>
 </section>
-
-
 
 <!-- PHD SCHOLARS -->
-
 <section id="team" class="section">
-
-  <div class="container">
-
-    <h2 class="section-title">PhD Scholars</h2>
-
-    <div class="row" id="team-container"></div>
-
-  </div>
-
+  <div class="container">
+    <h2 class="section-title">PhD Scholars</h2>
+    <div class="row" id="team-container"></div>
+  </div>
 </section>
-
-
 
 <!-- POSTDOC -->
-
 <section id="postdocs" class="section">
-
-  <div class="container">
-
-    <h2 class="section-title">Postdoc Researchers</h2>
-
-    <div class="row g-4" id="postdocs-container"></div>
-
-  </div>
-
+  <div class="container">
+    <h2 class="section-title">Postdoc Researchers</h2>
+    <div class="row g-4" id="postdocs-container"></div>
+  </div>
 </section>
-
-
 
 <!-- GALLERY -->
-
 <section id="gallery" class="section">
-
-  <div class="container">
-
-    <h2 class="section-title">Workshops & Conferences</h2>
-
-    <div class="row g-4" id="gallery-container"></div>
-
-  </div>
-
+  <div class="container">
+    <h2 class="section-title">Workshops & Conferences</h2>
+    <div class="row g-4" id="gallery-container"></div>
+  </div>
 </section>
-
-
 
 <!-- POSTERS -->
-
 <section id="posters" class="section">
-
-  <div class="container">
-
-    <h2 class="section-title">Digital Poster Archive</h2>
-
-    <div class="row g-4" id="posters-container"></div>
-
-  </div>
-
+  <div class="container">
+    <h2 class="section-title">Digital Poster Archive</h2>
+    <div class="row g-4" id="posters-container"></div>
+  </div>
 </section>
-
-
 
 <!-- OPPORTUNITIES -->
-
 <section id="advertisements" class="section">
-
-  <div class="container">
-
-    <h2 class="section-title">Advertisements & Opportunities</h2>
-
-    <div class="row g-4" id="advertisements-container"></div>
-
-  </div>
-
+  <div class="container">
+    <h2 class="section-title">Advertisements & Opportunities</h2>
+    <div class="row g-4" id="advertisements-container"></div>
+  </div>
 </section>
-
-
 
 <!-- PUBLICATIONS -->
-
 <section id="publications" class="section">
-
-  <div class="container">
-
-    <h2 class="section-title">Publications</h2>
-
-    <div id="pub-container"></div>
-
-  </div>
-
+  <div class="container">
+    <h2 class="section-title">Publications</h2>
+    <div id="pub-container"></div>
+  </div>
 </section>
-
-
 
 <!-- SERVERS -->
-
 <section id="servers" class="section">
-
-  <div class="container">
-
-    <h2 class="section-title">Important Servers</h2>
-
-    <div class="row g-4" id="servers-container"></div>
-
-  </div>
-
+  <div class="container">
+    <h2 class="section-title">Important Servers</h2>
+    <div class="row g-4" id="servers-container"></div>
+  </div>
 </section>
-
-
 
 <!-- DATABASES -->
-
 <section id="databases" class="section">
-
-  <div class="container">
-
-    <h2 class="section-title">Important Databases</h2>
-
-    <div class="row g-4" id="databases-container"></div>
-
-  </div>
-
+  <div class="container">
+    <h2 class="section-title">Important Databases</h2>
+    <div class="row g-4" id="databases-container"></div>
+  </div>
 </section>
-
-
 
 <!-- FUN ACTIVITIES -->
-
 <section id="fun-activities" class="section">
-
-  <div class="container">
-
-    <h2 class="section-title">Fun Activities</h2>
-
-    <div class="row g-4" id="fun-activities-container"></div>
-
-  </div>
-
+  <div class="container">
+    <h2 class="section-title">Fun Activities</h2>
+    <div class="row g-4" id="fun-activities-container"></div>
+  </div>
 </section>
-
-
 
 <!-- CONTACT -->
-
 <section id="contact" class="section text-center">
+  <div class="container">
+    <h2 class="section-title">Contact</h2>
+    <div class="glass contact-glass py-5 px-4">
 
-  <div class="container">
+      <div class="fs-4 mb-4">
+        <i class="fas fa-paper-plane text-primary me-3"></i>
+        Get In Touch
+      </div>
 
-    <h2 class="section-title">Contact</h2>
+      <div id="contact-content">Loading...</div>
 
-    <div class="glass contact-glass py-5 px-4">
-
-
-
-      <div class="fs-4 mb-4">
-
-        <i class="fas fa-paper-plane text-primary me-3"></i>
-
-        Get In Touch
-
-      </div>
-
-
-
-      <div id="contact-content">Loading...</div>
-
-
-
-    </div>
-
-  </div>
-
+    </div>
+  </div>
 </section>
 
-
-
 <!-- FOOTER -->
-
 <footer>
-
-  <div class="container">
-
-    <p class="mb-0" style="opacity:0.8;">
-
-      © 2026 ASPIRE Lab |
-
-      Advanced Structural Parasitology
-
-      & Protein Engineering
-
-    </p>
-
-  </div>
-
+  <div class="container">
+    <p class="mb-0" style="opacity:0.8;">
+      © 2026 ASPIRE Lab |
+      Advanced Structural Parasitology
+      & Protein Engineering
+    </p>
+  </div>
 </footer>
 
-
-
 <!-- PROFILE MODAL -->
-
 <div class="modal fade" id="profileModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
 
-  <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-header">
+        <h5 class="modal-title" id="profileModalTitle">Profile</h5>
 
-    <div class="modal-content">
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close">
+        </button>
+      </div>
 
+      <div class="modal-body" id="profileModalBody"></div>
 
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
 
-      <div class="modal-header">
-
-        <h5 class="modal-title" id="profileModalTitle">Profile</h5>
-
-
-
-        <button
-
-          type="button"
-
-          class="btn-close"
-
-          data-bs-dismiss="modal"
-
-          aria-label="Close">
-
-        </button>
-
-      </div>
-
-
-
-      <div class="modal-body" id="profileModalBody"></div>
-
-
-
-      <div class="modal-footer">
-
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-
-          Close
-
-        </button>
-
-      </div>
-
-
-
-    </div>
-
-  </div>
-
+    </div>
+  </div>
 </div>
 
-
-
 <!-- BOOTSTRAP -->
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-
-
 <script>
-
 /*
-
 ==========================================================
-
-   GOOGLE SHEET CONFIGURATION
-
+   GOOGLE SHEET CONFIGURATION
 ==========================================================
-
 */
-
-
 
 const SHEET_ID =
-
-  "1vhSco35e3yQHCFiFJoAmjbHKZ7WV2RQN65xNbK6TIl8";
-
-
+  "1vhSco35e3yQHCFiFJoAmjbHKZ7WV2RQN65xNbK6TIl8";
 
 const FALLBACK_IMAGE =
-
-  "https://via.placeholder.com/800x500?text=ASPIRE+Lab";
-
-
+  "https://via.placeholder.com/800x500?text=ASPIRE+Lab";
 
 /*
-
 ==========================================================
-
-   HTML ESCAPING
-
+   HTML ESCAPING
 ==========================================================
-
 */
-
-
 
 function escapeHtml(value) {
-
-  return String(value ?? "")
-
-    .replaceAll("&", "&amp;")
-
-    .replaceAll("<", "&lt;")
-
-    .replaceAll(">", "&gt;")
-
-    .replaceAll('"', "&quot;")
-
-    .replaceAll("'", "&#039;");
-
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
 }
 
-
-
 /*
-
 ==========================================================
-
-   GOOGLE DRIVE FILE ID
-
+   GOOGLE DRIVE FILE ID
 ==========================================================
-
 */
-
-
 
 function getDriveFileId(url) {
+  const raw = String(url ?? "").trim();
 
-  const raw = String(url ?? "").trim();
+  if (!raw) return "";
 
+  const match =
+    raw.match(/\/file\/d\/([a-zA-Z0-9_-]+)/) ||
+    raw.match(/\/d\/([a-zA-Z0-9_-]+)/) ||
+    raw.match(/[?&]id=([a-zA-Z0-9_-]+)/);
 
-
-  if (!raw) return "";
-
-
-
-  const match =
-
-    raw.match(/\/file\/d\/([a-zA-Z0-9_-]+)/) ||
-
-    raw.match(/\/d\/([a-zA-Z0-9_-]+)/) ||
-
-    raw.match(/[?&]id=([a-zA-Z0-9_-]+)/);
-
-
-
-  return match ? match[1] : "";
-
+  return match ? match[1] : "";
 }
 
-
-
 /*
-
 ==========================================================
-
-   IMAGE URL NORMALIZATION
-
+   IMAGE URL NORMALIZATION
 ==========================================================
-
 */
-
-
 
 function normalizeImageUrl(url) {
+  const raw = String(url ?? "").trim();
 
-  const raw = String(url ?? "").trim();
+  if (!raw) return FALLBACK_IMAGE;
 
+  const driveId = getDriveFileId(raw);
 
+  if (driveId) {
+    return `https://drive.google.com/thumbnail?id=${driveId}&sz=w2000`;
+  }
 
-  if (!raw) return FALLBACK_IMAGE;
-
-
-
-  const driveId = getDriveFileId(raw);
-
-
-
-  if (driveId) {
-
-    return `https://drive.google.com/thumbnail?id=${driveId}&sz=w2000`;
-
-  }
-
-
-
-  return raw;
-
+  return raw;
 }
 
-
-
 /*
-
 ==========================================================
-
-   DRIVE OPEN URL
-
+   DRIVE OPEN URL
 ==========================================================
-
 */
-
-
 
 function normalizeDriveOpenUrl(url) {
+  const raw = String(url ?? "").trim();
 
-  const raw = String(url ?? "").trim();
+  if (!raw) return "";
 
+  const driveId = getDriveFileId(raw);
 
+  if (driveId) {
+    return `https://drive.google.com/file/d/${driveId}/view?usp=sharing`;
+  }
 
-  if (!raw) return "";
-
-
-
-  const driveId = getDriveFileId(raw);
-
-
-
-  if (driveId) {
-
-    return `https://drive.google.com/file/d/${driveId}/view?usp=sharing`;
-
-  }
-
-
-
-  return raw;
-
+  return raw;
 }
 
-
-
 /*
-
 ==========================================================
-
-   SAFE EXTERNAL URL
-
+   SAFE EXTERNAL URL
 ==========================================================
-
 */
-
-
 
 function safeResourceUrl(value) {
+  const raw = String(value ?? "").trim();
 
-  const raw = String(value ?? "").trim();
+  if (!raw) return "";
 
+  try {
+    const url = new URL(raw);
 
+    if (
+      url.protocol === "https:" ||
+      url.protocol === "http:"
+    ) {
+      return url.href;
+    }
 
-  if (!raw) return "";
+  } catch (err) {
+    return "";
+  }
 
-
-
-  try {
-
-    const url = new URL(raw);
-
-
-
-    if (
-
-      url.protocol === "https:" ||
-
-      url.protocol === "http:"
-
-    ) {
-
-      return url.href;
-
-    }
-
-
-
-  } catch (err) {
-
-    return "";
-
-  }
-
-
-
-  return "";
-
+  return "";
 }
 
-
-
 /*
-
 ==========================================================
-
-   GOOGLE SHEET FETCH
-
+   GOOGLE SHEET FETCH
 ==========================================================
-
 */
-
-
-
-const SHEET_NAME_ALIASES = {
-  TEAM: ["Team", "TEAM"],
-  POSTDOCS: ["POSTDOC", "POSTDOCS"],
-  PUBLICATIONS: ["Publications", "PUBLICATIONS"]
-};
 
 async function fetchSheet(sheetName) {
-  const candidates = SHEET_NAME_ALIASES[sheetName] || [sheetName];
-  let lastError = null;
+  try {
+    const res = await fetch(
+      `https://opensheet.elk.sh/${SHEET_ID}/${encodeURIComponent(sheetName)}`
+    );
 
-  for (const actualName of candidates) {
-    try {
-      const endpoint =
-        `https://opensheet.elk.sh/${SHEET_ID}/${encodeURIComponent(actualName)}`;
-
-      const response = await fetch(endpoint, { cache: "no-store" });
-
-      if (!response.ok) {
-        lastError = new Error(`HTTP ${response.status} for worksheet "${actualName}"`);
-        continue;
-      }
-
-      const rows = await response.json();
-
-      if (Array.isArray(rows)) {
-        const usableRows = rows.filter(row =>
-          row && typeof row === "object" &&
-          Object.values(row).some(value => String(value ?? "").trim() !== "")
-        );
-
-        // Return the first worksheet that contains real records.
-        // Keep trying aliases if a valid worksheet is empty.
-        if (usableRows.length > 0) {
-          console.info(`Loaded ${usableRows.length} rows from worksheet "${actualName}".`);
-          return usableRows;
-        }
-      }
-    } catch (error) {
-      lastError = error;
+    if (!res.ok) {
+      throw new Error(`HTTP ${res.status}`);
     }
-  }
 
-  if (lastError) {
-    console.error(`Could not load worksheet "${sheetName}". Tried: ${candidates.join(", ")}`, lastError);
-  } else {
-    console.warn(`Worksheet "${sheetName}" is empty or was not found. Tried: ${candidates.join(", ")}`);
-  }
+    const data = await res.json();
 
-  return [];
+    return Array.isArray(data) ? data : [];
+
+  } catch (err) {
+    console.error(`Failed to load ${sheetName}:`, err);
+    return [];
+  }
 }
 
-
-
 /*
-
 ==========================================================
-
-   FIRST NON EMPTY VALUE
-
+   FIRST NON EMPTY VALUE
 ==========================================================
-
 */
-
-
 
 function firstNonEmptyValue(obj) {
+  if (!obj || typeof obj !== "object") return "";
 
-  if (!obj || typeof obj !== "object") return "";
+  const vals = Object.values(obj).map(v =>
+    v == null ? "" : String(v).trim()
+  );
 
-
-
-  const vals = Object.values(obj).map(v =>
-
-    v == null ? "" : String(v).trim()
-
-  );
-
-
-
-  return vals.find(v => v.length > 0) || "";
-
+  return vals.find(v => v.length > 0) || "";
 }
 
-
-
 /*
-
 ==========================================================
-
-   ABOUT
-
+   ABOUT
 ==========================================================
-
 */
-
-
 
 async function loadAbout() {
+  const el = document.getElementById("about-text");
 
-  const el = document.getElementById("about-text");
+  if (!el) return;
 
+  el.textContent = "Loading...";
 
+  const data = await fetchSheet("ABOUT");
 
-  if (!el) return;
+  const text =
+    data[0]?.text ||
+    data[0]?.Text ||
+    data[0]?.about ||
+    data[0]?.About ||
+    firstNonEmptyValue(data[0]) ||
+    "About content coming soon...";
 
-
-
-  el.textContent = "Loading...";
-
-
-
-  const data = await fetchSheet("ABOUT");
-
-
-
-  const text =
-
-    data[0]?.text ||
-
-    data[0]?.Text ||
-
-    data[0]?.about ||
-
-    data[0]?.About ||
-
-    firstNonEmptyValue(data[0]) ||
-
-    "About content coming soon...";
-
-
-
-  el.textContent = text;
-
+  el.textContent = text;
 }
 
-
-
 /*
-
 ==========================================================
-
-   RESEARCH
-
+   RESEARCH
 ==========================================================
-
 */
-
-
 
 async function loadResearch() {
-
-  const container = document.getElementById("research-container");
-
-
-
-  if (!container) return;
-
-
-
-  container.innerHTML = "";
-
-
-
-  const data = await fetchSheet("RESEARCH");
-
-
-
-  if (!data.length) {
-
-    container.innerHTML = `
-
-      <div class="col-12">
-
-        <div class="glass text-center">
-
-          <p class="mb-0 text-secondary">
-
-            Research content coming soon...
-
-          </p>
-
-        </div>
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
-
-  data.forEach(r => {
-
-    if (!r || Object.keys(r).length === 0) return;
-
-
-
-    const title = r.title || r.Title || "Untitled";
-
-    const desc = r.description || r.Description || "";
-
-    const img = normalizeImageUrl(r.image || r.Image || "");
-
-
-
-    const col = document.createElement("div");
-
-    col.className = "col-md-4";
-
-
-
-    const card = document.createElement("div");
-
-    card.className = "research-card";
-
-
-
-    card.style.backgroundImage =
-
-      `linear-gradient(rgba(10,24,48,0.20),rgba(10,24,48,0.70)),url("${img.replaceAll('"', "%22")}")`;
-
-
-
-    const overlay = document.createElement("div");
-
-    overlay.className = "research-overlay";
-
-
-
-    overlay.innerHTML = `
-
-      <h5 style="font-family:'Playfair Display';font-size:1.4rem;">
-
-        ${escapeHtml(title)}
-
-      </h5>
-
-      <p class="mb-0">
-
-        ${escapeHtml(desc)}
-
-      </p>
-
-    `;
-
-
-
-    card.appendChild(overlay);
-
-    col.appendChild(card);
-
-    container.appendChild(col);
-
-  });
-
+  const container = document.getElementById("research-container");
+
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  const data = await fetchSheet("RESEARCH");
+
+  if (!data.length) {
+    container.innerHTML = `
+      <div class="col-12">
+        <div class="glass text-center">
+          <p class="mb-0 text-secondary">
+            Research content coming soon...
+          </p>
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  data.forEach(r => {
+    if (!r || Object.keys(r).length === 0) return;
+
+    const title = r.title || r.Title || "Untitled";
+    const desc = r.description || r.Description || "";
+    const img = normalizeImageUrl(r.image || r.Image || "");
+
+    const col = document.createElement("div");
+    col.className = "col-md-4";
+
+    const card = document.createElement("div");
+    card.className = "research-card";
+
+    card.style.backgroundImage =
+      `linear-gradient(rgba(10,24,48,0.20),rgba(10,24,48,0.70)),url("${img.replaceAll('"', "%22")}")`;
+
+    const overlay = document.createElement("div");
+    overlay.className = "research-overlay";
+
+    overlay.innerHTML = `
+      <h5 style="font-family:'Playfair Display';font-size:1.4rem;">
+        ${escapeHtml(title)}
+      </h5>
+      <p class="mb-0">
+        ${escapeHtml(desc)}
+      </p>
+    `;
+
+    card.appendChild(overlay);
+    col.appendChild(card);
+    container.appendChild(col);
+  });
 }
 
-
-
 /*
-
 ==========================================================
-
-   TEAM AND PRINCIPAL INVESTIGATOR
-
+   TEAM AND PRINCIPAL INVESTIGATOR
 ==========================================================
-
 */
-
-
 
 async function loadTeam() {
-
-  const teamContainer = document.getElementById("team-container");
-
-  const piContainer = document.getElementById("pi-container");
-
-
-
-  if (!teamContainer || !piContainer) return;
-
-
-
-  teamContainer.innerHTML = "";
-
-  piContainer.innerHTML = "";
-
-
-
-  const data = await fetchSheet("TEAM");
-
-
-
-  if (!data.length) {
-
-    piContainer.innerHTML = `
-
-      <div class="col-12">
-
-        <div class="glass p-4">
-
-          <p class="text-secondary mb-0">Coming soon...</p>
-
-        </div>
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
-
-  let teamHTML = "";
-
-  let piHTML = "";
-
-
-
-  data.forEach((m, index) => {
-
-    if (!m || Object.keys(m).length === 0) return;
-
-
-
-    const name = m.name || m.Name || "Unnamed";
-
-    const role = m.role || m.Role || "";
-
-    const image = normalizeImageUrl(m.image || m.Image || FALLBACK_IMAGE);
-
-    const linkedin = m.linkedin || m.LinkedIn || "";
-
-    const bio = m.bio || m.Bio || "";
-
-    const research = m.research || m.Research || "";
-
-    const hobbies = m.hobbies || m.Hobbies || "";
-
-    const interests = m.interests || m.Interests || "";
-
-
-
-    const profileId = `profile-${index}`;
-
-
-
-    const card = `
-
-      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-
-        <div class="glass h-100 d-flex flex-column align-items-center p-4 text-center">
-
-
-
-          <img
-
-            src="${escapeHtml(image)}"
-
-            class="team-img mb-3"
-
-            alt="${escapeHtml(name)}"
-
-            loading="lazy"
-
-            onerror="this.onerror=null;this.src='${FALLBACK_IMAGE}'"
-
-          >
-
-
-
-          <h5 class="mb-2">
-
-            ${escapeHtml(name)}
-
-          </h5>
-
-
-
-          <p class="text-secondary mb-3">
-
-            ${escapeHtml(role)}
-
-          </p>
-
-
-
-          <div class="mt-auto d-flex gap-2 align-items-center justify-content-center">
-
-
-
-            <button
-
-              type="button"
-
-              class="profile-btn"
-
-              onclick="openProfile('${profileId}')">
-
-
-
-              <i class="fas fa-user me-2"></i>
-
-              View Profile
-
-
-
-            </button>
-
-
-
-            ${
-
-              linkedin
-
-              ? `
-
-                <a href="${escapeHtml(linkedin)}"
-
-                   target="_blank"
-
-                   rel="noopener noreferrer"
-
-                   class="text-decoration-none">
-
-                  <i class="fab fa-linkedin text-primary fs-4"></i>
-
-                </a>
-
-              `
-
-              : ""
-
-            }
-
-
-
-          </div>
-
-
-
-          <div
-
-            id="${profileId}"
-
-            class="d-none"
-
-            data-name="${escapeHtml(name)}"
-
-            data-role="${escapeHtml(role)}"
-
-            data-image="${escapeHtml(image)}"
-
-            data-bio="${escapeHtml(bio)}"
-
-            data-research="${escapeHtml(research)}"
-
-            data-hobbies="${escapeHtml(hobbies)}"
-
-            data-interests="${escapeHtml(interests)}"
-
-            data-linkedin="${escapeHtml(linkedin)}">
-
-          </div>
-
-
-
-        </div>
-
-      </div>
-
-    `;
-
-
-
-    const isPI = /principal|pi\b|investigator/i.test(role);
-
-
-
-    if (isPI) {
-
-      piHTML += card;
-
-    } else {
-
-      teamHTML += card;
-
-    }
-
-  });
-
-
-
-  piContainer.innerHTML = piHTML || `
-
-    <div class="col-12">
-
-      <div class="glass p-4">
-
-        <p class="text-secondary mb-0">Coming soon...</p>
-
-      </div>
-
-    </div>
-
-  `;
-
-
-
-  teamContainer.innerHTML = teamHTML || `
-
-    <div class="col-12">
-
-      <div class="glass p-4">
-
-        <p class="text-secondary mb-0">Coming soon...</p>
-
-      </div>
-
-    </div>
-
-  `;
-
+  const teamContainer = document.getElementById("team-container");
+  const piContainer = document.getElementById("pi-container");
+
+  if (!teamContainer || !piContainer) return;
+
+  teamContainer.innerHTML = "";
+  piContainer.innerHTML = "";
+
+  const data = await fetchSheet("TEAM");
+
+  if (!data.length) {
+    piContainer.innerHTML = `
+      <div class="col-12">
+        <div class="glass p-4">
+          <p class="text-secondary mb-0">Coming soon...</p>
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  let teamHTML = "";
+  let piHTML = "";
+
+  data.forEach((m, index) => {
+    if (!m || Object.keys(m).length === 0) return;
+
+    const name = m.name || m.Name || "Unnamed";
+    const role = m.role || m.Role || "";
+    const image = normalizeImageUrl(m.image || m.Image || FALLBACK_IMAGE);
+    const linkedin = m.linkedin || m.LinkedIn || "";
+    const bio = m.bio || m.Bio || "";
+    const research = m.research || m.Research || "";
+    const hobbies = m.hobbies || m.Hobbies || "";
+    const interests = m.interests || m.Interests || "";
+
+    const profileId = `profile-${index}`;
+
+    const card = `
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+        <div class="glass h-100 d-flex flex-column align-items-center p-4 text-center">
+
+          <img
+            src="${escapeHtml(image)}"
+            class="team-img mb-3"
+            alt="${escapeHtml(name)}"
+            loading="lazy"
+            onerror="this.onerror=null;this.src='${FALLBACK_IMAGE}'"
+          >
+
+          <h5 class="mb-2">
+            ${escapeHtml(name)}
+          </h5>
+
+          <p class="text-secondary mb-3">
+            ${escapeHtml(role)}
+          </p>
+
+          <div class="mt-auto d-flex gap-2 align-items-center justify-content-center">
+
+            <button
+              type="button"
+              class="profile-btn"
+              onclick="openProfile('${profileId}')">
+
+              <i class="fas fa-user me-2"></i>
+              View Profile
+
+            </button>
+
+            ${
+              linkedin
+              ? `
+                <a href="${escapeHtml(linkedin)}"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="text-decoration-none">
+                  <i class="fab fa-linkedin text-primary fs-4"></i>
+                </a>
+              `
+              : ""
+            }
+
+          </div>
+
+          <div
+            id="${profileId}"
+            class="d-none"
+            data-name="${escapeHtml(name)}"
+            data-role="${escapeHtml(role)}"
+            data-image="${escapeHtml(image)}"
+            data-bio="${escapeHtml(bio)}"
+            data-research="${escapeHtml(research)}"
+            data-hobbies="${escapeHtml(hobbies)}"
+            data-interests="${escapeHtml(interests)}"
+            data-linkedin="${escapeHtml(linkedin)}">
+          </div>
+
+        </div>
+      </div>
+    `;
+
+    const isPI = /principal|pi\b|investigator/i.test(role);
+
+    if (isPI) {
+      piHTML += card;
+    } else {
+      teamHTML += card;
+    }
+  });
+
+  piContainer.innerHTML = piHTML || `
+    <div class="col-12">
+      <div class="glass p-4">
+        <p class="text-secondary mb-0">Coming soon...</p>
+      </div>
+    </div>
+  `;
+
+  teamContainer.innerHTML = teamHTML || `
+    <div class="col-12">
+      <div class="glass p-4">
+        <p class="text-secondary mb-0">Coming soon...</p>
+      </div>
+    </div>
+  `;
 }
 
-
-
 /*
-
 ==========================================================
-
-   OPEN PROFILE MODAL
-
+   OPEN PROFILE MODAL
 ==========================================================
-
 */
-
-
 
 function openProfile(profileId) {
-
-  const data = document.getElementById(profileId);
-
-
-
-  if (!data) return;
-
-
-
-  const name = data.dataset.name || "";
-
-  const role = data.dataset.role || "";
-
-  const image = data.dataset.image || FALLBACK_IMAGE;
-
-  const bio = data.dataset.bio || "";
-
-  const research = data.dataset.research || "";
-
-  const hobbies = data.dataset.hobbies || "";
-
-  const interests = data.dataset.interests || "";
-
-  const linkedin = safeResourceUrl(data.dataset.linkedin || "");
-
-
-
-  document.getElementById("profileModalTitle").textContent = name;
-
-
-
-  let html = `
-
-    <div class="text-center">
-
-
-
-      <img
-
-        src="${escapeHtml(image)}"
-
-        class="profile-modal-img"
-
-        alt="${escapeHtml(name)}"
-
-        onerror="this.onerror=null;this.src='${FALLBACK_IMAGE}'"
-
-      >
-
-
-
-      <h3 style="font-family:'Playfair Display';">
-
-        ${escapeHtml(name)}
-
-      </h3>
-
-
-
-      <p class="text-secondary">
-
-        ${escapeHtml(role)}
-
-      </p>
-
-
-
-    </div>
-
-  `;
-
-
-
-  if (bio) {
-
-    html += `
-
-      <h5 class="profile-heading">About</h5>
-
-      <p class="profile-text">${escapeHtml(bio)}</p>
-
-    `;
-
-  }
-
-
-
-  if (research) {
-
-    html += `
-
-      <h5 class="profile-heading">Current Research</h5>
-
-      <p class="profile-text">${escapeHtml(research)}</p>
-
-    `;
-
-  }
-
-
-
-  if (hobbies) {
-
-    html += `
-
-      <h5 class="profile-heading">Hobbies & Interests</h5>
-
-      <p class="profile-text">${escapeHtml(hobbies)}</p>
-
-    `;
-
-  }
-
-
-
-  if (interests) {
-
-    html += `
-
-      <h5 class="profile-heading">More About Me</h5>
-
-      <p class="profile-text">${escapeHtml(interests)}</p>
-
-    `;
-
-  }
-
-
-
-  if (linkedin) {
-
-    html += `
-
-      <div class="mt-4">
-
-        <a href="${escapeHtml(linkedin)}"
-
-           target="_blank"
-
-           rel="noopener noreferrer"
-
-           class="btn btn-outline-primary">
-
-          <i class="fab fa-linkedin me-2"></i>
-
-          LinkedIn
-
-        </a>
-
-      </div>
-
-    `;
-
-  }
-
-
-
-  document.getElementById("profileModalBody").innerHTML = html;
-
-
-
-  const modal = new bootstrap.Modal(
-
-    document.getElementById("profileModal")
-
-  );
-
-
-
-  modal.show();
-
+  const data = document.getElementById(profileId);
+
+  if (!data) return;
+
+  const name = data.dataset.name || "";
+  const role = data.dataset.role || "";
+  const image = data.dataset.image || FALLBACK_IMAGE;
+  const bio = data.dataset.bio || "";
+  const research = data.dataset.research || "";
+  const hobbies = data.dataset.hobbies || "";
+  const interests = data.dataset.interests || "";
+  const linkedin = safeResourceUrl(data.dataset.linkedin || "");
+
+  document.getElementById("profileModalTitle").textContent = name;
+
+  let html = `
+    <div class="text-center">
+
+      <img
+        src="${escapeHtml(image)}"
+        class="profile-modal-img"
+        alt="${escapeHtml(name)}"
+        onerror="this.onerror=null;this.src='${FALLBACK_IMAGE}'"
+      >
+
+      <h3 style="font-family:'Playfair Display';">
+        ${escapeHtml(name)}
+      </h3>
+
+      <p class="text-secondary">
+        ${escapeHtml(role)}
+      </p>
+
+    </div>
+  `;
+
+  if (bio) {
+    html += `
+      <h5 class="profile-heading">About</h5>
+      <p class="profile-text">${escapeHtml(bio)}</p>
+    `;
+  }
+
+  if (research) {
+    html += `
+      <h5 class="profile-heading">Current Research</h5>
+      <p class="profile-text">${escapeHtml(research)}</p>
+    `;
+  }
+
+  if (hobbies) {
+    html += `
+      <h5 class="profile-heading">Hobbies & Interests</h5>
+      <p class="profile-text">${escapeHtml(hobbies)}</p>
+    `;
+  }
+
+  if (interests) {
+    html += `
+      <h5 class="profile-heading">More About Me</h5>
+      <p class="profile-text">${escapeHtml(interests)}</p>
+    `;
+  }
+
+  if (linkedin) {
+    html += `
+      <div class="mt-4">
+        <a href="${escapeHtml(linkedin)}"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="btn btn-outline-primary">
+          <i class="fab fa-linkedin me-2"></i>
+          LinkedIn
+        </a>
+      </div>
+    `;
+  }
+
+  document.getElementById("profileModalBody").innerHTML = html;
+
+  const modal = new bootstrap.Modal(
+    document.getElementById("profileModal")
+  );
+
+  modal.show();
 }
 
-
-
 /*
-
 ==========================================================
-
-   POSTDOC RESEARCHERS
-
+   POSTDOC RESEARCHERS
 ==========================================================
-
 */
-
-
 
 async function loadPostdocs() {
-
-  const container = document.getElementById("postdocs-container");
-
-
-
-  if (!container) return;
-
-
-
-  container.innerHTML = "";
-
-
-
-  const data = await fetchSheet("POSTDOCS");
-
-
-
-  if (!data.length) {
-
-    container.innerHTML = `
-
-      <div class="col-12">
-
-        <div class="glass text-center">
-
-          <p class="text-secondary mb-0">
-
-            Postdoc profiles coming soon...
-
-          </p>
-
-        </div>
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
-
-  data.forEach(p => {
-
-    if (!p || Object.keys(p).length === 0) return;
-
-
-
-    const name = p.name || p.Name || "Unnamed";
-
-    const role = p.role || p.Role || "Postdoctoral Researcher";
-
-    const image = normalizeImageUrl(p.image || p.Image || "");
-
-    const bio = p.bio || p.Bio || "";
-
-    const research = p.research || p.Research || "";
-
-    const linkedin = safeResourceUrl(p.linkedin || p.LinkedIn || "");
-
-
-
-    const col = document.createElement("div");
-
-    col.className = "col-lg-4 col-md-6";
-
-
-
-    col.innerHTML = `
-
-      <div class="glass postdoc-card h-100">
-
-
-
-        <img
-
-          src="${escapeHtml(image)}"
-
-          class="team-img"
-
-          alt="${escapeHtml(name)}"
-
-          loading="lazy"
-
-          onerror="this.onerror=null;this.src='${FALLBACK_IMAGE}'"
-
-        >
-
-
-
-        <h5 class="mt-3">
-
-          ${escapeHtml(name)}
-
-        </h5>
-
-
-
-        <p class="text-primary fw-semibold">
-
-          ${escapeHtml(role)}
-
-        </p>
-
-
-
-        ${
-
-          bio
-
-          ? `<p class="text-secondary">${escapeHtml(bio)}</p>`
-
-          : ""
-
-        }
-
-
-
-        ${
-
-          research
-
-          ? `<p class="text-secondary">
-
-               <strong>Research:</strong><br>
-
-               ${escapeHtml(research)}
-
-             </p>`
-
-          : ""
-
-        }
-
-
-
-        ${
-
-          linkedin
-
-          ? `<a href="${escapeHtml(linkedin)}"
-
-                target="_blank"
-
-                rel="noopener noreferrer"
-
-                class="resource-link">
-
-                <i class="fab fa-linkedin me-2"></i>
-
-                LinkedIn Profile
-
-             </a>`
-
-          : ""
-
-        }
-
-
-
-      </div>
-
-    `;
-
-
-
-    container.appendChild(col);
-
-  });
-
+  const container = document.getElementById("postdocs-container");
+
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  const data = await fetchSheet("POSTDOCS");
+
+  if (!data.length) {
+    container.innerHTML = `
+      <div class="col-12">
+        <div class="glass text-center">
+          <p class="text-secondary mb-0">
+            Postdoc profiles coming soon...
+          </p>
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  data.forEach(p => {
+    if (!p || Object.keys(p).length === 0) return;
+
+    const name = p.name || p.Name || "Unnamed";
+    const role = p.role || p.Role || "Postdoctoral Researcher";
+    const image = normalizeImageUrl(p.image || p.Image || "");
+    const bio = p.bio || p.Bio || "";
+    const research = p.research || p.Research || "";
+    const linkedin = safeResourceUrl(p.linkedin || p.LinkedIn || "");
+
+    const col = document.createElement("div");
+    col.className = "col-lg-4 col-md-6";
+
+    col.innerHTML = `
+      <div class="glass postdoc-card h-100">
+
+        <img
+          src="${escapeHtml(image)}"
+          class="team-img"
+          alt="${escapeHtml(name)}"
+          loading="lazy"
+          onerror="this.onerror=null;this.src='${FALLBACK_IMAGE}'"
+        >
+
+        <h5 class="mt-3">
+          ${escapeHtml(name)}
+        </h5>
+
+        <p class="text-primary fw-semibold">
+          ${escapeHtml(role)}
+        </p>
+
+        ${
+          bio
+          ? `<p class="text-secondary">${escapeHtml(bio)}</p>`
+          : ""
+        }
+
+        ${
+          research
+          ? `<p class="text-secondary">
+               <strong>Research:</strong><br>
+               ${escapeHtml(research)}
+             </p>`
+          : ""
+        }
+
+        ${
+          linkedin
+          ? `<a href="${escapeHtml(linkedin)}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="resource-link">
+                <i class="fab fa-linkedin me-2"></i>
+                LinkedIn Profile
+             </a>`
+          : ""
+        }
+
+      </div>
+    `;
+
+    container.appendChild(col);
+  });
 }
 
-
-
 /*
-
 ==========================================================
-
-   GENERIC RESOURCE SECTIONS
-
-   SERVERS AND DATABASES
-
+   GENERIC RESOURCE SECTIONS
+   SERVERS AND DATABASES
 ==========================================================
-
 */
-
-
 
 async function loadResourceSection(
-
-  sheetName,
-
-  containerId,
-
-  emptyMessage,
-
-  defaultIcon
-
+  sheetName,
+  containerId,
+  emptyMessage,
+  defaultIcon
 ) {
-
-  const container = document.getElementById(containerId);
-
-
-
-  if (!container) return;
-
-
-
-  container.innerHTML = "";
-
-
-
-  const data = await fetchSheet(sheetName);
-
-
-
-  if (!data.length) {
-
-    container.innerHTML = `
-
-      <div class="col-12">
-
-        <div class="glass text-center">
-
-          <p class="text-secondary mb-0">
-
-            ${escapeHtml(emptyMessage)}
-
-          </p>
-
-        </div>
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
-
-  data.forEach(item => {
-
-    if (!item || Object.keys(item).length === 0) return;
-
-
-
-    const title =
-
-      item.name ||
-
-      item.Name ||
-
-      item.title ||
-
-      item.Title ||
-
-      "Untitled";
-
-
-
-    const category =
-
-      item.category ||
-
-      item.Category ||
-
-      item.type ||
-
-      item.Type ||
-
-      "";
-
-
-
-    const description =
-
-      item.description ||
-
-      item.Description ||
-
-      "";
-
-
-
-    const rawLink =
-
-      item.link ||
-
-      item.Link ||
-
-      item.url ||
-
-      item.URL ||
-
-      "";
-
-
-
-    const link = safeResourceUrl(rawLink);
-
-
-
-    const image = item.image || item.Image || "";
-
-    const imageUrl = image ? normalizeImageUrl(image) : "";
-
-
-
-    const icon =
-
-      item.icon ||
-
-      item.Icon ||
-
-      defaultIcon;
-
-
-
-    const col = document.createElement("div");
-
-    col.className = "col-lg-4 col-md-6";
-
-
-
-    col.innerHTML = `
-
-      <div class="resource-card">
-
-
-
-        ${
-
-          imageUrl
-
-          ? `
-
-            <img
-
-              src="${escapeHtml(imageUrl)}"
-
-              class="resource-image"
-
-              alt="${escapeHtml(title)}"
-
-              loading="lazy"
-
-              onerror="this.style.display='none'"
-
-            >
-
-          `
-
-          : `
-
-            <div class="resource-icon">
-
-              <i class="${escapeHtml(icon)}"></i>
-
-            </div>
-
-          `
-
-        }
-
-
-
-        ${
-
-          category
-
-          ? `
-
-            <div class="resource-category">
-
-              ${escapeHtml(category)}
-
-            </div>
-
-          `
-
-          : ""
-
-        }
-
-
-
-        <h5>
-
-          ${escapeHtml(title)}
-
-        </h5>
-
-
-
-        ${
-
-          description
-
-          ? `
-
-            <p class="mb-2">
-
-              ${escapeHtml(description)}
-
-            </p>
-
-          `
-
-          : ""
-
-        }
-
-
-
-        ${
-
-          link
-
-          ? `
-
-            <a
-
-              href="${escapeHtml(link)}"
-
-              target="_blank"
-
-              rel="noopener noreferrer"
-
-              class="resource-link">
-
-              Explore
-
-              <i class="fas fa-external-link-alt ms-1"></i>
-
-            </a>
-
-          `
-
-          : ""
-
-        }
-
-
-
-      </div>
-
-    `;
-
-
-
-    container.appendChild(col);
-
-  });
-
+  const container = document.getElementById(containerId);
+
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  const data = await fetchSheet(sheetName);
+
+  if (!data.length) {
+    container.innerHTML = `
+      <div class="col-12">
+        <div class="glass text-center">
+          <p class="text-secondary mb-0">
+            ${escapeHtml(emptyMessage)}
+          </p>
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  data.forEach(item => {
+    if (!item || Object.keys(item).length === 0) return;
+
+    const title =
+      item.name ||
+      item.Name ||
+      item.title ||
+      item.Title ||
+      "Untitled";
+
+    const category =
+      item.category ||
+      item.Category ||
+      item.type ||
+      item.Type ||
+      "";
+
+    const description =
+      item.description ||
+      item.Description ||
+      "";
+
+    const rawLink =
+      item.link ||
+      item.Link ||
+      item.url ||
+      item.URL ||
+      "";
+
+    const link = safeResourceUrl(rawLink);
+
+    const image = item.image || item.Image || "";
+    const imageUrl = image ? normalizeImageUrl(image) : "";
+
+    const icon =
+      item.icon ||
+      item.Icon ||
+      defaultIcon;
+
+    const col = document.createElement("div");
+    col.className = "col-lg-4 col-md-6";
+
+    col.innerHTML = `
+      <div class="resource-card">
+
+        ${
+          imageUrl
+          ? `
+            <img
+              src="${escapeHtml(imageUrl)}"
+              class="resource-image"
+              alt="${escapeHtml(title)}"
+              loading="lazy"
+              onerror="this.style.display='none'"
+            >
+          `
+          : `
+            <div class="resource-icon">
+              <i class="${escapeHtml(icon)}"></i>
+            </div>
+          `
+        }
+
+        ${
+          category
+          ? `
+            <div class="resource-category">
+              ${escapeHtml(category)}
+            </div>
+          `
+          : ""
+        }
+
+        <h5>
+          ${escapeHtml(title)}
+        </h5>
+
+        ${
+          description
+          ? `
+            <p class="mb-2">
+              ${escapeHtml(description)}
+            </p>
+          `
+          : ""
+        }
+
+        ${
+          link
+          ? `
+            <a
+              href="${escapeHtml(link)}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="resource-link">
+              Explore
+              <i class="fas fa-external-link-alt ms-1"></i>
+            </a>
+          `
+          : ""
+        }
+
+      </div>
+    `;
+
+    container.appendChild(col);
+  });
 }
 
-
-
 /*
-
 ==========================================================
-
-   ADVERTISEMENTS AND OPPORTUNITIES
-
+   ADVERTISEMENTS AND OPPORTUNITIES
 ==========================================================
-
 */
-
-
 
 async function loadAdvertisements() {
-
-  const container = document.getElementById("advertisements-container");
-
-
-
-  if (!container) return;
-
-
-
-  container.innerHTML = "";
-
-
-
-  const data = await fetchSheet("ADVERTISEMENTS");
-
-
-
-  if (!data.length) {
-
-    container.innerHTML = `
-
-      <div class="col-12">
-
-        <div class="glass text-center">
-
-          <p class="text-secondary mb-0">
-
-            Advertisements and opportunities coming soon...
-
-          </p>
-
-        </div>
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
-
-  data.forEach(a => {
-
-    if (!a || Object.keys(a).length === 0) return;
-
-
-
-    const title = a.title || a.Title || "Opportunity";
-
-
-
-    const category =
-
-      a.type || a.Type || a.category || a.Category || "";
-
-
-
-    const description = a.description || a.Description || "";
-
-    const date = a.date || a.Date || "";
-
-    const deadline = a.deadline || a.Deadline || "";
-
-
-
-    const rawLink = a.link || a.Link || a.url || a.URL || "";
-
-    const link = safeResourceUrl(rawLink);
-
-
-
-    const col = document.createElement("div");
-
-    col.className = "col-lg-4 col-md-6";
-
-
-
-    col.innerHTML = `
-
-      <div class="resource-card h-100">
-
-
-
-        <div class="resource-icon">
-
-          <i class="fas fa-bullhorn"></i>
-
-        </div>
-
-
-
-        ${
-
-          category
-
-          ? `<div class="resource-category">
-
-               ${escapeHtml(category)}
-
-             </div>`
-
-          : ""
-
-        }
-
-
-
-        <h5>
-
-          ${escapeHtml(title)}
-
-        </h5>
-
-
-
-        ${
-
-          description
-
-          ? `<p>${escapeHtml(description)}</p>`
-
-          : ""
-
-        }
-
-
-
-        ${
-
-          date
-
-          ? `<p class="small text-secondary mb-1">
-
-               <i class="far fa-calendar me-2"></i>
-
-               ${escapeHtml(date)}
-
-             </p>`
-
-          : ""
-
-        }
-
-
-
-        ${
-
-          deadline
-
-          ? `<p class="small text-warning mb-2">
-
-               <i class="fas fa-clock me-2"></i>
-
-               Deadline: ${escapeHtml(deadline)}
-
-             </p>`
-
-          : ""
-
-        }
-
-
-
-        ${
-
-          link
-
-          ? `<a href="${escapeHtml(link)}"
-
-                target="_blank"
-
-                rel="noopener noreferrer"
-
-                class="resource-link">
-
-                View Advertisement
-
-                <i class="fas fa-external-link-alt ms-1"></i>
-
-             </a>`
-
-          : ""
-
-        }
-
-
-
-      </div>
-
-    `;
-
-
-
-    container.appendChild(col);
-
-  });
-
+  const container = document.getElementById("advertisements-container");
+
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  const data = await fetchSheet("ADVERTISEMENTS");
+
+  if (!data.length) {
+    container.innerHTML = `
+      <div class="col-12">
+        <div class="glass text-center">
+          <p class="text-secondary mb-0">
+            Advertisements and opportunities coming soon...
+          </p>
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  data.forEach(a => {
+    if (!a || Object.keys(a).length === 0) return;
+
+    const title = a.title || a.Title || "Opportunity";
+
+    const category =
+      a.type || a.Type || a.category || a.Category || "";
+
+    const description = a.description || a.Description || "";
+    const date = a.date || a.Date || "";
+    const deadline = a.deadline || a.Deadline || "";
+
+    const rawLink = a.link || a.Link || a.url || a.URL || "";
+    const link = safeResourceUrl(rawLink);
+
+    const col = document.createElement("div");
+    col.className = "col-lg-4 col-md-6";
+
+    col.innerHTML = `
+      <div class="resource-card h-100">
+
+        <div class="resource-icon">
+          <i class="fas fa-bullhorn"></i>
+        </div>
+
+        ${
+          category
+          ? `<div class="resource-category">
+               ${escapeHtml(category)}
+             </div>`
+          : ""
+        }
+
+        <h5>
+          ${escapeHtml(title)}
+        </h5>
+
+        ${
+          description
+          ? `<p>${escapeHtml(description)}</p>`
+          : ""
+        }
+
+        ${
+          date
+          ? `<p class="small text-secondary mb-1">
+               <i class="far fa-calendar me-2"></i>
+               ${escapeHtml(date)}
+             </p>`
+          : ""
+        }
+
+        ${
+          deadline
+          ? `<p class="small text-warning mb-2">
+               <i class="fas fa-clock me-2"></i>
+               Deadline: ${escapeHtml(deadline)}
+             </p>`
+          : ""
+        }
+
+        ${
+          link
+          ? `<a href="${escapeHtml(link)}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="resource-link">
+                View Advertisement
+                <i class="fas fa-external-link-alt ms-1"></i>
+             </a>`
+          : ""
+        }
+
+      </div>
+    `;
+
+    container.appendChild(col);
+  });
 }
 
-
-
 /*
-
 ==========================================================
-
-   IMPORTANT SERVERS
-
+   IMPORTANT SERVERS
 ==========================================================
-
 */
-
-
 
 async function loadServers() {
-
-  await loadResourceSection(
-
-    "SERVERS",
-
-    "servers-container",
-
-    "Important research servers coming soon...",
-
-    "fas fa-server"
-
-  );
-
+  await loadResourceSection(
+    "SERVERS",
+    "servers-container",
+    "Important research servers coming soon...",
+    "fas fa-server"
+  );
 }
 
-
-
 /*
-
 ==========================================================
-
-   IMPORTANT DATABASES
-
+   IMPORTANT DATABASES
 ==========================================================
-
 */
-
-
 
 async function loadDatabases() {
-
-  await loadResourceSection(
-
-    "DATABASES",
-
-    "databases-container",
-
-    "Important research databases coming soon...",
-
-    "fas fa-database"
-
-  );
-
+  await loadResourceSection(
+    "DATABASES",
+    "databases-container",
+    "Important research databases coming soon...",
+    "fas fa-database"
+  );
 }
 
-
-
 /*
-
 ==========================================================
-
-   GALLERY
-
+   GALLERY
 ==========================================================
-
 */
-
-
 
 async function loadGallery() {
-
-  const container = document.getElementById("gallery-container");
-
-
-
-  if (!container) return;
-
-
-
-  container.innerHTML = "";
-
-
-
-  const data = await fetchSheet("GALLERY");
-
-
-
-  if (!data.length) {
-
-    container.innerHTML = `
-
-      <div class="col-12">
-
-        <div class="glass text-center">
-
-          <p class="mb-0 text-secondary">
-
-            Workshop and conference photographs coming soon...
-
-          </p>
-
-        </div>
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
-
-  data.forEach(g => {
-
-    if (!g || Object.keys(g).length === 0) return;
-
-
-
-    const title = g.title || g.Title || "Lab Activity";
-
-    const event = g.event || g.Event || "";
-
-    const location = g.location || g.Location || "";
-
-    const year = g.year || g.Year || "";
-
-    const rawImage = g.image || g.Image || "";
-
-    const image = normalizeImageUrl(rawImage);
-
-    const viewUrl = normalizeDriveOpenUrl(rawImage);
-
-    const description = g.description || g.Description || "";
-
-
-
-    const meta = [event,location,year]
-
-      .filter(Boolean)
-
-      .map(escapeHtml)
-
-      .join(" · ");
-
-
-
-    const col = document.createElement("div");
-
-    col.className = "col-lg-4 col-md-6";
-
-
-
-    col.innerHTML = `
-
-      <div class="gallery-card">
-
-
-
-        <div class="gallery-img-wrapper">
-
-          <img
-
-            src="${escapeHtml(image)}"
-
-            class="gallery-img"
-
-            alt="${escapeHtml(title)}"
-
-            loading="lazy"
-
-            onerror="this.onerror=null;this.src='${FALLBACK_IMAGE}'"
-
-          >
-
-        </div>
-
-
-
-        <div class="gallery-content">
-
-
-
-          <h5>${escapeHtml(title)}</h5>
-
-
-
-          ${
-
-            meta
-
-            ? `<div class="gallery-meta mb-2">${meta}</div>`
-
-            : ""
-
-          }
-
-
-
-          ${
-
-            description
-
-            ? `<p class="text-secondary mb-3">${escapeHtml(description)}</p>`
-
-            : ""
-
-          }
-
-
-
-          ${
-
-            viewUrl
-
-            ? `
-
-              <a href="${escapeHtml(viewUrl)}"
-
-                 target="_blank"
-
-                 rel="noopener noreferrer"
-
-                 class="profile-btn text-decoration-none d-inline-block">
-
-                <i class="fas fa-expand me-2"></i>
-
-                View
-
-              </a>
-
-            `
-
-            : ""
-
-          }
-
-
-
-        </div>
-
-      </div>
-
-    `;
-
-
-
-    container.appendChild(col);
-
-  });
-
+  const container = document.getElementById("gallery-container");
+
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  const data = await fetchSheet("GALLERY");
+
+  if (!data.length) {
+    container.innerHTML = `
+      <div class="col-12">
+        <div class="glass text-center">
+          <p class="mb-0 text-secondary">
+            Workshop and conference photographs coming soon...
+          </p>
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  data.forEach(g => {
+    if (!g || Object.keys(g).length === 0) return;
+
+    const title = g.title || g.Title || "Lab Activity";
+    const event = g.event || g.Event || "";
+    const location = g.location || g.Location || "";
+    const year = g.year || g.Year || "";
+    const rawImage = g.image || g.Image || "";
+    const image = normalizeImageUrl(rawImage);
+    const viewUrl = normalizeDriveOpenUrl(rawImage);
+    const description = g.description || g.Description || "";
+
+    const meta = [event,location,year]
+      .filter(Boolean)
+      .map(escapeHtml)
+      .join(" · ");
+
+    const col = document.createElement("div");
+    col.className = "col-lg-4 col-md-6";
+
+    col.innerHTML = `
+      <div class="gallery-card">
+
+        <div class="gallery-img-wrapper">
+          <img
+            src="${escapeHtml(image)}"
+            class="gallery-img"
+            alt="${escapeHtml(title)}"
+            loading="lazy"
+            onerror="this.onerror=null;this.src='${FALLBACK_IMAGE}'"
+          >
+        </div>
+
+        <div class="gallery-content">
+
+          <h5>${escapeHtml(title)}</h5>
+
+          ${
+            meta
+            ? `<div class="gallery-meta mb-2">${meta}</div>`
+            : ""
+          }
+
+          ${
+            description
+            ? `<p class="text-secondary mb-3">${escapeHtml(description)}</p>`
+            : ""
+          }
+
+          ${
+            viewUrl
+            ? `
+              <a href="${escapeHtml(viewUrl)}"
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 class="profile-btn text-decoration-none d-inline-block">
+                <i class="fas fa-expand me-2"></i>
+                View
+              </a>
+            `
+            : ""
+          }
+
+        </div>
+      </div>
+    `;
+
+    container.appendChild(col);
+  });
 }
 
-
-
 /*
-
 ==========================================================
-
-   FUN ACTIVITIES
-
+   FUN ACTIVITIES
 ==========================================================
-
 */
-
-
 
 async function loadFunActivities() {
-
-  const container = document.getElementById("fun-activities-container");
-
-
-
-  if (!container) return;
-
-
-
-  container.innerHTML = "";
-
-
-
-  const data = await fetchSheet("FUN_ACTIVITIES");
-
-
-
-  if (!data.length) {
-
-    container.innerHTML = `
-
-      <div class="col-12">
-
-        <div class="glass text-center">
-
-          <p class="mb-0 text-secondary">
-
-            Fun activities coming soon...
-
-          </p>
-
-        </div>
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
-
-  data.forEach(a => {
-
-    if (!a || Object.keys(a).length === 0) return;
-
-
-
-    const title = a.title || a.Title || "Fun Activity";
-
-    const event = a.event || a.Event || "";
-
-    const location = a.location || a.Location || "";
-
-    const year = a.year || a.Year || "";
-
-    const rawImage = a.image || a.Image || "";
-
-    const image = normalizeImageUrl(rawImage);
-
-    const viewUrl = normalizeDriveOpenUrl(rawImage);
-
-    const description = a.description || a.Description || "";
-
-
-
-    const meta = [event,location,year]
-
-      .filter(Boolean)
-
-      .map(escapeHtml)
-
-      .join(" · ");
-
-
-
-    const col = document.createElement("div");
-
-    col.className = "col-lg-4 col-md-6";
-
-
-
-    col.innerHTML = `
-
-      <div class="gallery-card">
-
-
-
-        <div class="gallery-img-wrapper">
-
-          <img
-
-            src="${escapeHtml(image)}"
-
-            class="gallery-img"
-
-            alt="${escapeHtml(title)}"
-
-            loading="lazy"
-
-            onerror="this.onerror=null;this.src='${FALLBACK_IMAGE}'"
-
-          >
-
-        </div>
-
-
-
-        <div class="gallery-content">
-
-
-
-          <h5>${escapeHtml(title)}</h5>
-
-
-
-          ${
-
-            meta
-
-            ? `<div class="gallery-meta mb-2">${meta}</div>`
-
-            : ""
-
-          }
-
-
-
-          ${
-
-            description
-
-            ? `<p class="text-secondary mb-3">${escapeHtml(description)}</p>`
-
-            : ""
-
-          }
-
-
-
-          ${
-
-            viewUrl
-
-            ? `
-
-              <a href="${escapeHtml(viewUrl)}"
-
-                 target="_blank"
-
-                 rel="noopener noreferrer"
-
-                 class="profile-btn text-decoration-none d-inline-block">
-
-                <i class="fas fa-expand me-2"></i>
-
-                View
-
-              </a>
-
-            `
-
-            : ""
-
-          }
-
-
-
-        </div>
-
-      </div>
-
-    `;
-
-
-
-    container.appendChild(col);
-
-  });
-
+  const container = document.getElementById("fun-activities-container");
+
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  const data = await fetchSheet("FUN_ACTIVITIES");
+
+  if (!data.length) {
+    container.innerHTML = `
+      <div class="col-12">
+        <div class="glass text-center">
+          <p class="mb-0 text-secondary">
+            Fun activities coming soon...
+          </p>
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  data.forEach(a => {
+    if (!a || Object.keys(a).length === 0) return;
+
+    const title = a.title || a.Title || "Fun Activity";
+    const event = a.event || a.Event || "";
+    const location = a.location || a.Location || "";
+    const year = a.year || a.Year || "";
+    const rawImage = a.image || a.Image || "";
+    const image = normalizeImageUrl(rawImage);
+    const viewUrl = normalizeDriveOpenUrl(rawImage);
+    const description = a.description || a.Description || "";
+
+    const meta = [event,location,year]
+      .filter(Boolean)
+      .map(escapeHtml)
+      .join(" · ");
+
+    const col = document.createElement("div");
+    col.className = "col-lg-4 col-md-6";
+
+    col.innerHTML = `
+      <div class="gallery-card">
+
+        <div class="gallery-img-wrapper">
+          <img
+            src="${escapeHtml(image)}"
+            class="gallery-img"
+            alt="${escapeHtml(title)}"
+            loading="lazy"
+            onerror="this.onerror=null;this.src='${FALLBACK_IMAGE}'"
+          >
+        </div>
+
+        <div class="gallery-content">
+
+          <h5>${escapeHtml(title)}</h5>
+
+          ${
+            meta
+            ? `<div class="gallery-meta mb-2">${meta}</div>`
+            : ""
+          }
+
+          ${
+            description
+            ? `<p class="text-secondary mb-3">${escapeHtml(description)}</p>`
+            : ""
+          }
+
+          ${
+            viewUrl
+            ? `
+              <a href="${escapeHtml(viewUrl)}"
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 class="profile-btn text-decoration-none d-inline-block">
+                <i class="fas fa-expand me-2"></i>
+                View
+              </a>
+            `
+            : ""
+          }
+
+        </div>
+      </div>
+    `;
+
+    container.appendChild(col);
+  });
 }
 
-
-
 /*
-
 ==========================================================
-
-   POSTERS
-
+   POSTERS
 ==========================================================
-
 */
-
-
 
 async function loadPosters() {
-
-  const container = document.getElementById("posters-container");
-
-
-
-  if (!container) return;
-
-
-
-  container.innerHTML = "";
-
-
-
-  const data = await fetchSheet("POSTERS");
-
-
-
-  if (!data.length) {
-
-    container.innerHTML = `
-
-      <div class="col-12">
-
-        <div class="glass text-center">
-
-          <p class="mb-0 text-secondary">
-
-            Research posters coming soon...
-
-          </p>
-
-        </div>
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
-
-  data.forEach(p => {
-
-    if (!p || Object.keys(p).length === 0) return;
-
-
-
-    const title = p.title || p.Title || "Research Poster";
-
-    const event = p.event || p.Event || "";
-
-    const year = p.year || p.Year || "";
-
-    const authors = p.authors || p.Authors || "";
-
-    const image = normalizeImageUrl(p.image || p.Image || "");
-
-    const link = p.link || p.Link || "";
-
-    const description = p.description || p.Description || "";
-
-    const posterUrl = normalizeDriveOpenUrl(link);
-
-
-
-    const col = document.createElement("div");
-
-    col.className = "col-lg-4 col-md-6";
-
-
-
-    col.innerHTML = `
-
-      <div class="poster-card">
-
-
-
-        <div class="poster-img-wrapper">
-
-          <img
-
-            src="${escapeHtml(image)}"
-
-            class="poster-img"
-
-            alt="${escapeHtml(title)}"
-
-            loading="lazy"
-
-            onerror="this.onerror=null;this.src='${FALLBACK_IMAGE}'"
-
-          >
-
-        </div>
-
-
-
-        <div class="poster-content">
-
-
-
-          <h5>${escapeHtml(title)}</h5>
-
-
-
-          ${
-
-            event || year
-
-            ? `<p class="text-secondary mb-2">
-
-                 ${escapeHtml(event)}
-
-                 ${event && year ? " · " : ""}
-
-                 ${escapeHtml(year)}
-
-               </p>`
-
-            : ""
-
-          }
-
-
-
-          ${
-
-            authors
-
-            ? `<p class="small opacity-75">
-
-                 <strong>Authors:</strong>
-
-                 ${escapeHtml(authors)}
-
-               </p>`
-
-            : ""
-
-          }
-
-
-
-          ${
-
-            description
-
-            ? `<p class="text-secondary">${escapeHtml(description)}</p>`
-
-            : ""
-
-          }
-
-
-
-          ${
-
-            posterUrl
-
-            ? `<a href="${escapeHtml(posterUrl)}"
-
-                  target="_blank"
-
-                  rel="noopener noreferrer"
-
-                  class="profile-btn text-decoration-none">
-
-                  <i class="fas fa-file-pdf me-2"></i>
-
-                  View Poster
-
-               </a>`
-
-            : `<p class="text-warning small mb-0">
-
-                 Poster PDF not available.
-
-               </p>`
-
-          }
-
-
-
-        </div>
-
-      </div>
-
-    `;
-
-
-
-    container.appendChild(col);
-
-  });
-
+  const container = document.getElementById("posters-container");
+
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  const data = await fetchSheet("POSTERS");
+
+  if (!data.length) {
+    container.innerHTML = `
+      <div class="col-12">
+        <div class="glass text-center">
+          <p class="mb-0 text-secondary">
+            Research posters coming soon...
+          </p>
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  data.forEach(p => {
+    if (!p || Object.keys(p).length === 0) return;
+
+    const title = p.title || p.Title || "Research Poster";
+    const event = p.event || p.Event || "";
+    const year = p.year || p.Year || "";
+    const authors = p.authors || p.Authors || "";
+    const image = normalizeImageUrl(p.image || p.Image || "");
+    const link = p.link || p.Link || "";
+    const description = p.description || p.Description || "";
+    const posterUrl = normalizeDriveOpenUrl(link);
+
+    const col = document.createElement("div");
+    col.className = "col-lg-4 col-md-6";
+
+    col.innerHTML = `
+      <div class="poster-card">
+
+        <div class="poster-img-wrapper">
+          <img
+            src="${escapeHtml(image)}"
+            class="poster-img"
+            alt="${escapeHtml(title)}"
+            loading="lazy"
+            onerror="this.onerror=null;this.src='${FALLBACK_IMAGE}'"
+          >
+        </div>
+
+        <div class="poster-content">
+
+          <h5>${escapeHtml(title)}</h5>
+
+          ${
+            event || year
+            ? `<p class="text-secondary mb-2">
+                 ${escapeHtml(event)}
+                 ${event && year ? " · " : ""}
+                 ${escapeHtml(year)}
+               </p>`
+            : ""
+          }
+
+          ${
+            authors
+            ? `<p class="small opacity-75">
+                 <strong>Authors:</strong>
+                 ${escapeHtml(authors)}
+               </p>`
+            : ""
+          }
+
+          ${
+            description
+            ? `<p class="text-secondary">${escapeHtml(description)}</p>`
+            : ""
+          }
+
+          ${
+            posterUrl
+            ? `<a href="${escapeHtml(posterUrl)}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="profile-btn text-decoration-none">
+                  <i class="fas fa-file-pdf me-2"></i>
+                  View Poster
+               </a>`
+            : `<p class="text-warning small mb-0">
+                 Poster PDF not available.
+               </p>`
+          }
+
+        </div>
+      </div>
+    `;
+
+    container.appendChild(col);
+  });
 }
 
-
-
 /*
-
 ==========================================================
-
-   PUBLICATIONS
-
+   PUBLICATIONS
 ==========================================================
-
 */
-
-
 
 async function loadPublications() {
-
-  const container = document.getElementById("pub-container");
-
-
-
-  if (!container) return;
-
-
-
-  container.innerHTML = "";
-
-
-
-  const data = await fetchSheet("PUBLICATIONS");
-
-
-
-  if (!data.length) {
-
-    container.innerHTML = `
-
-      <div class="text-center py-5">
-
-        <p class="text-secondary mb-0">
-
-          Publications coming soon...
-
-        </p>
-
-      </div>
-
-    `;
-
-    return;
-
-  }
-
-
-
-  const items = [...data].reverse().slice(0,8);
-
-
-
-  let html = "";
-
-
-
-  items.forEach(p => {
-
-    if (!p || Object.keys(p).length === 0) return;
-
-
-
-    const title =
-
-      p.title ||
-
-      p.Title ||
-
-      p["Title "] ||
-
-      "Untitled";
-
-
-
-    const authors = p.authors || p.Authors || "";
-
-    const journal = p.journal || p.Journal || "";
-
-    const year = p.year || p.Year || "";
-
-    const link = safeResourceUrl(p.link || p.Link || "");
-
-
-
-    html += `
-
-      <div class="pub-card">
-
-
-
-        <h6 class="mb-2 fw-bold">
-
-          ${escapeHtml(title)}
-
-        </h6>
-
-
-
-        <p class="mb-2 opacity-75">
-
-          ${escapeHtml(authors)}
-
-        </p>
-
-
-
-        <small class="text-secondary">
-
-          ${escapeHtml(journal)}
-
-          ${journal && year ? ", " : ""}
-
-          ${escapeHtml(year)}
-
-        </small>
-
-
-
-        ${
-
-          link
-
-          ? `
-
-            <br>
-
-            <a href="${escapeHtml(link)}"
-
-               target="_blank"
-
-               rel="noopener noreferrer"
-
-               class="text-decoration-none mt-2 d-inline-block">
-
-              <i class="fas fa-external-link-alt me-1 text-primary"></i>
-
-              View Paper
-
-            </a>
-
-          `
-
-          : ""
-
-        }
-
-
-
-      </div>
-
-    `;
-
-  });
-
-
-
-  container.innerHTML = html || `
-
-    <div class="text-center py-5">
-
-      <p class="text-secondary mb-0">
-
-        Publications coming soon...
-
-      </p>
-
-    </div>
-
-  `;
-
+  const container = document.getElementById("pub-container");
+
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  const data = await fetchSheet("PUBLICATIONS");
+
+  if (!data.length) {
+    container.innerHTML = `
+      <div class="text-center py-5">
+        <p class="text-secondary mb-0">
+          Publications coming soon...
+        </p>
+      </div>
+    `;
+    return;
+  }
+
+  const items = [...data].reverse().slice(0,8);
+
+  let html = "";
+
+  items.forEach(p => {
+    if (!p || Object.keys(p).length === 0) return;
+
+    const title =
+      p.title ||
+      p.Title ||
+      p["Title "] ||
+      "Untitled";
+
+    const authors = p.authors || p.Authors || "";
+    const journal = p.journal || p.Journal || "";
+    const year = p.year || p.Year || "";
+    const link = safeResourceUrl(p.link || p.Link || "");
+
+    html += `
+      <div class="pub-card">
+
+        <h6 class="mb-2 fw-bold">
+          ${escapeHtml(title)}
+        </h6>
+
+        <p class="mb-2 opacity-75">
+          ${escapeHtml(authors)}
+        </p>
+
+        <small class="text-secondary">
+          ${escapeHtml(journal)}
+          ${journal && year ? ", " : ""}
+          ${escapeHtml(year)}
+        </small>
+
+        ${
+          link
+          ? `
+            <br>
+            <a href="${escapeHtml(link)}"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="text-decoration-none mt-2 d-inline-block">
+              <i class="fas fa-external-link-alt me-1 text-primary"></i>
+              View Paper
+            </a>
+          `
+          : ""
+        }
+
+      </div>
+    `;
+  });
+
+  container.innerHTML = html || `
+    <div class="text-center py-5">
+      <p class="text-secondary mb-0">
+        Publications coming soon...
+      </p>
+    </div>
+  `;
 }
 
-
-
 /*
-
 ==========================================================
-
-   CONTACT
-
+   CONTACT
 ==========================================================
-
 */
-
-
 
 async function loadContact() {
+  const el = document.getElementById("contact-content");
 
-  const el = document.getElementById("contact-content");
+  if (!el) return;
 
+  el.textContent = "Loading...";
 
+  const data = await fetchSheet("CONTACT");
 
-  if (!el) return;
+  let email = "";
+  let address = "";
 
+  data.forEach(c => {
+    if (!c || Object.keys(c).length === 0) return;
 
+    const key = String(c.type || c.Type || "").toLowerCase();
+    const value = String(c.value || c.Value || "").trim();
 
-  el.textContent = "Loading...";
+    if (key.includes("email")) email = value;
+    if (key.includes("address")) address = value;
+  });
 
+  const emailBlock = email
+    ? `
+      <i class="fas fa-envelope fs-5 me-3"></i>
+      <a href="mailto:${escapeHtml(email)}"
+         class="text-decoration-none"
+         style="color:#000000 !important;">
+        <strong>${escapeHtml(email)}</strong>
+      </a>
+    `
+    : `
+      <i class="fas fa-envelope fs-5 me-3"></i>
+      <strong>Email not set</strong>
+    `;
 
+  const addressBlock = address
+    ? `
+      <br><br>
+      <i class="fas fa-map-marker-alt fs-5 me-3"></i>
+      <strong>${escapeHtml(address)}</strong>
+    `
+    : `
+      <br><br>
+      <i class="fas fa-map-marker-alt fs-5 me-3"></i>
+      <strong>Address not set</strong>
+    `;
 
-  const data = await fetchSheet("CONTACT");
-
-
-
-  let email = "";
-
-  let address = "";
-
-
-
-  data.forEach(c => {
-
-    if (!c || Object.keys(c).length === 0) return;
-
-
-
-    const key = String(c.type || c.Type || "").toLowerCase();
-
-    const value = String(c.value || c.Value || "").trim();
-
-
-
-    if (key.includes("email")) email = value;
-
-    if (key.includes("address")) address = value;
-
-  });
-
-
-
-  const emailBlock = email
-
-    ? `
-
-      <i class="fas fa-envelope fs-5 me-3"></i>
-
-      <a href="mailto:${escapeHtml(email)}"
-
-         class="text-decoration-none"
-
-         style="color:#000000 !important;">
-
-        <strong>${escapeHtml(email)}</strong>
-
-      </a>
-
-    `
-
-    : `
-
-      <i class="fas fa-envelope fs-5 me-3"></i>
-
-      <strong>Email not set</strong>
-
-    `;
-
-
-
-  const addressBlock = address
-
-    ? `
-
-      <br><br>
-
-      <i class="fas fa-map-marker-alt fs-5 me-3"></i>
-
-      <strong>${escapeHtml(address)}</strong>
-
-    `
-
-    : `
-
-      <br><br>
-
-      <i class="fas fa-map-marker-alt fs-5 me-3"></i>
-
-      <strong>Address not set</strong>
-
-    `;
-
-
-
-  el.innerHTML = emailBlock + addressBlock;
-
+  el.innerHTML = emailBlock + addressBlock;
 }
 
-
-
 /*
-
 ==========================================================
-
-   INITIALIZE WEBSITE
-
+   INITIALIZE WEBSITE
 ==========================================================
-
 */
 
-
-
 document.addEventListener("DOMContentLoaded", () => {
-
-  loadAbout();
-
-  loadResearch();
-
-  loadTeam();
-
-  loadPostdocs();
-
-  loadGallery();
-
-  loadPosters();
-
-  loadAdvertisements();
-
-  loadPublications();
-
-  loadServers();
-
-  loadDatabases();
-
-  loadFunActivities();
-
-  loadContact();
-
+  loadAbout();
+  loadResearch();
+  loadTeam();
+  loadPostdocs();
+  loadGallery();
+  loadPosters();
+  loadAdvertisements();
+  loadPublications();
+  loadServers();
+  loadDatabases();
+  loadFunActivities();
+  loadContact();
 });
-
 </script>
 
-
-
 </body>
-
 </html>
