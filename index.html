@@ -356,427 +356,528 @@ render("DATABASES","databases-container","Important research databases coming so
     P=Array.from({length:Math.round(Math.min(95,W*H/15000))},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4}))}
   addEventListener("resize",size);size();
   addEventListener("mousemove",e=>{mx=e.clientX;my=e.clientY});
-    /* ===== ferritin-like cage protein (replaces DNA) ===== */
-const FOLDP=[];
-const CAGE_EDGES=[];
+   /* ===== FERRITIN-LIKE 24-SUBUNIT CAGE ===== */
 
-(function(){
-  const R=178;
-  const rings=[
-    {n:8,  y:-0.72},
-    {n:12, y:-0.38},
-    {n:12, y:0.0},
-    {n:12, y:0.38},
-    {n:8,  y:0.72}
-  ];
+/* =========================================================
+   1. FERRITIN CAGE GEOMETRY
+   ========================================================= */
 
-  const shell=[];
-  let offset=0;
+const FOLDP = [];
+const UNF = [];
+const CAGE_PATHS = [];
+const CAGE_SUBUNITS = 24;
 
-  /* Create the spherical ferritin-like cage shell */
-  rings.forEach((ring,ri)=>{
-    const yy=ring.y;
-    const rr=Math.sqrt(1-yy*yy)*R;
+const CAGE_RADIUS = 145;
+const HELIX_LENGTH = 68;
+const HELIX_STEPS = 30;
+const HELIX_RADIUS = 2.8;
 
-    for(let j=0;j<ring.n;j++){
-      const th=(j/ring.n)*Math.PI*2+(ri%2?Math.PI/ring.n:0);
+/* Store a path as indices into the shared 3D coordinate array */
+function addCagePath(points, type, subunit) {
+  const indices = [];
 
-      shell.push({
-        x:rr*Math.cos(th),
-        y:yy*R,
-        z:rr*Math.sin(th),
-        ring:ri,
-        pos:j
-      });
-    }
+  for (const p of points) {
+    indices.push(FOLDP.length);
+    FOLDP.push(p);
+  }
+
+  CAGE_PATHS.push({
+    indices,
+    type,
+    subunit
   });
+}
 
-  /* Connect neighbouring subunits around each ring */
-  rings.forEach((ring,ri)=>{
-    const start=offset;
+/* =========================================================
+   2. GENERATE 24 SPHERICAL SUBUNITS
+   ========================================================= */
 
-    for(let j=0;j<ring.n;j++){
-      const a=start+j;
-      const b=start+(j+1)%ring.n;
-      CAGE_EDGES.push([a,b]);
+(function buildFerritinCage() {
+
+  const goldenAngle = Math.PI * (3 - Math.sqrt(5));
+
+  for (let s = 0; s < CAGE_SUBUNITS; s++) {
+
+    /* Fibonacci sphere distribution */
+    const yy = 1 - 2 * (s + 0.5) / CAGE_SUBUNITS;
+    const rr = Math.sqrt(1 - yy * yy);
+    const theta = goldenAngle * s;
+
+    const n = {
+      x: rr * Math.cos(theta),
+      y: yy,
+      z: rr * Math.sin(theta)
+    };
+
+    /* Local coordinate system */
+    const ref = Math.abs(n.y) > 0.9
+      ? { x: 1, y: 0, z: 0 }
+      : { x: 0, y: 1, z: 0 };
+
+    let u = {
+      x: ref.y * n.z - ref.z * n.y,
+      y: ref.z * n.x - ref.x * n.z,
+      z: ref.x * n.y - ref.y * n.x
+    };
+
+    const ul = Math.hypot(u.x, u.y, u.z);
+
+    u = {
+      x: u.x / ul,
+      y: u.y / ul,
+      z: u.z / ul
+    };
+
+    const v = {
+      x: n.y * u.z - n.z * u.y,
+      y: n.z * u.x - n.x * u.z,
+      z: n.x * u.y - n.y * u.x
+    };
+
+    const center = {
+      x: n.x * CAGE_RADIUS,
+      y: n.y * CAGE_RADIUS,
+      z: n.z * CAGE_RADIUS
+    };
+
+    /* Four alpha helices in each protein subunit */
+    const offsets = [
+      [-10, -10],
+      [ 10, -10],
+      [ 10,  10],
+      [-10,  10]
+    ];
+
+    const helices = [];
+
+    for (let h = 0; h < 4; h++) {
+
+      const [ou, ov] = offsets[h];
+      const points = [];
+
+      for (let k = 0; k < HELIX_STEPS; k++) {
+
+        const t = k / (HELIX_STEPS - 1);
+        const axial = (t - 0.5) * HELIX_LENGTH;
+
+        const angle =
+          t * Math.PI * 10 +
+          h * Math.PI * 0.5 +
+          s * 0.17;
+
+        const coilU = Math.cos(angle) * HELIX_RADIUS;
+        const coilV = Math.sin(angle) * HELIX_RADIUS;
+
+        points.push({
+
+          x:
+            center.x +
+            n.x * axial +
+            u.x * (ou + coilU) +
+            v.x * (ov + coilV),
+
+          y:
+            center.y +
+            n.y * axial +
+            u.y * (ou + coilU) +
+            v.y * (ov + coilV),
+
+          z:
+            center.z +
+            n.z * axial +
+            u.z * (ou + coilU) +
+            v.z * (ov + coilV)
+
+        });
+      }
+
+      helices.push(points);
+
+      addCagePath(points, "helix", s);
     }
 
-    offset+=ring.n;
-  });
+    /* Connecting loops between the four helices */
+    for (let h = 0; h < 4; h++) {
 
-  /* Connect adjacent rings */
-  offset=0;
+      const next = (h + 1) % 4;
 
-  for(let ri=0;ri<rings.length-1;ri++){
-    const r1=rings[ri];
-    const r2=rings[ri+1];
-    const s1=offset;
-    const s2=offset+r1.n;
+      for (const end of [0, 1]) {
 
-    for(let j=0;j<r1.n;j++){
-      const a=s1+j;
-      const t=j/r1.n;
-      const k=Math.floor(t*r2.n);
+        const a = end === 0
+          ? helices[h][0]
+          : helices[h][HELIX_STEPS - 1];
 
-      CAGE_EDGES.push([a,s2+k%r2.n]);
+        const b = end === 0
+          ? helices[next][0]
+          : helices[next][HELIX_STEPS - 1];
 
-      if(r2.n>r1.n){
-        CAGE_EDGES.push([a,s2+(k+1)%r2.n]);
+        const loop = [];
+
+        for (let k = 0; k <= 7; k++) {
+
+          const t = k / 7;
+          const bulge = Math.sin(t * Math.PI) * 5;
+
+          loop.push({
+
+            x:
+              a.x * (1 - t) +
+              b.x * t +
+              u.x * bulge,
+
+            y:
+              a.y * (1 - t) +
+              b.y * t +
+              u.y * bulge,
+
+            z:
+              a.z * (1 - t) +
+              b.z * t +
+              u.z * bulge
+
+          });
+        }
+
+        addCagePath(loop, "loop", s);
       }
     }
-
-    offset+=r1.n;
   }
 
-  /*
-   * Convert each cage connection into a short curved
-   * protein-like segment.
-   */
-  const edgeStart=[];
-
-  for(const edge of CAGE_EDGES){
-    const a=shell[edge[0]];
-    const b=shell[edge[1]];
-
-    edgeStart.push(FOLDP.length);
-
-    for(let k=0;k<5;k++){
-      const u=k/4;
-      const v=1-u;
-
-      const x=v*a.x+u*b.x;
-      const y=v*a.y+u*b.y;
-      const z=v*a.z+u*b.z;
-
-      const midx=(a.x+b.x)*.5;
-      const midy=(a.y+b.y)*.5;
-      const midz=(a.z+b.z)*.5;
-
-      const bulge=Math.sin(u*Math.PI)*7;
-
-      const len=Math.sqrt(midx*midx+midy*midy+midz*midz)||1;
-
-      FOLDP.push({
-        x:x+(midx/len)*bulge,
-        y:y+(midy/len)*bulge,
-        z:z+(midz/len)*bulge
-      });
-    }
-  }
-
-  /*
-   * Add small bright nodes at cage vertices.
-   * These make the structure look more like a
-   * multimeric ferritin shell rather than a wire sphere.
-   */
-  for(const p of shell){
-    FOLDP.push({
-      x:p.x,
-      y:p.y,
-      z:p.z
-    });
-  }
 })();
 
-const NR=FOLDP.length;
+/* =========================================================
+   3. UNFOLDED STARTING CONFIGURATION
+   ========================================================= */
 
-const UNF=FOLDP.map((p,i)=>({
-  x:(i/(NR-1)-.5)*470,
-  y:Math.sin(i*.35)*22,
-  z:Math.cos(i*.35)*22
-}));
+const NR = FOLDP.length;
 
-const mixc=(a,b,u)=>a.map((v,i)=>v+(b[i]-v)*u),
-      CA=[0,229,255],
-      CB=[124,77,255],
-      CC=[255,78,205];
+for (let i = 0; i < NR; i++) {
 
-const colAt=t=>t<.5
-  ?mixc(CA,CB,t*2)
-  :mixc(CB,CC,(t-.5)*2);
+  UNF.push({
 
-const smooth=u=>u*u*(3-2*u);
+    x: (i / (NR - 1) - 0.5) * 470,
 
-let foldT=0,
-    unfold=false,
-    ry=0,
-    tilt=.2,
-    lig=0,
-    lastPct=-1;
+    y: Math.sin(i * 0.35) * 22,
 
-const hint=document.createElement("div");
-hint.className="hint";
+    z: Math.cos(i * 0.35) * 22
+
+  });
+
+}
+
+/* =========================================================
+   4. COLOUR AND ANIMATION SETTINGS
+   ========================================================= */
+
+const mixc = (a, b, u) =>
+  a.map((v, i) => v + (b[i] - v) * u);
+
+const CA = [0, 229, 255];
+const CB = [45, 130, 235];
+const CC = [124, 77, 255];
+
+const colAt = t =>
+  t < 0.5
+    ? mixc(CA, CB, t * 2)
+    : mixc(CB, CC, (t - 0.5) * 2);
+
+const smooth = u => u * u * (3 - 2 * u);
+
+let foldT = 0;
+let unfold = false;
+let ry = 0;
+let tilt = 0.2;
+let lig = 0;
+let lastPct = -1;
+
+/* Assembly hint */
+const hint = document.createElement("div");
+hint.className = "hint";
 hc.append(hint);
 
-hx.style.cursor="pointer";
-hx.title="Click to refold";
+/* Click cage to trigger refolding */
+hx.style.cursor = "pointer";
+hx.title = "Click to refold ferritin cage";
 
-hx.addEventListener("click",()=>{
-  unfold=true;
+hx.addEventListener("click", () => {
+  unfold = true;
 });
 
-function helix(){
+/* =========================================================
+   5. 3D PROJECTION AND FERRITIN RENDERING
+   ========================================================= */
 
-  const tm=performance.now()/1000;
+function helix() {
 
-  if(unfold){
-    foldT-=.035;
+  const tm = performance.now() / 1000;
 
-    if(foldT<=0){
-      foldT=0;
-      unfold=false;
+  /* Folding animation */
+  if (unfold) {
+
+    foldT -= 0.035;
+
+    if (foldT <= 0) {
+      foldT = 0;
+      unfold = false;
     }
 
-  }else if(foldT<1){
-    foldT=Math.min(1,foldT+.0055);
+  } else if (foldT < 1) {
+
+    foldT = Math.min(1, foldT + 0.0055);
+
   }
 
-  tilt+=(
-    (.15+((my/innerHeight)-.5)*.5)-tilt
-  )*.05;
+  /* Rotation and tilt */
+  tilt += (
+    (.15 + ((my / innerHeight) - 0.5) * 0.5) - tilt
+  ) * 0.05;
 
-  ry+=.008+(
-    (mx>0?mx/innerWidth:.5)-.5
-  )*.02;
+  ry +=
+    0.006 +
+    ((mx > 0 ? mx / innerWidth : 0.5) - 0.5) * 0.02;
 
-  const cs=Math.cos(ry),
-        sn=Math.sin(ry),
-        ct=Math.cos(tilt),
-        st=Math.sin(tilt),
-        P2=[];
+  const cs = Math.cos(ry);
+  const sn = Math.sin(ry);
+  const ct = Math.cos(tilt);
+  const st = Math.sin(tilt);
 
-  /* =========================
-     TRANSFORM CAGE
-     ========================= */
-  for(let i=0;i<NR;i++){
+  const P2 = [];
 
-    const l=smooth(
+  /* Project all cage coordinates */
+  for (let i = 0; i < NR; i++) {
+
+    const l = smooth(
       Math.max(
         0,
         Math.min(
           1,
-          foldT*1.7-i/NR*.7
+          foldT * 1.7 - i / NR * 0.7
         )
       )
     );
 
-    const f=FOLDP[i],
-          u=UNF[i];
+    const f = FOLDP[i];
+    const u = UNF[i];
 
-    const wob=l*Math.sin(
-      tm*2+i*.25
-    )*1.8;
+    const wob =
+      l * Math.sin(tm * 1.5 + i * 0.025) * 0.9;
 
-    const x0=
-      u.x+(f.x-u.x)*l+wob;
+    const x0 =
+      u.x + (f.x - u.x) * l + wob;
 
-    const y0=
-      u.y+(f.y-u.y)*l+wob;
+    const y0 =
+      u.y + (f.y - u.y) * l + wob;
 
-    const z0=
-      u.z+(f.z-u.z)*l+wob;
+    const z0 =
+      u.z + (f.z - u.z) * l + wob;
 
-    const x1=x0*cs-z0*sn,
-          z1=x0*sn+z0*cs;
+    const x1 = x0 * cs - z0 * sn;
+    const z1 = x0 * sn + z0 * cs;
 
-    const y2=y0*ct-z1*st,
-          z2=y0*st+z1*ct;
+    const y2 = y0 * ct - z1 * st;
+    const z2 = y0 * st + z1 * ct;
 
-    const s=700/(700-z2);
+    const scale = 700 / (700 - z2);
 
     P2.push({
-      x:260+x1*s,
-      y:320+y2*s,
-      z:z2,
-      s,
-      t:i/(NR-1)
+
+      x: 260 + x1 * scale,
+      y: 320 + y2 * scale,
+
+      z: z2,
+      s: scale
+
     });
   }
 
-  hctx.clearRect(0,0,520,640);
+  hctx.clearRect(0, 0, 520, 640);
 
-  hctx.lineCap="round";
-  hctx.lineJoin="round";
+  hctx.lineCap = "round";
+  hctx.lineJoin = "round";
 
-  /* =========================
-     DRAW CAGE EDGES
-     ========================= */
+  /* Depth-sort protein subunits */
+  const sortedPaths = CAGE_PATHS.map(path => {
 
-  hctx.globalCompositeOperation="source-over";
+    let depth = 0;
 
-  for(let e=0;e<CAGE_EDGES.length;e++){
-
-    const edge=CAGE_EDGES[e];
-
-    const start=Math.floor(e*5);
-
-    for(let k=1;k<5;k++){
-
-      const i=start+k;
-      const j=start+k-1;
-
-      if(i>=P2.length || j>=P2.length)continue;
-
-      const p=P2[i],
-            q=P2[j];
-
-      const d=Math.max(
-        0,
-        Math.min(
-          1,
-          (p.z+200)/400
-        )
-      );
-
-      const c=colAt(
-        (p.t+q.t)*.5
-      );
-
-      hctx.strokeStyle=
-        `rgba(${c[0]|0},${c[1]|0},${c[2]|0},${.42+d*.48})`;
-
-      hctx.lineWidth=
-        (3.2+d*4.8)*
-        ((p.s+q.s)*.5);
-
-      hctx.beginPath();
-      hctx.moveTo(q.x,q.y);
-      hctx.lineTo(p.x,p.y);
-      hctx.stroke();
+    for (const index of path.indices) {
+      depth += P2[index].z;
     }
-  }
 
-  /* =========================
-     BRIGHT INNER HIGHLIGHT
-     ========================= */
+    return {
+      path,
+      depth: depth / path.indices.length
+    };
 
-  hctx.globalCompositeOperation="lighter";
+  }).sort((a, b) => a.depth - b.depth);
 
-  for(let e=0;e<CAGE_EDGES.length;e++){
+  /* =====================================================
+     6. DRAW FOUR-HELIX PROTEIN SUBUNITS
+     ===================================================== */
 
-    const edge=CAGE_EDGES[e];
+  for (const item of sortedPaths) {
 
-    const start=Math.floor(e*5);
+    const path = item.path;
+    const indices = path.indices;
 
-    for(let k=1;k<5;k++){
+    if (indices.length < 2) continue;
 
-      const i=start+k;
-      const j=start+k-1;
-
-      if(i>=P2.length || j>=P2.length)continue;
-
-      const p=P2[i],
-            q=P2[j];
-
-      const d=Math.max(
-        0,
-        Math.min(
-          1,
-          (p.z+200)/400
-        )
-      );
-
-      hctx.strokeStyle=
-        `rgba(255,255,255,${.12+d*.22})`;
-
-      hctx.lineWidth=
-        1.2*((p.s+q.s)*.5);
-
-      hctx.beginPath();
-      hctx.moveTo(q.x-1,q.y-1);
-      hctx.lineTo(p.x-1,p.y-1);
-      hctx.stroke();
-    }
-  }
-
-  /* =========================
-     CAGE VERTEX NODES
-     ========================= */
-
-  const vertexStart=NR-CAGE_EDGES.length*0;
-
-  /*
-   * The shell vertices are appended after all
-   * edge points. Reconstruct their start index.
-   */
-  const shellVertexCount=52;
-  const shellStart=NR-shellVertexCount;
-
-  for(let i=shellStart;i<NR;i++){
-
-    const p=P2[i];
-
-    const d=Math.max(
+    const front = Math.max(
       0,
-      Math.min(
+      Math.min(1, (item.depth + 190) / 380)
+    );
+
+    const subunitColour = colAt(
+      path.subunit / CAGE_SUBUNITS
+    );
+
+    const helixPath = path.type === "helix";
+
+    const baseWidth = helixPath ? 8.5 : 3.0;
+
+    /* Main protein ribbon */
+    for (let k = 1; k < indices.length; k++) {
+
+      const p = P2[indices[k - 1]];
+      const q = P2[indices[k]];
+
+      const depth = Math.max(
+        0,
+        Math.min(1, (p.z + q.z + 380) / 760)
+      );
+
+      const alpha = helixPath
+        ? 0.55 + depth * 0.4
+        : 0.3 + depth * 0.4;
+
+      hctx.strokeStyle = helixPath
+        ? `rgba(30,105,205,${alpha})`
+        : `rgba(85,165,235,${alpha})`;
+
+      hctx.lineWidth =
+        baseWidth *
+        ((p.s + q.s) * 0.5);
+
+      hctx.beginPath();
+
+      hctx.moveTo(p.x, p.y);
+      hctx.lineTo(q.x, q.y);
+
+      hctx.stroke();
+    }
+
+    /* Luminous ribbon highlight */
+    hctx.globalCompositeOperation = "lighter";
+
+    for (let k = 1; k < indices.length; k++) {
+
+      const p = P2[indices[k - 1]];
+      const q = P2[indices[k]];
+
+      const alpha = helixPath
+        ? 0.16 + front * 0.28
+        : 0.08 + front * 0.12;
+
+      hctx.strokeStyle =
+        `rgba(185,225,255,${alpha})`;
+
+      hctx.lineWidth =
+        (helixPath ? 2.0 : 0.9) *
+        ((p.s + q.s) * 0.5);
+
+      hctx.beginPath();
+
+      hctx.moveTo(p.x - 1.2, p.y - 1.2);
+      hctx.lineTo(q.x - 1.2, q.y - 1.2);
+
+      hctx.stroke();
+    }
+
+    hctx.globalCompositeOperation = "source-over";
+  }
+
+  /* =====================================================
+     7. SUBUNIT HIGHLIGHTS
+     ===================================================== */
+
+  for (let s = 0; s < CAGE_SUBUNITS; s++) {
+
+    const subunitPaths = CAGE_PATHS.filter(
+      p => p.subunit === s && p.type === "helix"
+    );
+
+    for (const path of subunitPaths) {
+
+      const midIndex =
+        path.indices[Math.floor(path.indices.length / 2)];
+
+      const p = P2[midIndex];
+
+      const r = 2.3 * p.s;
+
+      const glow = hctx.createRadialGradient(
+        p.x, p.y, 0,
+        p.x, p.y, r * 4
+      );
+
+      glow.addColorStop(
+        0,
+        "rgba(255,255,255,.45)"
+      );
+
+      glow.addColorStop(
+        0.35,
+        "rgba(0,229,255,.24)"
+      );
+
+      glow.addColorStop(
         1,
-        (p.z+200)/400
-      )
-    );
+        "rgba(0,229,255,0)"
+      );
 
-    const r=2.6*p.s;
+      hctx.fillStyle = glow;
 
-    const gr=hctx.createRadialGradient(
-      p.x,p.y,0,
-      p.x,p.y,r*3.5
-    );
+      hctx.beginPath();
 
-    gr.addColorStop(
-      0,
-      "rgba(255,255,255,.9)"
-    );
+      hctx.arc(
+        p.x,
+        p.y,
+        r * 4,
+        0,
+        Math.PI * 2
+      );
 
-    gr.addColorStop(
-      .3,
-      `rgba(0,229,255,${.45+d*.2})`
-    );
-
-    gr.addColorStop(
-      1,
-      "rgba(0,229,255,0)"
-    );
-
-    hctx.fillStyle=gr;
-
-    hctx.beginPath();
-    hctx.arc(
-      p.x,
-      p.y,
-      r*3.5,
-      0,
-      6.3
-    );
-
-    hctx.fill();
+      hctx.fill();
+    }
   }
 
-  hctx.globalCompositeOperation="source-over";
+  /* =====================================================
+     8. ORBITING LIGAND
+     ===================================================== */
 
-  /* =========================
-     ORBITING LIGAND
-     ========================= */
+  lig += 0.018;
 
-  lig+=.018;
+  const Lx = Math.cos(lig) * 190;
+  const Ly = Math.sin(lig * 1.3) * 110;
+  const Lz = Math.sin(lig) * 190;
 
-  const Lx=Math.cos(lig)*215,
-        Ly=Math.sin(lig*1.3)*110,
-        Lz=Math.sin(lig)*215;
+  const lx = Lx * cs - Lz * sn;
+  const lz = Lx * sn + Lz * cs;
 
-  const lx=Lx*cs-Lz*sn,
-        lz=Lx*sn+Lz*cs,
-        ly=Ly*ct-lz*st,
-        lz2=Ly*st+lz*ct,
-        ls=700/(700-lz2);
+  const ly = Ly * ct - lz * st;
+  const lz2 = Ly * st + lz * ct;
 
-  const drawLig=()=>{
+  const ls = 700 / (700 - lz2);
 
-    const sx=260+lx*ls,
-          sy=320+ly*ls,
-          r=11*ls;
+  const drawLig = () => {
 
-    const gr=hctx.createRadialGradient(
-      sx,sy,0,
-      sx,sy,r*3.2
+    const sx = 260 + lx * ls;
+    const sy = 320 + ly * ls;
+    const r = 10 * ls;
+
+    const gr = hctx.createRadialGradient(
+      sx, sy, 0,
+      sx, sy, r * 3.2
     );
 
     gr.addColorStop(
@@ -785,7 +886,7 @@ function helix(){
     );
 
     gr.addColorStop(
-      .25,
+      0.25,
       "rgba(255,78,205,.8)"
     );
 
@@ -794,129 +895,101 @@ function helix(){
       "rgba(255,78,205,0)"
     );
 
-    hctx.fillStyle=gr;
+    hctx.fillStyle = gr;
 
     hctx.beginPath();
+
     hctx.arc(
       sx,
       sy,
-      r*3.2,
+      r * 3.2,
       0,
-      6.3
+      Math.PI * 2
     );
 
     hctx.fill();
   };
 
-  if(lz2<0)drawLig();
+  if (lz2 < 0) drawLig();
 
-  /* =========================
-     CAGE DEPTH HIGHLIGHT
-     ========================= */
+  if (lz2 >= 0) drawLig();
 
-  for(let e=0;e<CAGE_EDGES.length;e++){
+  /* =====================================================
+     9. ASSEMBLY STATUS
+     ===================================================== */
 
-    const edge=CAGE_EDGES[e];
-    const start=Math.floor(e*5);
+  const pct = Math.round(foldT * 100);
 
-    for(let k=1;k<5;k++){
+  if (pct !== lastPct) {
 
-      const i=start+k;
-      const j=start+k-1;
+    lastPct = pct;
 
-      if(i>=P2.length || j>=P2.length)continue;
+    hint.textContent =
+      pct < 100
+        ? `Ferritin cage assembly… ${pct}%`
+        : "Ferritin 24-mer ✓ · click the cage to refold";
 
-      const p=P2[i],
-            q=P2[j];
-
-      if(p.z<0)continue;
-
-      const d=Math.max(
-        0,
-        Math.min(
-          1,
-          (p.z+200)/400
-        )
-      );
-
-      hctx.strokeStyle=
-        `rgba(255,255,255,${.08+d*.16})`;
-
-      hctx.lineWidth=
-        1.5*((p.s+q.s)*.5);
-
-      hctx.beginPath();
-      hctx.moveTo(q.x-1.5,q.y-1.5);
-      hctx.lineTo(p.x-1.5,p.y-1.5);
-      hctx.stroke();
-    }
   }
 
-  hctx.globalCompositeOperation="source-over";
-
-  if(lz2>=0)drawLig();
-
-  /* =========================
-     STATUS
-     ========================= */
-
-  const pct=Math.round(foldT*100);
-
-  if(pct!==lastPct){
-
-    lastPct=pct;
-
-    hint.textContent=
-      pct<100
-        ?`Cage assembly… ${pct}%`
-        :"Ferritin-like cage ✓ · click the protein to refold";
-  }
 }
 
+/* =========================================================
+   10. CLICK PARTICLE EFFECTS
+   ========================================================= */
 
-/* ===== click bursts ===== */
-const BU=[];
+const BU = [];
 
-addEventListener("click",e=>{
-  if(!nova())return;
+addEventListener("click", e => {
 
-  for(let i=0;i<18;i++){
+  if (!nova()) return;
 
-    const a=Math.random()*6.283,
-          s=2+Math.random()*4;
+  for (let i = 0; i < 18; i++) {
+
+    const a = Math.random() * 6.283;
+    const speed = 2 + Math.random() * 4;
 
     BU.push({
-      x:e.clientX,
-      y:e.clientY,
-      vx:Math.cos(a)*s,
-      vy:Math.sin(a)*s,
-      l:50,
-      c:Math.random()<.5
-        ?"0,229,255"
-        :"255,78,205"
+
+      x: e.clientX,
+      y: e.clientY,
+
+      vx: Math.cos(a) * speed,
+      vy: Math.sin(a) * speed,
+
+      l: 50,
+
+      c:
+        Math.random() < 0.5
+          ? "0,229,255"
+          : "255,78,205"
+
     });
+
   }
+
 });
 
-function bursts(){
+function bursts() {
 
-  for(let i=BU.length-1;i>=0;i--){
+  for (let i = BU.length - 1; i >= 0; i--) {
 
-    const b=BU[i];
+    const b = BU[i];
 
-    b.x+=b.vx;
-    b.y+=b.vy;
+    b.x += b.vx;
+    b.y += b.vy;
 
-    b.vx*=.95;
-    b.vy*=.95;
+    b.vx *= 0.95;
+    b.vy *= 0.95;
 
-    if(--b.l<=0){
-      BU.splice(i,1);
+    if (--b.l <= 0) {
+
+      BU.splice(i, 1);
       continue;
+
     }
 
-    x.fillStyle=
-      `rgba(${b.c},${b.l/50})`;
+    x.fillStyle =
+      `rgba(${b.c},${b.l / 50})`;
 
     x.beginPath();
 
@@ -929,10 +1002,12 @@ function bursts(){
     );
 
     x.fill();
+
   }
+
 }
 
-/* ===== end protein ===== */
+/* ===== END FERRITIN-LIKE CAGE ===== */
   (function tick(){requestAnimationFrame(tick);x.clearRect(0,0,W,H);if(!nova())return;
     for(const p of P){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
       const dx=p.x-mx,dy=p.y-my,d=Math.hypot(dx,dy)||1;if(d<140){p.x+=dx/d*1.6;p.y+=dy/d*1.6}}
