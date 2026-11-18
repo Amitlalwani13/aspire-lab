@@ -274,10 +274,41 @@ body[data-theme=nova] #helix.grab{cursor:grabbing}
 .hud-legend .d,.hud-legend .r{opacity:0;transition:opacity .5s}
 .hud.m1 .hud-legend .d,.hud.m2 .hud-legend .d,.hud.m2 .hud-legend .r{opacity:1}
 </style>
+<style id="v3css">
+/* ===== v3: research popup, people sections ===== */
+.rcard{cursor:pointer}
+.rcard .more{display:inline-flex;align-items:center;gap:8px;margin-top:.7rem;font:600 .7rem 'JetBrains Mono',monospace;letter-spacing:1.4px;text-transform:uppercase;color:var(--acc)}
+.rcard:hover .more i{transform:translateX(5px)}.rcard .more i{transition:transform .3s}
+#pmBody p{white-space:pre-line}
+#researchModal .modal-content.rm{overflow:hidden;border-radius:28px}
+#researchModal .modal-body{padding:0}
+.rm-x{position:absolute;top:16px;right:16px;z-index:6;width:38px;height:38px;border-radius:50%;background-color:rgba(5,6,13,.6)!important;opacity:1!important;padding:0!important;display:grid;place-items:center}
+.rm-hero{min-height:min(44vh,360px);background-size:cover;background-position:center;position:relative;display:flex;align-items:flex-end}
+.rm-hero-in{padding:2rem clamp(1.2rem,4vw,2.6rem)}
+.rm-kicker{display:block;font:600 .74rem 'JetBrains Mono',monospace;letter-spacing:2px;text-transform:uppercase;color:var(--acc);margin-bottom:.6rem}
+.rm-hero h2{font-size:clamp(1.9rem,5vw,3.4rem);letter-spacing:-.035em;line-height:1.05;color:#fff;margin:0}
+.rm-text{padding:clamp(1.2rem,4vw,2.6rem);max-width:900px;margin:0 auto}
+.rm-text p{color:var(--muted);font-size:1.06rem;line-height:1.85}
+.rm-text .rm-lead{color:var(--ink);font-size:1.25rem;line-height:1.65;font-weight:500}
+.rm-text h5{color:#fff}
+.rm-list{padding-left:0;list-style:none;margin:0 0 1rem}
+.rm-list li{position:relative;padding:.35rem 0 .35rem 1.7rem;color:var(--muted);font-size:1.04rem;line-height:1.7}
+.rm-list li::before{content:'';position:absolute;left:0;top:.95rem;width:9px;height:9px;border-radius:50%;background:var(--g);box-shadow:0 0 10px rgba(0,229,255,.6)}
+.rm-foot{justify-content:space-between;gap:10px}
+.rm-foot span{font:600 .78rem 'JetBrains Mono',monospace;color:var(--muted);letter-spacing:1.5px}
+.rm-foot .pbtn.ghost{background:transparent;border:1px solid rgba(255,255,255,.3)}
+body[data-theme=nova] .nav-link{padding:.42rem .55rem!important;font-size:.74rem}
+@media(max-width:1199px){
+  body[data-theme=nova] .navbar.fixed-top{border-radius:26px}
+  body[data-theme=nova] .navbar-collapse{padding:.6rem 0 .3rem;max-height:72vh;overflow-y:auto}
+  body[data-theme=nova] .nav-link{padding:.55rem .9rem!important;font-size:.85rem}
+}
+</style>
+
 </head>
 <body data-theme="nova">
 
-<nav class="navbar navbar-expand-lg fixed-top">
+<nav class="navbar navbar-expand-xl fixed-top">
 <div class="container">
 <a class="navbar-brand" href="#">ASPIRE Lab</a>
 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-label="Menu"><i class="fas fa-bars"></i></button>
@@ -286,13 +317,16 @@ body[data-theme=nova] #helix.grab{cursor:grabbing}
 <li class="nav-item"><a class="nav-link" href="#research">Research</a></li>
 <li class="nav-item"><a class="nav-link" href="#team">PhD Scholars</a></li>
 <li class="nav-item"><a class="nav-link" href="#postdocs">Postdoc</a></li>
+<li class="nav-item"><a class="nav-link" href="#visitors">Visitors</a></li>
+<li class="nav-item"><a class="nav-link" href="#interns">Interns</a></li>
+<li class="nav-item"><a class="nav-link" href="#collaborators">Collaborators</a></li>
 <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
 <li class="nav-item"><a class="nav-link" href="#posters">Posters</a></li>
 <li class="nav-item"><a class="nav-link" href="#advertisements">Opportunities</a></li>
 <li class="nav-item"><a class="nav-link" href="#publications">Publications</a></li>
 <li class="nav-item"><a class="nav-link" href="#servers">Servers</a></li>
 <li class="nav-item"><a class="nav-link" href="#databases">Databases</a></li>
-<li class="nav-item"><a class="nav-link" href="#fun-activities">Fun Activities</a></li>
+<li class="nav-item"><a class="nav-link" href="#fun-activities">Fun</a></li>
 <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
 </ul></div></div>
 </nav>
@@ -311,6 +345,9 @@ body[data-theme=nova] #helix.grab{cursor:grabbing}
 <section class="section text-center"><div class="container"><h2 class="section-title">Principal Investigator</h2><div class="row justify-content-center" id="pi-container"></div></div></section>
 <section id="team" class="section"><div class="container"><h2 class="section-title">PhD Scholars</h2><div class="row g-4" id="team-container"></div></div></section>
 <section id="postdocs" class="section"><div class="container"><h2 class="section-title">Postdoc Researchers</h2><div class="row g-4" id="postdocs-container"></div></div></section>
+<section id="visitors" class="section"><div class="container"><h2 class="section-title">Visiting Scholars</h2><div class="row g-4" id="visitors-container"></div></div></section>
+<section id="interns" class="section"><div class="container"><h2 class="section-title">Interns</h2><div class="row g-4" id="interns-container"></div></div></section>
+<section id="collaborators" class="section"><div class="container"><h2 class="section-title">Collaborators</h2><div class="row g-4" id="collaborators-container"></div></div></section>
 <section id="gallery" class="section"><div class="container"><h2 class="section-title">Workshops &amp; Conferences</h2><div class="row g-4" id="gallery-container"></div></div></section>
 <section id="posters" class="section"><div class="container"><h2 class="section-title">Digital Poster Archive</h2><div class="row g-4" id="posters-container"></div></div></section>
 <section id="advertisements" class="section"><div class="container"><h2 class="section-title">Advertisements &amp; Opportunities</h2><div class="row g-4" id="advertisements-container"></div></div></section>
@@ -330,11 +367,20 @@ body[data-theme=nova] #helix.grab{cursor:grabbing}
 <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button></div>
 </div></div></div>
 
+<div class="modal fade" id="researchModal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable"><div class="modal-content rm">
+<button type="button" class="btn-close rm-x" data-bs-dismiss="modal" aria-label="Close"></button>
+<div class="modal-body" id="rmBody"></div>
+<div class="modal-footer rm-foot"><button type="button" class="pbtn ghost" id="rmPrev"><i class="fas fa-arrow-left me-2"></i>Previous</button><span id="rmCount"></span><button type="button" class="pbtn" id="rmNext">Next<i class="fas fa-arrow-right ms-2"></i></button></div>
+</div></div></div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 const SHEET_ID="1vhSco35e3yQHCFiFJoAmjbHKZ7WV2RQN65xNbK6TIl8";
 const FB="https://via.placeholder.com/800x500?text=ASPIRE+Lab";
-const ALIAS={TEAM:["Team","TEAM"],POSTDOCS:["POSTDOC","POSTDOCS"],PUBLICATIONS:["Publications","PUBLICATIONS"]};
+const ALIAS={TEAM:["Team","TEAM"],POSTDOCS:["POSTDOC","POSTDOCS"],PUBLICATIONS:["Publications","PUBLICATIONS"],
+  COLLABORATORS:["COLLABORATORS","Collaborators","COLLABORATOR"],
+  VISITING_SCHOLARS:["VISITING_SCHOLARS","Visiting Scholars","VISITING SCHOLARS","VISITING_SCHOLAR","VISITORS"],
+  INTERNS:["INTERNS","Interns","INTERN"]};
 const esc=v=>String(v??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");
 const g=(o,...k)=>{for(const x of k)for(const key in o)if(key.trim().toLowerCase()===x&&String(o[key]).trim())return String(o[key]).trim();return""};
 const did=u=>{const m=String(u||"").match(/\/d\/([\w-]+)/)||String(u||"").match(/[?&]id=([\w-]+)/);return m?m[1]:""};
@@ -365,20 +411,31 @@ async function render(name,id,msg,fn){
 
 /* Research */
 render("RESEARCH","research-container","Research content coming soon...",r=>{
-  const u=img(g(r,"image"),900).replace(/"/g,"%22");
-  return `<div class="col-md-4"><div class="rcard" style="background-image:linear-gradient(rgba(10,24,48,.2),rgba(10,24,48,.7)),url('${u}')"><div class="ov"><h5>${esc(g(r,"title")||"Untitled")}</h5><p>${esc(g(r,"description"))}</p></div></div></div>`});
+  const id=RES.length,t=g(r,"title")||"Untitled",d=g(r,"description","summary"),imRaw=g(r,"image");
+  RES.push({t,d,det:g(r,"details","detail","full_description","full description","long_description","long description","content","about"),
+    tags:g(r,"tags","keywords"),link:safe(g(r,"link","url")),img:imRaw?img(imRaw,1400):""});
+  const u=img(imRaw,900).replace(/"/g,"%22");
+  return `<div class="col-md-4"><div class="rcard" role="button" tabindex="0" aria-label="Open ${esc(t)}" onclick="openResearch(${id})" onkeydown="if(event.key==='Enter')openResearch(${id})" style="background-image:linear-gradient(rgba(10,24,48,.2),rgba(10,24,48,.7)),url('${u}')"><div class="ov"><h5>${esc(t)}</h5><p>${esc(d)}</p><span class="more">Read more <i class="fas fa-arrow-right"></i></span></div></div></div>`});
 
 /* Team + PI + Postdocs */
 const PROFILES={};
 function person(m,i,pre,defRole){
-  const id=pre+i,P={name:g(m,"name")||"Unnamed",role:g(m,"role")||defRole||"",image:img(g(m,"image"),500),bio:g(m,"bio"),research:g(m,"research"),hobbies:g(m,"hobbies"),interests:g(m,"interests"),linkedin:safe(g(m,"linkedin"))};
+  const id=pre+i,im=g(m,"image"),P={name:g(m,"name")||"Unnamed",role:g(m,"role","position","title")||defRole||"",
+    org:g(m,"institution","organization","organisation","university","affiliation","college"),
+    period:g(m,"period","duration","dates","year","tenure"),country:g(m,"country","location"),
+    image:img(im,500),imageBig:img(im,900),bio:g(m,"bio"),research:g(m,"research","project","focus","topic","collaboration"),
+    hobbies:g(m,"hobbies"),interests:g(m,"interests"),linkedin:safe(g(m,"linkedin")),site:safe(g(m,"website","link","url")),email:g(m,"email")};
   PROFILES[id]=P;
   return `<div class="col-lg-3 col-md-4 col-sm-6"><div class="card-x pad d-flex flex-column align-items-center text-center">
   <img src="${esc(P.image)}" class="team-img mb-3" alt="${esc(P.name)}" loading="lazy" decoding="async" onerror="${err}">
-  <h5 class="mb-1">${esc(P.name)}</h5><p class="muted mb-3">${esc(P.role)}</p>
+  <h5 class="mb-1">${esc(P.name)}</h5><p class="muted mb-1">${esc(P.role)}</p>
+  ${P.org?`<p class="small mb-1" style="color:var(--acc)"><i class="fas fa-building-columns me-1"></i>${esc(P.org)}</p>`:""}
+  ${P.period?`<p class="small muted mb-1"><i class="far fa-calendar me-1"></i>${esc(P.period)}</p>`:""}
+  <div class="mb-2"></div>
   <div class="mt-auto d-flex gap-2 align-items-center justify-content-center">
   <button class="pbtn" onclick="openProfile('${id}')"><i class="fas fa-user me-2"></i>View Profile</button>
-  ${P.linkedin?`<a href="${esc(P.linkedin)}" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin fs-4" style="color:var(--acc)"></i></a>`:""}
+  ${P.linkedin?`<a href="${esc(P.linkedin)}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin fs-4" style="color:var(--acc)"></i></a>`:""}
+  ${!P.linkedin&&P.site?`<a href="${esc(P.site)}" target="_blank" rel="noopener noreferrer" aria-label="Website"><i class="fas fa-globe fs-4" style="color:var(--acc)"></i></a>`:""}
   </div></div></div>`;
 }
 (async()=>{
@@ -396,11 +453,60 @@ function openProfile(id){
   const P=PROFILES[id];if(!P)return;
   document.getElementById("pmTitle").textContent=P.name;
   const sec=(t,v)=>v?`<h5 class="mt-4 mb-2">${t}</h5><p class="muted">${esc(v)}</p>`:"";
-  document.getElementById("pmBody").innerHTML=`<div class="text-center"><img src="${esc(P.image)}" class="mimg" alt="${esc(P.name)}" onerror="${err}"><h3>${esc(P.name)}</h3><p class="muted">${esc(P.role)}</p></div>`
-   +sec("About",P.bio)+sec("Current Research",P.research)+sec("Hobbies & Interests",P.hobbies)+sec("More About Me",P.interests)
-   +(P.linkedin?`<div class="mt-4"><a href="${esc(P.linkedin)}" target="_blank" rel="noopener noreferrer" class="pbtn"><i class="fab fa-linkedin me-2"></i>LinkedIn</a></div>`:"");
+  const chip=(ic,v)=>v?`<span class="tag me-2"><i class="${ic} me-1"></i>${esc(v)}</span>`:"";
+  const btn=(h,ic,t)=>h?`<a href="${esc(h)}" target="_blank" rel="noopener noreferrer" class="pbtn me-2 mb-2"><i class="${ic} me-2"></i>${t}</a>`:"";
+  document.getElementById("pmBody").innerHTML=`<div class="text-center"><img src="${esc(P.imageBig)}" class="mimg" alt="${esc(P.name)}" onerror="${err}"><h3>${esc(P.name)}</h3><p class="muted mb-2">${esc(P.role)}</p>
+   <div>${chip("fas fa-building-columns",P.org)}${chip("far fa-calendar",P.period)}${chip("fas fa-location-dot",P.country)}</div></div>`
+   +sec("About",P.bio)+sec("Research / Project",P.research)+sec("Hobbies & Interests",P.hobbies)+sec("More About Me",P.interests)
+   +`<div class="mt-4">${btn(P.linkedin,"fab fa-linkedin","LinkedIn")}${btn(P.site,"fas fa-globe","Website")}${P.email?btn("mailto:"+P.email,"fas fa-envelope","Email"):""}</div>`;
   new bootstrap.Modal(document.getElementById("profileModal")).show();
 }
+
+/* Collaborators, Visiting Scholars, Interns (each is its own tab in the Google Sheet) */
+const people=(tab,id,pre,def,msg)=>(async()=>{
+  const d=await sheet(tab),el=document.getElementById(id);if(!el)return;
+  el.innerHTML=d.length?d.map((m,i)=>person(m,i,pre,def)).join(""):empty(msg);
+})();
+people("VISITING_SCHOLARS","visitors-container","v","Visiting Scholar","Visiting scholars coming soon...");
+people("INTERNS","interns-container","n","Intern","Interns coming soon...");
+people("COLLABORATORS","collaborators-container","c","Collaborator","Collaborators coming soon...");
+
+/* Research areas: click a card to open a full description */
+const RES=[];
+function fmt(text){
+  const lines=String(text||"").split(/\r?\n/).map(s=>s.trim()).filter(Boolean);let h="",ul=false;
+  const close=()=>{if(ul){h+="</ul>";ul=false}};
+  for(const ln of lines){
+    if(/^[-•*]\s+/.test(ln)){if(!ul){h+='<ul class="rm-list">';ul=true}h+=`<li>${esc(ln.replace(/^[-•*]\s+/,""))}</li>`}
+    else if(/^#\s+/.test(ln)){close();h+=`<h5 class="mt-4 mb-2">${esc(ln.replace(/^#\s+/,""))}</h5>`}
+    else{close();h+=`<p>${esc(ln)}</p>`}
+  }
+  close();return h;
+}
+let rmIdx=0,rmInst=null;
+function showResearch(i){
+  const n=RES.length;if(!n)return;rmIdx=(i+n)%n;const R=RES[rmIdx];
+  const tags=R.tags.split(/[,;|]/).map(s=>s.trim()).filter(Boolean).map(s=>`<span class="tag me-2">${esc(s)}</span>`).join("");
+  const bg=R.img?`linear-gradient(rgba(5,6,13,.15),rgba(5,6,13,.85)),url('${R.img.replace(/'/g,"%27")}')`:"var(--g)";
+  document.getElementById("rmBody").innerHTML=
+    `<div class="rm-hero" style="background-image:${bg}"><div class="rm-hero-in"><span class="rm-kicker">Research area ${String(rmIdx+1).padStart(2,"0")} / ${String(n).padStart(2,"0")}</span><h2>${esc(R.t)}</h2></div></div>
+     <div class="rm-text">${R.d?`<p class="rm-lead">${esc(R.d)}</p>`:""}${R.det?fmt(R.det):""}${tags?`<div class="mt-4">${tags}</div>`:""}
+     ${R.link?`<div class="mt-4"><a href="${esc(R.link)}" target="_blank" rel="noopener noreferrer" class="pbtn"><i class="fas fa-arrow-up-right-from-square me-2"></i>Learn more</a></div>`:""}</div>`;
+  document.getElementById("rmCount").textContent=(rmIdx+1)+" / "+n;
+  const sc=document.querySelector("#researchModal .modal-body");if(sc)sc.scrollTop=0;
+}
+function openResearch(i){
+  showResearch(i);
+  rmInst=rmInst||new bootstrap.Modal(document.getElementById("researchModal"));rmInst.show();
+}
+document.addEventListener("click",e=>{
+  if(e.target.closest("#rmPrev"))showResearch(rmIdx-1);
+  if(e.target.closest("#rmNext"))showResearch(rmIdx+1);
+});
+document.addEventListener("keydown",e=>{
+  if(!document.getElementById("researchModal")?.classList.contains("show"))return;
+  if(e.key==="ArrowLeft")showResearch(rmIdx-1);if(e.key==="ArrowRight")showResearch(rmIdx+1);
+});
 
 /* Gallery + Fun */
 const gal=(a,def)=>{const raw=g(a,"image"),meta=[g(a,"event"),g(a,"location"),g(a,"year")].filter(Boolean).map(esc).join(" · "),v=open_(raw),d=g(a,"description"),t=g(a,"title")||def;
@@ -525,7 +631,7 @@ render("DATABASES","databases-container","Important research databases coming so
 
   /* ---- drug: anthracycline-style small molecule (4 fused rings + amino-sugar), CPK-like colours ---- */
   const MOL=(()=>{
-    const L=4.3,A=[],B=[],key=new Set(),r3=Math.sqrt(3);
+    const L=2.3,A=[],B=[],key=new Set(),r3=Math.sqrt(3);
     const add=(x,y,e)=>{for(let i=0;i<A.length;i++)if(Math.hypot(A[i].x-x,A[i].y-y)<.2)return i;A.push({x,y,e});return A.length-1};
     const bond=(i,j,o=1)=>{const k=Math.min(i,j)+"-"+Math.max(i,j);if(key.has(k))return;key.add(k);B.push([i,j,o])};
     const ring=(cx,cy)=>{const ids=[];for(let k=0;k<6;k++){const a=Math.PI/6+k*Math.PI/3;ids.push(add(cx+Math.cos(a),cy+Math.sin(a),"C"))}
@@ -545,18 +651,30 @@ render("DATABASES","databases-container","Important research databases coming so
     let mx=0,my=0;for(const a of A){mx+=a.x;my+=a.y}mx/=A.length;my/=A.length;
     return{a:A.map(a=>({x:(a.x-mx)*L,y:(a.y-my)*L,z:Math.sin(a.x*1.1)*L*.18,e:a.e})),b:B};
   })();
-  const COL={C:"255,200,80",N:"110,165,255",O:"255,92,92"},RAD={C:1.9,N:2.4,O:2.4};
-  const NDR=LITE?12:30;
+  const COL={C:"255,200,80",N:"110,165,255",O:"255,92,92"},RAD={C:1.5,N:1.9,O:1.9};
+  /* ONE small drug per ferritin subunit, bound to that subunit's inner wall; the cavity itself stays hollow */
+  const NDR=24;
   const rnd=(a=>()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296})(11);
   const ruv=()=>{const th=rnd()*6.2832,ph=Math.acos(2*rnd()-1);return{x:Math.sin(ph)*Math.cos(th),y:Math.sin(ph)*Math.sin(th),z:Math.cos(ph)}};
-  const DRUGS=Array.from({length:NDR},()=>{
-    const d=ruv(),rr=46*Math.cbrt(rnd());
-    return{b:{x:d.x*rr,y:d.y*rr,z:d.z*rr},e:ruv(),ax:ruv(),w:.5+rnd()*.9,p:rnd()*6.28,t:{x:260+(rnd()-.5)*96,y:590+(rnd()-.5)*44}};
+  const nz=v=>{const l=Math.hypot(v.x,v.y,v.z)||1;return{x:v.x/l,y:v.y/l,z:v.z/l}};
+  const crs=(a,b)=>({x:a.y*b.z-a.z*b.y,y:a.z*b.x-a.x*b.z,z:a.x*b.y-a.y*b.x});
+  const DRUGS=Array.from({length:NDR},(_,sub)=>{
+    const pts=[];FOLDP.forEach((p,i)=>{if(PSUB[i]===sub)pts.push({p,i,r:Math.hypot(p.x,p.y,p.z)})});
+    pts.sort((a,b)=>a.r-b.r);
+    const inner=pts.slice(0,Math.max(6,Math.ceil(pts.length*.12)));      /* residues that line the cavity */
+    let cx=0,cy=0,cz=0,rr=0;for(const q of inner){cx+=q.p.x;cy+=q.p.y;cz+=q.p.z;rr+=q.r}
+    cx/=inner.length;cy/=inner.length;cz/=inner.length;rr/=inner.length;
+    const n=nz({x:cx,y:cy,z:cz}),len=rr-7;                                /* rests right on this subunit's inner surface */
+    const ta=nz(crs(n,Math.abs(n.y)<.9?{x:0,y:1,z:0}:{x:1,y:0,z:0})),ua=crs(n,ta);
+    const b={x:n.x*len,y:n.y*len,z:n.z*len};
+    let ai=inner[0].i,bd=1e9;                                             /* nearest protein residue = the binding contact */
+    for(const q of pts){const d=Math.hypot(q.p.x-b.x,q.p.y-b.y,q.p.z-b.z);if(d<bd){bd=d;ai=q.i}}
+    return{b,na:n,ta,ua,ai,rot:rnd()*6.283,e:ruv(),ax:ruv(),w:.5+rnd()*.9,p:rnd()*6.28,t:{x:260+(rnd()-.5)*96,y:590+(rnd()-.5)*44}};
   });
 
   /* ---- timelines (t: 0 → 1) ---- */
   /* Loading follows the published pH-driven route: ferritin 24-mers dissociate near pH 2 and reassemble when pH returns to ~7.4 around the drug */
-  const STAGES1=[[0,"Empty cage at pH 7.4, drug molecules free in solution"],[.22,"Acidify to pH ~2: the 24-mer dissociates into subunits"],[.4,"Drug molecules diffuse into the open space"],[.62,"Raise pH back to ~7.4: subunits reassemble around the drug"],[.84,"Drug-loaded ferritin"]];
+  const STAGES1=[[0,"Empty cage at pH 7.4, drug molecules free in solution"],[.22,"Acidify to pH ~2: the 24-mer dissociates into subunits"],[.4,"Drug molecules enter the open cage and dock on the inner face of each subunit"],[.62,"Raise pH back to ~7.4: subunits reassemble, carrying their bound drug"],[.84,"Drug-loaded ferritin: drug sits on the inner wall, the core stays hollow"]];
   function tl1(t){const a=smooth(sg(t,.22,.4)),b=smooth(sg(t,.62,.82));return{ex:1.1*(a-b),ph:7.4-5.4*a+5.4*b,lp:smooth(sg(t,.4,.64))}}
   /* Delivery: H-ferritin binds TfR1 → clathrin-mediated endocytosis → early endosome (pH ~6.3) → late endosome (~5.5) → lysosome (~4.7), where proteases degrade the shell */
   const STAGES=[[0,"Circulating in the bloodstream (pH 7.4)"],[.22,"Binds TfR1 on the target cell"],[.34,"Receptor-mediated endocytosis of the ferritin–TfR1 complex"],[.52,"Endosome matures and acidifies: pH ~6.3 → 5.5"],[.66,"Lysosome (pH ~4.7): proteases degrade the protein shell"],[.8,"Drug released, diffusing to its intracellular target"]];
@@ -699,17 +817,18 @@ render("DATABASES","databases-container","Important research databases coming so
     hctx.clearRect(0,0,520,640);hctx.lineCap="round";hctx.lineJoin="round";
     if(sm>.01){drawScene(o,sm,tm);drawVesicle(o,cx,cy,sm)}
 
-    /* drug molecules: wait outside → enter the opened cage → stay inside → later race to the target */
+    /* drug molecules: wait outside → enter the opened cage → bind to the inner wall of their own subunit → later race to the target */
     const mols=[];
     if(vis>.01){
       const fo=.25+.75*smooth(foldT);
       for(let i=0;i<NDR;i++){
-        const D=DRUGS[i],li=smooth(cl(lp*1.7-i/NDR*.7)),ro=235+12*Math.sin(tm*.7+i);
-        const jx=Math.sin(tm*1.3+i*1.7)*4,jy=Math.sin(tm*1.7+i*2.3)*4,jz=Math.sin(tm*1.1+i*3.1)*4;
-        const px=D.e.x*ro+((D.b.x+jx)*fo-D.e.x*ro)*li,py=D.e.y*ro+((D.b.y+jy)*fo-D.e.y*ro)*li,pz=D.e.z*ro+((D.b.z+jz)*fo-D.e.z*ro)*li;
+        const D=DRUGS[i],sd=SUBD[i],li=smooth(cl(lp*1.7-i/NDR*.7)),ro=235+12*Math.sin(tm*.7+i);
+        const kx=exv*75,bx=(D.b.x+sd.x*kx)*fo+Math.sin(tm*1.3+i)*.8,by=(D.b.y+sd.y*kx)*fo+Math.sin(tm*1.7+i*2)*.8,bz=(D.b.z+sd.z*kx)*fo+Math.sin(tm*1.1+i*3)*.8;
+        const px=D.e.x*ro+(bx-D.e.x*ro)*li,py=D.e.y*ro+(by-D.e.y*ro)*li,pz=D.e.z*ro+(bz-D.e.z*ro)*li;
         const ri=rel>0?smooth(cl(rel*1.6-i/NDR*.6)):0;
-        const ang=tm*D.w+D.p,c=Math.cos(ang),s=Math.sin(ang),C=1-c,{x:ux,y:uy,z:uz}=D.ax;
+        const ang=(1-li)*(tm*D.w+D.p),c=Math.cos(ang),s=Math.sin(ang),C=1-c,{x:ux,y:uy,z:uz}=D.ax;
         const R=[c+ux*ux*C,ux*uy*C-uz*s,ux*uz*C+uy*s,uy*ux*C+uz*s,c+uy*uy*C,uy*uz*C-ux*s,uz*ux*C-uy*s,uz*uy*C+ux*s,c+uz*uz*C];
+        const wb=D.rot+Math.sin(tm*.8+i)*.08*li,cw=Math.cos(wb),sw=Math.sin(wb);
         const proj=(lx,ly,lz)=>{
           const x0=(px+lx)*vs,y0=(py+ly)*vs,z0=(pz+lz)*vs;
           const x1=x0*cs-z0*sn,z1=x0*sn+z0*cs,y2=y0*ct-z1*st,z2=y0*st+z1*ct,k=700/(700-z2);
@@ -717,23 +836,30 @@ render("DATABASES","databases-container","Important research databases coming so
           if(ri>0){X+=(D.t.x-X)*ri+Math.sin(tm*3+i)*3*ri;Y+=(D.t.y-Y)*ri}
           return{x:X,y:Y,z:z2,k};
         };
-        const atoms=MOL.a.map(a=>{const P=proj(R[0]*a.x+R[1]*a.y+R[2]*a.z,R[3]*a.x+R[4]*a.y+R[5]*a.z,R[6]*a.x+R[7]*a.y+R[8]*a.z);
+        const atoms=MOL.a.map(a=>{const ax2=a.x*cw-a.y*sw,ay2=a.x*sw+a.y*cw,wx=D.ta.x*ax2+D.ua.x*ay2+D.na.x*a.z,wy=D.ta.y*ax2+D.ua.y*ay2+D.na.y*a.z,wz=D.ta.z*ax2+D.ua.z*ay2+D.na.z*a.z;
+          const P=proj(R[0]*wx+R[1]*wy+R[2]*wz,R[3]*wx+R[4]*wy+R[5]*wz,R[6]*wx+R[7]*wy+R[8]*wz);
           P.r=RAD[a.e]*Math.max(.8,vs)*P.k*(1-.2*ri);P.c=COL[a.e];return P});
-        const C0=proj(0,0,0);
-        mols.push({atoms,z:C0.z,cx:C0.x,cy:C0.y,hr:30*Math.max(.8,vs)*C0.k,al:vis});
+        const C0=proj(0,0,0),an=P2[D.ai];
+        mols.push({atoms,z:C0.z,cx:C0.x,cy:C0.y,hr:15*Math.max(.8,vs)*C0.k,al:vis,li,ri,ax:an.x,ay:an.y,back:(li>.85&&ri<.05)||C0.z<0});
       }
       mols.sort((a,b)=>a.z-b.z);
     }
     const drawMols=list=>{for(const m of list){const A=m.atoms;hctx.globalAlpha=m.al;
-      hctx.fillStyle="rgba(255,196,72,.07)";hctx.beginPath();hctx.arc(m.cx,m.cy,m.hr,0,6.3);hctx.fill();
-      const lw=1.4*Math.max(.8,vs)*(A[0].k);hctx.lineWidth=lw;hctx.strokeStyle="rgba(255,240,210,.7)";hctx.beginPath();
+      const bound=m.li>.9&&m.ri<.05;
+      if(bound){                                   /* binding contact: dashed tether + glow on the protein residue */
+        hctx.save();hctx.setLineDash([3,3]);hctx.strokeStyle="rgba(255,200,90,.75)";hctx.lineWidth=1.2;
+        hctx.beginPath();hctx.moveTo(m.cx,m.cy);hctx.lineTo(m.ax,m.ay);hctx.stroke();hctx.restore();
+        hctx.fillStyle="rgba(255,200,90,.35)";hctx.beginPath();hctx.arc(m.ax,m.ay,4,0,6.3);hctx.fill();
+      }
+      hctx.fillStyle=bound?"rgba(255,196,72,.12)":"rgba(255,196,72,.05)";hctx.beginPath();hctx.arc(m.cx,m.cy,m.hr,0,6.3);hctx.fill();
+      const lw=1.3*Math.max(.8,vs)*(A[0].k);hctx.lineWidth=lw;hctx.strokeStyle="rgba(255,240,210,.8)";hctx.beginPath();
       for(const[i,j,od]of MOL.b){const a=A[i],b=A[j];hctx.moveTo(a.x,a.y);hctx.lineTo(b.x,b.y);
         if(od===2){const dx=b.x-a.x,dy=b.y-a.y,L=Math.hypot(dx,dy)||1,ox=-dy/L*lw*1.5,oy=dx/L*lw*1.5;hctx.moveTo(a.x+ox,a.y+oy);hctx.lineTo(b.x+ox,b.y+oy)}}
       hctx.stroke();
       for(const a of A){hctx.fillStyle=`rgb(${a.c})`;hctx.beginPath();hctx.arc(a.x,a.y,a.r,0,6.3);hctx.fill();
         hctx.fillStyle="rgba(255,255,255,.7)";hctx.beginPath();hctx.arc(a.x-a.r*.3,a.y-a.r*.3,a.r*.32,0,6.3);hctx.fill()}}
       hctx.globalAlpha=1};
-    drawMols(mols.filter(m=>m.z<0));
+    drawMols(mols.filter(m=>m.back));
 
     /* cage: see-through when loaded so the cargo is visible */
     const cag=(1-.5*lp)*fade;
@@ -771,7 +897,7 @@ render("DATABASES","databases-container","Important research databases coming so
         }
       }
     }
-    drawMols(mols.filter(m=>m.z>=0));
+    drawMols(mols.filter(m=>!m.back));
 
     /* pH readout on the canvas for the loading story */
     if(sm1>.05){
@@ -857,9 +983,9 @@ render("DATABASES","databases-container","Important research databases coming so
 
   /* live stats from the sheet */
   (async()=>{
-    const [t,p,pb,po,ga]=await Promise.all(["TEAM","POSTDOCS","PUBLICATIONS","POSTERS","GALLERY"].map(sheet));
+    const [t,p,pb,po,ga,co]=await Promise.all(["TEAM","POSTDOCS","PUBLICATIONS","POSTERS","GALLERY","COLLABORATORS"].map(sheet));
     const phd=t.filter(m=>!/principal|pi\b|investigator/i.test(g(m,"role"))).length;
-    const items=[[phd,"PhD Scholars"],[p.length,"Postdocs"],[pb.length,"Publications"],[po.length,"Posters"],[ga.length,"Events"]].filter(i=>i[0]>0);
+    const items=[[phd,"PhD Scholars"],[p.length,"Postdocs"],[pb.length,"Publications"],[po.length,"Posters"],[ga.length,"Events"],[co.length,"Collaborators"]].filter(i=>i[0]>0);
     if(!items.length)return;
     const st=document.createElement("div");st.className="stats";
     st.innerHTML=items.map(i=>`<div class="stat"><b data-n="${i[0]}">0</b><span>${i[1]}</span></div>`).join("");
