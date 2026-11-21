@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://lh3.googleusercontent.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Grotesk:wght@700&family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
 <style>
 :root{--bg:radial-gradient(circle at 8% 8%,rgba(6,182,212,.14),transparent 28%),radial-gradient(circle at 92% 18%,rgba(236,72,153,.11),transparent 26%),#f7f9fc;--alt:rgba(239,248,255,.6);--card:rgba(255,255,255,.92);--nav:rgba(255,255,255,.88);--ink:#14213d;--muted:#52627a;--head:#172554;--line:rgba(37,99,235,.14);--g:linear-gradient(135deg,#2563eb,#7c3aed 48%,#ec4899);--acc:#2563eb;--foot:linear-gradient(135deg,#172554,#312e81 55%,#7c2d6b);--r:24px;--hf:'Playfair Display',serif;--sh:0 16px 40px rgba(36,74,120,.12)}
 html{scroll-behavior:smooth}section{scroll-margin-top:90px}
@@ -309,10 +309,20 @@ body[data-theme=nova] .nav-link{padding:.42rem .55rem!important;font-size:.74rem
 </style>
 
 <style>body[data-theme=nova] .hero{background:none}</style>
+<style id="navfix">
+body[data-theme=nova] .navbar.fixed-top{width:min(1500px,calc(100% - 24px))}
+body[data-theme=nova] .nav-link{padding:.4rem .42rem!important;font-size:.72rem}
+body[data-theme=nova] .navbar-nav .nav-item:last-child .nav-link{margin-left:.2rem}
+@media(max-width:1399px){
+ body[data-theme=nova] .navbar.fixed-top{border-radius:26px}
+ body[data-theme=nova] .navbar-collapse{padding:.6rem 0 .3rem;max-height:72vh;overflow-y:auto}
+ body[data-theme=nova] .nav-link{padding:.55rem .9rem!important;font-size:.85rem}
+}
+</style>
 </head>
 <body data-theme="nova">
 
-<nav class="navbar navbar-expand-xl fixed-top">
+<nav class="navbar navbar-expand-xxl fixed-top">
 <div class="container">
 <a class="navbar-brand" href="#">ASPIRE Lab</a>
 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-label="Menu"><i class="fas fa-bars"></i></button>
@@ -331,7 +341,7 @@ body[data-theme=nova] .nav-link{padding:.42rem .55rem!important;font-size:.74rem
 <li class="nav-item"><a class="nav-link" href="#publications">Publications</a></li>
 <li class="nav-item"><a class="nav-link" href="#servers">Servers</a></li>
 <li class="nav-item"><a class="nav-link" href="#databases">Databases</a></li>
-<li class="nav-item"><a class="nav-link" href="#fun-activities">Fun</a></li>
+<li class="nav-item"><a class="nav-link" href="#fun-activities">Fun Activities</a></li>
 <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
 </ul></div></div>
 </nav>
@@ -379,7 +389,7 @@ body[data-theme=nova] .nav-link{padding:.42rem .55rem!important;font-size:.74rem
 <div class="modal-footer rm-foot"><button type="button" class="pbtn ghost" id="rmPrev"><i class="fas fa-arrow-left me-2"></i>Previous</button><span id="rmCount"></span><button type="button" class="pbtn" id="rmNext">Next<i class="fas fa-arrow-right ms-2"></i></button></div>
 </div></div></div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 const SHEET_ID="1vhSco35e3yQHCFiFJoAmjbHKZ7WV2RQN65xNbK6TIl8";
 const FB="https://via.placeholder.com/800x500?text=ASPIRE+Lab";
@@ -429,7 +439,7 @@ render("RESEARCH","research-container","Research content coming soon...",r=>{
   const id=RES.length,t=g(r,"title")||"Untitled",d=g(r,"description","summary"),imRaw=g(r,"image");
   RES.push({t,d,det:g(r,"details","detail","full_description","full description","long_description","long description","content","about"),
     tags:g(r,"tags","keywords"),link:safe(g(r,"link","url")),img:imRaw?img(imRaw,1400):""});
-  const u=img(imRaw,900).replace(/"/g,"%22");
+  const u=img(imRaw,700).replace(/"/g,"%22");
   return `<div class="col-md-4"><div class="rcard" role="button" tabindex="0" aria-label="Open ${esc(t)}" onclick="openResearch(${id})" onkeydown="if(event.key==='Enter')openResearch(${id})" style="background-image:linear-gradient(rgba(10,24,48,.2),rgba(10,24,48,.7)),url('${u}')"><div class="ov"><h5>${esc(t)}</h5><p>${esc(d)}</p><span class="more">Read more <i class="fas fa-arrow-right"></i></span></div></div></div>`});
 
 /* Team + PI + Postdocs */
@@ -438,7 +448,7 @@ function person(m,i,pre,defRole){
   const id=pre+i,im=g(m,"image"),P={name:g(m,"name")||"Unnamed",role:g(m,"role","position","title")||defRole||"",
     org:g(m,"institution","organization","organisation","university","affiliation","college"),
     period:g(m,"period","duration","dates","year","tenure"),country:g(m,"country","location"),
-    image:img(im,500),imageBig:img(im,900),bio:g(m,"bio"),research:g(m,"research","project","focus","topic","collaboration"),
+    image:img(im,300),imageBig:img(im,900),bio:g(m,"bio"),research:g(m,"research","project","focus","topic","collaboration"),
     hobbies:g(m,"hobbies"),interests:g(m,"interests"),linkedin:safe(g(m,"linkedin")),site:safe(g(m,"website","link","url")),email:g(m,"email")};
   PROFILES[id]=P;
   return `<div class="col-lg-3 col-md-4 col-sm-6"><div class="card-x pad d-flex flex-column align-items-center text-center">
