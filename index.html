@@ -5,7 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ASPIRE Lab | Advanced Structural Parasitology & Protein Engineering</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;700&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://opensheet.elk.sh">
+<link rel="preconnect" href="https://lh3.googleusercontent.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Grotesk:wght@700&family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 :root{--bg:radial-gradient(circle at 8% 8%,rgba(6,182,212,.14),transparent 28%),radial-gradient(circle at 92% 18%,rgba(236,72,153,.11),transparent 26%),#f7f9fc;--alt:rgba(239,248,255,.6);--card:rgba(255,255,255,.92);--nav:rgba(255,255,255,.88);--ink:#14213d;--muted:#52627a;--head:#172554;--line:rgba(37,99,235,.14);--g:linear-gradient(135deg,#2563eb,#7c3aed 48%,#ec4899);--acc:#2563eb;--foot:linear-gradient(135deg,#172554,#312e81 55%,#7c2d6b);--r:24px;--hf:'Playfair Display',serif;--sh:0 16px 40px rgba(36,74,120,.12)}
@@ -305,6 +308,7 @@ body[data-theme=nova] .nav-link{padding:.42rem .55rem!important;font-size:.74rem
 }
 </style>
 
+<style>body[data-theme=nova] .hero{background:none}</style>
 </head>
 <body data-theme="nova">
 
@@ -323,6 +327,7 @@ body[data-theme=nova] .nav-link{padding:.42rem .55rem!important;font-size:.74rem
 <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
 <li class="nav-item"><a class="nav-link" href="#posters">Posters</a></li>
 <li class="nav-item"><a class="nav-link" href="#advertisements">Opportunities</a></li>
+<li class="nav-item"><a class="nav-link" href="#grants">Grants</a></li>
 <li class="nav-item"><a class="nav-link" href="#publications">Publications</a></li>
 <li class="nav-item"><a class="nav-link" href="#servers">Servers</a></li>
 <li class="nav-item"><a class="nav-link" href="#databases">Databases</a></li>
@@ -351,6 +356,7 @@ body[data-theme=nova] .nav-link{padding:.42rem .55rem!important;font-size:.74rem
 <section id="gallery" class="section"><div class="container"><h2 class="section-title">Workshops &amp; Conferences</h2><div class="row g-4" id="gallery-container"></div></div></section>
 <section id="posters" class="section"><div class="container"><h2 class="section-title">Digital Poster Archive</h2><div class="row g-4" id="posters-container"></div></div></section>
 <section id="advertisements" class="section"><div class="container"><h2 class="section-title">Advertisements &amp; Opportunities</h2><div class="row g-4" id="advertisements-container"></div></div></section>
+<section id="grants" class="section"><div class="container"><h2 class="section-title">Grants &amp; Funding</h2><div class="row g-4" id="grants-container"></div></div></section>
 <section id="publications" class="section"><div class="container"><h2 class="section-title">Publications</h2><div id="pub-container"></div></div></section>
 <section id="servers" class="section"><div class="container"><h2 class="section-title">Important Servers</h2><div class="row g-4" id="servers-container"></div></div></section>
 <section id="databases" class="section"><div class="container"><h2 class="section-title">Important Databases</h2><div class="row g-4" id="databases-container"></div></div></section>
@@ -380,7 +386,8 @@ const FB="https://via.placeholder.com/800x500?text=ASPIRE+Lab";
 const ALIAS={TEAM:["Team","TEAM"],POSTDOCS:["POSTDOC","POSTDOCS"],PUBLICATIONS:["Publications","PUBLICATIONS"],
   COLLABORATORS:["COLLABORATORS","Collaborators","COLLABORATOR"],
   VISITING_SCHOLARS:["VISITING_SCHOLARS","Visiting Scholars","VISITING SCHOLARS","VISITING_SCHOLAR","VISITORS"],
-  INTERNS:["INTERNS","Interns","INTERN"]};
+  INTERNS:["INTERNS","Interns","INTERN"],
+  GRANTS:["GRANTS","Grants","GRANT","FUNDING"]};
 const esc=v=>String(v??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");
 const g=(o,...k)=>{for(const x of k)for(const key in o)if(key.trim().toLowerCase()===x&&String(o[key]).trim())return String(o[key]).trim();return""};
 const did=u=>{const m=String(u||"").match(/\/d\/([\w-]+)/)||String(u||"").match(/[?&]id=([\w-]+)/);return m?m[1]:""};
@@ -391,14 +398,22 @@ const safe=u=>{try{const x=new URL(String(u||"").trim());return /^https?:$/.test
 const empty=m=>`<div class="col-12"><div class="card-x pad text-center"><p class="muted mb-0">${esc(m)}</p></div></div>`;
 const err=`this.onerror=null;this.src='${FB}'`;
 
-async function sheetRaw(name){
-  for(const n of ALIAS[name]||[name]){
-    try{const r=await fetch(`https://opensheet.elk.sh/${SHEET_ID}/${encodeURIComponent(n)}`);
-      if(!r.ok)continue;const d=await r.json();
-      if(Array.isArray(d)&&d.length)return d.filter(x=>x&&Object.keys(x).length)}catch(e){console.error(n,e)}}
-  return[];
+async function fetchTab(n){
+  const r=await fetch(`https://opensheet.elk.sh/${SHEET_ID}/${encodeURIComponent(n)}`);
+  if(!r.ok)throw 0;const d=await r.json();
+  if(!Array.isArray(d)||!d.length)throw 0;
+  return d.filter(x=>x&&Object.keys(x).length);
+}
+function sheetRaw(name){
+  const key="aspire_"+name;let cached=null;
+  try{cached=JSON.parse(localStorage.getItem(key))}catch(e){}
+  const live=Promise.any((ALIAS[name]||[name]).map(fetchTab))
+    .then(d=>{try{localStorage.setItem(key,JSON.stringify(d))}catch(e){}return d})
+    .catch(()=>[]);
+  return cached&&cached.length?cached:live;
 }
 const _sc={};const sheet=n=>_sc[n]||(_sc[n]=sheetRaw(n));
+["ABOUT","RESEARCH","TEAM","POSTDOCS","VISITING_SCHOLARS","INTERNS","COLLABORATORS","GRANTS","GALLERY","POSTERS","ADVERTISEMENTS","SERVERS","DATABASES","FUN_ACTIVITIES","PUBLICATIONS","CONTACT"].forEach(sheet);
 async function render(name,id,msg,fn){
   const el=document.getElementById(id);if(!el)return;
   const d=await sheet(name);
@@ -541,6 +556,21 @@ const res=(icon)=>i=>{const t=g(i,"name","title")||"Untitled",c=g(i,"category","
 render("SERVERS","servers-container","Important research servers coming soon...",res("fas fa-server"));
 render("DATABASES","databases-container","Important research databases coming soon...",res("fas fa-database"));
 
+/* Grants */
+render("GRANTS","grants-container","Grant information coming soon...",a=>{
+  const t=g(a,"title","grant","name")||"Research Grant",ag=g(a,"agency","funder","funding agency","sponsor"),
+    am=g(a,"amount","budget","funding"),ro=g(a,"role","pi","investigator"),pe=g(a,"period","duration","year","dates"),
+    st=g(a,"status"),d=g(a,"description","summary"),l=safe(g(a,"link","url"));
+  const row=(ic,v,col)=>v?`<p class="small mb-1" style="color:${col}"><i class="${ic} me-2"></i>${esc(v)}</p>`:"";
+  return `<div class="col-lg-4 col-md-6"><div class="card-x pad"><div class="ric"><i class="fas fa-award"></i></div>
+  ${st?`<div class="tag">${esc(st)}</div>`:""}<h5>${esc(t)}</h5>
+  ${row("fas fa-building-columns",ag,"var(--acc)")}
+  ${am?`<p class="mb-1 fw-bold"><i class="fas fa-coins me-2" style="color:var(--acc)"></i>${esc(am)}</p>`:""}
+  ${row("fas fa-user-tie",ro,"var(--muted)")}
+  ${row("far fa-calendar",pe,"var(--muted)")}
+  ${d?`<p class="muted mt-2">${esc(d)}</p>`:""}
+  ${l?`<a href="${esc(l)}" target="_blank" rel="noopener noreferrer" class="rlink">View Details <i class="fas fa-external-link-alt ms-1"></i></a>`:""}</div></div>`});
+
 /* Publications */
 (async()=>{
   const d=await sheet("PUBLICATIONS"),el=document.getElementById("pub-container");
@@ -578,7 +608,7 @@ render("DATABASES","databases-container","Important research databases coming so
   const ty=document.createElement("div");ty.className="typed";
   const cta=document.createElement("div");cta.className="cta";
   cta.innerHTML='<a class="pbtn" href="#research">Explore Research</a><a class="pbtn ghost" href="#team">Meet the Team</a>';
-  const HS=LITE?1:2;
+  const HS=1;
   const hx=document.createElement("canvas");hx.id="helix";hx.width=520*HS;hx.height=640*HS;
   hc.append(ty,cta,hx);
   const WORDS={nova:["Structural Parasitology","Protein Engineering","Drug Discovery"]};let wi=0,ci=0,del=false;
@@ -601,7 +631,7 @@ render("DATABASES","databases-container","Important research databases coming so
   const x=cv.getContext("2d"),hctx=hx.getContext("2d");hctx.scale(HS,HS);
   let W,H,P=[],mx=-999,my=-999;const dpr=Math.min(devicePixelRatio||1,2);
   function size(){W=innerWidth;H=innerHeight;cv.width=W*dpr;cv.height=H*dpr;x.setTransform(dpr,0,0,dpr,0,0);
-    P=Array.from({length:Math.round(Math.min(LITE?30:95,W*H/15000))},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4}))}
+    P=Array.from({length:Math.round(Math.min(LITE?25:55,W*H/20000))},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4}))}
   addEventListener("resize",size);size();
   addEventListener("mousemove",e=>{mx=e.clientX;my=e.clientY});
 
@@ -930,7 +960,7 @@ render("DATABASES","databases-container","Important research databases coming so
       x.fillStyle=`rgba(${b.c},${b.l/50})`;x.beginPath();x.arc(b.x,b.y,2.4,0,6.3);x.fill()}
   }
 
-  (function tick(){requestAnimationFrame(tick);x.clearRect(0,0,W,H);if(!nova())return;
+  (function tick(){requestAnimationFrame(tick);if(document.hidden)return;x.clearRect(0,0,W,H);if(!nova())return;
     for(const p of P){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
       const dx=p.x-mx,dy=p.y-my,d=Math.hypot(dx,dy)||1;if(d<140){p.x+=dx/d*1.6;p.y+=dy/d*1.6}}
     for(let i=0;i<P.length;i++){const a=P[i];x.fillStyle="rgba(0,229,255,.85)";x.beginPath();x.arc(a.x,a.y,1.7,0,6.3);x.fill();
